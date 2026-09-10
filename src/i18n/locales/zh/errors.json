@@ -1,0 +1,22 @@
+{
+  "invalidBattle": "这组对战凭证无效，请重新获取一组。",
+  "preparing": "这个实验的模型作品还在准备中。",
+  "notEnoughModels": "至少需要两个不同模型的作品。",
+  "invalidSide": "无效的作品位置。",
+  "expired": "这组对战已过期，请换一组。",
+  "artUnavailable": "作品暂时不可用。",
+  "alreadyVoted": "这组对战已提交，无法更改选择。",
+  "pairUnavailable": "这组作品已不可用，请换一组。",
+  "rateLimited": "操作有点快，请稍等一分钟再试。",
+  "unavailable": "服务暂时不可用，请稍后再试。",
+  "origin": "请求来源无效。",
+  "notFound": "作品不存在。",
+  "tooLarge": "请求过大。",
+  "invalidJson": "请求格式无效。",
+  "invalidInput": "请求参数无效。",
+  "experimentNotFound": "实验不存在。",
+  "mediaLoad": "作品加载失败，请换一组再试。",
+  "load": "加载失败，请重试。",
+  "submit": "提交失败，请重试。",
+  "imageDisplay": "图片显示失败，请换一组。"
+}

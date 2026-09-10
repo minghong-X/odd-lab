@@ -1,0 +1,50 @@
+{
+  "name": "odd-lab",
+  "version": "0.1.0",
+  "description": "把模型生成的趣味作品放进一个可以探索、盲测与投票的实验室。从鹈鹕骑自行车、鳄鱼骑摩托车开始，跟着两位主角登上星舰，飞往火星。",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "import:materials": "tsx scripts/import-materials.ts",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@electric-sql/pglite": "^0.5.8",
+    "drizzle-orm": "^0.45.2",
+    "gsap": "^3.15.0",
+    "next": "^16.3.4",
+    "pg": "^8.23.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "sharp": "^0.35.4",
+    "zod": "^4.5.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.5.0",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "prettier": "^3.9.6",
+    "tsx": "^4.23.13",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.0"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "type": "module"
+}

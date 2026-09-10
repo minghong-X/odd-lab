@@ -1,0 +1,12 @@
+.next
+.next-test
+node_modules
+.npm-cache
+.local-db
+.test-db
+package-lock.json
+data/source-results.json
+test-results
+playwright-report
+AGENTS.md
+CLAUDE.md

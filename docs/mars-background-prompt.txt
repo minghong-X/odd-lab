@@ -1,0 +1,9 @@
+Use case: stylized-concept.
+Asset type: original cinematic background asset for the final Mars journey section of a playful model laboratory homepage.
+Primary request: Create exactly one original wide landscape image, approximately 1536x1024, with no external reference materials.
+Scene/backdrop: A vermilion Martian rocky plain occupies the bottom third of the composition, with warm terracotta rolling hills and sculptural rocks. The upper two thirds are a deep navy blue outer-space sky with scattered tiny stars. A very small blue Earth appears in the upper-left area.
+Style/medium: Beautiful, finely detailed, high-quality 3D clay and paper-sculpture hybrid illustration. Tactile matte surfaces, subtle handcrafted layered textures, elegant soft edges, cinematic depth.
+Composition/framing: Wide landscape. Low horizon near the bottom third. Keep the central area very spacious, quiet and empty so an animated starship can be composited there later. No spacecraft should appear in the generated image itself.
+Lighting/mood: Exquisite cinematic lighting, warm Mars rock highlights, soft cool silver-blue rim light, calm sense of wonder and arrival.
+Color palette: Mars red #C66348, deep blue #163B63, soft silver-blue accents.
+Constraints: Background scenery only. No text, no letters, no numbers, no logo, no watermark, no humans, no characters, no animals, no rockets, no spacecraft, no buildings. Generate only this single finished image; no variants or contact sheets.

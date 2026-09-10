@@ -1,0 +1,22 @@
+{
+  "invalidBattle": "This round’s token is invalid. Please request a new pair.",
+  "preparing": "Submissions for this experiment are still being prepared.",
+  "notEnoughModels": "At least two different models are needed.",
+  "invalidSide": "Invalid artwork position.",
+  "expired": "This round has expired. Please try a new pair.",
+  "artUnavailable": "This artwork is currently unavailable.",
+  "alreadyVoted": "This round was already submitted. Its choice cannot be changed.",
+  "pairUnavailable": "This pair is no longer available. Please request a new one.",
+  "rateLimited": "A little too fast. Please wait a minute and try again.",
+  "unavailable": "The service is temporarily unavailable. Please try again shortly.",
+  "origin": "The request origin is invalid.",
+  "notFound": "Artwork not found.",
+  "tooLarge": "The request is too large.",
+  "invalidJson": "The request format is invalid.",
+  "invalidInput": "The request parameters are invalid.",
+  "experimentNotFound": "Experiment not found.",
+  "mediaLoad": "The artwork could not load. Please try another pair.",
+  "load": "Could not load. Please try again.",
+  "submit": "Could not submit your vote. Please try again.",
+  "imageDisplay": "The image could not display. Please try another pair."
+}
