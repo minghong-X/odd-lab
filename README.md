@@ -1,5 +1,7 @@
 # Odd Lab · 趣味模型实验室
 
+[在线体验](https://odd-lab-bay.vercel.app) · [GitHub](https://github.com/minghong-X/odd-lab)
+
 让想象力出个小差。从骑自行车的鹈鹕，到骑摩托的鳄鱼，再登上星舰飞往火星。一个无需登录的模型作品展览与 Arena，使用 Next.js 全栈架构，适合部署到 Vercel。
 
 ## 已实现
@@ -39,7 +41,7 @@ npm run dev
 4. 生产环境设置 `APP_ORIGIN` 为最终站点 origin（不带结尾 `/`）。Preview 使用独立数据库并设置对应 origin，或留空以使用当前请求 origin。
 5. 构建命令 `npm run build`，Node.js 使用平台支持的 22+ 版本。
 
-**生产环境必须配置 PostgreSQL。** 不提供文件数据库回退，避免在 Serverless 临时磁盘上丢失投票。尚未连接实际 Vercel 项目或外部数据库；需要用户自己的项目与连接信息。图片目前以约 1 MB 的本地 WebP 随部署打包；以后可迁移到对象存储，当前运行不依赖 OSS 可用性。
+**生产环境必须配置 PostgreSQL。** 不提供文件数据库回退，避免在 Serverless 临时磁盘上丢失投票。本站已连接 Vercel 与 Neon PostgreSQL。Fork 部署时请创建自己的数据库并配置连接串；当前生产连接仅提供给 Production，Preview 需要配置独立数据库。图片目前以约 1 MB 的本地 WebP 随部署打包；以后可迁移到对象存储，当前运行不依赖 OSS 可用性。
 
 ## 验证
 
