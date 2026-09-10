@@ -41,7 +41,7 @@ npm run dev
 4. 生产环境设置 `APP_ORIGIN` 为最终站点 origin（不带结尾 `/`）。Preview 使用独立数据库并设置对应 origin，或留空以使用当前请求 origin。
 5. 构建命令 `npm run build`，Node.js 使用平台支持的 22+ 版本。
 
-**生产环境必须配置 PostgreSQL。** 不提供文件数据库回退，避免在 Serverless 临时磁盘上丢失投票。本站已连接 Vercel 与 Neon PostgreSQL。Fork 部署时请创建自己的数据库并配置连接串；当前生产连接仅提供给 Production，Preview 需要配置独立数据库。图片目前以约 1 MB 的本地 WebP 随部署打包；以后可迁移到对象存储，当前运行不依赖 OSS 可用性。
+**生产环境必须配置 PostgreSQL。** 不提供文件数据库回退，避免在 Serverless 临时磁盘上丢失投票。本站已连接 Vercel 与 Neon PostgreSQL。Fork 部署时请创建自己的数据库并配置连接串；当前生产连接仅提供给 Production，Preview 需要配置独立数据库。图片目前以约 300 KB 的原始动态 SVG 和约 1 MB 的 WebP 静态预览随部署打包；以后可迁移到对象存储，当前运行不依赖 OSS 可用性。
 
 ## 验证
 
@@ -66,7 +66,7 @@ npm run test:e2e
 npm run import:materials
 ```
 
-读取用户提供的 `data/source-results.json`，从明确允许的 OSS 主机验证 HTTPS 并导入，检查 SVG 活动/外部内容、体积和渲染像素数，生成中性文件名的 WebP 与 `data/catalog.json`。运行会访问附件给出的原始模型作品地址，不获取网络图库。失败详情写入 `data/import-report.json`，失败时退出码非零。
+读取用户提供的 `data/source-results.json`，从明确允许的 OSS 主机验证 HTTPS 并导入，检查 SVG 活动/外部内容、体积和渲染像素数，保留原始动态 SVG，并生成中性文件名的 WebP 静态预览与 `data/catalog.json`。运行会访问附件给出的原始模型作品地址，不获取网络图库。失败详情写入 `data/import-report.json`，失败时退出码非零。
 
 作品 ID 根据实验、模型、源记录和内容版本生成；文件按内容去重。两个模型可以生成相同文件，但评分独立。旧 Elo、胜负统计均未导入，新站从 1500 分起算。
 
@@ -83,7 +83,7 @@ npm run import:materials
 
 - `src/components/art.tsx`：原创分层 SVG 鹈鹕、自行车、鳄鱼、摩托、星舰和引擎示意。
 - `public/story/mars.webp`：内置 ImageGen 原创生成的火星背景，未使用网络图片。完整提示词在 [docs/mars-background-prompt.txt](docs/mars-background-prompt.txt)。
-- `data/media/`：用户提供的模型输出转换后的预览，属于实验数据，区别于首页叙事插画。
+- `data/media/`：用户提供的模型原始动态 SVG 与转换后的 WebP 静态预览，属于实验数据，区别于首页叙事插画。
 - [docs/implementation.md](docs/implementation.md)：当前实现和后续范围。
 - [docs/architecture.md](docs/architecture.md)、[docs/experience.md](docs/experience.md)：原始架构与分镜方案，包含后续规划。
 
@@ -98,3 +98,9 @@ npm run import:materials
 登船使用 `boarding-scene.tsx` 的共用 SVG 坐标系与 `story.tsx` 的 GSAP 时间线，以地面准备、舰内就座、关门起飞三个分镜表现。保留星舰与可开合舱门，移除升降台、人物穿行路线和作用在地面角色上的舱门遮罩。人物通过短淡出切换到舷窗镜头，上滑可反向还原。减少动态效果时使用静态构图。浏览器回归直接检测出场时鳄鱼鼻部的实际可见性，同时覆盖人物不重叠、镜头切换、起飞与倒放。
 
 首屏使用全部 29 张模型作品，按八个方向飞入并在约 3.5 秒后定格为照片墙。每次打开首页均播放，可使用“重播开场”再次观看；减少动态效果时直接显示静态墙。两位角色沿同一方向从左向右进入公路，保持错开的距离。照片墙回归检查实际移动、行列分布、重复访问、手动重播和减少动态效果。
+
+## 模型作品动画
+
+首页照片墙、Arena 及放大查看使用原始 SVG 内的 SMIL / CSS 动画，照片飞入并定格后，作品仍会继续播放。图库等静态预览保留 WebP。开启系统“减少动态效果”时，首页自动切换静态预览，Arena 在加载下一对作品时使用静态预览。
+
+SVG 仅通过图片元素展示，不注入页面 DOM；媒体响应设置 CSP 沙箱和 `nosniff`，盲测图片仍需要对局令牌且禁止缓存。原始内容按哈希保存，不添加或改写模型动画。动画格式切换不改变作品 ID、已有投票或排名。

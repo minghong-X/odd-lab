@@ -8,7 +8,8 @@
     "width": 1333,
     "height": 800,
     "generationTimeMs": 399000,
-    "tokenUsage": 30123
+    "tokenUsage": 30123,
+    "animatedFile": "2a89a55cfbc662a5b3ae1fe7.svg"
   },
   {
     "id": "bd11ba81f980ca6a1f2ce771",
@@ -19,7 +20,8 @@
     "width": 833,
     "height": 583,
     "generationTimeMs": 104000,
-    "tokenUsage": 6100
+    "tokenUsage": 6100,
+    "animatedFile": "c54eec798965d4f88e96b34a.svg"
   },
   {
     "id": "aa5ef6bc3d3a568a0da9eed7",
@@ -30,7 +32,8 @@
     "width": 1067,
     "height": 667,
     "generationTimeMs": 29121,
-    "tokenUsage": 24536
+    "tokenUsage": 24536,
+    "animatedFile": "48bbb44fa48825714057afa2.svg"
   },
   {
     "id": "703be5da0fdfc540309d6304",
@@ -41,7 +44,8 @@
     "width": 1333,
     "height": 1000,
     "generationTimeMs": 185000,
-    "tokenUsage": 19635
+    "tokenUsage": 19635,
+    "animatedFile": "aa2a3185702fd2b7ca7d9ac4.svg"
   },
   {
     "id": "996af685c4ed16c7471099bd",
@@ -52,7 +56,8 @@
     "width": 1333,
     "height": 833,
     "generationTimeMs": 290000,
-    "tokenUsage": 16089
+    "tokenUsage": 16089,
+    "animatedFile": "af41e2fca2dea8371fa8efb8.svg"
   },
   {
     "id": "2547bf925a0487008f86bbb6",
@@ -63,7 +68,8 @@
     "width": 1333,
     "height": 1000,
     "generationTimeMs": 136000,
-    "tokenUsage": 5600
+    "tokenUsage": 5600,
+    "animatedFile": "6708f88646607205891ab580.svg"
   },
   {
     "id": "1dfd58f07d1596563f6428e0",
@@ -74,7 +80,8 @@
     "width": 1333,
     "height": 1000,
     "generationTimeMs": 85000,
-    "tokenUsage": 7800
+    "tokenUsage": 7800,
+    "animatedFile": "f3d48088ae5ddf65fee666af.svg"
   },
   {
     "id": "e53c400ee604adff9974f97a",
@@ -85,7 +92,8 @@
     "width": 1333,
     "height": 1000,
     "generationTimeMs": 17000,
-    "tokenUsage": 110
+    "tokenUsage": 110,
+    "animatedFile": "f3d48088ae5ddf65fee666af.svg"
   },
   {
     "id": "910fdc6810858411c180c8f8",
@@ -96,7 +104,8 @@
     "width": 833,
     "height": 500,
     "generationTimeMs": 33000,
-    "tokenUsage": 1600
+    "tokenUsage": 1600,
+    "animatedFile": "61c881387e4f0675b26169b4.svg"
   },
   {
     "id": "006df8fa79d12b105b992389",
@@ -107,7 +116,8 @@
     "width": 1333,
     "height": 667,
     "generationTimeMs": 42000,
-    "tokenUsage": 2000
+    "tokenUsage": 2000,
+    "animatedFile": "38fadfa6dd3d2848beb77016.svg"
   },
   {
     "id": "95503e192149cb1e3bf28514",
@@ -118,7 +128,8 @@
     "width": 1333,
     "height": 1000,
     "generationTimeMs": 890000,
-    "tokenUsage": 21911
+    "tokenUsage": 21911,
+    "animatedFile": "a5a6f4d99ef1e2c082942c2b.svg"
   },
   {
     "id": "a337e5d1dd19c4b9743c6dae",
@@ -129,7 +140,8 @@
     "width": 1400,
     "height": 963,
     "generationTimeMs": 30000,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "21ee13919ae316e1b78fca14.svg"
   },
   {
     "id": "db5fdcee4de58c988e857881",
@@ -140,7 +152,8 @@
     "width": 1400,
     "height": 788,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "bcbfa6d43bcad9f9b8b389b3.svg"
   },
   {
     "id": "3afd6f4a6b1375eabb9a4ad5",
@@ -151,7 +164,8 @@
     "width": 1333,
     "height": 833,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "a08a80edf91326705f57f154.svg"
   },
   {
     "id": "32bb1ac5f7ce0b490a5d9088",
@@ -162,7 +176,8 @@
     "width": 1333,
     "height": 833,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "7fff16174db99fb5d297f132.svg"
   },
   {
     "id": "b02336642a209d3a8eb25463",
@@ -173,7 +188,8 @@
     "width": 1400,
     "height": 809,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "b15dda1b99cf21a6f001ee3c.svg"
   },
   {
     "id": "158cbf1b0eb6c21a5369aeb7",
@@ -184,7 +200,8 @@
     "width": 1400,
     "height": 778,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "7f99b610a1e89d659ced65ba.svg"
   },
   {
     "id": "fd76b181366fd59ddaa6d1e1",
@@ -195,7 +212,8 @@
     "width": 1333,
     "height": 833,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "86abadde89cc08f1c1d607e5.svg"
   },
   {
     "id": "089571e6881cb0dadf3a6175",
@@ -206,7 +224,8 @@
     "width": 1333,
     "height": 833,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "7197231baf2cfd7905e09554.svg"
   },
   {
     "id": "157bbb0ddc6b89dab39317ee",
@@ -217,7 +236,8 @@
     "width": 1000,
     "height": 667,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "1a8f1472bff16cd5fe244513.svg"
   },
   {
     "id": "a481fbe918144bdc0c1ff415",
@@ -228,7 +248,8 @@
     "width": 1333,
     "height": 833,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "8797da0e46f46b456e76e54e.svg"
   },
   {
     "id": "604af9e79a9a30b34e44c96e",
@@ -239,7 +260,8 @@
     "width": 1400,
     "height": 856,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "c5538ef1fc8e695d3e434b67.svg"
   },
   {
     "id": "d75037173a31061863c0e0b0",
@@ -250,7 +272,8 @@
     "width": 1400,
     "height": 933,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "aee5b0e77923d70607beaa84.svg"
   },
   {
     "id": "35bc9dea9d84220b6b83a9ac",
@@ -261,7 +284,8 @@
     "width": 1400,
     "height": 747,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "4f6a5587076a02e92c0a3dea.svg"
   },
   {
     "id": "921c5de0c3f27d4c0b474ffd",
@@ -272,7 +296,8 @@
     "width": 1333,
     "height": 833,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "ccc9561a1f9f7081285628bf.svg"
   },
   {
     "id": "f26fc1e2d4a1fa4b1d99a599",
@@ -283,7 +308,8 @@
     "width": 833,
     "height": 533,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "fd75a6bfad06c6c11c3f5b25.svg"
   },
   {
     "id": "9f6449a4a754c0686e01da32",
@@ -294,7 +320,8 @@
     "width": 1333,
     "height": 1000,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "d7a7badf9bec24eeebeedc4b.svg"
   },
   {
     "id": "9f91858483c2a7a3cc87d7cf",
@@ -305,7 +332,8 @@
     "width": 1333,
     "height": 833,
     "generationTimeMs": null,
-    "tokenUsage": null
+    "tokenUsage": null,
+    "animatedFile": "fd9ee27a08e0d16d32d74e36.svg"
   },
   {
     "id": "65a4627bdd07a8c1ff9ea28f",
@@ -316,6 +344,7 @@
     "width": 1333,
     "height": 1000,
     "generationTimeMs": 20000,
-    "tokenUsage": 3500
+    "tokenUsage": 3500,
+    "animatedFile": "528837fdc4ae3ecf54877249.svg"
   }
 ]

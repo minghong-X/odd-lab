@@ -1,0 +1,269 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 天空渐变 -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4facfe" />
+      <stop offset="100%" stop-color="#00f2fe" />
+    </linearGradient>
+    
+    <!-- 地面渐变 -->
+    <linearGradient id="groundGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8bc34a" />
+      <stop offset="100%" stop-color="#689f38" />
+    </linearGradient>
+
+    <!-- 太阳光晕 -->
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffd700" stop-opacity="1" />
+      <stop offset="70%" stop-color="#ffd700" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#ffd700" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- 背景天空 -->
+  <rect width="800" height="600" fill="url(#skyGrad)" />
+
+  <!-- 太阳 -->
+  <circle cx="120" cy="120" r="80" fill="url(#sunGlow)" />
+  <circle cx="120" cy="120" r="40" fill="#ffd700" />
+  
+  <!-- 太阳光芒动画 -->
+  <g stroke="#fff" stroke-width="4" stroke-linecap="round" opacity="0.6">
+    <animateTransform attributeName="transform" type="rotate" from="0 120 120" to="360 120 120" dur="12s" repeatCount="indefinite" />
+    <line x1="120" y1="40" x2="120" y2="20" />
+    <line x1="120" y1="200" x2="120" y2="220" />
+    <line x1="40" y1="120" x2="20" y2="120" />
+    <line x1="200" y1="120" x2="220" y2="120" />
+    <line x1="63" y1="63" x2="48" y2="48" />
+    <line x1="177" y1="177" x2="192" y2="192" />
+    <line x1="63" y1="177" x2="48" y2="192" />
+    <line x1="177" y1="63" x2="192" y2="48" />
+  </g>
+
+  <!-- 云朵动画 -->
+  <g fill="#fff" opacity="0.8">
+    <animateTransform attributeName="transform" type="translate" from="0,0" to="-900,0" dur="40s" repeatCount="indefinite" />
+    <!-- 云 1 -->
+    <g>
+      <circle cx="800" cy="100" r="35" />
+      <circle cx="840" cy="80" r="45" />
+      <circle cx="880" cy="100" r="35" />
+      <rect x="800" y="100" width="80" height="35" rx="17.5" />
+    </g>
+    <!-- 云 2 -->
+    <g>
+      <circle cx="1100" cy="160" r="25" />
+      <circle cx="1130" cy="140" r="35" />
+      <circle cx="1160" cy="160" r="25" />
+      <rect x="1100" y="160" width="60" height="25" rx="12.5" />
+    </g>
+  </g>
+
+  <!-- 地面与道路 -->
+  <rect x="0" y="500" width="800" height="100" fill="url(#groundGrad)" />
+  <rect x="0" y="520" width="800" height="30" fill="#555" />
+  <rect x="0" y="520" width="800" height="4" fill="#fff" opacity="0.4" />
+  
+  <!-- 道路标线动画 -->
+  <line x1="0" y1="535" x2="800" y2="535" stroke="#fff" stroke-width="4" stroke-dasharray="40 20">
+    <animate attributeName="stroke-dashoffset" from="0" to="-120" dur="2s" repeatCount="indefinite" />
+  </line>
+
+  <!-- 自行车阴影 -->
+  <ellipse cx="400" cy="545" rx="130" ry="10" fill="#000" opacity="0.3">
+    <animate attributeName="rx" values="130; 110; 130" dur="1s" repeatCount="indefinite" />
+  </ellipse>
+
+  <!-- 骑手组（包含弹跳与摇摆动画） -->
+  <g id="rider">
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-8; 0,0" dur="1s" repeatCount="indefinite" />
+    <animateTransform attributeName="transform" type="rotate" values="-1.5 400 400; 1.5 400 400; -1.5 400 400" dur="1s" repeatCount="indefinite" additive="sum" />
+
+    <!-- 后轮 -->
+    <g id="rear-wheel">
+      <animateTransform attributeName="transform" type="rotate" from="0 250 450" to="360 250 450" dur="2s" repeatCount="indefinite" />
+      <circle cx="250" cy="450" r="80" fill="none" stroke="#222" stroke-width="12" />
+      <circle cx="250" cy="450" r="74" fill="none" stroke="#ccc" stroke-width="2" />
+      <g stroke="#aaa" stroke-width="2">
+        <line x1="250" y1="370" x2="250" y2="530" />
+        <line x1="170" y1="450" x2="330" y2="450" />
+        <line x1="193" y1="393" x2="307" y2="507" />
+        <line x1="193" y1="507" x2="307" y2="393" />
+      </g>
+      <circle cx="250" cy="450" r="15" fill="#555" />
+      <circle cx="250" cy="450" r="5" fill="#ccc" />
+    </g>
+
+    <!-- 后三角车架 -->
+    <g id="frame-rear">
+      <!-- 后下叉 -->
+      <line x1="250" y1="450" x2="380" y2="400" stroke="#e63946" stroke-width="8" stroke-linecap="round" />
+      <!-- 上后下叉 -->
+      <line x1="250" y1="450" x2="320" y2="270" stroke="#e63946" stroke-width="8" stroke-linecap="round" />
+      <!-- 座管 -->
+      <line x1="320" y1="270" x2="380" y2="400" stroke="#e63946" stroke-width="8" stroke-linecap="round" />
+    </g>
+
+    <!-- 鹈鹕尾巴 -->
+    <g id="pelican-tail">
+      <path d="M 300,240 Q 240,230 230,260 Q 260,250 300,260" fill="#fdfbf7" stroke="#333" stroke-width="3" />
+      <path d="M 300,230 Q 230,210 210,240 Q 250,240 300,250" fill="#fdfbf7" stroke="#333" stroke-width="3" />
+    </g>
+
+    <!-- 鹈鹕身体 -->
+    <g id="pelican-body">
+      <ellipse cx="360" cy="240" rx="75" ry="65" fill="#fdfbf7" stroke="#333" stroke-width="4" />
+      <!-- 身体羽毛纹理 -->
+      <path d="M 320,210 Q 340,230 330,250" fill="none" stroke="#e0e0e0" stroke-width="3" stroke-linecap="round" />
+      <path d="M 350,200 Q 370,220 360,240" fill="none" stroke="#e0e0e0" stroke-width="3" stroke-linecap="round" />
+      <path d="M 380,210 Q 400,230 390,250" fill="none" stroke="#e0e0e0" stroke-width="3" stroke-linecap="round" />
+    </g>
+
+    <!-- 腿后部（后腿） -->
+    <g id="leg-rear">
+      <animateTransform attributeName="transform" type="rotate" values="-30 370 280; 30 370 280; -30 370 280" dur="2s" repeatCount="indefinite" />
+      <path d="M 370,280 L 380,340 L 405,395" fill="none" stroke="#ffa500" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+      <!-- 鞋子 -->
+      <circle cx="405" cy="395" r="12" fill="#333" />
+    </g>
+
+    <!-- 链条与牙盘 -->
+    <g id="crank-chain">
+      <!-- 链条上端 -->
+      <line x1="250" y1="430" x2="380" y2="380" stroke="#555" stroke-width="4" stroke-dasharray="6 4">
+        <animate attributeName="stroke-dashoffset" from="0" to="-80" dur="2s" repeatCount="indefinite" />
+      </line>
+      <!-- 链条下端 -->
+      <line x1="250" y1="470" x2="380" y2="420" stroke="#555" stroke-width="4" stroke-dasharray="6 4">
+        <animate attributeName="stroke-dashoffset" from="0" to="80" dur="2s" repeatCount="indefinite" />
+      </line>
+      
+      <!-- 牙盘动画 -->
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0 380 400" to="360 380 400" dur="2s" repeatCount="indefinite" />
+        <circle cx="380" cy="400" r="18" fill="#444" stroke="#222" stroke-width="3" />
+        <circle cx="380" cy="400" r="20" fill="none" stroke="#555" stroke-width="4" stroke-dasharray="4 4" />
+        <!-- 右曲柄与踏板 -->
+        <line x1="380" y1="400" x2="410" y2="400" stroke="#222" stroke-width="6" stroke-linecap="round" />
+        <rect x="405" y="392" width="15" height="16" rx="3" fill="#666" />
+        <!-- 左曲柄与踏板 -->
+        <line x1="380" y1="400" x2="350" y2="400" stroke="#222" stroke-width="6" stroke-linecap="round" />
+        <rect x="340" y="392" width="15" height="16" rx="3" fill="#666" />
+      </g>
+    </g>
+
+    <!-- 腿前部（前腿） -->
+    <g id="leg-front">
+      <animateTransform attributeName="transform" type="rotate" values="30 360 280; -30 360 280; 30 360 280" dur="2s" repeatCount="indefinite" />
+      <path d="M 360,280 L 370,340 L 375,395" fill="none" stroke="#e69500" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+      <!-- 鞋子 -->
+      <circle cx="375" cy="395" r="12" fill="#222" />
+    </g>
+
+    <!-- 前轮 -->
+    <g id="front-wheel">
+      <animateTransform attributeName="transform" type="rotate" from="0 550 450" to="360 550 450" dur="2s" repeatCount="indefinite" />
+      <circle cx="550" cy="450" r="80" fill="none" stroke="#222" stroke-width="12" />
+      <circle cx="550" cy="450" r="74" fill="none" stroke="#ccc" stroke-width="2" />
+      <g stroke="#aaa" stroke-width="2">
+        <line x1="550" y1="370" x2="550" y2="530" />
+        <line x1="470" y1="450" x2="630" y2="450" />
+        <line x1="493" y1="393" x2="607" y2="507" />
+        <line x1="493" y1="507" x2="607" y2="393" />
+      </g>
+      <circle cx="550" cy="450" r="15" fill="#555" />
+      <circle cx="550" cy="450" r="5" fill="#ccc" />
+    </g>
+
+    <!-- 前三角车架、前叉、车把 -->
+    <g id="frame-front">
+      <!-- 下前叉 -->
+      <line x1="380" y1="400" x2="540" y2="280" stroke="#e63946" stroke-width="8" stroke-linecap="round" />
+      <!-- 上管 -->
+      <line x1="320" y1="270" x2="540" y2="280" stroke="#e63946" stroke-width="8" stroke-linecap="round" />
+      <!-- 前叉 -->
+      <line x1="540" y1="280" x2="550" y2="450" stroke="#e63946" stroke-width="8" stroke-linecap="round" />
+      <!-- 把立 -->
+      <line x1="540" y1="280" x2="555" y2="260" stroke="#222" stroke-width="6" stroke-linecap="round" />
+      <!-- 车把 -->
+      <path d="M 555,260 Q 565,250 575,260 L 585,270" fill="none" stroke="#222" stroke-width="6" stroke-linecap="round" />
+      <!-- 车把铃铛 -->
+      <circle cx="570" cy="255" r="8" fill="#ffd700" stroke="#333" stroke-width="2" />
+      <!-- 座垫 -->
+      <path d="M 300,270 L 340,270 L 330,280 L 310,280 Z" fill="#222" stroke="#111" stroke-width="2" />
+      <line x1="320" y1="280" x2="320" y2="270" stroke="#222" stroke-width="4" />
+    </g>
+
+    <!-- 鹈鹕脖子与头部 -->
+    <g id="pelican-neck-head">
+      <!-- 脖子底层（描边） -->
+      <path d="M 380,200 Q 430,120 480,140" fill="none" stroke="#333" stroke-width="34" />
+      <!-- 脖子实体 -->
+      <path d="M 380,200 Q 430,120 480,140" fill="none" stroke="#fdfbf7" stroke-width="30" />
+      
+      <!-- 头部 -->
+      <circle cx="480" cy="140" r="28" fill="#fdfbf7" stroke="#333" stroke-width="4" />
+      
+      <!-- 上喙 -->
+      <path d="M 500,130 Q 580,120 630,150 Q 550,150 500,150" fill="#f4c430" stroke="#333" stroke-width="3" />
+      <!-- 喙尖 -->
+      <path d="M 620,145 L 635,150 L 620,155" fill="#cc5500" stroke="#333" stroke-width="2" />
+      
+      <!-- 喉囊（下喙） —— 鹈鹕的标志性特征 -->
+      <path d="M 500,150 Q 560,280 630,150 Q 550,180 500,150" fill="#f4c430" stroke="#333" stroke-width="3" />
+      <!-- 喉囊纹理线条 -->
+      <path d="M 515,160 Q 560,230 600,170" fill="none" stroke="#dda030" stroke-width="2" />
+      <path d="M 530,170 Q 560,210 580,180" fill="none" stroke="#dda030" stroke-width="2" />
+      
+      <!-- 笑脸 -->
+      <path d="M 540,200 Q 555,215 570,200" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round" />
+      
+      <!-- 眼睛 -->
+      <circle cx="485" cy="130" r="7" fill="#ff0000" stroke="#333" stroke-width="2" />
+      <circle cx="487" cy="128" r="3" fill="#fff" />
+      <circle cx="486" cy="129" r="1.5" fill="#000" />
+      
+      <!-- 头冠羽 -->
+      <path d="M 460,115 L 450,90 M 465,113 L 460,85 M 470,112 L 470,88" stroke="#333" stroke-width="3" stroke-linecap="round" />
+    </g>
+
+    <!-- 鹈鹕翅膀（抓握车把） -->
+    <g id="pelican-wing">
+      <path d="M 360,230 C 420,250 480,270 545,285 C 500,310 450,320 380,280" fill="#fdfbf7" stroke="#333" stroke-width="4" stroke-linejoin="round" />
+      <!-- 翅膀尖端羽毛（手指） -->>
+      <path d="M 545,285 L 555,290 M 545,285 L 558,283 M 545,285 L 553,278" stroke="#333" stroke-width="3" stroke-linecap="round" />
+      <!-- 翅膀羽毛细节 -->
+      <path d="M 400,250 Q 460,275 520,285" fill="none" stroke="#e0e0e0" stroke-width="3" stroke-linecap="round" />
+      <path d="M 420,265 Q 470,290 500,290" fill="none" stroke="#e0e0e0" stroke-width="3" stroke-linecap="round" />
+    </g>
+  </g>
+
+  <!-- 风线/速度线动画 -->
+  <g stroke="#fff" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.6">
+    <!-- 线条 1 -->
+    <line x1="620" y1="200" x2="680" y2="200">
+      <animate attributeName="x1" values="620; 650; 620" dur="0.6s" repeatCount="indefinite" />
+      <animate attributeName="x2" values="680; 710; 680" dur="0.6s" repeatCount="indefinite" />
+    </line>
+    <!-- 线条 2 -->
+    <line x1="580" y1="230" x2="630" y2="230">
+      <animate attributeName="x1" values="580; 610; 580" dur="0.8s" repeatCount="indefinite" />
+      <animate attributeName="x2" values="630; 660; 630" dur="0.8s" repeatCount="indefinite" />
+    </line>
+    <!-- 线条 3 -->
+    <line x1="650" y1="170" x2="690" y2="170">
+      <animate attributeName="x1" values="650; 670; 650" dur="0.4s" repeatCount="indefinite" />
+      <animate attributeName="x2" values="690; 710; 690" dur="0.4s" repeatCount="indefinite" />
+    </line>
+    <!-- 线条 4 -->
+    <line x1="100" y1="320" x2="140" y2="320">
+      <animate attributeName="x1" values="100; 120; 100" dur="0.5s" repeatCount="indefinite" />
+      <animate attributeName="x2" values="140; 160; 140" dur="0.5s" repeatCount="indefinite" />
+    </line>
+    <!-- 线条 5 -->
+    <line x1="60" y1="350" x2="90" y2="350">
+      <animate attributeName="x1" values="60; 75; 60" dur="0.7s" repeatCount="indefinite" />
+      <animate attributeName="x2" values="90; 105; 90" dur="0.7s" repeatCount="indefinite" />
+    </line>
+  </g>
+</svg>

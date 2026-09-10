@@ -325,14 +325,20 @@ export function Story({ pictures }: { pictures: { id: string }[] }) {
                 } as CSSProperties
               }
             >
-              <img
-                src={`/api/media?id=${p.id}`}
-                alt=""
-                width="220"
-                height="170"
-                loading="eager"
-                decoding="async"
-              />
+              <picture>
+                <source
+                  media="(prefers-reduced-motion: reduce)"
+                  srcSet={`/api/media?id=${p.id}`}
+                />
+                <img
+                  src={`/api/media?id=${p.id}&motion=1`}
+                  alt=""
+                  width="220"
+                  height="170"
+                  loading="eager"
+                  decoding="async"
+                />
+              </picture>
               <span>{t("story.photoCaption")}</span>
             </div>
           ))}

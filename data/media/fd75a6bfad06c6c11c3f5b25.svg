@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="320" viewBox="0 0 500 320">
+  <rect x="0" y="260" width="500" height="60" fill="#f0e68c"/>
+  <g>
+    <circle cx="150" cy="230" r="35" fill="#333" stroke="#222" stroke-width="8"/>
+    <g>
+      <circle cx="150" cy="230" r="25" fill="none" stroke="#fff" stroke-width="3"/>
+      <line x1="150" y1="205" x2="150" y2="255" stroke="#fff" stroke-width="2"/>
+      <line x1="125" y1="230" x2="175" y2="230" stroke="#fff" stroke-width="2"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 150 230" to="360 150 230" dur="1.2s" repeatCount="indefinite"/>
+    </g>
+  </g>
+  <g>
+    <circle cx="350" cy="230" r="35" fill="#333" stroke="#222" stroke-width="8"/>
+    <g>
+      <circle cx="350" cy="230" r="25" fill="none" stroke="#fff" stroke-width="3"/>
+      <line x1="350" y1="205" x2="350" y2="255" stroke="#fff" stroke-width="2"/>
+      <line x1="325" y1="230" x2="375" y2="230" stroke="#fff" stroke-width="2"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 350 230" to="360 350 230" dur="1.2s" repeatCount="indefinite"/>
+    </g>
+  </g>
+  <g stroke="#222" stroke-width="8" stroke-linecap="round">
+    <line x1="150" y1="230" x2="220" y2="170"/>
+    <line x1="220" y1="170" x2="280" y2="170"/>
+    <line x1="280" y1="170" x2="350" y2="230"/>
+    <line x1="220" y1="170" x2="220" y2="130"/>
+    <line x1="280" y1="170" x2="300" y2="140"/>
+    <line x1="300" y1="140" x2="320" y2="140"/>
+  </g>
+  <g>
+    <ellipse cx="260" cy="145" rx="22" ry="18" fill="#f4a460"/>
+    <path d="M240 135 Q260 120 290 135" fill="none" stroke="#f4a460" stroke-width="14"/>
+    <ellipse cx="295" cy="135" rx="18" ry="7" fill="#ffcc00"/>
+    <circle cx="275" cy="138" r="4" fill="#222"/>
+    <g>
+      <path d="M245 155 Q230 175 245 190" fill="none" stroke="#f4a460" stroke-width="6"/>
+      <path d="M275 155 Q290 175 275 190" fill="none" stroke="#f4a460" stroke-width="6"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0; 0 -4; 0 0" dur="0.6s" repeatCount="indefinite"/>
+    </g>
+  </g>
+  <g>
+    <line x1="300" y1="140" x2="265" y2="155" stroke="#f4a460" stroke-width="5"/>
+    <circle cx="265" cy="155" r="5" fill="#f4a460"/>
+  </g>
+  <g>
+    <line x1="240" y1="195" x2="240" y2="215" stroke="#222" stroke-width="5"/>
+    <circle cx="240" cy="218" r="4" fill="#222"/>
+    <animateTransform attributeName="transform" type="rotate" from="-20 240 218" to="20 240 218" dur="0.6s" repeatCount="indefinite"/>
+  </g>
+</svg>

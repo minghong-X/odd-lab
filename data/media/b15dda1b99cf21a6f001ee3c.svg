@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" role="img" aria-labelledby="title desc">
+  <title id="title">Animated pelican riding a bicycle</title>
+  <desc id="desc">A looping SVG animation of a pelican pedaling a bicycle with spinning wheels.</desc>
+
+  <style>
+    .line{fill:none;stroke:#263238;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
+    .thin{fill:none;stroke:#263238;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+    .tire{fill:none;stroke:#202428;stroke-width:13}
+    .rim{fill:none;stroke:#d7edf2;stroke-width:5}
+    .white{fill:#fffaf0;stroke:#263238;stroke-width:5;stroke-linejoin:round}
+    .feather{fill:#f5f0df;stroke:#263238;stroke-width:4;stroke-linejoin:round}
+    .orange{fill:#f2a23a;stroke:#263238;stroke-width:5;stroke-linejoin:round}
+    .dark{fill:#263238}
+    .sky{fill:#dff7ff}
+    .ground{fill:none;stroke:#8bb66f;stroke-width:8;stroke-linecap:round;stroke-dasharray:36 24}
+  </style>
+
+  <rect width="900" height="520" class="sky"/>
+  <path d="M0 438H900" class="ground">
+    <animate attributeName="stroke-dashoffset" from="0" to="-120" dur="1.4s" repeatCount="indefinite"/>
+  </path>
+
+  <g transform="translate(0 0)">
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 -7;0 0" dur="0.8s" repeatCount="indefinite"/>
+
+    <g id="bike">
+      <g transform="translate(245 376)">
+        <circle r="82" class="tire"/>
+        <circle r="66" class="rim"/>
+        <g class="thin">
+          <line x1="0" y1="0" x2="0" y2="-66"/>
+          <line x1="0" y1="0" x2="47" y2="-47"/>
+          <line x1="0" y1="0" x2="66" y2="0"/>
+          <line x1="0" y1="0" x2="47" y2="47"/>
+          <line x1="0" y1="0" x2="0" y2="66"/>
+          <line x1="0" y1="0" x2="-47" y2="47"/>
+          <line x1="0" y1="0" x2="-66" y2="0"/>
+          <line x1="0" y1="0" x2="-47" y2="-47"/>
+        </g>
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="0.7s" repeatCount="indefinite" additive="sum"/>
+      </g>
+
+      <g transform="translate(628 376)">
+        <circle r="82" class="tire"/>
+        <circle r="66" class="rim"/>
+        <g class="thin">
+          <line x1="0" y1="0" x2="0" y2="-66"/>
+          <line x1="0" y1="0" x2="47" y2="-47"/>
+          <line x1="0" y1="0" x2="66" y2="0"/>
+          <line x1="0" y1="0" x2="47" y2="47"/>
+          <line x1="0" y1="0" x2="0" y2="66"/>
+          <line x1="0" y1="0" x2="-47" y2="47"/>
+          <line x1="0" y1="0" x2="-66" y2="0"/>
+          <line x1="0" y1="0" x2="-47" y2="-47"/>
+        </g>
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="0.7s" repeatCount="indefinite" additive="sum"/>
+      </g>
+
+      <path d="M245 376L362 255L455 376L245 376M362 255L550 255L455 376M550 255L628 376M550 255L595 213M570 213H636M362 255L344 214M315 214H385" class="line"/>
+      <circle cx="455" cy="376" r="19" fill="#ffe082" stroke="#263238" stroke-width="6"/>
+
+      <g transform="translate(455 376)">
+        <line x1="0" y1="0" x2="54" y2="0" class="line"/>
+        <line x1="0" y1="0" x2="-54" y2="0" class="line"/>
+        <circle cx="60" cy="0" r="8" fill="#263238"/>
+        <circle cx="-60" cy="0" r="8" fill="#263238"/>
+        <animateTransform attributeName="transform" type="rotate" from="0 455 376" to="360 455 376" dur="0.7s" repeatCount="indefinite"/>
+      </g>
+    </g>
+
+    <g id="pelican">
+      <path d="M356 242C326 216 330 174 366 154C411 129 493 147 529 190C558 225 548 269 514 287C470 310 397 282 356 242Z" class="white"/>
+      <path d="M399 172C360 189 351 228 373 258C399 292 465 296 506 267C462 261 426 238 399 172Z" class="feather"/>
+      <path d="M515 185C549 151 599 145 634 171C600 177 574 189 548 213C540 222 524 211 515 185Z" class="white"/>
+      <path d="M630 170C704 180 759 200 793 229C735 241 674 240 617 224C597 218 594 184 630 170Z" class="orange"/>
+      <path d="M633 198C686 205 732 217 765 231C722 236 674 232 626 219Z" fill="#ffd18c" opacity="0.8"/>
+      <circle cx="588" cy="166" r="32" class="white"/>
+      <circle cx="599" cy="157" r="6" class="dark"/>
+      <path d="M577 134C598 118 625 122 642 140" class="thin"/>
+      <path d="M417 148C430 117 466 105 501 123" class="white"/>
+      <path d="M337 225C303 230 279 246 263 274C303 271 330 260 357 238Z" class="feather"/>
+
+      <g>
+        <path d="M424 284C427 318 440 343 455 376" class="line"/>
+        <path d="M497 282C485 318 468 342 455 376" class="line"/>
+        <animateTransform attributeName="transform" type="rotate" values="-8 455 376;8 455 376;-8 455 376" dur="0.7s" repeatCount="indefinite"/>
+      </g>
+
+      <g>
+        <path d="M428 289C402 322 385 348 395 377" class="line"/>
+        <path d="M395 377H360" class="line"/>
+        <animateTransform attributeName="transform" type="rotate" values="10 455 376;-10 455 376;10 455 376" dur="0.7s" repeatCount="indefinite"/>
+      </g>
+
+      <path d="M511 286C535 316 565 332 598 330" class="line"/>
+      <path d="M598 330H630" class="line"/>
+    </g>
+
+    <g opacity="0.5">
+      <path d="M120 130C153 96 202 96 235 130" class="thin"/>
+      <path d="M690 103C716 78 756 78 782 103" class="thin"/>
+    </g>
+  </g>
+</svg>

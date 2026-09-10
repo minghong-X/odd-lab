@@ -55,12 +55,19 @@ export function ArenaClient({ slug }: { slug: string }) {
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.code);
+      const motion = window.matchMedia("(prefers-reduced-motion: reduce)")
+        .matches
+        ? "0"
+        : "1";
       const blobs = await Promise.all(
         ["A", "B"].map(async (side) => {
-          const r = await fetch(`/api/media?battle=${data.id}&side=${side}`, {
-            headers: { Authorization: `Bearer ${data.token}` },
-            signal: abort.signal,
-          });
+          const r = await fetch(
+            `/api/media?battle=${data.id}&side=${side}&motion=${motion}`,
+            {
+              headers: { Authorization: `Bearer ${data.token}` },
+              signal: abort.signal,
+            },
+          );
           if (!r.ok) throw new Error("mediaLoad");
           return r.blob();
         }),

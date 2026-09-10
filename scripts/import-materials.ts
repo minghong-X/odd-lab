@@ -52,7 +52,7 @@ for (const entry of source.data) {
       text = raw.toString("utf8");
     if (!/<svg[\s>]/i.test(text)) throw new Error("Expected SVG content");
     if (
-      /<!DOCTYPE|<!ENTITY|<script|<foreignObject|(?:href|src)\s*=\s*["']\s*(?:https?:|\/\/|file:)|url\(\s*["']?(?:https?:|\/\/|file:)/i.test(
+      /<!DOCTYPE|<!ENTITY|<script|<foreignObject|\son\w+\s*=|@import|(?:href|src)\s*=\s*["']\s*(?:https?:|\/\/|file:|javascript:)|url\(\s*["']?(?:https?:|\/\/|file:|javascript:)/i.test(
         text,
       )
     )
@@ -89,12 +89,15 @@ for (const entry of source.data) {
       .webp({ quality: 88 })
       .toBuffer({ resolveWithObject: true });
     await writeFile(`data/media/${contentHash}.webp`, image.data);
+    // Keep the original SMIL/CSS animation alongside the reduced-motion preview.
+    await writeFile(`data/media/${contentHash}.svg`, raw);
     catalog.push({
       id,
       model: entry.modelName,
       title: entry.title,
       experiment: entry.category,
       file: `${contentHash}.webp`,
+      animatedFile: `${contentHash}.svg`,
       width: image.info.width,
       height: image.info.height,
       generationTimeMs: entry.generationTimeMs,

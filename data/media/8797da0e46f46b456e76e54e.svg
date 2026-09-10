@@ -1,0 +1,180 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <defs>
+    <radialGradient id="sky" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#fff7d6"/>
+      <stop offset="100%" stop-color="#a8d8f0"/>
+    </radialGradient>
+    <linearGradient id="frame" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e63946"/>
+      <stop offset="100%" stop-color="#a4161a"/>
+    </linearGradient>
+    <linearGradient id="beak" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffb703"/>
+      <stop offset="100%" stop-color="#fb8500"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="500" fill="url(#sky)"/>
+
+  <!-- Sun -->
+  <circle cx="700" cy="90" r="40" fill="#ffd60a" opacity="0.9">
+    <animate attributeName="r" values="40;44;40" dur="3s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Clouds -->
+  <g fill="#ffffff" opacity="0.85">
+    <ellipse cx="150" cy="90" rx="40" ry="14">
+      <animateTransform attributeName="transform" type="translate" from="0 0" to="60 0" dur="8s" repeatCount="indefinite"/>
+    </ellipse>
+    <ellipse cx="500" cy="60" rx="50" ry="16">
+      <animateTransform attributeName="transform" type="translate" from="0 0" to="40 0" dur="10s" repeatCount="indefinite"/>
+    </ellipse>
+  </g>
+
+  <!-- Ground -->
+  <rect y="460" width="800" height="40" fill="#8d6e63"/>
+  <line x1="0" y1="460" x2="800" y2="460" stroke="#5d4037" stroke-width="2"/>
+  <g stroke="#5d4037" stroke-width="2" stroke-dasharray="10,15">
+    <line x1="0" y1="485" x2="800" y2="485"/>
+  </g>
+
+  <!-- Bicycle -->
+  <g id="bicycle">
+    <!-- Back wheel -->
+    <g transform="translate(220 400)">
+      <circle r="75" fill="none" stroke="#1d1d1d" stroke-width="6"/>
+      <circle r="68" fill="none" stroke="#3d3d3d" stroke-width="1.5"/>
+      <circle r="9" fill="#1d1d1d"/>
+      <g>
+        <line x1="-75" y1="0" x2="75" y2="0" stroke="#3d3d3d" stroke-width="1.5"/>
+        <line x1="0" y1="-75" x2="0" y2="75" stroke="#3d3d3d" stroke-width="1.5"/>
+        <line x1="-53" y1="-53" x2="53" y2="53" stroke="#3d3d3d" stroke-width="1.5"/>
+        <line x1="-53" y1="53" x2="53" y2="-53" stroke="#3d3d3d" stroke-width="1.5"/>
+        <line x1="-30" y1="-69" x2="30" y2="69" stroke="#3d3d3d" stroke-width="1.5"/>
+        <line x1="30" y1="-69" x2="-30" y2="69" stroke="#3d3d3d" stroke-width="1.5"/>
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1.5s" repeatCount="indefinite"/>
+      </g>
+    </g>
+
+    <!-- Front wheel -->
+    <g transform="translate(580 400)">
+      <circle r="75" fill="none" stroke="#1d1d1d" stroke-width="6"/>
+      <circle r="68" fill="none" stroke="#3d3d3d" stroke-width="1.5"/>
+      <circle r="9" fill="#1d1d1d"/>
+      <g>
+        <line x1="-75" y1="0" x2="75" y2="0" stroke="#3d3d3d" stroke-width="1.5"/>
+        <line x1="0" y1="-75" x2="0" y2="75" stroke="#3d3d3d" stroke-width="1.5"/>
+        <line x1="-53" y1="-53" x2="53" y2="53" stroke="#3d3d3d" stroke-width="1.5"/>
+        <line x1="-53" y1="53" x2="53" y2="-53" stroke="#3d3d3d" stroke-width="1.5"/>
+        <line x1="-30" y1="-69" x2="30" y2="69" stroke="#3d3d3d" stroke-width="1.5"/>
+        <line x1="30" y1="-69" x2="-30" y2="69" stroke="#3d3d3d" stroke-width="1.5"/>
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1.5s" repeatCount="indefinite"/>
+      </g>
+    </g>
+
+    <!-- Frame -->
+    <line x1="220" y1="400" x2="380" y2="290" stroke="url(#frame)" stroke-width="9" stroke-linecap="round"/>
+    <line x1="380" y1="290" x2="500" y2="280" stroke="url(#frame)" stroke-width="9" stroke-linecap="round"/>
+    <line x1="500" y1="280" x2="580" y2="400" stroke="url(#frame)" stroke-width="9" stroke-linecap="round"/>
+    <line x1="380" y1="290" x2="420" y2="360" stroke="url(#frame)" stroke-width="9" stroke-linecap="round"/>
+    <line x1="500" y1="280" x2="420" y2="360" stroke="url(#frame)" stroke-width="9" stroke-linecap="round"/>
+
+    <!-- Handlebar stem -->
+    <line x1="500" y1="280" x2="540" y2="240" stroke="#1d1d1d" stroke-width="6" stroke-linecap="round"/>
+    <!-- Handlebar -->
+    <line x1="520" y1="240" x2="570" y2="240" stroke="#1d1d1d" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="520" cy="240" r="5" fill="#1d1d1d"/>
+    <circle cx="570" cy="240" r="5" fill="#1d1d1d"/>
+
+    <!-- Seat -->
+    <ellipse cx="380" cy="282" rx="28" ry="7" fill="#1d1d1d"/>
+    <line x1="380" y1="289" x2="380" y2="300" stroke="#1d1d1d" stroke-width="4"/>
+
+    <!-- Crank & pedals -->
+    <circle cx="420" cy="360" r="10" fill="#1d1d1d"/>
+    <g>
+      <line x1="420" y1="360" x2="445" y2="385" stroke="#1d1d1d" stroke-width="5" stroke-linecap="round"/>
+      <line x1="420" y1="360" x2="395" y2="335" stroke="#1d1d1d" stroke-width="5" stroke-linecap="round"/>
+      <rect x="438" y="380" width="16" height="6" rx="2" fill="#1d1d1d"/>
+      <rect x="386" y="330" width="16" height="6" rx="2" fill="#1d1d1d"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 420 360" to="360 420 360" dur="1.5s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- Pelican -->
+  <g id="pelican">
+    <animateTransform attributeName="transform" type="translate" values="0 0; 0 -3; 0 0" dur="1.5s" repeatCount="indefinite"/>
+
+    <!-- Tail -->
+    <path d="M 320 230 L 290 220 L 295 245 Z" fill="#f5f1e3" stroke="#3d3d3d" stroke-width="1.5"/>
+
+    <!-- Body -->
+    <ellipse cx="370" cy="240" rx="65" ry="45" fill="#fdfdf6" stroke="#3d3d3d" stroke-width="1.5"/>
+    <ellipse cx="370" cy="255" rx="55" ry="25" fill="#f0ead6"/>
+
+    <!-- Wing -->
+    <path d="M 340 225 Q 380 215 410 240 Q 395 270 355 265 Q 335 250 340 225 Z" fill="#e8e2cc" stroke="#3d3d3d" stroke-width="1.5">
+      <animateTransform attributeName="transform" type="rotate" values="-3 380 240; 3 380 240; -3 380 240" dur="0.75s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- Neck -->
+    <path d="M 410 220 Q 430 180 460 170 Q 470 195 455 215 Z" fill="#fdfdf6" stroke="#3d3d3d" stroke-width="1.5"/>
+
+    <!-- Head -->
+    <circle cx="465" cy="160" r="32" fill="#fdfdf6" stroke="#3d3d3d" stroke-width="1.5"/>
+
+    <!-- Eye -->
+    <circle cx="475" cy="150" r="6" fill="#ffffff" stroke="#3d3d3d" stroke-width="1"/>
+    <circle cx="477" cy="151" r="3.5" fill="#1d1d1d"/>
+    <circle cx="478" cy="150" r="1.2" fill="#ffffff"/>
+
+    <!-- Beak upper -->
+    <path d="M 490 158 Q 560 152 605 162 Q 600 168 580 168 L 490 170 Z" fill="url(#beak)" stroke="#3d3d3d" stroke-width="1.5"/>
+    <!-- Beak hook tip -->
+    <path d="M 600 162 Q 612 165 605 172 Q 598 170 595 168 Z" fill="#fb8500" stroke="#3d3d3d" stroke-width="1.2"/>
+    <!-- Beak ridge -->
+    <line x1="495" y1="160" x2="600" y2="164" stroke="#3d3d3d" stroke-width="1" opacity="0.5"/>
+
+    <!-- Pouch -->
+    <path d="M 492 170 Q 530 200 568 175 Q 555 195 525 200 Q 500 198 492 170 Z" fill="#ffd9a3" stroke="#3d3d3d" stroke-width="1.2" opacity="0.9"/>
+
+    <!-- Legs - left -->
+    <g>
+      <line x1="365" y1="280" x2="380" y2="340" stroke="#fb8500" stroke-width="5" stroke-linecap="round"/>
+      <line x1="380" y1="340" x2="370" y2="358" stroke="#fb8500" stroke-width="4" stroke-linecap="round"/>
+      <line x1="370" y1="358" x2="365" y2="362" stroke="#fb8500" stroke-width="4" stroke-linecap="round"/>
+      <line x1="370" y1="358" x2="375" y2="362" stroke="#fb8500" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <!-- Legs - right -->
+    <g>
+      <line x1="395" y1="280" x2="410" y2="340" stroke="#fb8500" stroke-width="5" stroke-linecap="round"/>
+      <line x1="410" y1="340" x2="400" y2="358" stroke="#fb8500" stroke-width="4" stroke-linecap="round"/>
+      <line x1="400" y1="358" x2="395" y2="362" stroke="#fb8500" stroke-width="4" stroke-linecap="round"/>
+      <line x1="400" y1="358" x2="405" y2="362" stroke="#fb8500" stroke-width="4" stroke-linecap="round"/>
+    </g>
+
+    <!-- Arm to handlebar -->
+    <path d="M 415 220 Q 470 230 520 245" fill="none" stroke="#fdfdf6" stroke-width="10" stroke-linecap="round"/>
+    <path d="M 415 220 Q 470 230 520 245" fill="none" stroke="#3d3d3d" stroke-width="1.5"/>
+  </g>
+
+  <!-- Speeding lines -->
+  <g stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.7">
+    <line x1="50" y1="350" x2="120" y2="350">
+      <animate attributeName="x1" values="50;-30;50" dur="0.8s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values="120;40;120" dur="0.8s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.8;0" dur="0.8s" repeatCount="indefinite"/>
+    </line>
+    <line x1="80" y1="320" x2="140" y2="320">
+      <animate attributeName="x1" values="80;0;80" dur="0.8s" begin="0.2s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values="140;60;140" dur="0.8s" begin="0.2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.8;0" dur="0.8s" begin="0.2s" repeatCount="indefinite"/>
+    </line>
+    <line x1="60" y1="380" x2="130" y2="380">
+      <animate attributeName="x1" values="60;-20;60" dur="0.8s" begin="0.4s" repeatCount="indefinite"/>
+      <animate attributeName="x2" values="130;50;130" dur="0.8s" begin="0.4s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0;0.8;0" dur="0.8s" begin="0.4s" repeatCount="indefinite"/>
+    </line>
+  </g>
+</svg>

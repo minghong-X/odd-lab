@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+    <defs>
+        <style>
+            @keyframes spin {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+            }
+            @keyframes pedal-left {
+                0%   { transform: rotate(-45deg) translateX(40px) rotate(45deg); }
+                25%  { transform: rotate(45deg) translateX(0px) rotate(-90deg); }
+                50%  { transform: rotate(135deg) translateX(-40px) rotate(-45deg); }
+                75%  { transform: rotate(225deg) translateX(0px) rotate(90deg); }
+                100% { transform: rotate(315deg) translateX(40px) rotate(45deg); }
+            }
+            @keyframes pedal-right {
+                0%   { transform: rotate(135deg) translateX(-40px) rotate(-45deg); }
+                25%  { transform: rotate(225deg) translateX(0px) rotate(90deg); }
+                50%  { transform: rotate(315deg) translateX(40px) rotate(45deg); }
+                75%  { transform: rotate(45deg) translateX(40px) rotate(-45deg); }
+                100% { transform: rotate(135deg) translateX(-40px) rotate(-45deg); }
+            }
+            @keyframes bob {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-6px); }
+            }
+            @keyframes scroll {
+                from { stroke-dashoffset: 0; }
+                to { stroke-dashoffset: 100; }
+            }
+            @keyframes scroll-bg {
+                from { transform: translateX(0); }
+                to { transform: translateX(-800px); }
+            }
+            .wheel {
+                transform-origin: center;
+                animation: spin 1s linear infinite;
+            }
+            .pedal-l {
+                transform-origin: 400px 350px;
+                animation: pedal-left 1s ease-in-out infinite;
+            }
+            .pedal-r {
+                transform-origin: 400px 350px;
+                animation: pedal-right 1s ease-in-out infinite;
+            }
+            .bike-group {
+                animation: bob 0.5s ease-in-out infinite;
+            }
+            .road-line {
+                animation: scroll 0.25s linear infinite;
+            }
+            .bg-scroll {
+                animation: scroll-bg 3s linear infinite;
+            }
+        </style>
+        
+        <!-- Cloud Pattern -->
+        <g id="cloud">
+            <path d="M 30,30 Q 30,10 50,10 Q 70,10 70,30 Q 90,30 90,50 Q 90,70 70,70 L 30,70 Q 10,70 10,50 Q 10,30 30,30 Z" fill="#ffffff" opacity="0.8"/>
+        </g>
+    </defs>
+
+    <!-- Sky Background -->
+    <rect width="100%" height="100%" fill="#87CEEB"/>
+    
+    <!-- Scrolling Background Elements -->
+    <g class="bg-scroll">
+        <use href="#cloud" x="100" y="80"/>
+        <use href="#cloud" x="400" y="120"/>
+        <use href="#cloud" x="700" y="60"/>
+        <use href="#cloud" x="1000" y="80"/>
+        <use href="#cloud" x="1300" y="120"/>
+        <use href="#cloud" x="1600" y="60"/>
+        
+        <!-- Distant Mountains -->
+        <polygon points="0,450 100,300 200,450" fill="#6B8E23" opacity="0.6"/>
+        <polygon points="150,450 280,250 400,450" fill="#556B2F" opacity="0.7"/>
+        <polygon points="350,450 500,280 650,450" fill="#6B8E23" opacity="0.6"/>
+        <polygon points="550,450 700,220 850,450" fill="#556B2F" opacity="0.7"/>
+        <!-- Duplicate for seamless loop -->
+        <polygon points="800,450 900,300 1000,450" fill="#6B8E23" opacity="0.6"/>
+        <polygon points="950,450 1080,250 1200,450" fill="#556B2F" opacity="0.7"/>
+        <polygon points="1150,450 1300,280 1450,450" fill="#6B8E23" opacity="0.6"/>
+        <polygon points="1350,450 1500,220 1650,450" fill="#556B2F" opacity="0.7"/>
+    </g>
+
+    <!-- Ground / Road -->
+    <rect x="0" y="450" width="100%" height="150" fill="#4a4a4a"/>
+    <line x1="0" y1="450" x2="800" y2="450" stroke="#808080" stroke-width="8"/>
+    
+    <!-- Animated Road Lines -->
+    <line x1="0" y1="525" x2="800" y2="525" stroke="#FFFFFF" stroke-width="10" stroke-dasharray="60 40" class="road-line"/>
+
+    <!-- Main Animation Group (Bike + Pelican) -->
+    <g class="bike-group">
+        
+        <!-- Back Wheel -->
+        <g transform="translate(250, 380)">
+            <circle r="65" fill="none" stroke="#333" stroke-width="8"/>
+            <circle r="61" fill="none" stroke="#555" stroke-width="2"/>
+            <g class="wheel">
+                <circle r="60" fill="none" stroke="#888" stroke-width="1"/>
+                <line x1="-60" y1="0" x2="60" y2="0" stroke="#888" stroke-width="1"/>
+                <line x1="0" y1="-60" x2="0" y2="60" stroke="#888" stroke-width="1"/>
+                <line x1="-42" y1="-42" x2="42" y2="42" stroke="#888" stroke-width="1"/>
+                <line x1="-42" y1="42" x2="42" y2="-42" stroke="#888" stroke-width="1"/>
+                <circle r="12" fill="#ccc" stroke="#555" stroke-width="2"/>
+            </g>
+        </g>
+
+        <!-- Front Wheel -->
+        <g transform="translate(550, 380)">
+            <circle r="65" fill="none" stroke="#333" stroke-width="8"/>
+            <circle r="61" fill="none" stroke="#555" stroke-width="2"/>
+            <g class="wheel">
+                <circle r="60" fill="none" stroke="#888" stroke-width="1"/>
+                <line x1="-60" y1="0" x2="60" y2="0" stroke="#888" stroke-width="1"/>
+                <line x1="0" y1="-60" x2="0" y2="60" stroke="#888" stroke-width="1"/>
+                <line x1="-42" y1="-42" x2="42" y2="42" stroke="#888" stroke-width="1"/>
+                <line x1="-42" y1="42" x2="42" y2="-42" stroke="#888" stroke-width="1"/>
+                <circle r="12" fill="#ccc" stroke="#555" stroke-width="2"/>
+            </g>
+        </g>
+
+        <!-- Bicycle Frame & Details -->
+        <path d="M 250,380 L 370,250 L 550,380 M 370,250 L 400,350 L 250,380 M 400,350 L 400,350 M 370,250 L 330,220" fill="none" stroke="#E34234" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 370,250 L 480,260" fill="none" stroke="#E34234" stroke-width="8" stroke-linecap="round"/>
+        
+        <!-- Seat Post & Saddle -->
+        <line x1="330" y1="220" x2="320" y2="180" stroke="#333" stroke-width="6"/>
+        <path d="M 300,180 Q 330,180 340,190 L 310,195 Z" fill="#222"/>
+        
+        <!-- Handlebars -->
+        <path d="M 480,260 L 490,210 L 460,210" fill="none" stroke="#333" stroke-width="6" stroke-linecap="round"/>
+        <path d="M 450,210 L 470,210" stroke="#E34234" stroke-width="8" stroke-linecap="round"/>
+
+        <!-- Left Leg (Behind Frame) -->
+        <path d="M 400,250 L 430,300 L 400,350" fill="none" stroke="#DAA520" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Left Foot -->
+        <ellipse cx="400" cy="350" rx="15" ry="8" fill="#333" class="pedal-l"/>
+
+        <!-- Pelican Body -->
+        <g transform="translate(370, 180)">
+            <!-- Tail -->
+            <path d="M -40,-20 L -70,-10 L -40,0 Z" fill="#FFF" stroke="#DDD" stroke-width="2"/>
+            
+            <!-- Main Body -->
+            <ellipse cx="0" cy="0" rx="55" ry="40" fill="#FFF" stroke="#DDD" stroke-width="2"/>
+            
+            <!-- Wing -->
+            <ellipse cx="-10" cy="5" rx="35" ry="20" fill="#F5F5F5" stroke="#DDD" stroke-width="2"/>
+            <path d="M -30,5 Q -10,15 10,5" fill="none" stroke="#DDD" stroke-width="2"/>
+            
+            <!-- Neck -->
+            <path d="M 30,-20 Q 50,-60 30,-90" fill="none" stroke="#FFF" stroke-width="24" stroke-linecap="round"/>
+            
+            <!-- Head -->
+            <circle cx="30" cy="-95" r="22" fill="#FFF" stroke="#DDD" stroke-width="2"/>
+            
+            <!-- Eye -->
+            <circle cx="35" cy="-100" r="4" fill="#000"/>
+            <circle cx="36" cy="-101" r="1.5" fill="#FFF"/>
+            
+            <!-- Beak Base -->
+            <path d="M 45,-105 L 110,-90 L 45,-80 Z" fill="#FFA500"/>
+            <!-- Pouch -->
+            <path d="M 45,-80 L 100,-85 Q 80,-30 45,-80 Z" fill="#FF8C00" opacity="0.9"/>
+            <!-- Beak Tip -->
+            <path d="M 110,-90 L 120,-95 L 110,-98 Z" fill="#FF8C00"/>
+            <!-- Nostril -->
+            <ellipse cx="55" cy="-92" rx="2" ry="1" fill="#8B4500"/>
+        </g>
+
+        <!-- Right Leg (In Front of Frame) -->
+        <path d="M 400,250 L 370,300 L 400,350" fill="none" stroke="#DAA520" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Right Foot -->
+        <ellipse cx="400" cy="350" rx="15" ry="8" fill="#333" class="pedal-r"/>
+
+        <!-- Crank / Chainring -->
+        <circle cx="400" cy="350" r="25" fill="none" stroke="#555" stroke-width="6"/>
+        <circle cx="400" cy="350" r="8" fill="#333"/>
+
+    </g>
+</svg>

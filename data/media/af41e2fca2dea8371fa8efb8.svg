@@ -1,0 +1,177 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <style>
+      .clip-path { clip-path: url(#bodyClip); }
+    </style>
+    <clipPath id="bodyClip">
+      <ellipse cx="320" cy="260" rx="90" ry="60" />
+    </clipPath>
+  </defs>
+
+  <!-- 背景天空 -->
+  <rect width="800" height="500" fill="#e0f7fa" />
+
+  <!-- 太阳 -->
+  <g id="sun">
+    <circle cx="100" cy="100" r="50" fill="#ffeb3b" />
+    <g>
+      <animateTransform attributeName="transform" type="rotate" from="0 100 100" to="360 100 100" dur="12s" repeatCount="indefinite" />
+      <line x1="100" y1="20" x2="100" y2="40" stroke="#ffeb3b" stroke-width="6" stroke-linecap="round" />
+      <line x1="100" y1="160" x2="100" y2="180" stroke="#ffeb3b" stroke-width="6" stroke-linecap="round" />
+      <line x1="20" y1="100" x2="40" y2="100" stroke="#ffeb3b" stroke-width="6" stroke-linecap="round" />
+      <line x1="160" y1="100" x2="180" y2="100" stroke="#ffeb3b" stroke-width="6" stroke-linecap="round" />
+      <line x1="43" y1="43" x2="58" y2="58" stroke="#ffeb3b" stroke-width="6" stroke-linecap="round" />
+      <line x1="142" y1="142" x2="157" y2="157" stroke="#ffeb3b" stroke-width="6" stroke-linecap="round" />
+      <line x1="43" y1="157" x2="58" y2="142" stroke="#ffeb3b" stroke-width="6" stroke-linecap="round" />
+      <line x1="142" y1="43" x2="157" y2="58" stroke="#ffeb3b" stroke-width="6" stroke-linecap="round" />
+    </g>
+  </g>
+
+  <!-- 移动的云朵 -->
+  <g id="clouds">
+    <animateTransform attributeName="transform" type="translate" from="0 0" to="-300 0" dur="8s" repeatCount="indefinite" />
+    <path d="M 150 120 Q 170 100 190 120 Q 210 100 230 120 Q 240 140 220 150 L 160 150 Q 140 140 150 120 Z" fill="#ffffff" opacity="0.8" />
+    <path d="M 400 160 Q 420 140 440 160 Q 460 140 480 160 Q 490 180 470 190 L 410 190 Q 390 180 400 160 Z" fill="#ffffff" opacity="0.8" />
+    <path d="M 700 100 Q 720 80 740 100 Q 760 80 780 100 Q 790 120 770 130 L 710 130 Q 690 120 700 100 Z" fill="#ffffff" opacity="0.8" />
+    <path d="M 900 150 Q 920 130 940 150 Q 960 130 980 150 Q 990 170 970 180 L 910 180 Q 890 170 900 150 Z" fill="#ffffff" opacity="0.8" />
+  </g>
+
+  <!-- 山丘 -->
+  <path d="M 0 500 L 0 380 Q 100 330 200 380 T 400 360 T 600 400 T 800 360 L 800 500 Z" fill="#aed581" />
+
+  <!-- 滚动道路 -->
+  <g id="road">
+    <rect x="0" y="460" width="800" height="40" fill="#424242" />
+    <rect x="0" y="460" width="800" height="4" fill="#ffffff" opacity="0.2" />
+    <line x1="0" y1="480" x2="800" y2="480" stroke="#ffeb3b" stroke-width="4" stroke-dasharray="30 50">
+      <animate attributeName="stroke-dashoffset" from="0" to="-80" dur="0.5s" repeatCount="indefinite" />
+    </line>
+  </g>
+
+  <!-- 自行车和鹈鹕的整体弹跳动画 -->
+  <g id="bike-bounce">
+    <animateTransform attributeName="transform" type="translate" values="0 0; 0 -5; 0 0; 0 5; 0 0" dur="1s" repeatCount="indefinite" />
+
+    <!-- 阴影 -->
+    <ellipse cx="400" cy="465" rx="160" ry="10" fill="rgba(0,0,0,0.3)" />
+
+    <!-- 自行车组 -->
+    <g id="bike">
+      <!-- 车架 -->
+      <g id="frame" stroke="#333" stroke-width="8" stroke-linecap="round" fill="none">
+        <line x1="250" y1="400" x2="320" y2="250" />
+        <line x1="320" y1="250" x2="500" y2="250" />
+        <line x1="500" y1="250" x2="550" y2="400" />
+        <line x1="250" y1="400" x2="350" y2="420" />
+        <line x1="350" y1="420" x2="320" y2="250" />
+        <line x1="350" y1="420" x2="550" y2="400" />
+      </g>
+
+      <!-- 座垫 -->
+      <rect x="300" y="240" width="40" height="15" rx="5" fill="#333" />
+
+      <!-- 车把 -->
+      <g id="handlebar" stroke="#333" stroke-width="8" stroke-linecap="round" fill="none">
+        <path d="M 500 250 L 490 220 L 510 220" />
+        <line x1="500" y1="250" x2="500" y2="240" />
+      </g>
+
+      <!-- 链条和齿轮 -->
+      <g id="chain-gear" stroke="#666" stroke-width="4" fill="none">
+        <path d="M 250 385 L 350 400" />
+        <path d="M 250 415 L 350 440" />
+        <circle cx="250" cy="400" r="15" stroke="#666" stroke-width="6" />
+        <circle cx="350" cy="420" r="20" stroke="#666" stroke-width="6" />
+      </g>
+
+      <!-- 后轮 -->
+      <g id="back-wheel">
+        <animateTransform attributeName="transform" type="rotate" from="0 250 400" to="360 250 400" dur="1s" repeatCount="indefinite" />
+        <circle cx="250" cy="400" r="60" fill="none" stroke="#333" stroke-width="8" />
+        <path d="M 250 340 L 250 460 M 190 400 L 310 400 M 208 358 L 292 442 M 208 442 L 292 358" stroke="#666" stroke-width="4" />
+        <circle cx="250" cy="400" r="10" fill="#333" />
+      </g>
+
+      <!-- 前轮 -->
+      <g id="front-wheel">
+        <animateTransform attributeName="transform" type="rotate" from="0 550 400" to="360 550 400" dur="1s" repeatCount="indefinite" />
+        <circle cx="550" cy="400" r="60" fill="none" stroke="#333" stroke-width="8" />
+        <path d="M 550 340 L 550 460 M 490 400 L 610 400 M 508 358 L 592 442 M 508 442 L 592 358" stroke="#666" stroke-width="4" />
+        <circle cx="550" cy="400" r="10" fill="#333" />
+      </g>
+    </g>
+
+    <!-- 鹈鹕组 -->
+    <g id="pelican">
+      <!-- 尾巴 -->
+      <path d="M 230 260 Q 180 240 200 280 Q 180 300 230 290 Z" fill="#ffffff" stroke="#bdbdbd" stroke-width="3" />
+
+      <!-- 左侧翅膀（背景） -->
+      <g id="wing-left">
+        <animateTransform attributeName="transform" type="rotate" values="0 320 260; 30 320 260; 0 320 260" dur="0.5s" repeatCount="indefinite" />
+        <path d="M 320 260 Q 260 200 240 240 Q 260 280 320 260 Z" fill="#f5f5f5" stroke="#bdbdbd" stroke-width="3" />
+        <path d="M 280 250 Q 260 240 250 250" stroke="#bdbdbd" stroke-width="2" fill="none" />
+      </g>
+
+      <!-- 身体 -->
+      <ellipse cx="320" cy="260" rx="90" ry="60" fill="#ffffff" stroke="#bdbdbd" stroke-width="3" />
+      
+      <!-- 身体羽毛细节 -->
+      <path d="M 280 240 Q 300 230 320 240" stroke="#bdbdbd" stroke-width="2" fill="none" />
+      <path d="M 290 260 Q 310 250 330 260" stroke="#bdbdbd" stroke-width="2" fill="none" />
+
+      <!-- 颈部 -->
+      <path d="M 390 240 Q 440 160 460 180" fill="none" stroke="#ffffff" stroke-width="35" stroke-linecap="round" />
+      <path d="M 390 240 Q 440 160 460 180" fill="none" stroke="#bdbdbd" stroke-width="3" stroke-linecap="round" />
+
+      <!-- 头部 -->
+      <circle cx="470" cy="180" r="35" fill="#ffffff" stroke="#bdbdbd" stroke-width="3" />
+
+      <!-- 头部羽毛细节 -->
+      <path d="M 460 160 Q 470 150 480 160" stroke="#bdbdbd" stroke-width="2" fill="none" />
+
+      <!-- 眼睛 -->
+      <circle cx="480" cy="170" r="6" fill="#000000" />
+      <circle cx="482" cy="168" r="2" fill="#ffffff" />
+
+      <!-- 喙（上方） -->
+      <path d="M 500 165 L 620 180 L 590 210 Z" fill="#ff9800" stroke="#bdbdbd" stroke-width="3" />
+      <line x1="500" y1="165" x2="600" y2="180" stroke="#f57c00" stroke-width="2" />
+
+      <!-- 喉囊（下方） -->
+      <path d="M 495 195 Q 570 260 590 210 Q 560 230 495 195 Z" fill="#ff5722" stroke="#bdbdbd" stroke-width="3" />
+      <path d="M 520 205 Q 550 230 570 220" stroke="#e64a19" stroke-width="2" fill="none" />
+
+      <!-- 腿部遮挡羽毛 -->
+      <path d="M 280 320 Q 320 340 380 320 Q 320 350 280 320 Z" fill="#ffffff" stroke="#bdbdbd" stroke-width="3" />
+
+      <!-- 右侧翅膀（前景） -->
+      <g id="wing-right">
+        <animateTransform attributeName="transform" type="rotate" values="0 320 260; -30 320 260; 0 320 260" dur="0.5s" repeatCount="indefinite" />
+        <path d="M 320 260 Q 380 200 400 240 Q 380 280 320 260 Z" fill="#ffffff" stroke="#bdbdbd" stroke-width="3" />
+        <path d="M 360 250 Q 380 240 390 250" stroke="#bdbdbd" stroke-width="2" fill="none" />
+      </g>
+    </g>
+
+    <!-- 踏板和腿组 -->
+    <g id="pedal-legs">
+      <animateTransform attributeName="transform" type="rotate" from="0 350 420" to="360 350 420" dur="1s" repeatCount="indefinite" />
+      
+      <!-- 左腿 -->
+      <line x1="380" y1="320" x2="360" y2="410" stroke="#ff9800" stroke-width="6" stroke-linecap="round" />
+      <!-- 左曲柄 -->
+      <line x1="350" y1="420" x2="360" y2="410" stroke="#333" stroke-width="6" stroke-linecap="round" />
+      <!-- 左踏板 -->
+      <rect x="355" y="405" width="12" height="10" fill="#333" rx="2" />
+      <line x1="358" y1="408" x2="364" y2="408" stroke="#666" stroke-width="2" />
+
+      <!-- 右腿 -->
+      <line x1="380" y1="320" x2="340" y2="430" stroke="#ff9800" stroke-width="6" stroke-linecap="round" />
+      <!-- 右曲柄 -->
+      <line x1="350" y1="420" x2="340" y2="430" stroke="#333" stroke-width="6" stroke-linecap="round" />
+      <!-- 右踏板 -->
+      <rect x="335" y="425" width="12" height="10" fill="#333" rx="2" />
+      <line x1="338" y1="428" x2="344" y2="428" stroke="#666" stroke-width="2" />
+    </g>
+  </g>
+</svg>

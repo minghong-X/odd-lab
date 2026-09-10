@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="800" height="500">
+  <title>鹈鹕骑自行车</title>
+  <desc>一只鹈鹕骑着自行车向前行驶的 SVG 动画</desc>
+
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8ed8f8"/>
+      <stop offset="1" stop-color="#e7f8ff"/>
+    </linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#55bdd2"/>
+      <stop offset="1" stop-color="#9ee5e2"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#sky)"/>
+  <circle cx="670" cy="90" r="42" fill="#fff4b0" opacity=".85"/>
+  <path d="M70 115 Q105 85 140 115 Q175 85 210 115" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" opacity=".75"/>
+  <path d="M540 145 Q575 115 610 145 Q645 115 680 145" fill="none" stroke="#fff" stroke-width="7" stroke-linecap="round" opacity=".6"/>
+
+  <path d="M0 305 Q125 275 250 305 T500 305 T800 300 L800 500 L0 500Z" fill="url(#water)"/>
+  <path d="M0 350 Q130 325 260 350 T520 350 T800 345" fill="none" stroke="#d8ffff" stroke-width="5" opacity=".7"/>
+  <path d="M0 405 Q130 380 260 405 T520 405 T800 400" fill="none" stroke="#d8ffff" stroke-width="4" opacity=".5"/>
+
+  <ellipse cx="400" cy="418" rx="245" ry="20" fill="#267f91" opacity=".25" filter="url(#shadow)"/>
+
+  <g transform="translate(0,-8)">
+    <g fill="none" stroke="#243746" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+      <g>
+        <circle cx="265" cy="370" r="72" stroke="#273946" stroke-width="7"/>
+        <circle cx="535" cy="370" r="72" stroke="#273946" stroke-width="7"/>
+        <path d="M265 370 L350 290 L455 370 L265 370 L415 370 L350 290"/>
+        <path d="M455 370 L485 285 L530 285"/>
+        <path d="M345 290 L320 265"/>
+        <path d="M310 265 L335 265"/>
+        <path d="M455 370 L430 335"/>
+        <circle cx="455" cy="370" r="11" fill="#ef765c" stroke="none"/>
+        <path d="M430 335 L455 370"/>
+      </g>
+
+      <g transform="translate(0,-5)">
+        <path d="M365 260 Q385 205 425 215 Q458 224 462 265 L447 301 Q410 315 376 292Z" fill="#f7f4e8"/>
+        <path d="M383 221 Q400 180 430 174 Q458 170 474 196 Q488 220 466 250 Q447 268 414 253Z" fill="#f4f1e5"/>
+        <path d="M422 179 Q431 140 462 124 Q492 110 516 128 Q531 142 519 160 Q505 177 474 184Z" fill="#f7f4e8"/>
+        <path d="M505 130 Q572 135 625 159 Q642 166 625 177 Q568 188 512 163Z" fill="#f0a44a" stroke="#bd7131"/>
+        <path d="M516 159 Q574 176 625 177 Q590 199 524 180Z" fill="#e98b3f" stroke="#bd7131"/>
+        <circle cx="483" cy="142" r="6" fill="#273946" stroke="none"/>
+        <path d="M470 190 Q486 203 505 193" fill="none" stroke="#d5a36a" stroke-width="5"/>
+        <path d="M385 235 Q419 260 450 236 Q443 282 399 282 Q376 268 385 235Z" fill="#d8e4df" stroke="#9aaca9"/>
+        <path d="M386 288 L375 330 L399 350" fill="none" stroke="#e08a43" stroke-width="9"/>
+        <path d="M445 291 L458 330 L438 350" fill="none" stroke="#e08a43" stroke-width="9"/>
+        <path d="M397 350 L420 350" stroke="#e08a43" stroke-width="7"/>
+        <path d="M435 350 L460 350" stroke="#e08a43" stroke-width="7"/>
+        <path d="M375 330 L351 300" fill="none" stroke="#f0a44a" stroke-width="7"/>
+        <path d="M458 330 L487 292" fill="none" stroke="#f0a44a" stroke-width="7"/>
+      </g>
+    </g>
+
+    <g transform="translate(455 370)">
+      <circle r="7" fill="#f8d15d"/>
+      <g stroke="#f8d15d" stroke-width="4" stroke-linecap="round">
+        <path d="M0 0 L0 -28"/>
+        <path d="M0 0 L24 -14"/>
+        <path d="M0 0 L24 14"/>
+        <path d="M0 0 L0 28"/>
+        <path d="M0 0 L-24 14"/>
+        <path d="M0 0 L-24 -14"/>
+      </g>
+      <animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="1.2s" repeatCount="indefinite"/>
+    </g>
+
+    <g opacity=".8" stroke="#ffffff" stroke-width="4" stroke-linecap="round">
+      <path d="M185 390 Q215 380 245 390">
+        <animateTransform attributeName="transform" type="translate" values="0 0;25 0;0 0" dur="2s" repeatCount="indefinite"/>
+      </path>
+      <path d="M565 420 Q600 410 635 420">
+        <animateTransform attributeName="transform" type="translate" values="0 0;-30 0;0 0" dur="2.4s" repeatCount="indefinite"/>
+      </path>
+    </g>
+
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 -4;0 0" dur="0.8s" repeatCount="indefinite"/>
+  </g>
+</svg>

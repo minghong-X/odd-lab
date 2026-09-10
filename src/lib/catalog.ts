@@ -7,6 +7,7 @@ export type Artifact = {
   title: string;
   experiment: string;
   file: string;
+  animatedFile?: string;
   width: number;
   height: number;
   generationTimeMs: number | null;

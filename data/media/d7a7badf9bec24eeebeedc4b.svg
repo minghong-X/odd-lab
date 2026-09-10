@@ -1,0 +1,372 @@
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background Gradient (Sunset) -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff7675" />
+      <stop offset="50%" stop-color="#ffeaa7" />
+      <stop offset="100%" stop-color="#ff9f43" />
+    </linearGradient>
+
+    <!-- Headlight Cone Gradient -->
+    <linearGradient id="lightCone" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Mountain Gradient -->
+    <linearGradient id="mountainGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d63031" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#e84393" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Clip Path for Sky to restrict parallax elements -->
+    <clipPath id="skyClip">
+      <rect x="0" y="0" width="800" height="440" />
+    </clipPath>
+
+    <style>
+      /* --- CSS Animations --- */
+      
+      /* Rotations around 0,0 (using translated groups for maximum compatibility) */
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes spin-offset {
+        0% { transform: rotate(180deg); }
+        100% { transform: rotate(540deg); }
+      }
+      @keyframes counter-spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(-360deg); }
+      }
+      @keyframes counter-spin-offset {
+        0% { transform: rotate(-180deg); }
+        100% { transform: rotate(-540deg); }
+      }
+
+      /* Pelican Bobbing (Sync with leg/pedal rate: 2 bobs per 1.2s pedal cycle = 0.6s) */
+      @keyframes bob {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-8px); }
+      }
+
+      /* Shadow Scale (Sync with Bobbing) */
+      @keyframes shadow-scale {
+        0%, 100% { transform: scaleX(1); opacity: 0.35; }
+        50% { transform: scaleX(0.93); opacity: 0.25; }
+      }
+
+      /* Wing Flapping */
+      @keyframes flap {
+        0%, 100% { transform: rotate(0deg); }
+        50% { transform: rotate(-15deg); }
+      }
+
+      /* Tail Waggle */
+      @keyframes waggle {
+        0%, 100% { transform: rotate(0deg); }
+        50% { transform: rotate(10deg); }
+      }
+
+      /* Parallax Scenery Scrolling */
+      @keyframes scroll-bg {
+        0% { transform: translateX(850px); }
+        100% { transform: translateX(-200px); }
+      }
+
+      /* Road Lines Scrolling */
+      @keyframes road-scroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-100px); }
+      }
+
+      /* Wind Sweeps */
+      @keyframes wind-sweep {
+        0% { transform: translateX(850px); }
+        100% { transform: translateX(-400px); }
+      }
+
+      /* Headlight Pulse */
+      @keyframes pulse {
+        0%, 100% { opacity: 0.35; }
+        50% { opacity: 0.5; }
+      }
+
+      /* --- Class Selectors --- */
+      .bg-scrolling-slow {
+        animation: scroll-bg 20s linear infinite;
+      }
+      .bg-scrolling-fast {
+        animation: scroll-bg 12s linear infinite;
+      }
+      .wind-line-1 { animation: wind-sweep 1.2s linear infinite; }
+      .wind-line-2 { animation: wind-sweep 1.8s linear infinite; animation-delay: -0.5s; }
+      .wind-line-3 { animation: wind-sweep 1.5s linear infinite; animation-delay: -1s; }
+      
+      .road-flow {
+        animation: road-scroll 0.3s linear infinite;
+      }
+      .light-beam {
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      .wheel-spin {
+        animation: spin 0.6s linear infinite;
+      }
+
+      .pedal-spin {
+        animation: spin 1.2s linear infinite;
+      }
+      .pedal-spin-offset {
+        animation: spin-offset 1.2s linear infinite;
+      }
+      .pedal-counter-spin {
+        animation: counter-spin 1.2s linear infinite;
+      }
+      .pedal-counter-spin-offset {
+        animation: counter-spin-offset 1.2s linear infinite;
+      }
+
+      .pelican-bob {
+        animation: bob 0.6s ease-in-out infinite;
+      }
+      .wing-flap {
+        animation: flap 0.4s ease-in-out infinite;
+      }
+      .tail-wag {
+        animation: waggle 0.3s ease-in-out infinite;
+      }
+      .shadow-anim {
+        transform-origin: 380px 535px;
+        animation: shadow-scale 0.6s ease-in-out infinite;
+      }
+    </style>
+  </defs>
+
+  <!-- Sky Background -->
+  <rect width="800" height="440" fill="url(#skyGrad)" />
+
+  <!-- Sun -->
+  <circle cx="400" cy="360" r="130" fill="#fffef0" opacity="0.25" />
+
+  <!-- Parallax Scenery (Clipped to Sky) -->
+  <g clip-path="url(#skyClip)">
+    <!-- Distant Mountains (Static) -->
+    <path d="M-50 440 L150 280 L350 440 L550 250 L850 440 Z" fill="url(#mountainGrad)" />
+    
+    <!-- Clouds (Scrolling Slow) -->
+    <g class="bg-scrolling-slow" style="animation-delay: -5s;">
+      <path d="M 50 120 C 50 100, 80 90, 100 100 C 110 90, 140 90, 150 100 C 160 90, 190 100, 190 120 Z" fill="#ffffff" opacity="0.4" />
+    </g>
+    <g class="bg-scrolling-slow" style="animation-delay: -15s;">
+      <path d="M 200 80 C 200 65, 220 55, 235 65 C 245 55, 270 55, 275 65 C 285 55, 310 65, 310 80 Z" fill="#ffffff" opacity="0.3" />
+    </g>
+
+    <!-- Stylized Trees (Scrolling Fast) -->
+    <g class="bg-scrolling-fast" style="animation-delay: -2s;">
+      <rect x="50" y="380" width="10" height="60" fill="#2c3e50" opacity="0.5"/>
+      <circle cx="55" cy="360" r="25" fill="#1b8a5a" opacity="0.6"/>
+      <circle cx="40" cy="350" r="18" fill="#1b8a5a" opacity="0.5"/>
+    </g>
+    <g class="bg-scrolling-fast" style="animation-delay: -6s;">
+      <rect x="400" y="370" width="12" height="70" fill="#2c3e50" opacity="0.5"/>
+      <path d="M406 320 L375 380 L437 380 Z" fill="#0f5e41" opacity="0.6"/>
+    </g>
+    <g class="bg-scrolling-fast" style="animation-delay: -10s;">
+      <rect x="700" y="380" width="8" height="60" fill="#2c3e50" opacity="0.5"/>
+      <circle cx="704" cy="365" r="22" fill="#1b8a5a" opacity="0.6"/>
+    </g>
+  </g>
+
+  <!-- Curb & Road Structure -->
+  <rect y="440" width="800" height="10" fill="#b2bec3" />
+  <rect y="450" width="800" height="150" fill="#2d3436" />
+
+  <!-- Moving Road Lines -->
+  <g class="road-flow">
+    <line x1="0" y1="520" x2="900" y2="520" stroke="#f1c40f" stroke-width="6" stroke-dasharray="40, 60" />
+  </g>
+
+  <!-- Speed/Wind FX -->
+  <line x1="0" y1="180" x2="150" y2="180" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.6" class="wind-line-1" />
+  <line x1="0" y1="100" x2="250" y2="100" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.4" class="wind-line-2" />
+  <line x1="0" y1="280" x2="120" y2="280" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.5" class="wind-line-3" />
+
+  <!-- Headlight Cone (Drawn behind front wheel but in front of road) -->
+  <polygon points="520,230 780,180 800,340 520,234" fill="url(#lightCone)" class="light-beam" />
+
+  <!-- Ground Shadow under Bicycle (scales up/down) -->
+  <ellipse cx="380" cy="535" rx="210" ry="12" fill="#1e272e" class="shadow-anim" />
+
+
+  <!-- BICYCLE & RIDER GROUP -->
+
+  <!-- 1. Rear Wheel (Spinning around 0,0 via Group Translation) -->
+  <g transform="translate(250, 450)">
+    <g class="wheel-spin">
+      <!-- Tire -->
+      <circle cx="0" cy="0" r="80" stroke="#1e272e" stroke-width="14" fill="none" />
+      <!-- Rim -->
+      <circle cx="0" cy="0" r="71" stroke="#dfe6e9" stroke-width="4" fill="none" />
+      <!-- Spokes -->
+      <line x1="0" y1="-80" x2="0" y2="80" stroke="#b2bec3" stroke-width="2" />
+      <line x1="-80" y1="0" x2="80" y2="0" stroke="#b2bec3" stroke-width="2" />
+      <line x1="-57" y1="-57" x2="57" y2="57" stroke="#b2bec3" stroke-width="2" />
+      <line x1="-57" y1="57" x2="57" y2="-57" stroke="#b2bec3" stroke-width="2" />
+      <!-- Spokes Shine/Reflection -->
+      <path d="M 0 0 L -40 -70 A 80 80 0 0 1 40 -70 Z" fill="#ffffff" opacity="0.15" />
+      <path d="M 0 0 L 40 70 A 80 80 0 0 1 -40 70 Z" fill="#ffffff" opacity="0.15" />
+      <!-- Hub -->
+      <circle cx="0" cy="0" r="14" fill="#747d8c" />
+    </g>
+  </g>
+
+  <!-- 2. Back Pedal (Behind Frame & Behind Back Leg) -->
+  <g transform="translate(370, 420)">
+    <g class="pedal-spin-offset">
+      <!-- Crank Arm -->
+      <line x1="0" y1="0" x2="-40" y2="0" stroke="#747d8c" stroke-width="7" stroke-linecap="round" />
+      <!-- Pedal Pad Group (Counter-rotates to stay flat) -->
+      <g transform="translate(-40, 0)">
+        <g class="pedal-counter-spin-offset">
+          <rect x="-12" y="-6" width="24" height="12" rx="4" fill="#2f3542" />
+        </g>
+      </g>
+    </g>
+  </g>
+
+  <!-- 3. Back Leg of Pelican (SMIL Animated Path, syncs with Back Pedal) -->
+  <path fill="none" stroke="#d35400" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <animate attributeName="d" dur="1.2s" repeatCount="indefinite"
+      values="M345,310 Q315,365 330,420 L342,420;
+              M345,302 Q370,330 370,380 L382,380;
+              M345,310 Q380,345 410,420 L422,420;
+              M345,302 Q350,380 370,460 L382,460;
+              M345,310 Q315,365 330,420 L342,420" />
+  </path>
+
+  <!-- 4. Bicycle Frame & Static Parts -->
+  <!-- Chainstay -->
+  <line x1="250" y1="450" x2="370" y2="420" stroke="#e17055" stroke-width="8" stroke-linecap="round" />
+  <!-- Seatstay -->
+  <line x1="250" y1="450" x2="330" y2="330" stroke="#e17055" stroke-width="8" stroke-linecap="round" />
+  <!-- Seattube -->
+  <line x1="370" y1="420" x2="330" y2="320" stroke="#e17055" stroke-width="8" stroke-linecap="round" />
+  <!-- Downtube -->
+  <line x1="370" y1="420" x2="480" y2="260" stroke="#e17055" stroke-width="8" stroke-linecap="round" />
+  <!-- Toptube -->
+  <line x1="330" y1="330" x2="480" y2="260" stroke="#e17055" stroke-width="8" stroke-linecap="round" />
+  <!-- Front Fork -->
+  <line x1="550" y1="450" x2="480" y2="260" stroke="#747d8c" stroke-width="8" stroke-linecap="round" />
+  
+  <!-- Chain Ring & Chain -->
+  <circle cx="370" cy="420" r="22" fill="none" stroke="#747d8c" stroke-width="5" />
+  <circle cx="250" cy="450" r="10" fill="none" stroke="#747d8c" stroke-width="4" />
+  <path d="M 250 440 L 370 398 M 370 442 L 250 460" stroke="#57606f" stroke-width="3" />
+
+  <!-- Saddle (Seat) -->
+  <path d="M 310 320 L 355 320 C 355 320 360 330 350 335 L 315 330 Z" fill="#2f3542" />
+
+  <!-- Handlebars & Stem -->
+  <path d="M 480 260 L 475 210 L 510 205 L 535 220" fill="none" stroke="#2f3542" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+  <!-- Headlight -->
+  <path d="M 510 205 L 525 205 L 530 198 L 530 212 L 525 205" fill="#dfe6e9" stroke="#2f3542" stroke-width="2" stroke-linejoin="round" />
+
+  <!-- 5. Front Wheel (Spinning around 0,0 via Group Translation) -->
+  <g transform="translate(550, 450)">
+    <g class="wheel-spin">
+      <!-- Tire -->
+      <circle cx="0" cy="0" r="80" stroke="#1e272e" stroke-width="14" fill="none" />
+      <!-- Rim -->
+      <circle cx="0" cy="0" r="71" stroke="#dfe6e9" stroke-width="4" fill="none" />
+      <!-- Spokes -->
+      <line x1="0" y1="-80" x2="0" y2="80" stroke="#b2bec3" stroke-width="2" />
+      <line x1="-80" y1="0" x2="80" y2="0" stroke="#b2bec3" stroke-width="2" />
+      <line x1="-57" y1="-57" x2="57" y2="57" stroke="#b2bec3" stroke-width="2" />
+      <line x1="-57" y1="57" x2="57" y2="-57" stroke="#b2bec3" stroke-width="2" />
+      <!-- Spokes Shine -->
+      <path d="M 0 0 L -40 -70 A 80 80 0 0 1 40 -70 Z" fill="#ffffff" opacity="0.15" />
+      <path d="M 0 0 L 40 70 A 80 80 0 0 1 -40 70 Z" fill="#ffffff" opacity="0.15" />
+      <!-- Hub -->
+      <circle cx="0" cy="0" r="14" fill="#747d8c" />
+    </g>
+  </g>
+
+  <!-- 6. PELICAN RIDER (Bobbing Group) -->
+  <g class="pelican-bob">
+    <!-- Tail Feathers (Waggling around its joint at 300,305) -->
+    <g transform="translate(300, 305)">
+      <g class="tail-wag">
+        <path d="M 5 0 L -35 -10 C -40 0, -25 20, 5 15 Z" fill="#d1dbe3" />
+      </g>
+    </g>
+
+    <!-- Back Wing (Folded, Static on Body) -->
+    <path d="M 330 290 C 330 270, 360 255, 380 280 C 390 290, 375 320, 340 315 Z" fill="#b2bec3" opacity="0.6" />
+
+    <!-- Body -->
+    <path d="M 300 295 C 300 250, 380 240, 400 280 C 415 310, 385 345, 340 340 C 310 340, 300 320, 300 295 Z" fill="#ffffff" stroke="#d1dbe3" stroke-width="1.5" />
+
+    <!-- Neck -->
+    <path d="M 380 280 Q 425 270, 410 215 Q 400 185, 430 180" fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round" />
+
+    <!-- Head -->
+    <circle cx="435" cy="172" r="24" fill="#ffffff" />
+
+    <!-- Eye -->
+    <circle cx="444" cy="166" r="4" fill="#2d3436" />
+    <circle cx="445.5" cy="164.5" r="1.5" fill="#ffffff" />
+    <path d="M 436 158 Q 444 156, 449 161" fill="none" stroke="#2d3436" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Helmet (Safety First!) -->
+    <path d="M 411 168 C 411 138, 459 138, 459 168 Z" fill="#0984e3" />
+    <path d="M 425 168 L 433 190 L 443 168" fill="none" stroke="#2f3542" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 452 162 L 468 166 L 452 173 Z" fill="#74b9ff" />
+    <rect x="425" y="142" width="18" height="6" rx="2" fill="#74b9ff" />
+
+    <!-- Beak & Pouch -->
+    <!-- Elastic Lower Pouch -->
+    <path d="M 435 182 C 510 187, 545 180, 535 195 C 515 225, 470 248, 424 210 Z" fill="#ffb142" />
+    <!-- Hard Upper Bill -->
+    <path d="M 445 154 L 545 178 C 545 178, 515 188, 435 182 Z" fill="#ff9f43" />
+    <!-- Beak Detail line -->
+    <path d="M 455 176 L 535 180" fill="none" stroke="#e67e22" stroke-width="2" stroke-linecap="round" />
+
+    <!-- Front Wing (Reaching to Handlebars) -->
+    <path d="M 370 280 Q 430 285, 500 216" fill="none" stroke="#ffffff" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 495 223 C 495 210, 510 210, 505 225 Z" fill="#d1dbe3" />
+
+    <!-- Flapping Side Wing (Flapping around its joint at 345, 290) -->
+    <g transform="translate(345, 290)">
+      <g class="wing-flap">
+        <path d="M -5 0 C -35 -5, -55 30, -35 40 C -15 50, 15 20, 15 5 Z" fill="#ffffff" stroke="#d1dbe3" stroke-width="2" />
+      </g>
+    </g>
+  </g>
+
+  <!-- 7. Front Leg of Pelican (SMIL Animated Path, syncs with Front Pedal) -->
+  <path fill="none" stroke="#f39c12" stroke-width="14" stroke-linecap="round" stroke-linejoin="round">
+    <animate attributeName="d" dur="1.2s" repeatCount="indefinite"
+      values="M350,310 Q385,345 410,420 L422,420;
+              M350,302 Q355,380 370,460 L382,460;
+              M350,310 Q320,365 330,420 L342,420;
+              M350,302 Q375,330 370,380 L382,380;
+              M350,310 Q385,345 410,420 L422,420" />
+  </path>
+
+  <!-- 8. Front Pedal (Drawn on top of leg to look connected) -->
+  <g transform="translate(370, 420)">
+    <g class="pedal-spin">
+      <!-- Crank Arm -->
+      <line x1="0" y1="0" x2="40" y2="0" stroke="#b2bec3" stroke-width="7" stroke-linecap="round" />
+      <!-- Pedal Pad Group (Counter-rotates to stay flat) -->
+      <g transform="translate(40, 0)">
+        <g class="pedal-counter-spin">
+          <rect x="-12" y="-6" width="24" height="12" rx="4" fill="#2f3542" />
+        </g>
+      </g>
+    </g>
+  </g>
+
+</svg>

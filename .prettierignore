@@ -10,3 +10,6 @@ test-results
 playwright-report
 AGENTS.md
 CLAUDE.md
+
+# Preserve model output bytes and content-addressed filenames.
+data/media/*.svg

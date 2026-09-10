@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" width="500" height="300">
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#87CEEB"/>
+      <stop offset="100%" stop-color="#E0F7FA"/>
+    </linearGradient>
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#D0D0D0"/>
+    </linearGradient>
+    <linearGradient id="beakGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FF9800"/>
+      <stop offset="100%" stop-color="#EF6C00"/>
+    </linearGradient>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#sky)"/>
+  <g transform="translate(0, 0)">
+    <animate attributeName="transform" type="translate" from="0, 0" to="500, 0" dur="8s" repeatCount="indefinite"/>
+    <!-- 自行车车架 -->
+    <path d="M150 180 L200 150 L250 180 L280 150 L250 180 L200 150" stroke="#663300" stroke-width="5" fill="none"/>
+    <!-- 前轮 -->
+    <g transform="translate(150, 180)">
+      <circle cx="0" cy="0" r="30" stroke="#333" stroke-width="3" fill="none"/>
+      <line x1="0" y1="-30" x2="0" y2="30" stroke="#333" stroke-width="2">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1s" repeatCount="indefinite"/>
+      </line>
+      <line x1="-30" y1="0" x2="30" y2="0" stroke="#333" stroke-width="2">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1s" repeatCount="indefinite"/>
+      </line>
+    </g>
+    <!-- 后轮 -->
+    <g transform="translate(250, 180)">
+      <circle cx="0" cy="0" r="30" stroke="#333" stroke-width="3" fill="none"/>
+      <line x1="0" y1="-30" x2="0" y2="30" stroke="#333" stroke-width="2">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1s" repeatCount="indefinite"/>
+      </line>
+      <line x1="-30" y1="0" x2="30" y2="0" stroke="#333" stroke-width="2">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1s" repeatCount="indefinite"/>
+      </line>
+    </g>
+    <!-- 鹈鹕身体 -->
+    <ellipse cx="200" cy="130" rx="40" ry="30" fill="url(#bodyGrad)" stroke="#999" stroke-width="2"/>
+    <!-- 鹈鹕头部 -->
+    <circle cx="180" cy="110" r="20" fill="url(#bodyGrad)" stroke="#999" stroke-width="2"/>
+    <!-- 鹈鹕嘴巴 -->
+    <path d="M160 110 Q140 100 140 120 Q140 140 160 130 Z" fill="url(#beakGrad)"/>
+    <!-- 鹈鹕眼睛 -->
+    <circle cx="175" cy="105" r="3" fill="#000"/>
+    <!-- 鹈鹕翅膀 -->
+    <path d="M160 130 Q140 100 120 130 Q140 160 160 130" fill="#EEE" stroke="#999" stroke-width="2">
+      <animate attributeName="d" dur="0.5s" repeatCount="indefinite" values="M160 130 Q140 100 120 130 Q140 160 160 130; M160 130 Q140 150 120 130 Q140 110 160 130; M160 130 Q140 100 120 130 Q140 160 160 130"/>
+    </path>
+    <!-- 鹈鹕腿部 -->
+    <path d="M190 160 L195 190 L185 190 Z" fill="#FF9800"/>
+    <path d="M210 160 L215 190 L205 190 Z" fill="#FF9800"/>
+    <!-- 自行车座椅 -->
+    <ellipse cx="200" cy="150" rx="10" ry="5" fill="#663300"/>
+    <!-- 自行车把手 -->
+    <path d="M150 150 L130 140 M150 150 L130 160" stroke="#663300" stroke-width="3"/>
+    <!-- 踏板 -->
+    <g transform="translate(200, 180)">
+      <circle cx="0" cy="0" r="5" fill="#333"/>
+      <line x1="0" y1="0" x2="0" y2="15" stroke="#333" stroke-width="2">
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="1s" repeatCount="indefinite"/>
+      </line>
+    </g>
+  </g>
+</svg>
