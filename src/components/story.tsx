@@ -321,7 +321,7 @@ export function Story({ pictures }: { pictures: { id: string }[] }) {
                   "--row": Math.floor(i / 6),
                   "--mobile-column": i % 5,
                   "--mobile-row": Math.floor(i / 5),
-                  rotate: `${[-3, 2, -1, 3, -2, 1][i % 6]}deg`,
+                  rotate: `${[-1, 1, -0.5, 1, -1, 0.5][i % 6]}deg`,
                 } as CSSProperties
               }
             >

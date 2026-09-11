@@ -39,7 +39,7 @@ test("language persists across reloads and translates all page families", async 
     ).toBe(true);
   }
   await page.goto("/leaderboard/pelican");
-  await expect(page.locator("tbody tr")).toHaveCount(29);
+  await expect(page.locator("tbody tr")).toHaveCount(30);
   await page.screenshot({
     path: `test-results/rank-en-${info.project.name}.png`,
     fullPage: true,

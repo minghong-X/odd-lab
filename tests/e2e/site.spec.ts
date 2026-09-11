@@ -78,7 +78,7 @@ test("anyone can load, enlarge, vote and see revealed models and a ranking", asy
   await expect(page.getByText("本次已投 1 票")).toBeVisible();
   await expect(page.getByText("神秘模型")).toHaveCount(0);
   await page.getByRole("link", { name: "看看排行榜" }).click();
-  await expect(page.locator("tbody tr")).toHaveCount(29);
+  await expect(page.locator("tbody tr")).toHaveCount(30);
   await expect(page.getByRole("columnheader", { name: "Elo" })).toHaveCount(0);
 });
 test("reduced motion and unavailable experiments remain usable", async ({

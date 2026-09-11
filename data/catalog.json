@@ -456,10 +456,10 @@
     "tokenUsage": null
   },
   {
-    "id": "ffcf0767c511cda46db4357c",
+    "id": "5f5d5807a0d1572325441715",
     "model": "claude-opus-5",
-    "title": "claude-opus-5-crocodile-motorcycle",
-    "experiment": "crocodile",
+    "title": "claude-opus-5-pelican-bike",
+    "experiment": "pelican",
     "file": "91607fde8e0deb3c092ad68f.webp",
     "animatedFile": "91607fde8e0deb3c092ad68f.svg",
     "width": 1333,

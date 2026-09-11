@@ -157,6 +157,7 @@ export function ArenaClient({ slug }: { slug: string }) {
         </span>
         <span>{t("arena.sessionVotes", { count: format.format(count) })}</span>
       </div>
+      <p className="generation-rules">{t("arena.generationRules")}</p>
       <div className="comparison">
         {["A", "B"].map((label, i) => {
           const previewState =

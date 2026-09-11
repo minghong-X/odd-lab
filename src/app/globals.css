@@ -1878,17 +1878,21 @@ html[lang="en"] .hero-label {
   }
 }
 
-/* A dense wall settles from eight arrival directions; the center stays readable. */
+/* Fit every card to both viewport dimensions before animating its arrival. */
+.hero {
+  min-height: 100svh;
+}
 .photo-cloud {
-  inset: 125px -5% 65px;
+  inset: 100px 24px 80px;
   perspective: 1400px;
 }
 .flying-photo {
-  left: calc(var(--column) * 18% - 4%);
-  top: calc(var(--row) * 23% - 6%);
-  width: 16%;
+  left: calc(var(--column) * 100% / 6 + 8px);
+  top: calc(var(--row) * 20% + 8px);
+  width: calc(100% / 6 - 16px);
+  height: calc(20% - 16px);
   padding: 8px 8px 22px;
-  aspect-ratio: 1.15;
+  aspect-ratio: auto;
   backface-visibility: hidden;
 }
 .flying-photo span {
@@ -1938,12 +1942,13 @@ html[lang="en"] .hero-label {
 }
 @media (max-width: 700px) {
   .photo-cloud {
-    inset: 140px -30px 60px;
+    inset: 95px 8px 95px;
   }
   .flying-photo {
-    left: calc(var(--mobile-column) * 23% - 7%);
-    top: calc(var(--mobile-row) * 18% - 3%);
-    width: 21%;
+    left: calc(var(--mobile-column) * 20% + 4px);
+    top: calc(var(--mobile-row) * 100% / 6 + 4px);
+    width: calc(20% - 8px);
+    height: calc(100% / 6 - 8px);
     padding: 4px 4px 14px;
   }
   .flying-photo span {
@@ -1966,5 +1971,54 @@ html[lang="en"] .hero-label {
     bottom: 57px;
     font-size: 10px;
     padding: 7px 10px;
+  }
+}
+
+.flying-photo picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+.flying-photo img {
+  display: block;
+}
+.generation-rules {
+  margin: -4px 0 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+}
+.arena-picker {
+  position: relative;
+  display: block;
+}
+.arena-picker select {
+  appearance: none;
+  width: 215px;
+  padding-right: 32px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+.arena-picker > span {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+@media (max-width: 700px) {
+  .arena-picker select {
+    width: 145px;
+    padding-right: 25px;
+  }
+  .arena-picker > span {
+    right: 10px;
+  }
+  .generation-rules {
+    font-size: 11px;
   }
 }
