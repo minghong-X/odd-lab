@@ -1,12 +1,12 @@
 import { getServerI18n } from "@/i18n/server";
 import { Story } from "@/components/story";
 import { ExperimentCards } from "@/components/experiment-cards";
-import { artifacts } from "@/lib/catalog";
+import { getPhotoWall } from "@/lib/catalog";
 export default async function Home() {
   const { t } = await getServerI18n();
   return (
     <main id="main">
-      <Story pictures={artifacts.map((a) => ({ id: a.id }))} />
+      <Story pictures={getPhotoWall().map((a) => ({ id: a.id }))} />
       <section className="experiments-section" id="experiments">
         <div className="section-intro">
           <div>

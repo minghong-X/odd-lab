@@ -1,0 +1,421 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="100%" height="100%">
+  <defs>
+    <!-- Sky Gradient -->
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0f051d"/>
+      <stop offset="40%" stop-color="#3b0944"/>
+      <stop offset="70%" stop-color="#891b48"/>
+      <stop offset="90%" stop-color="#db4e2c"/>
+      <stop offset="100%" stop-color="#fba337"/>
+    </linearGradient>
+
+    <!-- Synthwave Sun Gradient -->
+    <linearGradient id="sunGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffe600"/>
+      <stop offset="50%" stop-color="#ff2a54"/>
+      <stop offset="100%" stop-color="#7a0050"/>
+    </linearGradient>
+
+    <!-- Chrome Gradient -->
+    <linearGradient id="chrome" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="25%" stop-color="#a6b8c7"/>
+      <stop offset="50%" stop-color="#ffffff"/>
+      <stop offset="75%" stop-color="#3b4856"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+
+    <!-- Candy Red Bodywork Gradient -->
+    <linearGradient id="candyRed" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ff2a4b"/>
+      <stop offset="40%" stop-color="#b90e2b"/>
+      <stop offset="100%" stop-color="#4a040f"/>
+    </linearGradient>
+
+    <!-- Exhaust Heat Gradient -->
+    <linearGradient id="exhaustGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#475569"/>
+      <stop offset="50%" stop-color="#94a3b8"/>
+      <stop offset="75%" stop-color="#d97706"/>
+      <stop offset="90%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+
+    <!-- Gator Skin Green Gradient -->
+    <linearGradient id="gatorSkin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4ade80"/>
+      <stop offset="40%" stop-color="#22c55e"/>
+      <stop offset="75%" stop-color="#15803d"/>
+      <stop offset="100%" stop-color="#14532d"/>
+    </linearGradient>
+
+    <!-- Gator Belly Yellow Gradient -->
+    <linearGradient id="gatorBelly" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="100%" stop-color="#a3e635"/>
+    </linearGradient>
+
+    <!-- Headlight Beam Gradient -->
+    <linearGradient id="lightGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.8"/>
+      <stop offset="20%" stop-color="#fef08a" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#fef08a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- SKY BACKGROUND -->
+  <rect x="0" y="0" width="1000" height="600" fill="url(#skyGrad)"/>
+
+  <!-- RETRO SUN WITH HORIZONTAL SLITS -->
+  <g transform="translate(620, 230)">
+    <circle cx="0" cy="0" r="110" fill="url(#sunGrad)"/>
+    <path d="M-110,10 L110,10 L110,16 L-110,16 Z
+             M-110,26 L110,26 L110,34 L-110,34 Z
+             M-110,44 L110,44 L110,54 L-110,54 Z
+             M-110,64 L110,64 L110,76 L-110,76 Z
+             M-110,86 L110,86 L110,100 L-110,100 Z" fill="#3b0944"/>
+  </g>
+
+  <!-- DISTANT HORIZON MOUNTAINS -->
+  <polygon points="0,440 60,370 140,440 230,350 360,440 470,360 590,440 700,340 820,440 930,370 1000,440" fill="#24072f" opacity="0.9"/>
+  <polygon points="0,440 100,390 190,440 310,380 430,440 540,380 660,440 780,375 880,440 1000,385" fill="#4a0f44" opacity="0.6"/>
+
+  <!-- SPEED LINES IN SKY -->
+  <line y1="90" y2="90" stroke="#fbcfe8" stroke-width="2" stroke-dasharray="100 800">
+    <animate attributeName="stroke-dashoffset" from="1000" to="-1000" dur="0.8s" repeatCount="indefinite"/>
+  </line>
+  <line y1="150" y2="150" stroke="#fbcfe8" stroke-width="1.5" stroke-dasharray="80 700">
+    <animate attributeName="stroke-dashoffset" from="1000" to="-1000" dur="0.6s" repeatCount="indefinite"/>
+  </line>
+  <line y1="210" y2="210" stroke="#fde047" stroke-width="2" stroke-dasharray="120 600">
+    <animate attributeName="stroke-dashoffset" from="1000" to="-1000" dur="0.7s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- ROADBED -->
+  <rect x="0" y="440" width="1000" height="160" fill="#111116"/>
+  <!-- Horizon Light Stripe -->
+  <line x1="0" y1="440" x2="1000" y2="440" stroke="#fb7185" stroke-width="3"/>
+  <!-- Road Speed Textures -->
+  <line x1="0" y1="465" x2="1000" y2="465" stroke="#334155" stroke-width="2" stroke-dasharray="40 80">
+    <animate attributeName="stroke-dashoffset" from="0" to="-240" dur="0.25s" repeatCount="indefinite"/>
+  </line>
+  <!-- Moving Center Dashed Line -->
+  <line x1="0" y1="520" x2="1000" y2="520" stroke="#facc15" stroke-width="8" stroke-dasharray="75 45">
+    <animate attributeName="stroke-dashoffset" from="0" to="-240" dur="0.25s" repeatCount="indefinite"/>
+  </line>
+  <line x1="0" y1="575" x2="1000" y2="575" stroke="#475569" stroke-width="3" stroke-dasharray="60 100">
+    <animate attributeName="stroke-dashoffset" from="0" to="-320" dur="0.25s" repeatCount="indefinite"/>
+  </line>
+
+  <!-- HEADLIGHT LIGHT CONE PROJECTING ON ROAD -->
+  <polygon points="805,370 1000,320 1000,560 815,400" fill="url(#lightGlow)"/>
+
+  <!-- EXHAUST SMOKE PUFFS -->
+  <circle cx="150" cy="445" r="10" fill="#e2e8f0">
+    <animate attributeName="cx" values="150; 50; -50" dur="0.5s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="445; 415; 380" dur="0.5s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="8; 25; 45" dur="0.5s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.8; 0.4; 0" dur="0.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="150" cy="445" r="10" fill="#cbd5e1">
+    <animate attributeName="cx" values="150; 50; -50" dur="0.5s" begin="0.25s" repeatCount="indefinite"/>
+    <animate attributeName="cy" values="445; 420; 390" dur="0.5s" begin="0.25s" repeatCount="indefinite"/>
+    <animate attributeName="r" values="8; 20; 40" dur="0.5s" begin="0.25s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.8; 0.3; 0" dur="0.5s" begin="0.25s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- ==================== MAIN CHOPPER MOTORCYCLE & ALLIGATOR ==================== -->
+  <!-- Whole Assembly Vibration / Engine Rumble -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0; 0 -2.5; 0 1.5; 0 0" keyTimes="0; 0.33; 0.66; 1" dur="0.12s" repeatCount="indefinite"/>
+
+    <!-- REAR WHEEL (SPINNING SPOKES) -->
+    <g>
+      <!-- Tire -->
+      <circle cx="230" cy="430" r="68" fill="#17171c" stroke="#262626" stroke-width="8"/>
+      <!-- Rim -->
+      <circle cx="230" cy="430" r="50" fill="#09090b" stroke="url(#chrome)" stroke-width="6"/>
+      <!-- Animated Spokes -->
+      <g>
+        <line x1="230" y1="382" x2="230" y2="478" stroke="url(#chrome)" stroke-width="3"/>
+        <line x1="182" y1="430" x2="278" y2="430" stroke="url(#chrome)" stroke-width="3"/>
+        <line x1="196" y1="396" x2="264" y2="464" stroke="url(#chrome)" stroke-width="3"/>
+        <line x1="196" y1="464" x2="264" y2="396" stroke="url(#chrome)" stroke-width="3"/>
+        <circle cx="230" cy="430" r="16" fill="#334155" stroke="url(#chrome)" stroke-width="3"/>
+        <circle cx="230" cy="430" r="6" fill="#f8fafc"/>
+        <animateTransform attributeName="transform" type="rotate" from="0 230 430" to="360 230 430" dur="0.25s" repeatCount="indefinite"/>
+      </g>
+      <!-- Rear Brake Disc -->
+      <circle cx="230" cy="430" r="32" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="6 3"/>
+      <!-- Rear Fender -->
+      <path d="M165,425 C168,370 210,340 260,345" fill="none" stroke="url(#candyRed)" stroke-width="16" stroke-linecap="round"/>
+      <path d="M165,425 C168,370 210,340 260,345" fill="none" stroke="#fbcfe8" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    </g>
+
+    <!-- FRONT WHEEL (SPINNING SPOKES) -->
+    <g>
+      <!-- Tire -->
+      <circle cx="770" cy="430" r="68" fill="#17171c" stroke="#262626" stroke-width="8"/>
+      <!-- Rim -->
+      <circle cx="770" cy="430" r="50" fill="#09090b" stroke="url(#chrome)" stroke-width="6"/>
+      <!-- Animated Spokes -->
+      <g>
+        <line x1="770" y1="382" x2="770" y2="478" stroke="url(#chrome)" stroke-width="3"/>
+        <line x1="722" y1="430" x2="818" y2="430" stroke="url(#chrome)" stroke-width="3"/>
+        <line x1="736" y1="396" x2="804" y2="464" stroke="url(#chrome)" stroke-width="3"/>
+        <line x1="736" y1="464" x2="804" y2="396" stroke="url(#chrome)" stroke-width="3"/>
+        <circle cx="770" cy="430" r="16" fill="#334155" stroke="url(#chrome)" stroke-width="3"/>
+        <circle cx="770" cy="430" r="6" fill="#f8fafc"/>
+        <animateTransform attributeName="transform" type="rotate" from="0 770 430" to="360 770 430" dur="0.25s" repeatCount="indefinite"/>
+      </g>
+      <!-- Brake Disc & Caliper -->
+      <circle cx="770" cy="430" r="34" fill="none" stroke="#64748b" stroke-width="3" stroke-dasharray="7 3"/>
+      <rect x="756" y="392" width="16" height="22" rx="3" fill="#cbd5e1"/>
+      <!-- Front Fender -->
+      <path d="M725,385 C750,365 795,368 825,395" fill="none" stroke="url(#candyRed)" stroke-width="12" stroke-linecap="round"/>
+    </g>
+
+    <!-- MOTORCYCLE LOWER FRAME & SWINGARM -->
+    <path d="M230,430 L340,430 L430,445 L480,445 L390,365 Z" fill="#1e293b" stroke="#09090b" stroke-width="4"/>
+    <line x1="230" y1="430" x2="330" y2="365" stroke="url(#chrome)" stroke-width="10"/>
+
+    <!-- V-TWIN CHROME ENGINE -->
+    <g>
+      <!-- Crankcase -->
+      <path d="M350,440 L465,440 L480,385 L365,380 Z" fill="#334155" stroke="#0f172a" stroke-width="3"/>
+      <circle cx="410" cy="415" r="28" fill="#1e293b" stroke="url(#chrome)" stroke-width="5"/>
+      <circle cx="410" cy="415" r="12" fill="#475569"/>
+
+      <!-- Cylinder 1 (Rear) -->
+      <g transform="rotate(-18, 385, 360)">
+        <rect x="365" y="315" width="46" height="60" rx="3" fill="#475569" stroke="#0f172a" stroke-width="2"/>
+        <line x1="358" y1="325" x2="418" y2="325" stroke="url(#chrome)" stroke-width="3"/>
+        <line x1="358" y1="335" x2="418" y2="335" stroke="url(#chrome)" stroke-width="3"/>
+        <line x1="358" y1="345" x2="418" y2="345" stroke="url(#chrome)" stroke-width="3"/>
+        <line x1="358" y1="355" x2="418" y2="355" stroke="url(#chrome)" stroke-width="3"/>
+        <!-- Chrome Rocker Cover -->
+        <path d="M362,315 L414,315 L406,300 L370,300 Z" fill="url(#chrome)"/>
+      </g>
+
+      <!-- Cylinder 2 (Front) -->
+      <g transform="rotate(20, 445, 365)">
+        <rect x="425" y="320" width="46" height="60" rx="3" fill="#475569" stroke="#0f172a" stroke-width="2"/>
+        <line x1="418" y1="330" x2="478" y2="330" stroke="url(#chrome)" stroke-width="3"/>
+        <line x1="418" y1="340" x2="478" y2="340" stroke="url(#chrome)" stroke-width="3"/>
+        <line x1="418" y1="350" x2="478" y2="350" stroke="url(#chrome)" stroke-width="3"/>
+        <line x1="418" y1="360" x2="478" y2="360" stroke="url(#chrome)" stroke-width="3"/>
+        <!-- Chrome Rocker Cover -->
+        <path d="M422,320 L474,320 L466,305 L430,305 Z" fill="url(#chrome)"/>
+      </g>
+
+      <!-- Chrome Air Filter -->
+      <ellipse cx="445" cy="370" rx="18" ry="13" fill="url(#chrome)" stroke="#0f172a" stroke-width="2"/>
+    </g>
+
+    <!-- EXHAUST SYSTEM -->
+    <g>
+      <!-- Dual Exhaust Pipes -->
+      <path d="M395,370 C395,435 360,446 290,446 L145,446" fill="none" stroke="url(#exhaustGrad)" stroke-width="12" stroke-linecap="round"/>
+      <path d="M455,375 C455,420 420,458 330,458 L155,458" fill="none" stroke="url(#exhaustGrad)" stroke-width="10" stroke-linecap="round"/>
+      <!-- Slash-cut Tips -->
+      <polygon points="140,440 152,440 144,452 132,452" fill="#09090b"/>
+      <polygon points="150,453 162,453 154,463 142,463" fill="#09090b"/>
+      <!-- Chrome Heat Shields -->
+      <path d="M270,445 L180,445 L175,438 L270,438 Z" fill="url(#chrome)"/>
+      <path d="M260,457 L185,457 L180,450 L260,450 Z" fill="url(#chrome)"/>
+    </g>
+
+    <!-- TEARDROP FUEL TANK -->
+    <g>
+      <path d="M450,305 C500,290 585,305 590,335 C590,355 555,365 455,350 C430,345 425,315 450,305 Z" fill="url(#candyRed)" stroke="#580511" stroke-width="2"/>
+      <!-- Yellow Flame Graphic on Tank -->
+      <path d="M470,310 Q515,312 540,332 Q510,330 485,340 Q510,322 460,325 Z" fill="#facc15"/>
+      <!-- Chrome Gas Cap -->
+      <ellipse cx="515" cy="304" rx="7" ry="4" fill="url(#chrome)"/>
+    </g>
+
+    <!-- SEAT -->
+    <path d="M310,348 C340,348 370,342 420,358 C425,366 415,378 375,375 C335,372 310,362 310,348 Z" fill="#18181b" stroke="#27272a" stroke-width="2"/>
+
+    <!-- EXTENDED FRONT FORKS & CHOPPER HANDLEBARS -->
+    <g>
+      <!-- Triple Trees -->
+      <polygon points="630,295 655,295 645,310 620,310" fill="url(#chrome)"/>
+      <polygon points="615,330 640,330 630,345 605,345" fill="url(#chrome)"/>
+      <!-- Raked Chrome Forks -->
+      <line x1="645" y1="290" x2="775" y2="435" stroke="url(#chrome)" stroke-width="12" stroke-linecap="round"/>
+      <line x1="633" y1="290" x2="763" y2="435" stroke="#334155" stroke-width="3" stroke-linecap="round"/>
+      <line x1="653" y1="295" x2="778" y2="432" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.8"/>
+
+      <!-- Tall Ape-Hanger Handlebars -->
+      <path d="M630,300 L610,210 L590,185 L580,190" fill="none" stroke="url(#chrome)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+      <!-- Grip -->
+      <rect x="568" y="185" width="20" height="10" rx="3" fill="#09090b" transform="rotate(-15, 578, 190)"/>
+      <!-- Chrome Mirror -->
+      <circle cx="590" cy="170" r="8" fill="url(#chrome)"/>
+      <line x1="595" y1="176" x2="602" y2="195" stroke="url(#chrome)" stroke-width="3"/>
+
+      <!-- Headlight Bullet Housing -->
+      <path d="M740,345 L785,360 C795,365 795,385 785,390 L740,405 Z" fill="url(#chrome)"/>
+      <ellipse cx="785" cy="375" rx="5" ry="15" fill="#fef08a" stroke="#ffffff" stroke-width="2"/>
+    </g>
+
+    <!-- FOOTPEG -->
+    <rect x="450" y="425" width="22" height="7" rx="3" fill="url(#chrome)"/>
+    <circle cx="460" cy="428" r="5" fill="#09090b"/>
+
+
+    <!-- ==================== ALLIGATOR RIDER ==================== -->
+
+    <!-- SWISHING TAIL (ANIMATED SMIL) -->
+    <g>
+      <!-- Base Tail -->
+      <path d="M315,345 C250,340 170,290 100,305 C70,310 50,300 45,285 C60,315 115,345 190,370 C245,390 295,385 325,365 Z" fill="url(#gatorSkin)"/>
+      <!-- Pale Yellow Tail Belly -->
+      <path d="M50,292 C90,325 160,360 240,380 C280,390 310,380 325,365 C300,375 250,373 200,357 C130,335 75,307 50,292 Z" fill="url(#gatorBelly)"/>
+      <!-- Tail Spikes (Scutes) -->
+      <polygon points="100,305 110,293 120,307" fill="#14532d"/>
+      <polygon points="130,310 142,295 154,314" fill="#14532d"/>
+      <polygon points="165,317 180,300 192,324" fill="#14532d"/>
+      <polygon points="205,329 222,310 235,337" fill="#14532d"/>
+      <polygon points="250,341 268,323 280,349" fill="#14532d"/>
+      <!-- Swishing / Wagging Animation -->
+      <animateTransform attributeName="transform" type="rotate" values="0 320 355; -6 320 355; 4 320 355; 0 320 355" keyTimes="0; 0.35; 0.75; 1" dur="0.45s" repeatCount="indefinite"/>
+    </g>
+
+    <!-- ALLIGATOR LEG & BOOT -->
+    <g>
+      <!-- Thigh -->
+      <path d="M345,335 C375,335 405,355 430,385 C425,410 405,415 385,400 C365,385 340,370 335,345 Z" fill="#1e1e24"/>
+      <!-- Muscular Green Calf -->
+      <path d="M410,390 L445,425 L425,437 L398,403 Z" fill="url(#gatorSkin)"/>
+      <!-- Biker Boot on Peg -->
+      <path d="M420,423 L455,420 L470,435 L465,447 L425,447 C415,447 412,435 420,423 Z" fill="#09090b" stroke="#27272a" stroke-width="1.5"/>
+      <rect x="435" y="428" width="12" height="4" fill="url(#chrome)"/>
+    </g>
+
+    <!-- TORSO & BIKER VEST -->
+    <g>
+      <!-- Green Torso -->
+      <path d="M350,340 C360,290 395,265 445,260 C470,295 460,345 425,355 Z" fill="url(#gatorSkin)"/>
+      <!-- Yellow Belly -->
+      <path d="M420,270 C438,270 450,295 445,340 C430,350 420,340 415,315 Z" fill="url(#gatorBelly)"/>
+      <line x1="426" y1="290" x2="445" y2="290" stroke="#84cc16" stroke-width="2"/>
+      <line x1="422" y1="310" x2="445" y2="310" stroke="#84cc16" stroke-width="2"/>
+      <line x1="418" y1="330" x2="438" y2="330" stroke="#84cc16" stroke-width="2"/>
+
+      <!-- Leather Biker Cut-off Vest -->
+      <path d="M350,340 C355,290 385,260 430,255 L445,285 L420,355 L360,360 Z" fill="#18181b"/>
+      <!-- Lapel -->
+      <path d="M415,255 L440,290 L425,295 L405,265 Z" fill="#27272a"/>
+      <!-- Chrome Studs -->
+      <circle cx="413" cy="263" r="2" fill="url(#chrome)"/>
+      <circle cx="423" cy="277" r="2" fill="url(#chrome)"/>
+      <circle cx="432" cy="289" r="2" fill="url(#chrome)"/>
+      <!-- Skull Patch on Back of Vest -->
+      <ellipse cx="375" cy="300" rx="9" ry="11" fill="#f8fafc" opacity="0.9"/>
+      <circle cx="372" cy="298" r="2.5" fill="#18181b"/>
+      <circle cx="378" cy="298" r="2.5" fill="#18181b"/>
+      <polygon points="373,307 377,307 375,311" fill="#18181b"/>
+    </g>
+
+    <!-- ALLIGATOR HEAD & LONG JAW -->
+    <g>
+      <!-- Strong Muscular Neck -->
+      <path d="M420,260 C425,235 450,215 480,210 L495,245 L445,270 Z" fill="url(#gatorSkin)"/>
+
+      <!-- Upper Head Base Structure -->
+      <path d="M445,230 C450,190 490,180 520,185 C565,195 640,205 660,215 C665,220 655,230 630,235 L535,240 C515,255 475,260 445,230 Z" fill="url(#gatorSkin)"/>
+
+      <!-- Brow Ridge Horns/Scutes -->
+      <path d="M475,183 Q488,173 502,181 Q515,173 528,183" fill="none" stroke="#14532d" stroke-width="4" stroke-linecap="round"/>
+
+      <!-- Raised Nostril with Breath Snort -->
+      <ellipse cx="645" cy="211" rx="6" ry="4" fill="#166534"/>
+      <circle cx="646" cy="212" r="2" fill="#052e16"/>
+      <line x1="652" y1="211" x2="675" y2="207" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+
+      <!-- Lower Jaw -->
+      <path d="M495,245 C530,245 590,240 630,230 C635,233 630,240 615,245 C570,260 520,263 485,251 Z" fill="url(#gatorSkin)"/>
+      <!-- Pink Mouth Interior -->
+      <path d="M505,243 C540,243 590,239 615,233 L610,240 C565,251 525,251 498,247 Z" fill="#b91c1c"/>
+
+      <!-- Sharp White Teeth Interlocking -->
+      <polygon points="515,237 520,228 524,237" fill="#ffffff"/>
+      <polygon points="535,235 540,225 546,235" fill="#ffffff"/>
+      <polygon points="558,233 564,222 570,232" fill="#ffffff"/>
+      <polygon points="585,230 591,220 597,229" fill="#ffffff"/>
+      <polygon points="610,227 616,219 622,226" fill="#ffffff"/>
+      <!-- Lower Teeth -->
+      <polygon points="528,238 532,245 537,238" fill="#ffffff"/>
+      <polygon points="550,235 555,243 560,235" fill="#ffffff"/>
+      <polygon points="575,232 580,241 585,231" fill="#ffffff"/>
+      <polygon points="600,229 604,236 608,228" fill="#ffffff"/>
+
+      <!-- BADASS SUNGLASSES -->
+      <g>
+        <path d="M450,215 C465,205 480,200 525,195" fill="none" stroke="#09090b" stroke-width="5"/>
+        <path d="M480,193 L538,185 C548,185 552,193 545,203 L525,217 C510,227 490,223 478,211 Z" fill="#09090b" stroke="#27272a" stroke-width="2"/>
+        <path d="M485,195 L532,188 C539,188 542,195 537,201 L522,213 C510,221 495,218 486,208 Z" fill="#1e1b4b"/>
+        <!-- White Lens Glare Highlights -->
+        <polygon points="495,193 510,191 492,213 486,209" fill="#ffffff" opacity="0.8"/>
+        <polygon points="518,190 526,189 512,207 507,206" fill="#ffffff" opacity="0.8"/>
+      </g>
+    </g>
+
+    <!-- FLUTTERING RED BIKER BANDANA (ANIMATED SMIL) -->
+    <g>
+      <!-- Neck Band -->
+      <path d="M445,245 C455,237 478,233 492,243 L480,257 L448,253 Z" fill="#dc2626"/>
+      <circle cx="448" cy="251" r="6" fill="#991b1b"/>
+      <!-- Bandana Tails with Wind Flutter -->
+      <g>
+        <path d="M448,251 C420,245 375,220 330,230 C370,240 405,263 444,259 Z" fill="#dc2626"/>
+        <path d="M445,253 C410,255 360,245 320,265 C360,270 400,275 443,261 Z" fill="#991b1b"/>
+        <!-- White Dots on Bandana -->
+        <circle cx="410" cy="247" r="2" fill="#ffffff" opacity="0.8"/>
+        <circle cx="375" cy="240" r="2" fill="#ffffff" opacity="0.8"/>
+        <circle cx="345" cy="240" r="1.5" fill="#ffffff" opacity="0.8"/>
+        <circle cx="400" cy="261" r="2" fill="#ffffff" opacity="0.8"/>
+        <circle cx="360" cy="258" r="2" fill="#ffffff" opacity="0.8"/>
+        <animateTransform attributeName="transform" type="rotate" values="0 448 251; 12 448 251; -6 448 251; 0 448 251" dur="0.18s" repeatCount="indefinite"/>
+      </g>
+    </g>
+
+    <!-- ARM & CLAWED HAND GRIPPING APE-HANGER BARS -->
+    <g>
+      <!-- Arm -->
+      <path d="M415,275 C445,265 495,245 545,223 L560,235 C520,260 470,290 430,300 Z" fill="url(#gatorSkin)"/>
+      <!-- Bicep Texture -->
+      <path d="M450,267 Q470,273 490,260" fill="none" stroke="#15803d" stroke-width="2.5"/>
+      <!-- Anchor / Biker Tattoo -->
+      <path d="M460,275 C460,270 470,270 472,277 C475,270 485,270 485,275 C485,285 472,290 472,293 C472,290 460,285 460,275 Z" fill="#047857" opacity="0.85"/>
+
+      <!-- Spiked Leather Wristband -->
+      <rect x="540" y="220" width="14" height="20" rx="3" fill="#18181b" transform="rotate(-25, 545, 230)"/>
+      <circle cx="543" cy="223" r="2" fill="url(#chrome)"/>
+      <circle cx="550" cy="237" r="2" fill="url(#chrome)"/>
+
+      <!-- Claws Wrapped on Grip -->
+      <circle cx="565" cy="213" r="5" fill="#15803d"/>
+      <circle cx="569" cy="219" r="5" fill="#15803d"/>
+      <circle cx="566" cy="226" r="4.5" fill="#15803d"/>
+      <circle cx="560" cy="230" r="4" fill="#15803d"/>
+      <polygon points="571,208 580,205 575,213" fill="#ffffff"/>
+      <polygon points="576,213 585,210 580,218" fill="#ffffff"/>
+      <polygon points="573,221 582,220 576,226" fill="#ffffff"/>
+    </g>
+
+  </g> <!-- END MAIN CHASSIS & RIDER -->
+
+  <!-- FOREGROUND SPEED PARTICLES -->
+  <circle cx="0" cy="490" r="2" fill="#ffffff" opacity="0.5">
+    <animate attributeName="cx" from="1000" to="-50" dur="0.4s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="0" cy="540" r="3" fill="#facc15" opacity="0.4">
+    <animate attributeName="cx" from="1000" to="-50" dur="0.3s" begin="0.15s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="0" cy="475" r="2.5" fill="#f43f5e" opacity="0.6">
+    <animate attributeName="cx" from="1000" to="-50" dur="0.35s" begin="0.08s" repeatCount="indefinite"/>
+  </circle>
+</svg>

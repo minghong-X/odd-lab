@@ -79,7 +79,7 @@ test("anyone can load, enlarge, vote and see revealed models and a ranking", asy
   await expect(page.getByText("神秘模型")).toHaveCount(0);
   await page.getByRole("link", { name: "看看排行榜" }).click();
   await expect(page.locator("tbody tr")).toHaveCount(29);
-  await expect(page.getByRole("columnheader", { name: "Elo" })).toBeVisible();
+  await expect(page.getByRole("columnheader", { name: "Elo" })).toHaveCount(0);
 });
 test("reduced motion and unavailable experiments remain usable", async ({
   page,
@@ -87,7 +87,7 @@ test("reduced motion and unavailable experiments remain usable", async ({
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await expect(page.locator(".story")).toHaveClass(/reduced/);
-  await page.goto("/experiments/crocodile");
+  await page.goto("/experiments/starship");
   await expect(page.getByText("模型作品准备中", { exact: true })).toBeVisible();
   await page.getByRole("link", { name: "去鹈鹕盲测" }).click();
   await expect(page).toHaveURL(/arena\/pelican/);

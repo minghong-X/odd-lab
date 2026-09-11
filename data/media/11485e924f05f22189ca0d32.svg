@@ -1,0 +1,191 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="一只鳄鱼骑着摩托车">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd97d"/>
+      <stop offset="0.5" stop-color="#ff9a56"/>
+      <stop offset="1" stop-color="#ff6b6b"/>
+    </linearGradient>
+    <linearGradient id="croc" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#6abf4b"/>
+      <stop offset="1" stop-color="#3d8b2e"/>
+    </linearGradient>
+    <linearGradient id="bike" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff4757"/>
+      <stop offset="1" stop-color="#b8283a"/>
+    </linearGradient>
+    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff7e0"/>
+      <stop offset="1" stop-color="#ffdd57"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="800" height="500" fill="url(#sky)"/>
+
+  <!-- Sun -->
+  <circle cx="650" cy="120" r="60" fill="url(#sun)">
+    <animate attributeName="cy" values="120;110;120" dur="4s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Distant hills scrolling -->
+  <g fill="#d8663f" opacity="0.6">
+    <g>
+      <path d="M0,330 Q150,250 300,330 T600,330 T900,330 V400 H0 Z"/>
+      <animateTransform attributeName="transform" type="translate" from="0 0" to="-800 0" dur="8s" repeatCount="indefinite"/>
+    </g>
+    <g>
+      <path d="M800,330 Q950,250 1100,330 T1400,330 T1700,330 V400 H800 Z"/>
+      <animateTransform attributeName="transform" type="translate" from="0 0" to="-800 0" dur="8s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- Road -->
+  <rect y="400" width="800" height="100" fill="#3a3a3a"/>
+  <g fill="#ffd54f">
+    <g>
+      <rect x="0" y="447" width="80" height="8" rx="4"/>
+      <rect x="160" y="447" width="80" height="8" rx="4"/>
+      <rect x="320" y="447" width="80" height="8" rx="4"/>
+      <rect x="480" y="447" width="80" height="8" rx="4"/>
+      <rect x="640" y="447" width="80" height="8" rx="4"/>
+      <rect x="800" y="447" width="80" height="8" rx="4"/>
+      <animateTransform attributeName="transform" type="translate" from="0 0" to="-160 0" dur="0.4s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <!-- Whole rig: gentle bobbing -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0; 0 -6; 0 0" dur="0.5s" repeatCount="indefinite"/>
+
+    <!-- Speed lines -->
+    <g stroke="#ffffff" stroke-width="4" stroke-linecap="round" opacity="0.7">
+      <line x1="120" y1="300" x2="60" y2="300">
+        <animate attributeName="x1" values="180;60" dur="0.5s" repeatCount="indefinite"/>
+        <animate attributeName="x2" values="120;10" dur="0.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.8;0" dur="0.5s" repeatCount="indefinite"/>
+      </line>
+      <line x1="140" y1="340" x2="80" y2="340">
+        <animate attributeName="x1" values="200;80" dur="0.5s" begin="0.15s" repeatCount="indefinite"/>
+        <animate attributeName="x2" values="140;20" dur="0.5s" begin="0.15s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.8;0" dur="0.5s" begin="0.15s" repeatCount="indefinite"/>
+      </line>
+      <line x1="130" y1="380" x2="70" y2="380">
+        <animate attributeName="x1" values="190;70" dur="0.5s" begin="0.3s" repeatCount="indefinite"/>
+        <animate attributeName="x2" values="130;15" dur="0.5s" begin="0.3s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.8;0" dur="0.5s" begin="0.3s" repeatCount="indefinite"/>
+      </line>
+    </g>
+
+    <!-- ===== Motorcycle ===== -->
+    <!-- Wheels -->
+    <g>
+      <!-- Rear wheel -->
+      <circle cx="300" cy="410" r="55" fill="#1a1a1a"/>
+      <circle cx="300" cy="410" r="52" fill="none" stroke="#444" stroke-width="6"/>
+      <g stroke="#bbb" stroke-width="5">
+        <line x1="300" y1="365" x2="300" y2="455"/>
+        <line x1="255" y1="410" x2="345" y2="410"/>
+        <line x1="268" y1="378" x2="332" y2="442"/>
+        <line x1="332" y1="378" x2="268" y2="442"/>
+        <animateTransform attributeName="transform" type="rotate" from="0 300 410" to="360 300 410" dur="0.4s" repeatCount="indefinite"/>
+      </g>
+      <circle cx="300" cy="410" r="10" fill="#888"/>
+    </g>
+    <g>
+      <!-- Front wheel -->
+      <circle cx="560" cy="410" r="55" fill="#1a1a1a"/>
+      <circle cx="560" cy="410" r="52" fill="none" stroke="#444" stroke-width="6"/>
+      <g stroke="#bbb" stroke-width="5">
+        <line x1="560" y1="365" x2="560" y2="455"/>
+        <line x1="515" y1="410" x2="605" y2="410"/>
+        <line x1="528" y1="378" x2="592" y2="442"/>
+        <line x1="592" y1="378" x2="528" y2="442"/>
+        <animateTransform attributeName="transform" type="rotate" from="0 560 410" to="360 560 410" dur="0.4s" repeatCount="indefinite"/>
+      </g>
+      <circle cx="560" cy="410" r="10" fill="#888"/>
+    </g>
+
+    <!-- Frame / body -->
+    <path d="M300,410 L400,340 L500,340 L560,410" fill="none" stroke="url(#bike)" stroke-width="14" stroke-linecap="round"/>
+    <path d="M370,345 Q430,320 500,335 L510,360 Q440,350 380,368 Z" fill="url(#bike)"/>
+    <!-- Fuel tank -->
+    <path d="M400,335 Q450,315 495,332 L490,352 Q450,340 410,352 Z" fill="#ff6b7a"/>
+    <!-- Seat -->
+    <path d="M350,345 Q380,330 415,340 L410,356 Q380,350 355,362 Z" fill="#2b2b2b"/>
+    <!-- Handlebar -->
+    <line x1="500" y1="340" x2="545" y2="300" stroke="#333" stroke-width="8" stroke-linecap="round"/>
+    <line x1="530" y1="300" x2="565" y2="300" stroke="#333" stroke-width="8" stroke-linecap="round"/>
+    <!-- Headlight -->
+    <circle cx="560" cy="330" r="14" fill="#fff59d" stroke="#333" stroke-width="3"/>
+    <!-- Exhaust with puffs -->
+    <path d="M300,415 L250,430 L240,438" fill="none" stroke="#999" stroke-width="10" stroke-linecap="round"/>
+    <g fill="#cccccc">
+      <circle cx="225" cy="435" r="10" opacity="0.7">
+        <animate attributeName="cx" values="230;180" dur="1s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="435;410" dur="1s" repeatCount="indefinite"/>
+        <animate attributeName="r" values="6;20" dur="1s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0" dur="1s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="225" cy="435" r="10" opacity="0.7">
+        <animate attributeName="cx" values="230;170" dur="1s" begin="0.5s" repeatCount="indefinite"/>
+        <animate attributeName="cy" values="435;405" dur="1s" begin="0.5s" repeatCount="indefinite"/>
+        <animate attributeName="r" values="6;22" dur="1s" begin="0.5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.7;0" dur="1s" begin="0.5s" repeatCount="indefinite"/>
+      </circle>
+    </g>
+
+    <!-- ===== Crocodile rider ===== -->
+    <g>
+      <animateTransform attributeName="transform" type="rotate" values="-1 400 300; 1 400 300; -1 400 300" dur="1s" repeatCount="indefinite"/>
+
+      <!-- Tail -->
+      <path d="M355,350 Q300,340 280,300 Q275,285 288,288 Q300,320 350,332 Z" fill="url(#croc)"/>
+      <path d="M282,300 l-6,-12 8,4 M295,315 l-5,-13 9,5 M312,326 l-4,-13 9,6" stroke="#2e6b22" stroke-width="3" fill="none"/>
+
+      <!-- Rear leg to seat -->
+      <path d="M370,335 Q365,375 350,405" stroke="url(#croc)" stroke-width="18" fill="none" stroke-linecap="round"/>
+      <!-- Body / torso leaning forward -->
+      <path d="M355,345 Q380,300 440,300 Q470,300 480,330 Q450,340 400,345 Q375,352 355,345 Z" fill="url(#croc)"/>
+      <!-- Belly -->
+      <path d="M368,340 Q400,352 455,340" fill="none" stroke="#c8e6a0" stroke-width="10" stroke-linecap="round"/>
+
+      <!-- Arm reaching to handlebar -->
+      <path d="M460,315 Q500,320 535,302" stroke="url(#croc)" stroke-width="15" fill="none" stroke-linecap="round"/>
+      <circle cx="537" cy="301" r="10" fill="#3d8b2e"/>
+
+      <!-- Head -->
+      <g>
+        <!-- Skull -->
+        <path d="M455,300 Q475,278 515,282 L560,292 Q575,296 575,306 L500,314 Q470,315 455,300 Z" fill="url(#croc)"/>
+        <!-- Lower jaw -->
+        <path d="M470,312 L568,308 Q572,320 545,324 L490,324 Q470,322 470,312 Z" fill="#4fa036"/>
+        <!-- Mouth line -->
+        <line x1="475" y1="309" x2="570" y2="306" stroke="#2e6b22" stroke-width="2.5"/>
+        <!-- Teeth -->
+        <g fill="#ffffff">
+          <polygon points="500,309 505,318 510,309"/>
+          <polygon points="518,308 523,317 528,308"/>
+          <polygon points="536,307 541,316 546,307"/>
+        </g>
+        <!-- Eye -->
+        <circle cx="490" cy="290" r="11" fill="#e8f5d8"/>
+        <circle cx="493" cy="290" r="5.5" fill="#111"/>
+        <path d="M478,283 Q490,275 502,283" fill="none" stroke="#2e6b22" stroke-width="4"/>
+        <!-- Nostril -->
+        <circle cx="567" cy="298" r="3" fill="#2e6b22"/>
+        <!-- Back scutes -->
+        <path d="M462,283 l-5,-11 9,6 M478,278 l-4,-12 9,7 M498,278 l-3,-12 9,7" stroke="#2e6b22" stroke-width="3" fill="none"/>
+      </g>
+
+      <!-- Front leg pushing bike -->
+      <path d="M420,345 Q440,380 470,398" stroke="url(#croc)" stroke-width="17" fill="none" stroke-linecap="round"/>
+      <circle cx="472" cy="400" r="9" fill="#3d8b2e"/>
+
+      <!-- Scarf flapping -->
+      <path d="M455,300 Q420,300 400,315 Q430,308 455,312 Z" fill="#ffd54f"/>
+      <path d="M400,315 Q380,318 360,330" fill="none" stroke="#ffd54f" stroke-width="9" stroke-linecap="round">
+        <animate attributeName="d" values="M400,315 Q380,318 360,330; M400,315 Q378,325 355,318; M400,315 Q380,318 360,330" dur="0.5s" repeatCount="indefinite"/>
+      </path>
+    </g>
+  </g>
+</svg>

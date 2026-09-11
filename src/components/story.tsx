@@ -358,16 +358,6 @@ export function Story({ pictures }: { pictures: { id: string }[] }) {
             <br />
             {t("story.heroDescription2")}
           </p>
-          <div className="hero-actions">
-            <Link className="button primary" href="/arena/pelican">
-              {t("common.enterArena")}
-              <span>↗</span>
-            </Link>
-            <a className="text-link" href="#experiments">
-              {t("common.explore")}
-              <span>↓</span>
-            </a>
-          </div>
         </div>
         <a href="#journey" className="scroll-invite">
           <span className="scroll-track">

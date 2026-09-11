@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320">
+<rect width="100%" height="100%" fill="#87CEEB"/>
+<rect x="0" y="260" width="600" height="60" fill="#808080"/>
+<line x1="0" y1="290" x2="600" y2="290" stroke="#ffffff" stroke-width="3" stroke-dasharray="40 30"/>
+<g>
+<animateTransform attributeName="transform" type="translate" values="-380,0;720,0" dur="7s" repeatCount="indefinite"/>
+<g transform="translate(100,220)">
+<circle r="42" fill="none" stroke="#111111" stroke-width="14"/>
+<circle r="16" fill="#555555"/>
+<g>
+<line x1="-16" y1="0" x2="16" y2="0" stroke="#aaaaaa" stroke-width="3"/>
+<line x1="0" y1="-16" x2="0" y2="16" stroke="#aaaaaa" stroke-width="3"/>
+<line x1="-11" y1="-11" x2="11" y2="11" stroke="#999999" stroke-width="2"/>
+<line x1="11" y1="-11" x2="-11" y2="11" stroke="#999999" stroke-width="2"/>
+<animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="0.2s" repeatCount="indefinite"/>
+</g>
+</g>
+<g transform="translate(280,220)">
+<circle r="42" fill="none" stroke="#111111" stroke-width="14"/>
+<circle r="16" fill="#555555"/>
+<g>
+<line x1="-16" y1="0" x2="16" y2="0" stroke="#aaaaaa" stroke-width="3"/>
+<line x1="0" y1="-16" x2="0" y2="16" stroke="#aaaaaa" stroke-width="3"/>
+<line x1="-11" y1="-11" x2="11" y2="11" stroke="#999999" stroke-width="2"/>
+<line x1="11" y1="-11" x2="-11" y2="11" stroke="#999999" stroke-width="2"/>
+<animateTransform attributeName="transform" type="rotate" from="0 0 0" to="360 0 0" dur="0.2s" repeatCount="indefinite"/>
+</g>
+</g>
+<path d="M55 215 Q100 175 145 215" stroke="#222222" stroke-width="10" fill="none"/>
+<path d="M235 215 Q280 170 325 215" stroke="#222222" stroke-width="10" fill="none"/>
+<rect x="125" y="198" width="130" height="22" rx="6" fill="#222222"/>
+<ellipse cx="160" cy="190" rx="38" ry="11" fill="#111111"/>
+<ellipse cx="210" cy="195" rx="25" ry="12" fill="#333333"/>
+<rect x="90" y="222" width="70" height="7" rx="3" fill="#444444"/>
+<line x1="280" y1="220" x2="272" y2="142" stroke="#333333" stroke-width="11"/>
+<line x1="248" y1="138" x2="310" y2="135" stroke="#1a1a1a" stroke-width="8" stroke-linecap="round"/>
+<circle cx="276" cy="155" r="9" fill="#ffee88" stroke="#222222" stroke-width="1"/>
+<g>
+<animateTransform attributeName="transform" type="rotate" values="5 115 175;-12 115 175;5 115 175" dur="2s" repeatCount="indefinite"/>
+<path d="M120 172 C70 145,20 160,5 200 C40 175,80 195,120 185 Z" fill="#228B22"/>
+</g>
+<ellipse cx="170" cy="176" rx="58" ry="21" fill="#228B22"/>
+<ellipse cx="240" cy="166" rx="30" ry="17" fill="#228B22"/>
+<polygon points="255,158 315,162 318,178 252,175" fill="#228B22"/>
+<polygon points="258,176 312,180 310,188 260,184" fill="#1e7b1e"/>
+<polygon points="130,162 137,147 144,162" fill="#1a5c1a"/>
+<polygon points="155,158 162,142 169,158" fill="#1a5c1a"/>
+<polygon points="180,155 187,140 194,155" fill="#1a5c1a"/>
+<polygon points="205,154 212,139 219,154" fill="#1a5c1a"/>
+<circle cx="232" cy="155" r="7" fill="white"/>
+<circle cx="234" cy="154" r="3" fill="black"/>
+<ellipse cx="295" cy="165" rx="3" ry="2" fill="#0d3d0d"/>
+<ellipse cx="305" cy="166" rx="3" ry="2" fill="#0d3d0d"/>
+<polygon points="270,168 273,178 276,168" fill="white"/>
+<polygon points="282,169 285,180 288,169" fill="white"/>
+<polygon points="294,168 297,179 300,168" fill="white"/>
+<polygon points="306,169 309,177 312,169" fill="white"/>
+<polygon points="275,184 278,176 281,184" fill="white"/>
+<polygon points="290,185 293,177 296,185" fill="white"/>
+<line x1="205" y1="172" x2="258" y2="140" stroke="#228B22" stroke-width="14" stroke-linecap="round"/>
+<line x1="140" y1="182" x2="115" y2="215" stroke="#228B22" stroke-width="12" stroke-linecap="round"/>
+<ellipse cx="108" cy="218" rx="12" ry="7" fill="#228B22" transform="rotate(-20 108 218)"/>
+</g>
+</svg>

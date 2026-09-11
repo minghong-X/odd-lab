@@ -1,0 +1,370 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Sky Gradient -->
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#050515"/>
+      <stop offset="40%" stop-color="#1b0b30"/>
+      <stop offset="75%" stop-color="#67134a"/>
+      <stop offset="100%" stop-color="#f24b59"/>
+    </linearGradient>
+
+    <!-- Sun Gradient -->
+    <linearGradient id="sunGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffdd40"/>
+      <stop offset="50%" stop-color="#fc3a82"/>
+      <stop offset="100%" stop-color="#cccccc" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Chrome/Metal Gradient -->
+    <linearGradient id="chromeGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="30%" stop-color="#a3b8cc"/>
+      <stop offset="50%" stop-color="#223344"/>
+      <stop offset="70%" stop-color="#e6f2ff"/>
+      <stop offset="100%" stop-color="#556677"/>
+    </linearGradient>
+
+    <!-- Synthwave Sun Mask to create horizontal cut slices -->
+    <mask id="sunMask">
+      <rect x="0" y="0" width="800" height="500" fill="#ffffff"/>
+      <rect x="200" y="240" width="400" height="3" fill="#000000"/>
+      <rect x="200" y="255" width="400" height="5" fill="#000000"/>
+      <rect x="200" y="272" width="400" height="7" fill="#000000"/>
+      <rect x="200" y="292" width="400" height="10" fill="#000000"/>
+      <rect x="200" y="315" width="400" height="14" fill="#000000"/>
+      <rect x="200" y="342" width="400" height="20" fill="#000000"/>
+    </mask>
+
+    <!-- Palm Tree Shape Definition -->
+    <g id="palmTree">
+      <path d="M 0 160 Q -20 80 15 0" fill="none" stroke="#130826" stroke-width="8" stroke-linecap="round"/>
+      <!-- Palm Leaves -->
+      <path d="M 15 0 Q 40 10 50 35" fill="none" stroke="#130826" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 15 0 Q 55 -15 70 5" fill="none" stroke="#130826" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 15 0 Q 35 -40 45 -65" fill="none" stroke="#130826" stroke-width="5" stroke-linecap="round"/>
+      <path d="M 15 0 Q -10 -40 -35 -55" fill="none" stroke="#130826" stroke-width="5" stroke-linecap="round"/>
+      <path d="M 15 0 Q -40 -20 -60 5" fill="none" stroke="#130826" stroke-width="4" stroke-linecap="round"/>
+      <path d="M 15 0 Q -30 15 -45 40" fill="none" stroke="#130826" stroke-width="4" stroke-linecap="round"/>
+    </g>
+
+    <!-- Style block for pure CSS animations -->
+    <style>
+      /* Ground highway movement */
+      @keyframes highwayMove {
+        0% { stroke-dashoffset: 0; }
+        100% { stroke-dashoffset: -160; }
+      }
+      .highway-lines {
+        stroke-dasharray: 80 80;
+        animation: highwayMove 0.4s linear infinite;
+      }
+
+      /* Slow parallax scrolling for palm trees */
+      @keyframes parallaxBack {
+        0% { transform: translateX(850px); }
+        100% { transform: translateX(-150px); }
+      }
+      .palm-slow {
+        animation: parallaxBack 6s linear infinite;
+      }
+      .palm-fast {
+        animation: parallaxBack 3.5s linear infinite;
+      }
+
+      /* Speed lines */
+      @keyframes speedStream {
+        0% { transform: translateX(900px); opacity: 0; }
+        10% { opacity: 0.6; }
+        90% { opacity: 0.6; }
+        100% { transform: translateX(-200px); opacity: 0; }
+      }
+      .speed-line {
+        animation: speedStream 0.8s linear infinite;
+      }
+      .sl1 { animation-duration: 0.5s; animation-delay: 0s; }
+      .sl2 { animation-duration: 0.7s; animation-delay: 0.2s; }
+      .sl3 { animation-duration: 0.4s; animation-delay: 0.4s; }
+
+      /* Wheel Rotation */
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      .spinning-rim {
+        animation: spin 0.25s linear infinite;
+        transform-origin: 0px 0px; /* Centered in local coordinate system */
+      }
+
+      /* Motorcycle and Rider vibration/bounce */
+      @keyframes engineVibe {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        25% { transform: translateY(-4px) rotate(-0.5deg); }
+        50% { transform: translateY(2px) rotate(0.5deg); }
+        75% { transform: translateY(-2px) rotate(-0.2deg); }
+      }
+      .moto-rider-group {
+        animation: engineVibe 0.18s linear infinite;
+      }
+
+      /* Tail Wiggling */
+      @keyframes tailWiggle {
+        0%, 100% { transform: rotate(0deg); }
+        50% { transform: rotate(-8deg); }
+      }
+      .wiggling-tail {
+        animation: tailWiggle 0.3s ease-in-out infinite;
+        transform-origin: 0px 0px; /* Driven by parent translation */
+      }
+
+      /* Bandana Flutter */
+      @keyframes bandanaFlutter {
+        0%, 100% { transform: scaleY(1) rotate(0deg); }
+        50% { transform: scaleY(0.8) rotate(15deg); }
+      }
+      .fluttering-bandana {
+        animation: bandanaFlutter 0.15s ease-in-out infinite;
+        transform-origin: 0px 0px;
+      }
+
+      /* Exhaust Smoke Puffs */
+      @keyframes smokePuff {
+        0% { transform: translate(140px, 395px) scale(0.3); opacity: 0.8; filter: blur(1px); }
+        50% { opacity: 0.5; }
+        100% { transform: translate(30px, 370px) scale(2); opacity: 0; filter: blur(6px); }
+      }
+      .smoke-puff {
+        animation: smokePuff 0.8s ease-out infinite;
+        fill: #ff007f;
+      }
+      .smoke2 { animation-delay: 0.25s; }
+      .smoke3 { animation-delay: 0.5s; }
+
+      /* Neon Twinkling Stars */
+      @keyframes starTwinkle {
+        0%, 100% { opacity: 0.2; }
+        50% { opacity: 1; }
+      }
+      .star { animation: starTwinkle 2s infinite ease-in-out; fill: #00f0ff; }
+      .st1 { animation-delay: 0s; }
+      .st2 { animation-delay: 0.6s; }
+      .st3 { animation-delay: 1.2s; }
+    </style>
+  </defs>
+
+  <!-- Sky Canvas -->
+  <rect width="800" height="500" fill="url(#skyGrad)"/>
+
+  <!-- Starry Background (Twinkling Neon Pixels) -->
+  <circle cx="120" cy="80" r="1.5" class="star st1" />
+  <circle cx="280" cy="50" r="2" class="star st2" />
+  <circle cx="450" cy="90" r="1.5" class="star st3" />
+  <circle cx="620" cy="60" r="2.5" class="star st1" />
+  <circle cx="740" cy="110" r="1.5" class="star st2" />
+  <circle cx="50" cy="130" r="2" class="star st3" />
+
+  <!-- Retro Sun -->
+  <circle cx="400" cy="300" r="120" fill="url(#sunGrad)" mask="url(#sunMask)"/>
+
+  <!-- Distant Mountain/City Outlines -->
+  <path d="M 0 350 L 80 310 L 170 345 L 290 290 L 380 340 L 510 270 L 630 335 L 720 300 L 800 350 L 800 400 L 0 400 Z" fill="#1b0826"/>
+  <path d="M 0 360 L 130 325 L 240 355 L 420 305 L 560 350 L 690 315 L 800 360 L 800 400 L 0 400 Z" fill="#2d1142" opacity="0.6"/>
+
+  <!-- Moving Palm Trees (Parallax Background) -->
+  <g class="palm-slow">
+    <use href="#palmTree" x="0" y="220" transform="scale(0.8)"/>
+  </g>
+  <g class="palm-fast">
+    <use href="#palmTree" x="300" y="190" transform="scale(1.1)"/>
+  </g>
+
+  <!-- Speed Lines Overlay -->
+  <line x1="0" y1="120" x2="150" y2="120" stroke="#00f0ff" stroke-width="1.5" class="speed-line sl1" />
+  <line x1="0" y1="200" x2="100" y2="200" stroke="#ff007f" stroke-width="1" class="speed-line sl2" />
+  <line x1="0" y1="80" x2="120" y2="80" stroke="#00f0ff" stroke-width="2" class="speed-line sl3" />
+  <line x1="0" y1="240" x2="80" y2="240" stroke="#ff007f" stroke-width="1.5" class="speed-line sl1" />
+
+  <!-- Road / Ground Structure -->
+  <rect x="0" y="380" width="800" height="120" fill="#0d0714"/>
+  <!-- Neon Road Borders -->
+  <line x1="0" y1="380" x2="800" y2="380" stroke="#ff007f" stroke-width="4" />
+  <line x1="0" y1="480" x2="800" y2="480" stroke="#00f0ff" stroke-width="4" />
+  <!-- Speeding dashed road lines -->
+  <line x1="0" y1="430" x2="800" y2="430" stroke="#ff007f" stroke-width="6" class="highway-lines" />
+
+  <!-- Exhaust Smoke Effects (Placed behind the bike body) -->
+  <circle cx="0" cy="0" r="10" class="smoke-puff smoke1" />
+  <circle cx="0" cy="0" r="12" class="smoke-puff smoke2" />
+  <circle cx="0" cy="0" r="15" class="smoke-puff smoke3" />
+
+  <!-- MAIN ANIMATED GROUP (Motorcycle + Rider) -->
+  <g class="moto-rider-group">
+
+    <!-- Motorcycle Back Wheel Group -->
+    <g transform="translate(220, 400)">
+      <!-- Tire Outer -->
+      <circle cx="0" cy="0" r="48" fill="#130d1a" stroke="#08050a" stroke-width="10"/>
+      <!-- Inner Glowing Rim (Animated Rotation) -->
+      <g class="spinning-rim">
+        <circle cx="0" cy="0" r="38" fill="none" stroke="#ff007f" stroke-width="4"/>
+        <circle cx="0" cy="0" r="30" fill="none" stroke="#00f0ff" stroke-width="1" stroke-dasharray="10 5"/>
+        <!-- Spokes -->
+        <line x1="-38" y1="0" x2="38" y2="0" stroke="#00f0ff" stroke-width="3" />
+        <line x1="0" y1="-38" x2="0" y2="38" stroke="#00f0ff" stroke-width="3" />
+        <line x1="-27" y1="-27" x2="27" y2="27" stroke="#ff007f" stroke-width="2" />
+        <line x1="-27" y1="27" x2="27" y2="-27" stroke="#ff007f" stroke-width="2" />
+      </g>
+      <!-- Wheel Hub -->
+      <circle cx="0" cy="0" r="14" fill="url(#chromeGrad)"/>
+      <circle cx="0" cy="0" r="6" fill="#111"/>
+    </g>
+
+    <!-- Motorcycle Front Wheel Group -->
+    <g transform="translate(560, 400)">
+      <!-- Tire Outer -->
+      <circle cx="0" cy="0" r="48" fill="#130d1a" stroke="#08050a" stroke-width="10"/>
+      <!-- Inner Glowing Rim (Animated Rotation) -->
+      <g class="spinning-rim">
+        <circle cx="0" cy="0" r="38" fill="none" stroke="#ff007f" stroke-width="4"/>
+        <circle cx="0" cy="0" r="30" fill="none" stroke="#00f0ff" stroke-width="1" stroke-dasharray="10 5"/>
+        <!-- Spokes -->
+        <line x1="-38" y1="0" x2="38" y2="0" stroke="#00f0ff" stroke-width="3" />
+        <line x1="0" y1="-38" x2="0" y2="38" stroke="#00f0ff" stroke-width="3" />
+        <line x1="-27" y1="-27" x2="27" y2="27" stroke="#ff007f" stroke-width="2" />
+        <line x1="-27" y1="27" x2="27" y2="-27" stroke="#ff007f" stroke-width="2" />
+      </g>
+      <!-- Wheel Hub -->
+      <circle cx="0" cy="0" r="14" fill="url(#chromeGrad)"/>
+      <circle cx="0" cy="0" r="6" fill="#111"/>
+    </g>
+
+    <!-- Motorcycle Frame, Engine, Exhaust, and Parts -->
+    <!-- Front Fork / Suspension -->
+    <path d="M 560 400 L 470 230 L 455 230" fill="none" stroke="url(#chromeGrad)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Handlebar & Grip -->
+    <path d="M 470 230 L 440 230" fill="none" stroke="#111" stroke-width="8" stroke-linecap="round"/>
+    <path d="M 445 230 L 425 235" fill="none" stroke="#00f0ff" stroke-width="10" stroke-linecap="round"/>
+
+    <!-- Main Frame / Chassis -->
+    <path d="M 220 400 L 330 400 L 440 330 L 470 240 M 220 400 L 310 310 L 410 310" fill="none" stroke="#1a1126" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 220 400 L 330 400 L 440 330 L 470 240 M 220 400 L 310 310 L 410 310" fill="none" stroke="url(#chromeGrad)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Engine Block -->
+    <rect x="310" y="320" width="90" height="70" rx="10" fill="#251a3a" stroke="#00f0ff" stroke-width="2"/>
+    <!-- Engine Detailing (Cylinder fins) -->
+    <line x1="320" y1="335" x2="390" y2="335" stroke="#ff007f" stroke-width="3" stroke-linecap="round"/>
+    <line x1="320" y1="347" x2="390" y2="347" stroke="url(#chromeGrad)" stroke-width="3" stroke-linecap="round"/>
+    <line x1="320" y1="359" x2="390" y2="359" stroke="#ff007f" stroke-width="3" stroke-linecap="round"/>
+    <line x1="320" y1="371" x2="390" y2="371" stroke="url(#chromeGrad)" stroke-width="3" stroke-linecap="round"/>
+    <!-- Circular Clutch Cover -->
+    <circle cx="370" cy="365" r="16" fill="url(#chromeGrad)" stroke="#111" stroke-width="2"/>
+
+    <!-- Exhaust Pipe (Emits Pink Smoke) -->
+    <path d="M 330 380 Q 220 380 150 400" fill="none" stroke="url(#chromeGrad)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M 330 380 Q 220 380 150 400" fill="none" stroke="#ff007f" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+    <!-- Exhaust Tip opening -->
+    <ellipse cx="150" cy="400" rx="3" ry="6" fill="#111"/>
+
+    <!-- Fuel Tank (Glowing Synthwave Magenta/Orange) -->
+    <path d="M 370 290 Q 420 270 460 300 L 440 330 L 370 310 Z" fill="url(#sunGrad)" stroke="#ff007f" stroke-width="3" stroke-linejoin="round"/>
+
+    <!-- Crocodile Rider Group -->
+    <!-- Wiggling Tail Group (Translated to hip joint) -->
+    <g transform="translate(240, 315)">
+      <g class="wiggling-tail">
+        <!-- Green Tail Base -->
+        <path d="M 0 -15 C -45 -25 -95 -5 -140 12 C -105 30 -55 25 0 15 Z" fill="#2d8a4e" stroke="#1f6036" stroke-width="2"/>
+        <!-- Tail Underbelly (Yellowish Highlight) -->
+        <path d="M -5 10 C -50 22 -95 24 -140 12 C -105 23 -55 18 -5 14 Z" fill="#9de270"/>
+        <!-- Yellow Spikes/Scutes on Tail -->
+        <polygon points="-30,-19 -40,-32 -50,-17" fill="#ffe047"/>
+        <polygon points="-60,-14 -70,-25 -80,-11" fill="#ffe047"/>
+        <polygon points="-90,-8 -98,-18 -105,-5" fill="#ffe047"/>
+        <polygon points="-115,-2 -122,-10 -127,1" fill="#ffe047"/>
+      </g>
+    </g>
+
+    <!-- Rider Leather Seat -->
+    <path d="M 230 320 Q 280 300 320 320 L 310 335 Q 270 325 235 335 Z" fill="#110d1a" stroke="#ff007f" stroke-width="1.5"/>
+
+    <!-- Crocodile Legs & Boots -->
+    <!-- Thigh & Calf (Green Lizard Skin) -->
+    <path d="M 280 320 Q 320 310 340 350 L 315 390" fill="none" stroke="#2d8a4e" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 280 320 Q 320 310 340 350 L 315 390" fill="none" stroke="#1f6036" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+    <!-- Yellow Knee Scale Accent -->
+    <circle cx="332" cy="342" r="6" fill="#ffe047"/>
+
+    <!-- Biker Leather Boot -->
+    <path d="M 310 385 L 340 385 L 345 405 L 305 405 Z" fill="#1b1126" stroke="#00f0ff" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M 315 400 L 340 400" stroke="#ff007f" stroke-width="2"/> <!-- Sole highlight -->
+
+    <!-- Crocodile Torso & Cool Biker Vest -->
+    <!-- Torso Shape (Leaning Forward) -->
+    <path d="M 280 320 C 290 260 330 220 390 215 C 410 250 400 310 340 330 Z" fill="#2d8a4e" stroke="#1f6036" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M 330 225 Q 360 250 365 310" fill="none" stroke="#ffe047" stroke-width="10" stroke-linecap="round" opacity="0.8"/> <!-- Yellow Chest Scales -->
+
+    <!-- Biker Leather Vest (Sleeveless) -->
+    <path d="M 280 320 C 285 270 315 230 365 225 C 385 240 380 270 385 295 C 365 320 330 330 290 330 Z" fill="#110d1a" stroke="#00f0ff" stroke-width="2" stroke-linejoin="round"/>
+    <!-- Vest Lapel/Collar & Zipper -->
+    <path d="M 350 225 L 375 255 M 365 225 L 345 280" fill="none" stroke="#ff007f" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Silver Studs on Collar -->
+    <circle cx="348" cy="235" r="2" fill="url(#chromeGrad)"/>
+    <circle cx="355" cy="245" r="2" fill="url(#chromeGrad)"/>
+
+    <!-- Crocodile Head & Snout (Open Mouth, Cool Grin) -->
+    <g transform="translate(370, 140)">
+      <!-- Head Base (Green) -->
+      <path d="M 0 80 C -15 40 10 15 45 20 L 135 35 C 150 36 150 50 135 52 L 75 54 L 65 72 L 15 80 Z" fill="#2d8a4e" stroke="#1f6036" stroke-width="2" stroke-linejoin="round"/>
+
+      <!-- Eye Brow/Ridge -->
+      <path d="M 25 25 Q 38 10 45 25" fill="none" stroke="#1f6036" stroke-width="4" stroke-linecap="round"/>
+
+      <!-- Mouth Interior (Neon Pink/Red) -->
+      <polygon points="62,54 110,50 65,70" fill="#ff007f"/>
+
+      <!-- Sharp White Teeth -->
+      <polygon points="75,54 80,59 85,54" fill="#ffffff"/>
+      <polygon points="90,53 94,58 98,53" fill="#ffffff"/>
+      <polygon points="102,52 105,57 108,52" fill="#ffffff"/>
+      <polygon points="70,68 74,62 78,67" fill="#ffffff"/>
+      <polygon points="82,65 86,59 90,64" fill="#ffffff"/>
+
+      <!-- Nostril -->
+      <circle cx="125" cy="40" r="3" fill="#123a20"/>
+
+      <!-- Cool Futuristic Sunglasses (Viper style reflection) -->
+      <path d="M 28 32 L 75 38 L 68 56 L 32 48 Z" fill="#0c0714" stroke="#00f0ff" stroke-width="2" stroke-linejoin="round"/>
+      <!-- Sun reflection stripe on glasses -->
+      <path d="M 34 34 L 65 52" stroke="#ff007f" stroke-width="3" stroke-linecap="round"/>
+      <path d="M 42 34 L 55 42" stroke="#ffdd40" stroke-width="2" stroke-linecap="round"/>
+
+      <!-- Red Bandana Tied around head -->
+      <path d="M 5 45 Q 15 30 35 33 L 30 23 Q 10 22 0 35 Z" fill="#ff0055" stroke="#990033" stroke-width="1"/>
+
+      <!-- Fluttering Bandana Tails (Animated) -->
+      <g transform="translate(0, 28)">
+        <g class="fluttering-bandana">
+          <path d="M 0 0 C -25 -15 -50 -5 -75 -20 C -55 2 -25 -5 0 -2 Z" fill="#ff0055"/>
+          <path d="M 0 2 C -20 15 -45 5 -65 18 C -45 3 -20 0 0 -2 Z" fill="#b3003b"/>
+        </g>
+      </g>
+    </g>
+
+    <!-- Crocodile Arm & Grip -->
+    <!-- Muscular Green Arm -->
+    <path d="M 350 250 Q 380 230 435 235" fill="none" stroke="#2d8a4e" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 350 250 Q 380 230 435 235" fill="none" stroke="#1f6036" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.3"/>
+    <!-- Cutoff Vest Sleeve Trim -->
+    <path d="M 345 240 L 358 262" stroke="#ff007f" stroke-width="5" stroke-linecap="round" />
+
+    <!-- Spiked Wristband -->
+    <rect x="415" y="224" width="10" height="20" rx="2" transform="rotate(10 415 224)" fill="#110d1a" stroke="#00f0ff" stroke-width="1"/>
+    <!-- Spikes -->
+    <polygon points="420,222 422,216 424,222" fill="url(#chromeGrad)"/>
+    <polygon points="426,232 432,234 427,236" fill="url(#chromeGrad)"/>
+
+    <!-- Hand / Claws gripping handle -->
+    <circle cx="438" cy="235" r="9" fill="#2d8a4e" stroke="#1f6036" stroke-width="2" />
+    <path d="M 434 227 Q 444 229 444 237" fill="none" stroke="#ffe047" stroke-width="3" stroke-linecap="round" /> <!-- Claw highlight -->
+
+  </g>
+</svg>

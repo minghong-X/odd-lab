@@ -6,7 +6,6 @@ import { isErrorCode, numberFormatter } from "@/i18n";
 type Entry = {
   id: string;
   title: string;
-  score: number;
   matches: number;
   wins: number;
   draws: number;
@@ -83,7 +82,6 @@ export function Leaderboard({ slug }: { slug: string }) {
                 <tr>
                   <th>{t("rank.position")}</th>
                   <th>{t("rank.model")}</th>
-                  <th>{t("rank.elo")}</th>
                   <th>{t("rank.matches")}</th>
                   <th>{t("rank.winDraw")}</th>
                   <th>{t("rank.rejected")}</th>
@@ -120,11 +118,6 @@ export function Leaderboard({ slug }: { slug: string }) {
                           </small>
                         </div>
                       </div>
-                    </td>
-                    <td>
-                      <strong className="elo-number">
-                        {format.format(Math.round(entry.score))}
-                      </strong>
                     </td>
                     <td>{format.format(entry.matches)}</td>
                     <td>

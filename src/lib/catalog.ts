@@ -25,7 +25,7 @@ export const experiments = [
     slug: "crocodile",
     color: "#d4e5cf",
     number: "02",
-    available: false,
+    available: true,
   },
   {
     slug: "starship",
@@ -54,4 +54,21 @@ export function localizeExperiment(
     criteria: t(`experiments.${e.slug}Criteria`),
     note: t(`experiments.${e.slug}Note`),
   };
+}
+
+// Bound the animated wall to its 6 × 5 grid; interleave experiments so new
+// submissions remain visible instead of falling into rows below the viewport.
+export function getPhotoWall(limit = 30) {
+  const groups = experiments.map((e) => getArtifacts(e.slug));
+  const pictures: Artifact[] = [];
+  for (
+    let row = 0;
+    pictures.length < limit && groups.some((g) => row < g.length);
+    row++
+  ) {
+    for (const group of groups) {
+      if (group[row] && pictures.length < limit) pictures.push(group[row]);
+    }
+  }
+  return pictures;
 }

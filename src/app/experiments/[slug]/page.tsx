@@ -64,21 +64,27 @@ export default async function ExperimentPage({
             {list.map((a) => (
               <article key={a.id}>
                 <a
-                  href={`/api/media?id=${a.id}`}
+                  href={`/api/media?id=${a.id}&motion=1`}
                   target="_blank"
                   rel="noreferrer"
                   aria-label={t("experiments.enlargeModel", { model: a.title })}
                 >
-                  <img
-                    src={`/api/media?id=${a.id}`}
-                    alt={t("experiments.artAlt", {
-                      model: a.title,
-                      experiment: experiment.title,
-                    })}
-                    width={a.width}
-                    height={a.height}
-                    loading="lazy"
-                  />
+                  <picture>
+                    <source
+                      media="(prefers-reduced-motion: reduce)"
+                      srcSet={`/api/media?id=${a.id}`}
+                    />
+                    <img
+                      src={`/api/media?id=${a.id}&motion=1`}
+                      alt={t("experiments.artAlt", {
+                        model: a.title,
+                        experiment: experiment.title,
+                      })}
+                      width={a.width}
+                      height={a.height}
+                      loading="lazy"
+                    />
+                  </picture>
                 </a>
                 <div>
                   <h3>{a.title}</h3>

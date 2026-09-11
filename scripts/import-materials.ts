@@ -2,6 +2,7 @@ import { readFile, writeFile, mkdir, rename } from "node:fs/promises";
 import { createHash } from "node:crypto";
 import sharp from "sharp";
 import { z } from "zod";
+import type { Artifact } from "../src/lib/catalog";
 const sourceSchema = z.object({
   data: z.array(
     z.object({
@@ -19,6 +20,14 @@ const sourceSchema = z.object({
 const source = sourceSchema.parse(
   JSON.parse(
     await readFile(process.argv[2] || "data/source-results.json", "utf8"),
+  ),
+);
+const existing: Artifact[] = JSON.parse(
+  await readFile("data/catalog.json", "utf8").catch(
+    (error: NodeJS.ErrnoException) => {
+      if (error.code === "ENOENT") return "[]";
+      throw error;
+    },
   ),
 );
 await mkdir("data/media", { recursive: true });
@@ -119,7 +128,14 @@ await writeFile(
   JSON.stringify({ imported: catalog.length, failed }, null, 2),
 );
 if (catalog.length && !failed.length) {
-  await writeFile("data/catalog.next.json", JSON.stringify(catalog, null, 2));
+  // Incremental imports must never drop existing submissions or change their IDs.
+  const merged = new Map(existing.map((item) => [item.id, item]));
+  for (const item of catalog)
+    if (!merged.has(item.id)) merged.set(item.id, item);
+  await writeFile(
+    "data/catalog.next.json",
+    JSON.stringify([...merged.values()], null, 2) + "\n",
+  );
   await rename("data/catalog.next.json", "data/catalog.json");
 }
 console.log(
