@@ -2,6 +2,10 @@
 
 [在线体验](https://odd-lab-bay.vercel.app) · [GitHub](https://github.com/minghong-X/odd-lab)
 
+<p align="center">
+  <img src="docs/hero.webp" alt="Odd Lab · 让想象力出个小差" width="100%">
+</p>
+
 让想象力出个小差。从骑自行车的鹈鹕，到骑摩托的鳄鱼，再登上星舰飞往火星。一个无需登录的模型作品展览与 Arena，使用 Next.js 全栈架构，适合部署到 Vercel。
 
 ## 已实现

@@ -17,9 +17,14 @@ const buttons: {
 }[] = [
   { choice: "left", text: "arena.left", key: "1" },
   { choice: "right", text: "arena.right", key: "2" },
-  { choice: "draw", text: "arena.draw", key: "3" },
-  { choice: "neither", text: "arena.neither", key: "4" },
+  { choice: "neither", text: "arena.neither", key: "3" },
+  { choice: "draw", text: "arena.draw", key: "4" },
 ];
+function previewSide(choice: Choice, index: number): "good" | "bad" {
+  if (choice === "draw") return "good";
+  if (choice === "neither") return "bad";
+  return choice === (index === 0 ? "left" : "right") ? "good" : "bad";
+}
 export function ArenaClient({ slug }: { slug: string }) {
   const { t, locale } = useI18n();
   const format = numberFormatter(locale);
@@ -30,7 +35,8 @@ export function ArenaClient({ slug }: { slug: string }) {
     [loading, setLoading] = useState(true),
     [sending, setSending] = useState(false),
     [count, setCount] = useState(0),
-    [zoom, setZoom] = useState<number | null>(null);
+    [zoom, setZoom] = useState<number | null>(null),
+    [preview, setPreview] = useState<Choice | null>(null);
   const controller = useRef<AbortController | null>(null),
     urls = useRef<string[]>([]),
     dialog = useRef<HTMLDialogElement>(null),
@@ -152,11 +158,24 @@ export function ArenaClient({ slug }: { slug: string }) {
         <span>{t("arena.sessionVotes", { count: format.format(count) })}</span>
       </div>
       <div className="comparison">
-        {["A", "B"].map((label, i) => (
+        {["A", "B"].map((label, i) => {
+          const previewState =
+            !result && preview && pair ? previewSide(preview, i) : null;
+          return (
           <div
-            className={`comparison-card ${result?.choice === (i === 0 ? "left" : "right") ? "chosen" : ""}`}
+            className={`comparison-card ${result?.choice === (i === 0 ? "left" : "right") ? "chosen" : ""} ${previewState ? `preview-${previewState}` : ""}`}
             key={label}
           >
+            {previewState && (
+              <span
+                className={`preview-flag preview-flag-${previewState}`}
+                aria-hidden="true"
+              >
+                {previewState === "good"
+                  ? t("arena.previewGood")
+                  : t("arena.previewBad")}
+              </span>
+            )}
             <div className="comparison-top">
               <span className="side-label">{label}</span>
               <span>
@@ -213,7 +232,8 @@ export function ArenaClient({ slug }: { slug: string }) {
               )}
             </div>
           </div>
-        ))}
+          );
+        })}
       </div>
       <div aria-live="polite" className="vote-feedback">
         {error ? (
@@ -250,6 +270,10 @@ export function ArenaClient({ slug }: { slug: string }) {
                   key={b.choice}
                   disabled={loading || sending || !pair}
                   onClick={() => vote(b.choice)}
+                  onMouseEnter={() => setPreview(b.choice)}
+                  onMouseLeave={() => setPreview(null)}
+                  onFocus={() => setPreview(b.choice)}
+                  onBlur={() => setPreview(null)}
                   className={`vote-button vote-${b.choice}`}
                 >
                   {t(b.text)}

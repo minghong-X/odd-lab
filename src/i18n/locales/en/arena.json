@@ -8,6 +8,8 @@
   "right": "Right is better",
   "draw": "Tie",
   "neither": "Neither",
+  "previewGood": "Good",
+  "previewBad": "Weak",
   "revealed": "Models revealed",
   "choosing": "Choosing two imaginations…",
   "hidden": "Model names are hidden",

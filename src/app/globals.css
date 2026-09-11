@@ -819,15 +819,54 @@ button {
   gap: 22px;
 }
 .comparison-card {
+  position: relative;
   border: 1px solid #d6e0df;
   background: #fff;
   border-radius: 18px;
   overflow: hidden;
-  transition: border-color 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s,
+    opacity 0.2s;
 }
 .comparison-card.chosen {
   border: 2px solid #708f70;
   margin: -1px;
+}
+.comparison-card.preview-good {
+  border-color: #6f9070;
+  box-shadow:
+    0 0 0 1px #6f9070,
+    0 14px 30px -16px rgba(74, 118, 80, 0.55);
+  transform: translateY(-3px);
+}
+.comparison-card.preview-bad {
+  border-color: #dcc0b6;
+  opacity: 0.7;
+}
+.comparison-card.preview-bad .comparison-image img {
+  filter: saturate(0.5) opacity(0.9);
+}
+.preview-flag {
+  position: absolute;
+  top: 78px;
+  right: 14px;
+  z-index: 4;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 5px 13px;
+  border-radius: 999px;
+  pointer-events: none;
+}
+.preview-flag-good {
+  background: #dbeadd;
+  color: #3c6a45;
+}
+.preview-flag-bad {
+  background: #f0ded7;
+  color: #9a5540;
 }
 .comparison-top {
   display: flex;
@@ -899,7 +938,8 @@ button {
   gap: 28px;
 }
 .vote-buttons {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
 .vote-button {
@@ -909,8 +949,9 @@ button {
   font-weight: 550;
   font-size: 14px;
   display: flex;
-  gap: 24px;
+  gap: 14px;
   align-items: center;
+  justify-content: center;
   transition: background 0.2s;
 }
 .vote-button:hover:not(:disabled) {
@@ -1559,8 +1600,8 @@ button {
   }
   .vote-buttons {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 6px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
     width: 100%;
   }
   .vote-button {
