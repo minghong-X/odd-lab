@@ -110,7 +110,7 @@ test("photo wall keeps the original artwork moving after arrival settles", async
     timeout: 12000,
   });
   const pictures = page.locator(".flying-photo img");
-  await expect(pictures).toHaveCount(29);
+  await expect(pictures).toHaveCount(30);
   await expect
     .poll(() =>
       pictures.evaluateAll((imgs) =>

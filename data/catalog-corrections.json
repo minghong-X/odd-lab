@@ -1,0 +1,10 @@
+[
+  {
+    "sourceId": 41,
+    "retiredId": "ffcf0767c511cda46db4357c",
+    "correctedId": "5f5d5807a0d1572325441715",
+    "from": "crocodile",
+    "to": "pelican",
+    "reason": "User corrected title to claude-opus-5-pelican-bike; preserve historical battles but start a separate rating in the correct experiment."
+  }
+]

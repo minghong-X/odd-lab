@@ -1,0 +1,236 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600" role="img" aria-labelledby="title desc">
+  <title id="title">鳄鱼骑摩托车</title>
+  <desc id="desc">戴着橙色头盔的绿色鳄鱼骑着红色摩托车，车轮旋转，围巾飘扬，公路和风景不断向后移动。</desc>
+
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1">
+      <stop stop-color="#9bdfed"/>
+      <stop offset="1" stop-color="#eaffde"/>
+    </linearGradient>
+    <linearGradient id="green" x2="0.8" y2="1">
+      <stop stop-color="#85cf62"/>
+      <stop offset="1" stop-color="#359567"/>
+    </linearGradient>
+    <linearGradient id="red" x2="0.2" y2="1">
+      <stop stop-color="#ff7860"/>
+      <stop offset="1" stop-color="#d83f45"/>
+    </linearGradient>
+    <linearGradient id="helmet" x2="0.8" y2="1">
+      <stop stop-color="#ffd370"/>
+      <stop offset="1" stop-color="#f68b42"/>
+    </linearGradient>
+    <radialGradient id="light">
+      <stop stop-color="#fffde5"/>
+      <stop offset="1" stop-color="#ffcb75"/>
+    </radialGradient>
+
+    <g id="wheel">
+      <circle r="65" fill="#233844"/>
+      <circle r="54" fill="none" stroke="#52636a" stroke-width="3" stroke-dasharray="5 9"/>
+      <circle r="44" fill="#bacbd0" stroke="#142e3b" stroke-width="5"/>
+      <g stroke="#f2fcf3" stroke-width="6">
+        <path d="M0-38V38M-38 0H38M-27-27L27 27M-27 27L27-27"/>
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur=".65s" repeatCount="indefinite"/>
+      </g>
+      <circle r="17" fill="#657d86" stroke="#243d48" stroke-width="5"/>
+      <circle r="6" fill="#e6f0de"/>
+    </g>
+
+    <g id="shrub" fill="#589b79">
+      <path d="M-45 0Q-54-29-29-29Q-21-60 1-38Q30-56 34-26Q62-23 53 0Z"/>
+    </g>
+
+    <pattern id="roadMarks" width="230" height="12" patternUnits="userSpaceOnUse">
+      <path d="M20 6H145" stroke="#fff0be" stroke-width="6" stroke-linecap="round"/>
+    </pattern>
+  </defs>
+
+  <rect width="900" height="600" rx="28" fill="url(#sky)"/>
+  <circle cx="735" cy="105" r="49" fill="#fff1ac"/>
+  <circle cx="735" cy="105" r="66" fill="#fff1ac" opacity=".2"/>
+
+  <g fill="#fffdf0" opacity=".9">
+    <g>
+      <path d="M100 116C74 116 70 88 94 80C97 50 143 48 153 75C184 63 211 83 206 103C225 108 220 124 203 124H108Z"/>
+      <path d="M542 166C520 166 517 142 541 134C549 106 584 106 594 132C626 122 647 141 639 158C656 170 633 176 618 174H550Z"/>
+      <animateTransform attributeName="transform" type="translate" values="0 0;-28 0;0 0" dur="12s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <path d="M0 323Q107 216 232 304T470 291T703 282T900 297V430H0Z" fill="#aed5a1"/>
+  <path d="M0 369Q130 287 276 355T550 333T900 349V445H0Z" fill="#82b997"/>
+
+  <g opacity=".8">
+    <g>
+      <use href="#shrub" x="80" y="426"/>
+      <use href="#shrub" x="390" y="426"/>
+      <use href="#shrub" x="780" y="426"/>
+      <use href="#shrub" x="1080" y="426"/>
+      <use href="#shrub" x="1390" y="426"/>
+      <use href="#shrub" x="1780" y="426"/>
+      <animateTransform attributeName="transform" type="translate" from="0 0" to="-1000 0" dur="6s" repeatCount="indefinite"/>
+    </g>
+  </g>
+
+  <path d="M0 425H900V600H0Z" fill="#566970"/>
+  <path d="M0 425H900" stroke="#e5deb5" stroke-width="10"/>
+  <path d="M0 442H900" stroke="#718184" stroke-width="3"/>
+  <g>
+    <rect x="-230" y="534" width="1360" height="12" fill="url(#roadMarks)"/>
+    <animateTransform attributeName="transform" type="translate" from="0 0" to="-230 0" dur=".7s" repeatCount="indefinite"/>
+  </g>
+
+  <ellipse cx="463" cy="493" rx="253" ry="19" fill="#233d43" opacity=".23">
+    <animate attributeName="rx" values="253;244;253" dur=".55s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <g fill="none" stroke="#f5ffe8" stroke-width="5" stroke-linecap="round" opacity=".7">
+    <path d="M117 241H188M86 264H155M138 288H195">
+      <animate attributeName="opacity" values=".25;.85;.25" dur=".7s" repeatCount="indefinite"/>
+    </path>
+    <path d="M721 291H773M746 313H812">
+      <animate attributeName="opacity" values=".8;.2;.8" dur=".9s" repeatCount="indefinite"/>
+    </path>
+  </g>
+
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0 0;0 -4;0 0;0 -2;0 0" dur=".55s" repeatCount="indefinite"/>
+
+    <!-- 飘扬的围巾 -->
+    <path fill="#ed6659" stroke="#263f3e" stroke-width="4" stroke-linejoin="round">
+      <animate attributeName="d"
+        values="M420 210C373 200 350 218 303 190L313 214L293 225C346 244 374 216 424 229Z;
+                M420 210C375 220 344 181 299 205L317 219L300 237C346 214 376 238 424 229Z;
+                M420 210C373 200 350 218 303 190L313 214L293 225C346 244 374 216 424 229Z"
+        dur=".8s" repeatCount="indefinite"/>
+    </path>
+
+    <!-- 远侧手臂和腿 -->
+    <path d="M427 255Q471 289 532 277" fill="none" stroke="#285c49" stroke-width="26" stroke-linecap="round"/>
+    <path d="M403 322L466 351L438 401" fill="none" stroke="#285c49" stroke-width="32" stroke-linecap="round"/>
+    <path d="M433 395Q458 393 470 412L431 416Q419 412 433 395Z" fill="#f0cc7c" stroke="#263f3e" stroke-width="4"/>
+
+    <!-- 鳄鱼尾巴 -->
+    <path d="M387 290C335 307 297 337 251 329C205 323 192 282 161 284C186 304 174 351 237 371C301 392 362 357 409 329Z"
+      fill="url(#green)" stroke="#263f3e" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M175 293L179 279L196 309L204 291L221 329L235 313L249 339L266 324L279 345L298 327L309 340"
+      fill="#287958" stroke="#263f3e" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M211 347Q269 386 363 333" fill="none" stroke="#addc7a" stroke-width="9" stroke-linecap="round"/>
+
+    <!-- 车轮与车架 -->
+    <use href="#wheel" x="303" y="427"/>
+    <use href="#wheel" x="620" y="427"/>
+
+    <g stroke="#243d48" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M303 427L378 345L473 424Z" fill="none" stroke-width="17"/>
+      <path d="M303 427L378 345L473 424" fill="none" stroke="#afc0bd" stroke-width="8"/>
+      <path d="M376 346L394 421H482L546 341" fill="none" stroke-width="16"/>
+      <path d="M535 304L620 427" fill="none" stroke-width="20"/>
+      <path d="M545 314L620 427" fill="none" stroke="#c4d6d5" stroke-width="10"/>
+      <path d="M528 305L543 275L518 263" fill="none" stroke-width="12"/>
+      <path d="M516 263H493" fill="none" stroke-width="15"/>
+
+      <path d="M236 390Q299 327 363 385" fill="none" stroke-width="22"/>
+      <path d="M236 386Q299 328 363 381" fill="none" stroke="#ec6254" stroke-width="13"/>
+      <path d="M568 383Q623 354 673 396" fill="none" stroke-width="18"/>
+      <path d="M568 380Q623 355 673 393" fill="none" stroke="#fa7257" stroke-width="10"/>
+
+      <path d="M378 354C409 320 464 312 510 329L523 351L495 380H413Z" fill="url(#red)" stroke-width="5"/>
+      <path d="M411 340Q451 325 488 337" fill="none" stroke="#ffb18a" stroke-width="6"/>
+      <path d="M337 329H412Q427 329 427 345H328Q319 331 337 329Z" fill="#333f44" stroke-width="5"/>
+      <path d="M336 330H400" fill="none" stroke="#697471" stroke-width="4"/>
+
+      <path d="M405 376H481L494 416H401Z" fill="#687f83" stroke-width="5"/>
+      <path d="M416 382H468M414 393H474M414 404H479" fill="none" stroke="#c2d0c9" stroke-width="5"/>
+      <circle cx="412" cy="423" r="27" fill="#92a7a6" stroke-width="5"/>
+      <circle cx="412" cy="423" r="12" fill="#60787e" stroke-width="4"/>
+      <path d="M475 413Q513 444 478 454H315" fill="none" stroke-width="18"/>
+      <path d="M475 413Q513 444 478 454H315" fill="none" stroke="#cbd7ce" stroke-width="10"/>
+      <path d="M280 446H358V464H280Q267 455 280 446Z" fill="#8ba09f" stroke-width="4"/>
+      <path d="M289 450H344" fill="none" stroke="#e4e9d7" stroke-width="4"/>
+
+      <path d="M555 300L579 299L590 325L565 335Z" fill="#f5b960" stroke-width="5"/>
+      <ellipse cx="582" cy="316" rx="12" ry="18" transform="rotate(-20 582 316)" fill="url(#light)" stroke-width="4"/>
+      <path d="M242 362H260V378H242Z" fill="#ffb66c" stroke-width="4"/>
+    </g>
+
+    <!-- 身体与腹部 -->
+    <path d="M402 213C379 232 359 270 363 305Q369 328 405 331L450 312C462 286 447 249 440 222Z"
+      fill="url(#green)" stroke="#263f3e" stroke-width="5"/>
+    <path d="M428 235Q456 271 442 305L414 317Q405 285 416 251Z" fill="#d3e996"/>
+    <path d="M419 261L439 263M416 278L445 280M415 296L441 296" fill="none" stroke="#abc87b" stroke-width="3" stroke-linecap="round"/>
+    <path d="M390 235L373 233L377 251L363 254L369 269L357 279L366 289" fill="#287958" stroke="#263f3e" stroke-width="3" stroke-linejoin="round"/>
+
+    <!-- 近侧腿 -->
+    <path d="M392 302C421 299 439 317 461 338Q471 348 461 362L424 401"
+      fill="none" stroke="#263f3e" stroke-width="37" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M392 302C421 299 439 317 461 338Q471 348 461 362L424 401"
+      fill="none" stroke="#67b975" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M411 394Q429 392 438 403L458 410Q467 414 462 424H407Q399 413 411 394Z"
+      fill="#f8d785" stroke="#263f3e" stroke-width="5"/>
+    <path d="M440 413V421M450 415V422" stroke="#a78250" stroke-width="3" stroke-linecap="round"/>
+    <path d="M404 429H469" stroke="#243d48" stroke-width="7" stroke-linecap="round"/>
+
+    <!-- 头部与长吻 -->
+    <path d="M404 217L409 193C391 182 390 161 401 146Q417 126 445 139Q460 146 467 165L528 161Q552 163 551 181L548 200Q545 215 523 219L453 220L438 238Z"
+      fill="url(#green)" stroke="#263f3e" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M448 197Q494 207 548 192L547 204Q533 224 458 214Z" fill="#d4e996"/>
+    <path d="M450 195Q492 207 547 192" fill="none" stroke="#263f3e" stroke-width="4" stroke-linecap="round"/>
+    <path d="M479 202L485 212L491 202M504 200L511 210L516 198M528 196L534 204L539 194"
+      fill="#fffbea" stroke="#263f3e" stroke-width="2" stroke-linejoin="round"/>
+    <ellipse cx="532" cy="177" rx="5" ry="4" fill="#263f3e"/>
+    <circle cx="453" cy="183" r="7" fill="#8cd078"/>
+    <path d="M453 182L454 183" stroke="#4a9b68" stroke-width="4" stroke-linecap="round"/>
+
+    <!-- 眼睛与头盔 -->
+    <ellipse cx="445" cy="155" rx="15" ry="18" fill="#fff9dd" stroke="#263f3e" stroke-width="4"/>
+    <ellipse cx="451" cy="156" rx="5" ry="8" fill="#263f3e"/>
+    <circle cx="453" cy="153" r="2" fill="white"/>
+    <path d="M390 160C376 127 395 99 426 98C450 97 472 115 473 138L429 141L414 165Z"
+      fill="url(#helmet)" stroke="#263f3e" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M412 104Q400 122 408 150" fill="none" stroke="#fff1bd" stroke-width="10"/>
+    <path d="M429 139L480 137" stroke="#263f3e" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="408" cy="158" r="12" fill="#f6aa56" stroke="#263f3e" stroke-width="4"/>
+    <path d="M407 172Q411 201 436 207" fill="none" stroke="#263f3e" stroke-width="6" stroke-linecap="round"/>
+    <path d="M400 215Q423 231 444 219L447 232Q426 244 399 229Z" fill="#ed6659" stroke="#263f3e" stroke-width="4"/>
+
+    <!-- 握住车把 -->
+    <path d="M428 250Q443 279 485 277L504 265"
+      fill="none" stroke="#263f3e" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M428 250Q443 279 485 277L504 265"
+      fill="none" stroke="#79c57b" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M499 255Q510 248 520 258L524 270Q516 279 504 273Z"
+      fill="#8ace7a" stroke="#263f3e" stroke-width="4"/>
+    <path d="M511 258L515 267M517 257L521 265" stroke="#3c8158" stroke-width="2.5" stroke-linecap="round"/>
+
+    <g fill="#338e62" opacity=".7">
+      <ellipse cx="384" cy="284" rx="5" ry="7" transform="rotate(20 384 284)"/>
+      <ellipse cx="393" cy="268" rx="4" ry="6" transform="rotate(20 393 268)"/>
+      <ellipse cx="400" cy="314" rx="6" ry="4"/>
+      <ellipse cx="275" cy="355" rx="7" ry="4"/>
+      <ellipse cx="298" cy="350" rx="5" ry="3"/>
+    </g>
+  </g>
+
+  <!-- 向后散开的尾气 -->
+  <g fill="#e2e9da">
+    <circle cx="262" cy="456" r="7">
+      <animate attributeName="cx" values="262;160" dur="1.3s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="456;435" dur="1.3s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="5;20" dur="1.3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".55;0" dur="1.3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="262" cy="456" r="7" opacity="0">
+      <animate attributeName="cx" values="262;160" begin=".43s" dur="1.3s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="456;448" begin=".43s" dur="1.3s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="5;17" begin=".43s" dur="1.3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".45;0" begin=".43s" dur="1.3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="262" cy="456" r="7" opacity="0">
+      <animate attributeName="cx" values="262;160" begin=".86s" dur="1.3s" repeatCount="indefinite"/>
+      <animate attributeName="cy" values="456;438" begin=".86s" dur="1.3s" repeatCount="indefinite"/>
+      <animate attributeName="r" values="5;22" begin=".86s" dur="1.3s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values=".5;0" begin=".86s" dur="1.3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

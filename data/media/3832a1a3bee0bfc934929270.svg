@@ -1,0 +1,181 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <defs>
+    <!-- Road animation -->
+    <pattern id="roadPattern" x="0" y="0" width="100" height="20" patternUnits="userSpaceOnUse">
+      <rect width="50" height="4" fill="#fff" opacity="0.8"/>
+    </pattern>
+    
+    <!-- Wheel rotation animation -->
+    <animateTransform id="wheelSpin" attributeName="transform" type="rotate" from="0" to="360" dur="0.5s" repeatCount="indefinite"/>
+    
+    <!-- Bounce animation for crocodile and motorcycle -->
+    <animateTransform id="bounce" attributeName="transform" type="translate" values="0,0; 0,-3; 0,0" dur="0.3s" repeatCount="indefinite"/>
+    
+    <!-- Wind lines animation -->
+    <animateTransform id="windMove" attributeName="transform" type="translate" values="0,0; -100,0" dur="1s" repeatCount="indefinite"/>
+  </defs>
+  
+  <!-- Sky background -->
+  <rect width="800" height="600" fill="#87CEEB"/>
+  
+  <!-- Sun -->
+  <circle cx="700" cy="100" r="60" fill="#FFD700"/>
+  <g opacity="0.3">
+    <line x1="700" y1="20" x2="700" y2="0" stroke="#FFD700" stroke-width="3"/>
+    <line x1="700" y1="180" x2="700" y2="200" stroke="#FFD700" stroke-width="3"/>
+    <line x1="620" y1="100" x2="600" y2="100" stroke="#FFD700" stroke-width="3"/>
+    <line x1="780" y1="100" x2="800" y2="100" stroke="#FFD700" stroke-width="3"/>
+  </g>
+  
+  <!-- Clouds -->
+  <g fill="#fff" opacity="0.8">
+    <ellipse cx="150" cy="80" rx="40" ry="20"/>
+    <ellipse cx="170" cy="70" rx="35" ry="18"/>
+    <ellipse cx="130" cy="75" rx="30" ry="15"/>
+    
+    <ellipse cx="500" cy="120" rx="45" ry="22"/>
+    <ellipse cx="520" cy="110" rx="38" ry="20"/>
+    <ellipse cx="480" cy="115" rx="32" ry="17"/>
+  </g>
+  
+  <!-- Mountains in background -->
+  <polygon points="0,400 100,250 200,400" fill="#8B7355"/>
+  <polygon points="150,400 280,220 410,400" fill="#A0826D"/>
+  <polygon points="350,400 500,200 650,400" fill="#8B7355"/>
+  <polygon points="550,400 680,240 800,400" fill="#A0826D"/>
+  
+  <!-- Road -->
+  <rect x="0" y="450" width="800" height="150" fill="#555"/>
+  <rect x="0" y="520" width="800" height="10" fill="#FFD700"/>
+  
+  <!-- Animated road lines -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0,0; -100,0" dur="0.8s" repeatCount="indefinite"/>
+    <rect x="0" y="520" width="800" height="10" fill="url(#roadPattern)"/>
+  </g>
+  
+  <!-- Motorcycle and Crocodile Group with bounce animation -->
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="350,350; 350,347; 350,350" dur="0.3s" repeatCount="indefinite"/>
+    
+    <!-- Back wheel -->
+    <g transform="translate(100, 120)">
+      <circle cx="0" cy="0" r="45" fill="#333" stroke="#111" stroke-width="3"/>
+      <circle cx="0" cy="0" r="35" fill="none" stroke="#666" stroke-width="2"/>
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="0.5s" repeatCount="indefinite"/>
+        <line x1="-35" y1="0" x2="35" y2="0" stroke="#888" stroke-width="2"/>
+        <line x1="0" y1="-35" x2="0" y2="35" stroke="#888" stroke-width="2"/>
+        <line x1="-25" y1="-25" x2="25" y2="25" stroke="#888" stroke-width="2"/>
+        <line x1="-25" y1="25" x2="25" y2="-25" stroke="#888" stroke-width="2"/>
+      </g>
+      <circle cx="0" cy="0" r="8" fill="#999"/>
+    </g>
+    
+    <!-- Front wheel -->
+    <g transform="translate(300, 120)">
+      <circle cx="0" cy="0" r="45" fill="#333" stroke="#111" stroke-width="3"/>
+      <circle cx="0" cy="0" r="35" fill="none" stroke="#666" stroke-width="2"/>
+      <g>
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="0.5s" repeatCount="indefinite"/>
+        <line x1="-35" y1="0" x2="35" y2="0" stroke="#888" stroke-width="2"/>
+        <line x1="0" y1="-35" x2="0" y2="35" stroke="#888" stroke-width="2"/>
+        <line x1="-25" y1="-25" x2="25" y2="25" stroke="#888" stroke-width="2"/>
+        <line x1="-25" y1="25" x2="25" y2="-25" stroke="#888" stroke-width="2"/>
+      </g>
+      <circle cx="0" cy="0" r="8" fill="#999"/>
+    </g>
+    
+    <!-- Motorcycle body -->
+    <path d="M 80 120 L 120 80 L 280 80 L 320 120 L 300 140 L 100 140 Z" fill="#DC143C" stroke="#8B0000" stroke-width="2"/>
+    <rect x="140" y="90" width="100" height="30" fill="#B22222" rx="5"/>
+    
+    <!-- Engine -->
+    <rect x="160" y="110" width="60" height="25" fill="#666" rx="3"/>
+    <circle cx="175" cy="122" r="8" fill="#888"/>
+    <circle cx="205" cy="122" r="8" fill="#888"/>
+    
+    <!-- Exhaust pipe -->
+    <path d="M 100 130 L 60 135 L 50 145" fill="none" stroke="#888" stroke-width="6" stroke-linecap="round"/>
+    
+    <!-- Seat -->
+    <ellipse cx="180" cy="75" rx="50" ry="12" fill="#8B4513"/>
+    
+    <!-- Handlebars -->
+    <line x1="270" y1="85" x2="290" y2="70" stroke="#666" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="290" cy="70" r="5" fill="#333"/>
+    
+    <!-- Headlight -->
+    <ellipse cx="310" cy="95" rx="12" ry="15" fill="#FFFF00" opacity="0.9"/>
+    <ellipse cx="310" cy="95" rx="8" ry="10" fill="#FFF"/>
+    
+    <!-- Crocodile body -->
+    <ellipse cx="170" cy="50" rx="60" ry="35" fill="#228B22"/>
+    
+    <!-- Crocodile tail -->
+    <path d="M 110 50 Q 80 60 70 40 Q 85 45 110 50" fill="#228B22"/>
+    
+    <!-- Crocodile belly (lighter) -->
+    <ellipse cx="175" cy="60" rx="45" ry="20" fill="#32CD32"/>
+    
+    <!-- Crocodile head -->
+    <ellipse cx="230" cy="35" rx="35" ry="25" fill="#228B22"/>
+    
+    <!-- Crocodile snout -->
+    <ellipse cx="255" cy="40" rx="20" ry="12" fill="#228B22"/>
+    
+    <!-- Nostrils -->
+    <circle cx="265" cy="38" r="2" fill="#1a6b1a"/>
+    <circle cx="268" cy="38" r="2" fill="#1a6b1a"/>
+    
+    <!-- Mouth (smiling) -->
+    <path d="M 245 45 Q 260 50 270 45" fill="none" stroke="#1a6b1a" stroke-width="2"/>
+    
+    <!-- Teeth -->
+    <polygon points="250,45 252,48 254,45" fill="#fff"/>
+    <polygon points="256,45 258,48 260,45" fill="#fff"/>
+    <polygon points="262,45 264,48 266,45" fill="#fff"/>
+    
+    <!-- Eye -->
+    <circle cx="235" cy="28" r="8" fill="#fff"/>
+    <circle cx="237" cy="28" r="5" fill="#000"/>
+    <circle cx="239" cy="26" r="2" fill="#fff"/>
+    
+    <!-- Sunglasses -->
+    <rect x="225" y="22" width="25" height="12" rx="3" fill="#000" opacity="0.8"/>
+    <line x1="225" y1="28" x2="250" y2="28" stroke="#333" stroke-width="1"/>
+    <line x1="225" y1="25" x2="220" y2="23" stroke="#333" stroke-width="2"/>
+    
+    <!-- Arms holding handlebars -->
+    <path d="M 200 45 Q 240 55 270 70" fill="none" stroke="#228B22" stroke-width="12" stroke-linecap="round"/>
+    
+    <!-- Legs on footpegs -->
+    <path d="M 160 70 Q 170 100 180 115" fill="none" stroke="#228B22" stroke-width="10" stroke-linecap="round"/>
+    <path d="M 180 70 Q 190 100 200 115" fill="none" stroke="#228B22" stroke-width="10" stroke-linecap="round"/>
+    
+    <!-- Spikes on back -->
+    <polygon points="130,30 135,15 140,30" fill="#1a6b1a"/>
+    <polygon points="145,28 150,13 155,28" fill="#1a6b1a"/>
+    <polygon points="160,27 165,12 170,27" fill="#1a6b1a"/>
+    <polygon points="175,28 180,13 185,28" fill="#1a6b1a"/>
+    <polygon points="190,30 195,15 200,30" fill="#1a6b1a"/>
+  </g>
+  
+  <!-- Speed/wind lines -->
+  <g opacity="0.6">
+    <animateTransform attributeName="transform" type="translate" values="0,0; -150,0" dur="0.6s" repeatCount="indefinite"/>
+    <line x1="500" y1="300" x2="550" y2="300" stroke="#fff" stroke-width="2"/>
+    <line x1="520" y1="320" x2="580" y2="320" stroke="#fff" stroke-width="2"/>
+    <line x1="480" y1="340" x2="530" y2="340" stroke="#fff" stroke-width="2"/>
+    <line x1="540" y1="280" x2="590" y2="280" stroke="#fff" stroke-width="2"/>
+  </g>
+  
+  <!-- Dust particles behind motorcycle -->
+  <g opacity="0.5">
+    <animateTransform attributeName="transform" type="translate" values="0,0; -80,20" dur="0.8s" repeatCount="indefinite"/>
+    <circle cx="80" cy="480" r="5" fill="#D2B48C"/>
+    <circle cx="60" cy="470" r="4" fill="#D2B48C"/>
+    <circle cx="90" cy="490" r="6" fill="#D2B48C"/>
+    <circle cx="50" cy="485" r="3" fill="#D2B48C"/>
+  </g>
+</svg>

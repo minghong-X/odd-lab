@@ -1,18 +1,37 @@
 import { test, expect } from "@playwright/test";
 test("photo arrival plays again after a previous visit", async ({ page }) => {
-  await page.addInitScript(() => sessionStorage.setItem("odd-intro-seen", "1"));
+  await page.addInitScript(() => {
+    sessionStorage.setItem("odd-intro-seen", "1");
+    // Observe from page startup, even if loading 30 SVGs delays the test driver.
+    let before: string[] = [];
+    const state = window as typeof window & { photoArrivalMoved?: boolean };
+    const observe = () => {
+      const photos = [...document.querySelectorAll(".flying-photo")];
+      const transforms = photos.map((p) => getComputedStyle(p).transform);
+      if (
+        document
+          .querySelector(".photo-cloud")
+          ?.getAttribute("data-intro-state") === "flying" &&
+        before.length === transforms.length &&
+        transforms.some((t, i) => t !== before[i])
+      ) {
+        state.photoArrivalMoved = true;
+      }
+      before = transforms;
+      if (!state.photoArrivalMoved) requestAnimationFrame(observe);
+    };
+    requestAnimationFrame(observe);
+  });
   await page.goto("/", { waitUntil: "domcontentloaded" });
-  await expect(page.locator(".flying-photo").first()).toBeAttached();
-  const moving = await page
-    .locator(".flying-photo")
-    .evaluateAll(async (photos) => {
-      const before = photos.map((p) => getComputedStyle(p).transform);
-      await new Promise((resolve) => setTimeout(resolve, 550));
-      return photos.some((p, i) => getComputedStyle(p).transform !== before[i]);
-    });
-  expect(moving, "A previous visit must not suppress the photo arrival").toBe(
-    true,
-  );
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          (window as typeof window & { photoArrivalMoved?: boolean })
+            .photoArrivalMoved,
+      ),
+    )
+    .toBe(true);
 });
 test("many photos settle into a wall and replay on demand", async ({
   page,
@@ -23,7 +42,7 @@ test("many photos settle into a wall and replay on demand", async ({
     "settled",
     { timeout: 12000 },
   );
-  expect(await page.locator(".flying-photo:visible").count()).toBe(29);
+  expect(await page.locator(".flying-photo:visible").count()).toBe(30);
   const grid = await page.locator(".flying-photo").evaluateAll((es) => ({
     columns: new Set(es.map((e) => Math.round((e as HTMLElement).offsetLeft)))
       .size,
@@ -72,7 +91,7 @@ test("reduced motion displays a complete static photo wall", async ({
     "data-intro-state",
     "settled",
   );
-  expect(await page.locator(".flying-photo:visible").count()).toBe(29);
+  expect(await page.locator(".flying-photo:visible").count()).toBe(30);
   await expect(page.getByRole("button", { name: "Replay intro" })).toHaveCount(
     0,
   );

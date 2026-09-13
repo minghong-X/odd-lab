@@ -31,5 +31,6 @@
   "seeRank": "See the rankings",
   "next": "Next pair",
   "skip": "Skip this pair",
-  "footnote": "Open to everyone · No account needed · Each round counts once"
+  "footnote": "Open to everyone · No account needed · Each round counts once",
+  "generationRules": "Generation rules: Each model gets up to three attempts. Only its best result is selected."
 }

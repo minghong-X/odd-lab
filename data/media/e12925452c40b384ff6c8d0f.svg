@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 800 500" width="800" height="500">
+  <title>鳄鱼骑摩托车</title>
+  <desc>一只戴飞行镜和红围巾的鳄鱼骑着红色摩托车在乡间公路上飞驰</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bde7fb"/>
+      <stop offset="1" stop-color="#eaf8ff"/>
+    </linearGradient>
+    <g id="cloud" fill="#ffffff">
+      <ellipse cx="0" cy="0" rx="44" ry="16"/>
+      <ellipse cx="-26" cy="6" rx="26" ry="12"/>
+      <ellipse cx="28" cy="6" rx="30" ry="12"/>
+      <ellipse cx="2" cy="-11" rx="25" ry="13"/>
+    </g>
+    <g id="tree">
+      <rect x="-7" y="-46" width="14" height="46" rx="3" fill="#8a5a2b"/>
+      <circle cx="-19" cy="-50" r="19" fill="#4c9a50"/>
+      <circle cx="19" cy="-50" r="19" fill="#4c9a50"/>
+      <circle cx="0" cy="-68" r="22" fill="#58ab5c"/>
+    </g>
+    <g id="wheel">
+      <circle r="62" fill="#22262b"/>
+      <circle r="46" fill="#c7cdd6" stroke="#8a919e" stroke-width="4"/>
+      <g>
+        <circle r="53" fill="none" stroke="#3a3f45" stroke-width="7" stroke-dasharray="12 17"/>
+        <g stroke="#8a919e" stroke-width="5">
+          <line x1="0" y1="-42" x2="0" y2="42"/>
+          <line x1="-42" y1="0" x2="42" y2="0"/>
+          <line x1="-30" y1="-30" x2="30" y2="30"/>
+          <line x1="30" y1="-30" x2="-30" y2="30"/>
+        </g>
+        <animateTransform attributeName="transform" type="rotate" from="0" to="360" dur="0.7s" repeatCount="indefinite"/>
+      </g>
+      <circle r="11" fill="#545b63"/>
+      <circle r="4" fill="#22262b"/>
+    </g>
+  </defs>
+
+  <rect width="800" height="500" fill="url(#sky)"/>
+
+  <g>
+    <circle cx="705" cy="72" r="44" fill="#ffd93d" opacity="0.25">
+      <animate attributeName="r" values="40;50;40" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <g stroke="#ffcf3d" stroke-width="5" stroke-linecap="round">
+      <line x1="705" y1="26" x2="705" y2="14"/>
+      <line x1="705" y1="118" x2="705" y2="130"/>
+      <line x1="663" y1="72" x2="651" y2="72"/>
+      <line x1="747" y1="72" x2="759" y2="72"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 705 72" to="360 705 72" dur="24s" repeatCount="indefinite"/>
+    </g>
+    <circle cx="705" cy="72" r="34" fill="#ffd93d"/>
+  </g>
+
+  <g fill="#ffffff" opacity="0.92">
+    <use href="#cloud" xlink:href="#cloud" transform="translate(140 84)"/>
+    <use href="#cloud" xlink:href="#cloud" transform="translate(470 58) scale(0.85)"/>
+    <use href="#cloud" xlink:href="#cloud" transform="translate(690 118) scale(0.7)"/>
+    <use href="#cloud" xlink:href="#cloud" transform="translate(940 84)"/>
+    <use href="#cloud" xlink:href="#cloud" transform="translate(1270 58) scale(0.85)"/>
+    <use href="#cloud" xlink:href="#cloud" transform="translate(1490 118) scale(0.7)"/>
+    <animateTransform attributeName="transform" type="translate" from="0 0" to="-800 0" dur="26s" repeatCount="indefinite"/>
+  </g>
+
+  <ellipse cx="170" cy="445" rx="260" ry="70" fill="#9ccc65"/>
+  <ellipse cx="600" cy="450" rx="320" ry="80" fill="#aed581"/>
+
+  <rect y="400" width="800" height="38" fill="#7cb342"/>
+
+  <g>
+    <use href="#tree" xlink:href="#tree" transform="translate(90 432)"/>
+    <use href="#tree" xlink:href="#tree" transform="translate(340 432) scale(0.8)"/>
+    <use href="#tree" xlink:href="#tree" transform="translate(620 432)"/>
+    <use href="#tree" xlink:href="#tree" transform="translate(890 432)"/>
+    <use href="#tree" xlink:href="#tree" transform="translate(1140 432) scale(0.8)"/>
+    <use href="#tree" xlink:href="#tree" transform="translate(1420 432)"/>
+    <animateTransform attributeName="transform" type="translate" from="0 0" to="-800 0" dur="7s" repeatCount="indefinite"/>
+  </g>
+
+  <rect y="437" width="800" height="63" fill="#4a4f55"/>
+  <rect y="437" width="800" height="5" fill="#3d4147"/>
+  <line x1="-10" y1="470" x2="810" y2="470" stroke="#f4d35e" stroke-width="7" stroke-dasharray="42 34" stroke-linecap="round">
+    <animate attributeName="stroke-dashoffset" from="0" to="76" dur="0.35s" repeatCount="indefinite"/>
+  </line>
+
+  <g stroke="#ffffff" stroke-width="5" stroke-linecap="round">
+    <line x1="70" y1="258" x2="150" y2="258" opacity="0">
+      <animate attributeName="opacity" values="0;0.65;0" dur="0.75s" begin="0s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="90 0;-190 0" dur="0.75s" begin="0s" repeatCount="indefinite"/>
+    </line>
+    <line x1="70" y1="300" x2="150" y2="300" opacity="0">
+      <animate attributeName="opacity" values="0;0.65;0" dur="0.75s" begin="0.25s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="90 0;-190 0" dur="0.75s" begin="0.25s" repeatCount="indefinite"/>
+    </line>
+    <line x1="70" y1="342" x2="150" y2="342" opacity="0">
+      <animate attributeName="opacity" values="0;0.65;0" dur="0.75s" begin="0.5s" repeatCount="indefinite"/>
+      <animateTransform attributeName="transform" type="translate" values="90 0;-190 0" dur="0.75s" begin="0.5s" repeatCount="indefinite"/>
+    </line>
+  </g>
+
+  <ellipse cx="408" cy="444" rx="235" ry="11" fill="#000000" opacity="0.15">
+    <animate attributeName="rx" values="235;220;235" dur="0.55s" repeatCount="indefinite"/>
+  </ellipse>
+
+  <g>
+    <use href="#wheel" xlink:href="#wheel" transform="translate(230 375)"/>
+    <use href="#wheel" xlink:href="#wheel" transform="translate(585 375)"/>
+
+    <g>
+      <animateTransform attributeName="transform" type="translate" values="0 0;0 -5;0 0" dur="0.55s" repeatCount="indefinite"/>
+
+      <path d="M 164 351 A 70 70 0 0 1 296 351" fill="none" stroke="#c0392b" stroke-width="12" stroke-linecap="round"/>
+      <circle cx="166" cy="342" r="4.5" fill="#ff5252">
+        <animate attributeName="opacity" values="1;0.25;1" dur="0.6s" repeatCount="indefinite"/>
+      </circle>
+
+      <path d="M 358 360 C 310 378 262 376 216 356 L 208 344" fill="none" stroke="#b8bec7" stroke-width="11" stroke-linecap="round"/>
+      <ellipse cx="207" cy="342" rx="6" ry="7" fill="#4a4f55"/>
+
+      <g fill="#d9d9d9">
+        <circle cx="204" cy="338" r="5" opacity="0">
+          <animate attributeName="r" values="4;15" dur="1.7s" begin="0s" repeatCount="indefinite"/>
+          <animate attributeName="cx" values="204;138" dur="1.7s" begin="0s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="338;316" dur="1.7s" begin="0s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.8;0" dur="1.7s" begin="0s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="204" cy="338" r="5" opacity="0">
+          <animate attributeName="r" values="4;15" dur="1.7s" begin="0.57s" repeatCount="indefinite"/>
+          <animate attributeName="cx" values="204;138" dur="1.7s" begin="0.57s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="338;316" dur="1.7s" begin="0.57s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.8;0" dur="1.7s" begin="0.57s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="204" cy="338" r="5" opacity="0">
+          <animate attributeName="r" values="4;15" dur="1.7s" begin="1.13s" repeatCount="indefinite"/>
+          <animate attributeName="cx" values="204;138" dur="1.7s" begin="1.13s" repeatCount="indefinite"/>
+          <animate attributeName="cy" values="338;316" dur="1.7s" begin="1.13s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.8;0" dur="1.7s" begin="1.13s" repeatCount="indefinite"/>
+        </circle>
+      </g>
+
+      <path d="M 540 282 L 402 336" stroke="#c0392b" stroke-width="11" stroke-linecap="round"/>
+      <path d="M 350 356 L 233 371" stroke="#c0392b" stroke-width="9" stroke-linecap="round"/>
+      <path d="M 292 298 L 342 338" stroke="#a8323e" stroke-width="8" stroke-linecap="round"/>
+
+      <rect x="390" y="312" width="28" height="26" rx="4" fill="#6c7a92" stroke="#5c677d" stroke-width="2"/>
+      <rect x="352" y="332" width="78" height="40" rx="7" fill="#8d99ae" stroke="#5c677d" stroke-width="3"/>
+      <line x1="360" y1="344" x2="422" y2="344" stroke="#5c677d" stroke-width="2.5"/>
+      <line x1="360" y1="354" x2="422" y2="354" stroke="#5c677d" stroke-width="2.5"/>
+      <line x1="360" y1="364" x2="422" y2="364" stroke="#5c677d" stroke-width="2.5"/>
+
+      <rect x="270" y="290" width="92" height="15" rx="7" fill="#2b2b2b" transform="rotate(-3 316 297)"/>
+
+      <ellipse cx="420" cy="298" rx="50" ry="25" fill="#e63946" stroke="#b02535" stroke-width="3" transform="rotate(-6 420 298)"/>
+      <ellipse cx="405" cy="288" rx="22" ry="8" fill="#ff97a8" opacity="0.65" transform="rotate(-6 420 298)"/>
+      <circle cx="433" cy="275" r="4.5" fill="#444444"/>
+
+      <path d="M 528 348 A 64 64 0 0 1 644 350" fill="none" stroke="#c0392b" stroke-width="10" stroke-linecap="round"/>
+      <line x1="540" y1="282" x2="585" y2="375" stroke="#444444" stroke-width="9" stroke-linecap="round"/>
+      <circle cx="540" cy="282" r="6.5" fill="#333333"/>
+      <path d="M 542 284 Q 528 268 510 266" fill="none" stroke="#333333" stroke-width="7" stroke-linecap="round"/>
+
+      <line x1="549" y1="299" x2="562" y2="302" stroke="#444444" stroke-width="5"/>
+      <polygon points="572,294 735,274 735,330 572,312" fill="#fff59d" opacity="0.2">
+        <animate attributeName="opacity" values="0.1;0.3;0.1" dur="0.9s" repeatCount="indefinite"/>
+      </polygon>
+      <circle cx="565" cy="302" r="13" fill="#ffe066" stroke="#333333" stroke-width="3.5"/>
+      <circle cx="568" cy="300" r="5" fill="#fffbd0"/>
+
+      <line x1="358" y1="376" x2="396" y2="376" stroke="#333333" stroke-width="5" stroke-linecap="round"/>
+
+      <g>
+        <path d="M 318 272 C 265 275 225 262 185 238 C 190 262 205 285 235 297 C 262 308 292 310 318 306 Z" fill="#3fa34d"/>
+        <polygon points="272,275 278,257 284,272" fill="#2e7d3a"/>
+        <polygon points="232,264 238,247 244,261" fill="#2e7d3a"/>
+        <polygon points="196,249 201,233 207,246" fill="#2e7d3a"/>
+        <animateTransform attributeName="transform" type="rotate" values="0 318 289;8 318 289;0 318 289;-7 318 289;0 318 289" dur="1.8s" repeatCount="indefinite"/>
+      </g>
+
+      <ellipse cx="330" cy="320" rx="16" ry="26" fill="#2e7d3a"/>
+      <path d="M 334 344 L 366 366" stroke="#2e7d3a" stroke-width="13" stroke-linecap="round"/>
+      <ellipse cx="376" cy="371" rx="16" ry="6.5" fill="#2e7d3a"/>
+      <polygon points="389,368 397,365 394,372" fill="#ffffff"/>
+      <polygon points="388,373 396,372 392,378" fill="#ffffff"/>
+
+      <ellipse cx="372" cy="283" rx="78" ry="34" fill="#3fa34d" transform="rotate(-14 372 283)"/>
+      <ellipse cx="372" cy="294" rx="72" ry="26" fill="#a8d977" transform="rotate(-14 372 294)"/>
+      <polygon points="344,257 350,239 356,254" fill="#2e7d3a"/>
+      <polygon points="376,249 382,231 388,246" fill="#2e7d3a"/>
+      <polygon points="404,247 410,229 416,244" fill="#2e7d3a"/>
+
+      <path d="M 436 260 C 412 246 392 266 360 252" fill="none" stroke="#e63946" stroke-width="11" stroke-linecap="round">
+        <animate attributeName="d" dur="0.5s" repeatCount="indefinite" values="M 436 260 C 412 246 392 266 360 252;M 436 260 C 412 264 392 246 360 258;M 436 260 C 412 246 392 266 360 252"/>
+      </path>
+      <circle cx="437" cy="259" r="7" fill="#e63946"/>
+
+      <path d="M 440 264 C 468 254 492 256 508 265" fill="none" stroke="#3fa34d" stroke-width="15" stroke-linecap="round"/>
+      <circle cx="512" cy="267" r="9" fill="#2e7d3a"/>
+
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="0 445 262;2.5 445 262;0 445 262;-2 445 262;0 445 262" dur="1.4s" repeatCount="indefinite"/>
+        <ellipse cx="448" cy="252" rx="15" ry="17" fill="#3fa34d"/>
+        <ellipse cx="458" cy="238" rx="30" ry="25" fill="#3fa34d"/>
+        <path d="M 478 246 L 546 243 L 546 256 L 478 259 Z" fill="#4a1212"/>
+        <path d="M 470 224 Q 520 222 558 236 Q 570 240 566 247 L 470 248 Z" fill="#3fa34d"/>
+        <polygon points="482,248 486,257 490,248" fill="#ffffff"/>
+        <polygon points="498,248 502,257 506,248" fill="#ffffff"/>
+        <polygon points="514,248 518,257 522,248" fill="#ffffff"/>
+        <polygon points="530,248 534,257 538,248" fill="#ffffff"/>
+        <circle cx="557" cy="238" r="3" fill="#2e7d3a"/>
+        <g>
+          <animateTransform attributeName="transform" type="rotate" values="0 474 250;0 474 250;9 474 250;0 474 250;0 474 250" keyTimes="0;0.62;0.72;0.82;1" dur="3.2s" repeatCount="indefinite"/>
+          <path d="M 474 250 L 552 247 Q 564 249 558 256 L 474 260 Z" fill="#2e7d3a"/>
+          <polygon points="486,251 490,243 494,251" fill="#ffffff"/>
+          <polygon points="502,251 506,243 510,251" fill="#ffffff"/>
+          <polygon points="518,251 522,243 526,251" fill="#ffffff"/>
+          <polygon points="534,251 538,243 542,251" fill="#ffffff"/>
+        </g>
+        <ellipse cx="448" cy="216" rx="9" ry="10.5" fill="#ffffff"/>
+        <circle cx="450" cy="218" r="4.2" fill="#142014"/>
+        <circle cx="446" cy="213" r="1.6" fill="#ffffff"/>
+        <ellipse cx="448" cy="216" rx="10.5" ry="0" fill="#3fa34d">
+          <animate attributeName="ry" values="0;0;10.5;0;0" keyTimes="0;0.9;0.94;0.98;1" dur="4.2s" repeatCount="indefinite"/>
+        </ellipse>
+        <circle cx="448" cy="216" r="12.5" fill="#cfeaff" fill-opacity="0.22" stroke="#c98f2f" stroke-width="3.5"/>
+        <path d="M 436 212 Q 426 217 425 230" fill="none" stroke="#7a5c2e" stroke-width="3.5"/>
+      </g>
+    </g>
+  </g>
+</svg>

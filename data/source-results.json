@@ -552,6 +552,25 @@
             "extInfo": null,
             "gmtCreate": "2026-09-09T06:49:26.000+00:00",
             "gmtModified": "2026-09-09T11:21:06.000+00:00"
+        },
+        {
+            "id": 41,
+            "svgKey": "claude-opus-5_1789109334783_9",
+            "category": "pelican",
+            "modelName": "claude-opus-5",
+            "svgUrl": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/claude-opus-5-pelican-bike.svg",
+            "title": "claude-opus-5-pelican-bike",
+            "generationTimeMs": null,
+            "tokenUsage": null,
+            "eloScore": 1500,
+            "matchCount": 0,
+            "winCount": 0,
+            "loseCount": 0,
+            "drawCount": 0,
+            "status": 1,
+            "extInfo": null,
+            "gmtCreate": "2026-09-11T06:48:55.000+00:00",
+            "gmtModified": "2026-09-11T07:37:36.000+00:00"
         }
     ]
 }
