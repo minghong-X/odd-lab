@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Starship } from "./art";
 import { BoardingScene } from "./boarding-scene";
+import { ArenaSelector } from "@/components/arena-selector";
 import { useI18n } from "@/i18n/provider";
 
 export function Story({ pictures }: { pictures: { id: string }[] }) {
@@ -358,6 +359,16 @@ export function Story({ pictures }: { pictures: { id: string }[] }) {
             <br />
             {t("story.heroDescription2")}
           </p>
+          <div className="hero-actions">
+            <ArenaSelector />
+            <Link
+              href="/leaderboard/pelican"
+              className="hero-leaderboard"
+            >
+              {t("common.leaderboard")}
+              <span aria-hidden>↗</span>
+            </Link>
+          </div>
         </div>
         <a href="#journey" className="scroll-invite">
           <span className="scroll-track">

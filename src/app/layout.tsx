@@ -1,7 +1,6 @@
 import { getServerI18n } from "@/i18n/server";
 import { I18nProvider, LanguageSwitcher } from "@/i18n/provider";
 import Link from "next/link";
-import { ArenaSelector } from "@/components/arena-selector";
 import "./globals.css";
 export async function generateMetadata() {
   const { t } = await getServerI18n();
@@ -28,8 +27,6 @@ export default async function RootLayout({
             </Link>
             <nav aria-label={t("common.navLabel")}>
               <Link href="/experiments">{t("common.experiments")}</Link>
-              <Link href="/leaderboard/pelican">{t("common.leaderboard")}</Link>
-              <ArenaSelector />
             </nav>
             <LanguageSwitcher />
           </header>
