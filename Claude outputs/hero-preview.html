@@ -1,0 +1,140 @@
+<title>Oddlab Hero 预览</title>
+<style>
+  :root{
+    --ink:#163b52; --muted:#607a88; --paper:#f6f8f7; --line:#d7e0e1; --orange:#c86846;
+    --font: ui-rounded, "Avenir Next", "PingFang SC", "Microsoft YaHei", sans-serif;
+  }
+  html{color-scheme:light}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font:16px/1.65 var(--font); -webkit-font-smoothing:antialiased;
+    padding-block:32px;
+  }
+  .wrap{max-width:1240px; margin-inline:auto; padding-inline:24px}
+  .bar{
+    display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between;
+    margin-bottom:8px;
+  }
+  .bar h2{margin:0; font-size:15px; font-weight:700; letter-spacing:-0.01em}
+  .bar .hint{font-size:12.5px; color:var(--muted)}
+  .toggles{display:flex; gap:8px}
+  .toggles button{
+    font:inherit; cursor:pointer; border:1px solid var(--line); background:#fff;
+    color:var(--ink); border-radius:999px; padding:7px 16px; font-size:13px; font-weight:600;
+    transition:background .15s,border-color .15s;
+  }
+  .toggles button[aria-pressed="true"]{background:var(--ink); color:#fff; border-color:var(--ink)}
+
+  /* faithful hero replica */
+  .stage{
+    position:relative; border:1px solid var(--line); border-radius:20px; background:#fff;
+    overflow:hidden; margin-top:16px;
+  }
+  .stage .ground{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(120% 90% at 50% 0%, #ffffff 0%, #eef4f4 55%, #e4eef0 100%);
+  }
+  .hero-copy{
+    position:relative; z-index:2; text-align:center;
+    max-width:1120px; margin-inline:auto; padding:96px 24px;
+  }
+  .hero-label{
+    display:inline-flex; align-items:center; gap:10px; color:#4c6d7d;
+    font-size:13px; letter-spacing:0.1em; margin-bottom:24px;
+  }
+  .hero-label i{width:6px;height:6px;border-radius:50%;background:#c47c52;box-shadow:0 0 0 5px #c47c5210}
+  .hero h1{
+    margin:0; font-weight:750; letter-spacing:-0.07em; line-height:1.16;
+    text-wrap:balance;
+    font-size:clamp(48px, 5.4vw, 82px);           /* zh / base */
+  }
+  .hero h1 span{display:block}
+  .hero-copy[data-lang="en"] .hero h1{
+    font-size:clamp(42px, 4.6vw, 66px);            /* en desktop */
+    letter-spacing:-0.055em;
+  }
+  .hero p{
+    margin:26px 0 0; font-size:15px; color:#52717f; line-height:1.9;
+  }
+  /* old-size ghost for comparison */
+  .stage.old .hero h1{font-size:clamp(58px,6.8vw,105px); letter-spacing:-0.07em}
+  .stage.old .hero-copy[data-lang="en"] .hero h1{font-size:clamp(56px,6.2vw,94px); letter-spacing:-0.065em}
+  .tag{
+    position:absolute; top:14px; left:16px; z-index:3;
+    font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
+    padding:5px 11px; border-radius:999px;
+  }
+  .tag.new{background:#dbeadd; color:#3c6a45}
+  .tag.old{background:#efe2dc; color:#9a5540}
+  .edge{position:absolute; top:0; bottom:0; width:1px; background:#cfe0e2aa; z-index:2}
+  .edge.l{left:calc(50% - 560px)} .edge.r{right:calc(50% - 560px)}
+  .edge span{position:absolute; top:8px; font-size:10px; color:#9bb0b5; white-space:nowrap}
+  .edge.l span{left:6px} .edge.r span{right:6px}
+  @media (max-width:1180px){ .edge{display:none} }
+  .note{margin-top:14px; font-size:12.5px; color:var(--muted); line-height:1.7}
+  @media (max-width:640px){ .hero-copy{padding:56px 18px} }
+</style>
+
+<div class="wrap">
+  <div class="bar">
+    <h2>oddlab · 首页标题字号预览</h2>
+    <div class="toggles" role="group" aria-label="语言">
+      <button id="zh" aria-pressed="true">中文</button>
+      <button id="en" aria-pressed="false">English</button>
+    </div>
+  </div>
+  <p class="hint">用站点真实字体（SF Rounded / Avenir）与真实 clamp 尺寸渲染。竖线标出 1120px 版心边界——文字不越线即安全。</p>
+
+  <!-- NEW -->
+  <div class="stage new" id="stageNew">
+    <div class="ground"></div>
+    <span class="tag new">新字号</span>
+    <span class="edge l"><span>版心 1120px</span></span>
+    <span class="edge r"><span>版心 1120px</span></span>
+    <div class="hero-copy" data-lang="zh">
+      <span class="hero-label"><i></i>A playground for models and imagination</span>
+      <div class="hero">
+        <h1><span class="l1"></span><span class="l2"></span></h1>
+        <p class="sub"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- OLD (for contrast) -->
+  <div class="stage old" id="stageOld">
+    <div class="ground"></div>
+    <span class="tag old">原字号（对比）</span>
+    <div class="hero-copy" data-lang="zh">
+      <div class="hero" style="padding:8px 0">
+        <h1><span class="l1"></span><span class="l2"></span></h1>
+      </div>
+    </div>
+  </div>
+
+  <p class="note">
+    改动落在 <code>src/app/globals.css</code>：英文标题 <code>clamp(56,6.2vw,94)</code> → <code>clamp(42,4.6vw,66)</code>；中文 <code>clamp(58,6.8vw,105)</code> → <code>clamp(48,5.4vw,82)</code>；标题区加 <code>max-width:1120px</code> 与 <code>text-wrap:balance</code>。副标与配图未改。
+  </p>
+</div>
+
+<script>
+  const copy = {
+    zh:{ l1:"一句话试遍所有模型，", l2:"最小也最好玩的评测。",
+         sub:"从一只骑车的鹈鹕，到一场驶向火星的旅行。同一个念头，不同的模型。你更喜欢哪一种？" },
+    en:{ l1:"One prompt, every model —", l2:"the benchmark you’ll enjoy.",
+         sub:"From a cycling pelican to a journey bound for Mars. One idea. Different models. Which one speaks to you?" }
+  };
+  function render(lang){
+    for(const st of [document.getElementById('stageNew'), document.getElementById('stageOld')]){
+      st.querySelector('.hero-copy').setAttribute('data-lang', lang);
+      st.querySelector('.l1').textContent = copy[lang].l1;
+      st.querySelector('.l2').textContent = copy[lang].l2;
+      const sub = st.querySelector('.sub'); if(sub) sub.textContent = copy[lang].sub;
+    }
+    document.getElementById('zh').setAttribute('aria-pressed', String(lang==='zh'));
+    document.getElementById('en').setAttribute('aria-pressed', String(lang==='en'));
+  }
+  document.getElementById('zh').onclick=()=>render('zh');
+  document.getElementById('en').onclick=()=>render('en');
+  render('zh');
+</script>
