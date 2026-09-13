@@ -131,6 +131,7 @@ button {
   display: inline-flex;
   gap: 11px;
   align-items: center;
+  white-space: nowrap;
   background: var(--ink);
   color: #fff;
   font-weight: 700;
@@ -149,8 +150,11 @@ button {
   background: #23516a;
 }
 .nav-arena-caret {
+  width: 12px;
+  height: 8px;
+  flex-shrink: 0;
   transition: transform 0.2s;
-  opacity: 0.85;
+  opacity: 0.8;
 }
 .nav-arena[aria-expanded="true"] .nav-arena-caret {
   transform: rotate(180deg);

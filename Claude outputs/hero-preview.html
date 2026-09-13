@@ -5,136 +5,148 @@
     --font: ui-rounded, "Avenir Next", "PingFang SC", "Microsoft YaHei", sans-serif;
   }
   html{color-scheme:light}
-  body{
-    margin:0; background:var(--paper); color:var(--ink);
-    font:16px/1.65 var(--font); -webkit-font-smoothing:antialiased;
-    padding-block:32px;
-  }
+  svg{display:block; width:100%; height:auto}   /* site global reset — the one that inflated the caret */
+  body{margin:0; background:var(--paper); color:var(--ink); font:16px/1.65 var(--font); -webkit-font-smoothing:antialiased; padding-block:28px}
   .wrap{max-width:1240px; margin-inline:auto; padding-inline:24px}
-  .bar{
-    display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between;
-    margin-bottom:8px;
-  }
-  .bar h2{margin:0; font-size:15px; font-weight:700; letter-spacing:-0.01em}
-  .bar .hint{font-size:12.5px; color:var(--muted)}
+  .bar{display:flex; flex-wrap:wrap; gap:14px; align-items:center; justify-content:space-between; margin-bottom:6px}
+  .bar h2{margin:0; font-size:15px; font-weight:700}
+  .hint{font-size:12.5px; color:var(--muted); margin:0 0 4px}
   .toggles{display:flex; gap:8px}
-  .toggles button{
-    font:inherit; cursor:pointer; border:1px solid var(--line); background:#fff;
-    color:var(--ink); border-radius:999px; padding:7px 16px; font-size:13px; font-weight:600;
-    transition:background .15s,border-color .15s;
-  }
+  .toggles button{font:inherit; cursor:pointer; border:1px solid var(--line); background:#fff; color:var(--ink); border-radius:999px; padding:7px 16px; font-size:13px; font-weight:600}
   .toggles button[aria-pressed="true"]{background:var(--ink); color:#fff; border-color:var(--ink)}
 
-  /* faithful hero replica */
-  .stage{
-    position:relative; border:1px solid var(--line); border-radius:20px; background:#fff;
-    overflow:hidden; margin-top:16px;
-  }
-  .stage .ground{
-    position:absolute; inset:0;
-    background:
-      radial-gradient(120% 90% at 50% 0%, #ffffff 0%, #eef4f4 55%, #e4eef0 100%);
-  }
-  .hero-copy{
-    position:relative; z-index:2; text-align:center;
-    max-width:1120px; margin-inline:auto; padding:96px 24px;
-  }
-  .hero-label{
-    display:inline-flex; align-items:center; gap:10px; color:#4c6d7d;
-    font-size:13px; letter-spacing:0.1em; margin-bottom:24px;
-  }
+  .stage{position:relative; border:1px solid var(--line); border-radius:20px; background:#fff; overflow:hidden; margin-top:16px}
+  .stage .ground{position:absolute; inset:0; background:radial-gradient(120% 90% at 50% 0%, #ffffff 0%, #eef4f4 55%, #e4eef0 100%)}
+
+  /* header: brand left · Experiments + language right */
+  .site-header{position:relative; z-index:5; height:88px; padding:0 4%; display:flex; align-items:center; justify-content:space-between}
+  .brand{display:inline-flex; align-items:baseline; font-size:32px; font-weight:850; letter-spacing:-3px; line-height:1; text-decoration:none; color:inherit}
+  .brand span{font-weight:400; letter-spacing:-2.5px}
+  .brand i{width:8px;height:8px;border-radius:50%;background:var(--orange);margin-left:6px;align-self:flex-end;margin-bottom:2px}
+  nav{margin-left:auto; display:flex; align-items:center; gap:34px; font-size:14px; font-weight:600}
+  nav a{color:inherit; text-decoration:none}
+  .language-switch{margin-left:26px; display:flex; align-items:center; gap:3px; color:#71858c; font-size:12px}
+  .language-switch button{font:inherit; cursor:pointer; border:0; background:none; min-width:32px; min-height:34px; border-radius:8px; color:inherit}
+  .language-switch button[aria-pressed="true"]{color:var(--ink); background:#ffffffa6; font-weight:750}
+
+  /* hero */
+  .hero-copy{position:relative; z-index:2; text-align:center; max-width:1120px; margin-inline:auto; padding:52px 24px 92px}
+  .hero-label{display:inline-flex; align-items:center; gap:10px; color:#4c6d7d; font-size:13px; letter-spacing:.1em; margin-bottom:22px}
   .hero-label i{width:6px;height:6px;border-radius:50%;background:#c47c52;box-shadow:0 0 0 5px #c47c5210}
-  .hero h1{
-    margin:0; font-weight:750; letter-spacing:-0.07em; line-height:1.16;
-    text-wrap:balance;
-    font-size:clamp(48px, 5.4vw, 82px);           /* zh / base */
-  }
+  .hero h1{margin:0; font-weight:750; letter-spacing:-0.07em; line-height:1.16; text-wrap:balance; font-size:clamp(48px,5.4vw,82px)}
   .hero h1 span{display:block}
-  .hero-copy[data-lang="en"] .hero h1{
-    font-size:clamp(42px, 4.6vw, 66px);            /* en desktop */
-    letter-spacing:-0.055em;
-  }
-  .hero p{
-    margin:26px 0 0; font-size:15px; color:#52717f; line-height:1.9;
-  }
-  /* old-size ghost for comparison */
-  .stage.old .hero h1{font-size:clamp(58px,6.8vw,105px); letter-spacing:-0.07em}
-  .stage.old .hero-copy[data-lang="en"] .hero h1{font-size:clamp(56px,6.2vw,94px); letter-spacing:-0.065em}
-  .tag{
-    position:absolute; top:14px; left:16px; z-index:3;
-    font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;
-    padding:5px 11px; border-radius:999px;
-  }
-  .tag.new{background:#dbeadd; color:#3c6a45}
-  .tag.old{background:#efe2dc; color:#9a5540}
-  .edge{position:absolute; top:0; bottom:0; width:1px; background:#cfe0e2aa; z-index:2}
-  .edge.l{left:calc(50% - 560px)} .edge.r{right:calc(50% - 560px)}
-  .edge span{position:absolute; top:8px; font-size:10px; color:#9bb0b5; white-space:nowrap}
-  .edge.l span{left:6px} .edge.r span{right:6px}
-  @media (max-width:1180px){ .edge{display:none} }
+  .hero-copy[data-lang="en"] .hero h1{font-size:clamp(42px,4.6vw,66px); letter-spacing:-0.055em}
+  .hero p{margin:26px 0 0; font-size:15px; color:#52717f; line-height:1.9}
+
+  /* primary buttons under the slogan */
+  .hero-actions{display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:16px; margin-top:34px}
+  .arena-picker{position:relative; display:inline-flex}
+  .nav-arena{padding:15px 27px; border-radius:40px; display:inline-flex; gap:12px; align-items:center; white-space:nowrap; background:var(--ink); color:#fff; font:inherit; font-weight:700; font-size:15px; cursor:pointer; border:0; box-shadow:0 6px 16px -9px #163b5299; transition:background .18s, transform .18s, box-shadow .18s}
+  .nav-arena:hover{background:#23516a; transform:translateY(-1px); box-shadow:0 11px 22px -10px #163b52aa}
+  .nav-arena[aria-expanded="true"]{background:#23516a}
+  .nav-arena-caret{width:12px; height:8px; flex-shrink:0; transition:transform .2s; opacity:.8}
+  .nav-arena[aria-expanded="true"] .nav-arena-caret{transform:rotate(180deg)}
+  .hero-leaderboard{display:inline-flex; align-items:center; gap:10px; padding:15px 26px; border-radius:40px; font-size:15px; font-weight:650; background:#eaf0ed; color:var(--ink); border:1px solid #d8e2e0; text-decoration:none; cursor:pointer; transition:background .18s, transform .18s}
+  .hero-leaderboard:hover{background:#e0e9e4; transform:translateY(-2px)}
+  .hero-leaderboard > span{font-size:18px; line-height:1}
+
+  /* dropdown */
+  .arena-menu{position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%); min-width:236px; margin:0; padding:7px; list-style:none; background:#fff; border:1px solid #e6edeb; border-radius:16px; box-shadow:0 22px 46px -22px #16415740, 0 5px 14px -8px #16415726; z-index:40; animation:menuIn .16s ease}
+  @keyframes menuIn{from{opacity:0;transform:translate(-50%,-6px)}to{opacity:1;transform:translate(-50%,0)}}
+  .arena-menu-item{width:100%; display:flex; align-items:center; gap:11px; padding:11px 13px; border-radius:11px; font-size:14px; font-weight:600; color:var(--ink); text-align:left; background:none; border:0; cursor:pointer; font-family:inherit}
+  .arena-menu-item:hover{background:#eef3f2}
+  .arena-menu-label{flex:1}
+  .arena-menu-dot{width:8px;height:8px;border-radius:50%;background:#cad6d5;flex-shrink:0}
+  .arena-menu-item:hover .arena-menu-dot{background:var(--orange)}
+  .arena-menu-item.current{color:#3c6a45}
+  .arena-menu-item.current .arena-menu-dot{background:#6f9070}
+  .arena-menu-check{color:#6f9070; font-size:13px}
   .note{margin-top:14px; font-size:12.5px; color:var(--muted); line-height:1.7}
-  @media (max-width:640px){ .hero-copy{padding:56px 18px} }
+  .note code{background:#eef3f2; padding:1px 6px; border-radius:5px; font-size:11.5px}
 </style>
 
 <div class="wrap">
   <div class="bar">
-    <h2>oddlab · 首页标题字号预览</h2>
+    <h2>oddlab · 首页布局预览</h2>
     <div class="toggles" role="group" aria-label="语言">
       <button id="zh" aria-pressed="true">中文</button>
       <button id="en" aria-pressed="false">English</button>
     </div>
   </div>
-  <p class="hint">用站点真实字体（SF Rounded / Avenir）与真实 clamp 尺寸渲染。竖线标出 1120px 版心边界——文字不越线即安全。</p>
+  <p class="hint">排行榜 / 盲测已从顶部移到 slogan 下方居中，作为主按钮。<b>点「开始盲测 / Enter Arena」试下拉菜单</b>（选实验进入对应盲测）。顶部只留 Experiments。</p>
 
-  <!-- NEW -->
-  <div class="stage new" id="stageNew">
+  <div class="stage">
     <div class="ground"></div>
-    <span class="tag new">新字号</span>
-    <span class="edge l"><span>版心 1120px</span></span>
-    <span class="edge r"><span>版心 1120px</span></span>
-    <div class="hero-copy" data-lang="zh">
+    <header class="site-header">
+      <a class="brand" href="#" onclick="return false">odd<span>lab</span><i></i></a>
+      <nav><a href="#" onclick="return false" class="nav-exp"></a></nav>
+      <div class="language-switch">
+        <button type="button" data-l="zh">中</button><span aria-hidden>/</span><button type="button" data-l="en">EN</button>
+      </div>
+    </header>
+
+    <div class="hero-copy" data-lang="zh" id="heroCopy">
       <span class="hero-label"><i></i>A playground for models and imagination</span>
-      <div class="hero">
-        <h1><span class="l1"></span><span class="l2"></span></h1>
-        <p class="sub"></p>
+      <div class="hero"><h1><span class="l1"></span><span class="l2"></span></h1><p class="sub"></p></div>
+      <div class="hero-actions">
+        <div class="arena-picker" id="picker">
+          <button type="button" class="nav-arena" id="arenaBtn" aria-haspopup="menu" aria-expanded="false">
+            <span class="arena-label"></span>
+            <svg class="nav-arena-caret" viewBox="0 0 12 8" width="12" height="8" aria-hidden="true"><path d="M1 1.5 6 6.5 11 1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <ul class="arena-menu" id="arenaMenu" role="menu" hidden></ul>
+        </div>
+        <a class="hero-leaderboard" href="#" onclick="return false"><span class="lb-label"></span><span aria-hidden>↗</span></a>
       </div>
     </div>
   </div>
 
-  <!-- OLD (for contrast) -->
-  <div class="stage old" id="stageOld">
-    <div class="ground"></div>
-    <span class="tag old">原字号（对比）</span>
-    <div class="hero-copy" data-lang="zh">
-      <div class="hero" style="padding:8px 0">
-        <h1><span class="l1"></span><span class="l2"></span></h1>
-      </div>
-    </div>
-  </div>
-
-  <p class="note">
-    改动落在 <code>src/app/globals.css</code>：英文标题 <code>clamp(56,6.2vw,94)</code> → <code>clamp(42,4.6vw,66)</code>；中文 <code>clamp(58,6.8vw,105)</code> → <code>clamp(48,5.4vw,82)</code>；标题区加 <code>max-width:1120px</code> 与 <code>text-wrap:balance</code>。副标与配图未改。
-  </p>
+  <p class="note">改动：<code>layout.tsx</code> 顶部导航移除排行榜/盲测 · <code>story.tsx</code> 在 slogan 下加入 <code>.hero-actions</code>（盲测下拉 + 排行榜）· <code>globals.css</code> 回退头部居中并新增主按钮样式。盲测＝深色实心主按钮（下拉选实验），排行榜＝浅色次按钮。</p>
 </div>
 
 <script>
   const copy = {
-    zh:{ l1:"一句话试遍所有模型，", l2:"最小也最好玩的评测。",
+    zh:{ exp:"实验", lb:"排行榜", arena:"开始盲测", items:["鹈鹕骑自行车","鳄鱼骑摩托车","星舰引擎剖面"],
+         l1:"一句话试遍所有模型，", l2:"最小也最好玩的评测。",
          sub:"从一只骑车的鹈鹕，到一场驶向火星的旅行。同一个念头，不同的模型。你更喜欢哪一种？" },
-    en:{ l1:"One prompt, every model —", l2:"the benchmark you’ll enjoy.",
+    en:{ exp:"Experiments", lb:"Leaderboard", arena:"Enter Arena", items:["Pelican on a bicycle","Crocodile on a motorcycle","Inside a starship engine"],
+         l1:"One prompt, every model —", l2:"the benchmark you’ll enjoy.",
          sub:"From a cycling pelican to a journey bound for Mars. One idea. Different models. Which one speaks to you?" }
   };
-  function render(lang){
-    for(const st of [document.getElementById('stageNew'), document.getElementById('stageOld')]){
-      st.querySelector('.hero-copy').setAttribute('data-lang', lang);
-      st.querySelector('.l1').textContent = copy[lang].l1;
-      st.querySelector('.l2').textContent = copy[lang].l2;
-      const sub = st.querySelector('.sub'); if(sub) sub.textContent = copy[lang].sub;
-    }
-    document.getElementById('zh').setAttribute('aria-pressed', String(lang==='zh'));
-    document.getElementById('en').setAttribute('aria-pressed', String(lang==='en'));
+  let lang="zh", current=0, open=false;
+  const btn=document.getElementById('arenaBtn'), menu=document.getElementById('arenaMenu'), picker=document.getElementById('picker');
+  function renderMenu(){
+    menu.innerHTML="";
+    copy[lang].items.forEach((label,i)=>{
+      const li=document.createElement('li'); li.setAttribute('role','none');
+      const b=document.createElement('button'); b.type="button"; b.setAttribute('role','menuitem');
+      b.className="arena-menu-item"+(i===current?" current":"");
+      b.innerHTML='<span class="arena-menu-dot"></span><span class="arena-menu-label"></span>'+(i===current?'<span class="arena-menu-check">✓</span>':'');
+      b.querySelector('.arena-menu-label').textContent=label;
+      b.onclick=()=>{ current=i; setOpen(false); renderMenu(); };
+      li.appendChild(b); menu.appendChild(li);
+    });
+  }
+  function setOpen(v){ open=v; btn.setAttribute('aria-expanded',String(v)); menu.hidden=!v; }
+  btn.onclick=()=>setOpen(!open);
+  document.addEventListener('mousedown',e=>{ if(open && !picker.contains(e.target)) setOpen(false); });
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') setOpen(false); });
+  function render(l){
+    lang=l;
+    document.querySelector('.nav-exp').textContent=copy[l].exp;
+    document.querySelector('.arena-label').textContent=copy[l].arena;
+    document.querySelector('.lb-label').textContent=copy[l].lb;
+    const hc=document.getElementById('heroCopy'); hc.setAttribute('data-lang',l);
+    hc.querySelector('.l1').textContent=copy[l].l1;
+    hc.querySelector('.l2').textContent=copy[l].l2;
+    hc.querySelector('.sub').textContent=copy[l].sub;
+    document.getElementById('zh').setAttribute('aria-pressed',String(l==='zh'));
+    document.getElementById('en').setAttribute('aria-pressed',String(l==='en'));
+    document.querySelectorAll('.language-switch button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.l===l)));
+    renderMenu();
   }
   document.getElementById('zh').onclick=()=>render('zh');
   document.getElementById('en').onclick=()=>render('en');
+  document.querySelectorAll('.language-switch button').forEach(b=>b.onclick=()=>render(b.dataset.l));
   render('zh');
 </script>
