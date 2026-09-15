@@ -1,7 +1,9 @@
 import { getServerI18n, pageMetadata } from "@/i18n/server";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { localizeExperiment, getExperiment, getArtifacts } from "@/lib/catalog";
+import { getServerArtifacts } from "@/lib/server-artifacts";
+import { localizeExperiment, getExperiment } from "@/lib/catalog";
+import { javaOrigin } from "@/lib/java-arena";
 import { ArenaClient } from "@/components/arena-client";
 export const generateMetadata = pageMetadata("arena.pageTitle");
 export default async function ArenaPage({
@@ -14,8 +16,13 @@ export default async function ArenaPage({
     record = getExperiment(slug);
   if (!record) notFound();
   const e = localizeExperiment(record, t);
+  const artworks = await getServerArtifacts(slug);
+  const internal = !!javaOrigin();
   return (
-    <main id="main" className="page-shell arena-page">
+    <main
+      id="main"
+      className={`page-shell arena-page ${slug === "taobao" ? "taobao-arena" : ""}`}
+    >
       <div className="arena-heading">
         <div>
           <Link className="back-link" href={`/experiments/${slug}`}>
@@ -30,8 +37,19 @@ export default async function ArenaPage({
           {t("common.leaderboard")} ↗
         </Link>
       </div>
-      {getArtifacts(slug).length > 1 ? (
-        <ArenaClient slug={slug} />
+      {artworks.length > 1 ? (
+        <ArenaClient
+          slug={slug}
+          internalArtworks={
+            internal
+              ? artworks.map((a) => ({
+                  id: a.id,
+                  src: a.mediaUrl!,
+                  mediaType: a.mediaType || "image",
+                }))
+              : undefined
+          }
+        />
       ) : (
         <div className="empty-state">
           <h2>{t("arena.emptyTitle")}</h2>

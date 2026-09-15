@@ -1,0 +1,583 @@
+[
+  {
+    "experimentKey": "pelican",
+    "modelName": "qwen3.8-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/31905415bd72c8ebb52dff97181e0a79be9a966c-ffe5-4d6f-a9ef-f149d326f3fb",
+    "mediaType": "svg",
+    "sha256": "48bbb44fa48825714057afa28238036dc45a1024adcda578765fa8db0385822f"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "qwen3.8-max",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/c1f080b7524694adff06df26617e5bc48458f0e1-cf11-437e-b52e-59107b917db7",
+    "mediaType": "svg",
+    "sha256": "2a89a55cfbc662a5b3ae1fe7a0014170df0b1dda3e3ffee43d5531c4672736bc"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "qwen3.7-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/7c2658c7246dc8d1b4f9b6071e3f490c02781746-26f8-4223-9374-effee6c09d4d%24qwen3.7-flash-1.svg",
+    "mediaType": "svg",
+    "sha256": "528837fdc4ae3ecf5487724919da1958db2c34d115674f840f7a4cc76ba18157"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "qwen3.7-plus",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/6635a5e738ae4f889cb06c336199be427ea0586b-c6e3-49b0-9353-a9cf0c40a63b",
+    "mediaType": "svg",
+    "sha256": "c54eec798965d4f88e96b34abbba5e88bc4621e262e763f6e10a4424291de5b4"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "deepseek-v4-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/d1b5d694eb76a5c40606b006aa771c73c664d70a-6c9b-4934-9de2-567813dfc57d",
+    "mediaType": "svg",
+    "sha256": "aa2a3185702fd2b7ca7d9ac467f43dbf483e7739bb841237e7fe9f630c63550e"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "deepseek-v4-pro",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/d87cc02368d1664633ef806fc24093c17a0b5265-6389-46c8-aa86-d1896bf3e599",
+    "mediaType": "svg",
+    "sha256": "af41e2fca2dea8371fa8efb8a84875fbab1701ab8bb1c6f4e6a4af6d64610e75"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "kimi-2.5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/6088d9e8cd7979687814a8ff4a238576b82bb37c-6bda-4f6e-a9a0-913586ec9c9c",
+    "mediaType": "svg",
+    "sha256": "6708f88646607205891ab580459781b3ca274bd5d19720618047f507d1af3ba6"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "kimi-k2.7-code",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/06d5f8dded0c4d30b9f9b72f78ba54afc077f381-bbc5-4981-840a-72252db8eba9",
+    "mediaType": "svg",
+    "sha256": "f3d48088ae5ddf65fee666af60d7acca6dc06fef966557e2000f0468842a1a0c"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "DeepSeek-V3",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/e58195f2190bf102a52e68517f247e2ccc262eaa-45fe-456f-8855-e83b0e6215d4",
+    "mediaType": "svg",
+    "sha256": "f3d48088ae5ddf65fee666af60d7acca6dc06fef966557e2000f0468842a1a0c"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "deepseek-v3.1",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/3544712d83a24f0c5e7eed737f639bd1e616b52c-0e47-4067-95d5-8fc0df9133cb",
+    "mediaType": "svg",
+    "sha256": "61c881387e4f0675b26169b4ed608978fbf805c5f89be8dcc45a3c1dc0cfc33c"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "deepseek-v3.2",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/aa6bbe5947dd06057f12e537ebf188ad12fa3397-9b3b-4082-bd3a-defe74f30315",
+    "mediaType": "svg",
+    "sha256": "38fadfa6dd3d2848beb770164410734a04bab06de9c621f748c92ccd33303e57"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "kimi-k3",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/d635c7902ef90a2c19f455a1bb30c84a45d3478e-c14b-45c4-b8fe-927f1299ab7f",
+    "mediaType": "svg",
+    "sha256": "a5a6f4d99ef1e2c082942c2bb1d683dbbe781493cc5891d5bfa6c4e6c4a8e443"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "gpt-6-austra",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/0389efa95a2d81d0c8584e36261268f9d2d20dcc-7f83-4c5b-87a8-0cef87f0b716",
+    "mediaType": "svg",
+    "sha256": "21ee13919ae316e1b78fca1476ab0507b77b4d0aaba07906f75b39331108a0bf"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "gpt-5.6-sol",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-5.6-sol.svg",
+    "mediaType": "svg",
+    "sha256": "bcbfa6d43bcad9f9b8b389b3c78dd84c2744ab12cf2169c7579b4f584da1285f"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "gpt-5.6-terra",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-5.6-terra.svg",
+    "mediaType": "svg",
+    "sha256": "a08a80edf91326705f57f15432bab226686678dc644390bb594cc38208c18ce3"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "gpt-5.6-luna",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-5.6-luna.svg",
+    "mediaType": "svg",
+    "sha256": "7fff16174db99fb5d297f132abd3a9436908180b2ad2e594719427ad06a5483d"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "gpt-5.5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-5.5.svg",
+    "mediaType": "svg",
+    "sha256": "b15dda1b99cf21a6f001ee3cdea9697c21d78124ef59c177c533559c38595bc6"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "claude-sonnet-5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/claude-sonnet-5.svg",
+    "mediaType": "svg",
+    "sha256": "7f99b610a1e89d659ced65ba0296750b4e05429b4f971341bab0c5cdde8152cf"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "claude-opus-4.6",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/claude-opus-4.6.svg",
+    "mediaType": "svg",
+    "sha256": "86abadde89cc08f1c1d607e51cbe6c70675ebd9909be0ee4f2e839b3ac2f9a01"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "claude-opus-4.8",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/claude-opus-4.8.svg",
+    "mediaType": "svg",
+    "sha256": "7197231baf2cfd7905e09554dc99b56149e10001c719eea3b73a0179c9a29c13"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "claude-opus-4.7",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/claude-opus-4.7.svg",
+    "mediaType": "svg",
+    "sha256": "1a8f1472bff16cd5fe2445133b0baadb631b124aa123d4273b828824c8ca3f49"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "minimax-m3",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/minimax-m3.svg",
+    "mediaType": "svg",
+    "sha256": "8797da0e46f46b456e76e54ed1c85f3cbb48298318b750688cf6724e3d8b128c"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "gemini-3.7-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gemini-3.7-flash.svg",
+    "mediaType": "svg",
+    "sha256": "c5538ef1fc8e695d3e434b67b0ab81e3219c0797a986c8dc2742f87f6a0d0d9e"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "gemini-3.6-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gemini-3.6-flash.svg",
+    "mediaType": "svg",
+    "sha256": "aee5b0e77923d70607beaa84b27536823e2f4fb87609d6f2dfa26042e571fc75"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "grok-4.6",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/grok-4.6-2.svg",
+    "mediaType": "svg",
+    "sha256": "4f6a5587076a02e92c0a3dea0d73c72f9a4bddc9e685078b9779bcfd16b5b3e9"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "grok-4.5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/grok-4.5.svg",
+    "mediaType": "svg",
+    "sha256": "ccc9561a1f9f7081285628bfa4c9c8d777de77d899e05cfaa4eb30f0f782fc7d"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "grok-4.3",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/grok-4.3.svg",
+    "mediaType": "svg",
+    "sha256": "fd75a6bfad06c6c11c3f5b253bf271d58d61d191fd1df0d80e4f8fec2d0fcab7"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "gemini-3.5-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gemini-3.5-flash.svg",
+    "mediaType": "svg",
+    "sha256": "d7a7badf9bec24eeebeedc4b5864f06c3f988d19b87913827fa7cda35860b77c"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "gemini-3.8-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gemini-3.8-flash.svg",
+    "mediaType": "svg",
+    "sha256": "fd9ee27a08e0d16d32d74e36def87471998fcc5fc452fa7e8c905dfa3d66c9ea"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "claude-opus-5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/claude-opus-5-pelican-bike.svg",
+    "mediaType": "svg",
+    "sha256": "91607fde8e0deb3c092ad68f41320a4a9d4d14d91949ba6ac174bd2745efb5f7"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "deepseek-v4.1-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/deepseek-v4.1-flash-pelican-bike.svg",
+    "mediaType": "svg",
+    "sha256": "fe888ea9dc0d5598260c4388b76ee8e4078915dd0ea21deb8532e4e597a14445"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "glm-5.3",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/glm-5.3-pelican-bike.svg",
+    "mediaType": "svg",
+    "sha256": "4c4c257c19be54e4cf1c20e2ea8e6ae43beba25545bdef35eaf30bf8595a604d"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "glm-5.3-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/glm-5.3-flash-pelican-bike.svg",
+    "mediaType": "svg",
+    "sha256": "9473723f293d231b1de08169a94ef864412deec660e25ecf6c7e6049a3bf7e35"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "deepseek-v4.1-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/deepseek-v4.1-flash-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "f072e298faff3cc2d5c0957e3bf1d90d8ff60bb64bd62ac74fbfb5cd8833b9e5"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "claude-sonnet-5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/claude-sonnet-5-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "a2883b5f9ff6094be724f0fef2e721d6c9eec0b0d89a4c5847948d8c25a95268"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "claude-opus-4.8",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/claude-opus-4.8-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "11485e924f05f22189ca0d325da349d9442279cff7cf0ba2d1eb18e16551a33e"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "claude-opus-4.7",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/claude-opus-4.7-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "b628e06de4fae1f1b02a30f79f360390d4d8169d9722415d7a0580601a961e18"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "gpt-5.6-sol",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-5.6-sol-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "d5429226cac41d4de2ff1aa67d32bb3144dd33cd578e497c2415e87ce04a2594"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "qwen-3.7-plus",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/qwen-3.7-plus-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "3832a1a3bee0bfc934929270abf531414c6df317afbdf4e34d638609276e88b4"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "claude-opus-5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/claude-opus-5-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "51df9af4b72d0be62f5f82ff199b2c3cab84aa7e139141e7ebe66079b5e2f23f"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "claude-opus-4.6",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/claude-opus-4.6-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "4f8611f6f742b25e7f3ed50fa5694bc7ae35b76d3ed94f9d57fa2d6a5f58fb7f"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "gemini-3.8-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gemini-3.8-flash-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "63ee9cbc71585708d707b423feae3e77397f6a58166afaf4a11d893146d24c8d"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "grok-4.5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/grok-4.5-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "94f4756d09d07c708d746ed7ce6ec4d9f6c4376026bbb44a5ce9e5f0b3fbffb6"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "grok-4.6",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/grok-4.6-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "30888cf9646477569c0a497e286647b41de266d71b8ba7b63f371d86fe16a77a"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "grok-4.3",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/grok-4.3-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "78cfc6b7dd9fa9b1b1d63c1d2792c99c3e4c6d89b331b8573b7d71dda719ffda"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "gemini-3.7-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gemini-3.7-flash-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "309f76784c90e6fd0f4f9e0df6b2d642c146d16a486f6567c4a76d6f4308534b"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "gemini-3.6-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gemini-3.6-flash-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "7bf9479dc080fc693057f68df049e11ab8724ddc58584f4d9120d18a2dfd30d0"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "gemini-3.5-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gemini-3.5-flash-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "c3d26d0f65a851c1074911dc68c1cde4869a400edca3f9fdc3fd4388c91f23cf"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "gpt-6-astra",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-6-astra-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "27dff7af0ab5d97a642512802f2ce6580316bff6a2b6fb2bdefebcd78a2b8a88"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "gpt-5.6-terra",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-5.6-terra-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "0c265af4b11bc894d5e8c1f5c519bd91b37ffe77e9159cd4c3413e244946e4b4"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "gpt-5.6-luna",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-5.6-luna-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "da937e847abb461765b0bf47d3182e8a953b9226cc03fa78f12e60d0b1c8a882"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "gpt-5.5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-5.5-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "ee9f5c7624c2dc69af0417b401ec199a91dfb5a360d2727934c03513f5f8ee5f"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "deepseek-v4-pro",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/deepseek-v4-pro-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "c9bdd708e903b38392732fcbb7fbbbe109f02e510eecf8ca7b45a1e5ab28195d"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "kimi-k2.7-code",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/kimi-k2.7-code-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "646cb1d01a80411c172c14d1668aa1f6f603181613dc96cdbfacbd721a1fb520"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "kimi-k3",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/kimi-k3-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "a9008102d655a8f7d51b618e1d6b0913c732aa0f17f778b32dcdf956b0861c3f"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "glm-5.3",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/glm-5.3-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "e12925452c40b384ff6c8d0fa494996bf11a0fe34544274d05950b72cb32dc72"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "minimax-m3",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/minimax-m3-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "cdf8e2fc53fbfcf4dd7b63c89227ca9354a9f64d1c77f88fb7824b957d03d08e"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "qwen-3.8-max",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/qwen-3.8-max-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "1a0372e840cbaef5a5327635266c75056f3bfbcfc212aa8eaa6fdd0a3a9c212c"
+  },
+  {
+    "experimentKey": "crocodile",
+    "modelName": "glm-5.3-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/glm-5.3-flash-crocodile-motorcycle.svg",
+    "mediaType": "svg",
+    "sha256": "851cf94b5712efcde43578e50b08af5d911f4c0c8e7085d5e6cfe00432df059c"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "qwen3.8-max",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/qwen3.8-max-taobao.html",
+    "mediaType": "html",
+    "sha256": "5c2be036a9fcb104a88dae426e4db99a2e41eb60d2132dd80fb7d331151293bf"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "qwen3.8-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/qwen3.8-flash-taobao.html",
+    "mediaType": "html",
+    "sha256": "d0978acc01e7ce65d25c449fd12c44e41e6456b18aede2b8bd1681dc7f73b244"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "qwen3.8-27b",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/qwen3.8-27b-taobao.html",
+    "mediaType": "html",
+    "sha256": "9bfb60c841c9e8ccb274c3d51b285c047fc386a3825b854b9b513211609c86f0"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "qwen3.7-plus",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/qwen3.7-plus-taobao.html",
+    "mediaType": "html",
+    "sha256": "3131f294047650fabc07f40948caeb087b3e329d5a8d1b9dbbe87336a5278229"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "qwen3.6-27b",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/qwen3.6-27b-taobao.html",
+    "mediaType": "html",
+    "sha256": "7ebb2d0fb2ddda0d3abf0a80acf8a7821e277a6453a143dc919e6f5180f591b0"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "gemini-3.7-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/modelrouter-gemini-3.7-flash-taobao.html",
+    "mediaType": "html",
+    "sha256": "a6b0e8db3ec2f4c197e1b580640414447e61fc0e576fa924acc89e5257ace7fa"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "gemini-3.6-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/modelrouter-gemini-3.6-flash-taobao.html",
+    "mediaType": "html",
+    "sha256": "ef9c7bdd77b5f08de9499d033c43cce56f4e3cf381b83d6c97b406f1d11829ba"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "gemini-3.5-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/modelrouter-gemini-3.5-flash-taobao.html",
+    "mediaType": "html",
+    "sha256": "4db5a2155b63c7b7edcd750dd3e966378dcfdee8250cb4d96d2580d967f8b3c8"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "gemini-3.1-pro-preview",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/modelrouter-gemini-3.1-pro-preview-taobao.html",
+    "mediaType": "html",
+    "sha256": "e5598850ff4351be4089fa2a03e529b2cc0d5b400e3bd549d18d6cab1b9e7a71"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "claude-sonnet-5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/modelrouter-claude-sonnet-5-taobao.html",
+    "mediaType": "html",
+    "sha256": "50f9e51af15173f30920732b755fba435c7861362d9ee4a5b340fca6020a5acd"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "claude-opus-4-8",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/modelrouter-claude-opus-4-8-taobao.html",
+    "mediaType": "html",
+    "sha256": "3e102c8b241b87e9e2fd4bc9fee5cf62278f1fcf15d2592e29f7071e0cee6096"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "claude-opus-4-7",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/modelrouter-claude-opus-4-7-taobao.html",
+    "mediaType": "html",
+    "sha256": "c423739d7584087e99e384bca69efe75c085ba628f9fa1484199210c5d0221e3"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "kimi-k2.6",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/kimi-k2.6-taobao.html",
+    "mediaType": "html",
+    "sha256": "a630dda8be18ac8c072c5bb3ab104f1f60bb0644cb017a5cd655aa8695594ea4"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "kimi-k2.5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/kimi-k2.5-taobao.html",
+    "mediaType": "html",
+    "sha256": "eec83f3cde5d1c39b6e1543600303a2a9fd858d0dc653c530830dc7a7087240e"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "grok-4.5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/grok-4.5-taobao.html",
+    "mediaType": "html",
+    "sha256": "2ca66cf0e9cc33fd812f2b2133f837db805a8f6a326dcef76439383d1544721c"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "gpt-5.6-terra",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-5.6-terra-taobao.html",
+    "mediaType": "html",
+    "sha256": "80c8b45dacbc7b3ba507ca54ae19723a4ee4f3f1153825391f9b91cb59e8e2c5"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "gpt-5.6-sol",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-5.6-sol-taobao.html",
+    "mediaType": "html",
+    "sha256": "cff24598bcc06969acb8c8e6c477db3da47669ad19e632d62ec32ce91ec6ae16"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "gpt-5.6-luna",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-5.6-luna-taobao.html",
+    "mediaType": "html",
+    "sha256": "bba730455861a53492d39ca6e70c242a0f9c449de0f36d2f1c0ac5cf5544b3cb"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "gpt-5.5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-5.5-taobao.html",
+    "mediaType": "html",
+    "sha256": "afd1e29adaf26ca9c453bcaf863e928322eff79a2c9d6504b4eea92c69b229c7"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "gpt-5.4",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-5.4-taobao.html",
+    "mediaType": "html",
+    "sha256": "0d934d7810e947b0ec284607d9f6426ae9c7396c9fc8a487ad881e374b83a7ad"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "deepseek-v4.1-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/dashscope-deepseek-v4.1-flash-taobao.html",
+    "mediaType": "html",
+    "sha256": "f90ec7a7710fdd2222b3e57d2533eb11c720665a601762930fb009e0d3681248"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "deepseek-v4-pro",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/dashscope-deepseek-v4-pro-taobao.html",
+    "mediaType": "html",
+    "sha256": "c49606df1a66010a26d8cc1c1f0ffb48df4955eca952aef6d348f7eccfd8b6ec"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "claude-opus-4-6",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/claude-opus-4-6-modelrouter-taobao.html",
+    "mediaType": "html",
+    "sha256": "eb2b48426e2140da3a379c1c5881ee5e64f5a471df143e76e6966074563ed5fb"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "gpt-6-astra",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-6-astra-taobao.html",
+    "mediaType": "html",
+    "sha256": "127cb11ea25a5455f447dda73e9a76062dda4041ad641da45cda25766b7c4bb8"
+  }
+]

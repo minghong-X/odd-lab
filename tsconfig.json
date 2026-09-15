@@ -29,7 +29,11 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     ".next-test/types/**/*.ts",
-    ".next-test/dev/types/**/*.ts"
+    ".next-test/dev/types/**/*.ts",
+    ".next-o2-test/types/**/*.ts",
+    ".next-o2-test/dev/types/**/*.ts",
+    ".next-internal-test/types/**/*.ts",
+    ".next-internal-test/dev/types/**/*.ts"
   ],
   "exclude": ["node_modules"]
 }

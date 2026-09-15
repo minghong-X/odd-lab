@@ -4,15 +4,15 @@ test("language persists across reloads and translates all page families", async 
 }, info) => {
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("lang", "en");
-  await expect(
-    page.getByRole("heading", { name: /Let imagination/ }),
-  ).toBeVisible();
+  await expect(page.getByRole("heading", { name: /One prompt/ })).toBeVisible();
   await page.waitForTimeout(2100);
   await page.screenshot({
     path: `test-results/hero-en-${info.project.name}.png`,
   });
   await page.getByRole("button", { name: "中文", exact: true }).click();
-  await expect(page.getByRole("heading", { name: /让想象力/ })).toBeVisible();
+  await expect(
+    page.getByRole("heading", { name: /一句话试遍所有模型/ }),
+  ).toBeVisible();
   await page.reload();
   await expect(page.locator("html")).toHaveAttribute("lang", "zh-CN");
   await expect(page).toHaveTitle(/让想象力/);
@@ -21,17 +21,21 @@ test("language persists across reloads and translates all page families", async 
     "/experiments",
     "/experiments/pelican",
     "/experiments/crocodile",
-    "/experiments/starship",
+    "/experiments/taobao",
     "/leaderboard/pelican",
     "/arena/crocodile",
     "/does-not-exist",
   ]) {
     await page.goto(route);
     await expect(page.locator("html")).toHaveAttribute("lang", "en");
-    // Artwork/model names remain source data; interface copy must come from English resources.
-    expect(await page.locator("main").innerText()).not.toMatch(
-      /[\u4e00-\u9fff]/,
-    );
+    // The Taobao illustration intentionally contains its Chinese brand mark.
+    // Check interface copy without treating text drawn inside SVG art as UI copy.
+    const interfaceText = await page.locator("main").evaluate((main) => {
+      const copy = main.cloneNode(true) as HTMLElement;
+      copy.querySelectorAll("svg").forEach((art) => art.remove());
+      return copy.textContent || "";
+    });
+    expect(interfaceText).not.toMatch(/[\u4e00-\u9fff]/);
     expect(
       await page.evaluate(
         () => document.documentElement.scrollWidth <= innerWidth,
@@ -39,7 +43,7 @@ test("language persists across reloads and translates all page families", async 
     ).toBe(true);
   }
   await page.goto("/leaderboard/pelican");
-  await expect(page.locator("tbody tr")).toHaveCount(30);
+  await expect(page.locator("tbody tr")).toHaveCount(33);
   await page.screenshot({
     path: `test-results/rank-en-${info.project.name}.png`,
     fullPage: true,

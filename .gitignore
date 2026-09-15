@@ -18,3 +18,8 @@ test-results/
 *.tsbuildinfo
 .test-db/
 .next-test/
+.o2-tools/
+build/
+.next-o2-test/
+
+.next-internal-test/

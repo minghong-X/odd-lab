@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>淘宝网 - 淘！我喜欢</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;min-width:1200px;background:#fff;color:#222;font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;font-size:12px}
+a{color:inherit;text-decoration:none}
+.topbar{height:31px;border-top:1px solid #ddd;border-bottom:1px solid #eee;background:#fafafa;color:#555}
+.wrap{width:1312px;margin:0 auto}
+.topbar .wrap{height:100%;display:flex;align-items:center;justify-content:space-between}
+.topbar a{margin:0 7px}
+.topbar .orange{color:#ff5000}
+.purchase{height:49px;background:linear-gradient(90deg,#a95f00,#c46f00 45%,#ad6200);color:#fff;overflow:hidden}
+.purchase .wrap{height:49px;display:flex;align-items:center;justify-content:center;position:relative}
+.purchase-art{width:116px;height:46px;position:relative;margin-right:16px}
+.purchase-art .box{position:absolute;left:28px;top:8px;width:44px;height:31px;background:#ed9b3e;transform:rotate(18deg);border-radius:3px;box-shadow:inset -7px -6px rgba(145,69,0,.18)}
+.purchase-art .box:before{content:"";position:absolute;left:8px;top:-9px;border-left:14px solid transparent;border-right:14px solid transparent;border-bottom:12px solid #ffc16c}
+.purchase-art .cup{position:absolute;left:6px;top:16px;width:27px;height:25px;border:5px solid #ffe2a6;border-radius:50%;transform:rotate(-20deg)}
+.purchase-art .bottle{position:absolute;right:14px;top:10px;width:18px;height:31px;background:#27b9da;border-radius:5px;transform:rotate(22deg)}
+.purchase strong{font-size:21px;letter-spacing:1px}
+.purchase button{border:0;background:#fff;color:#8f5200;border-radius:4px;padding:7px 15px;margin-left:28px;font-weight:bold}
+.purchase-close{position:absolute;right:4px;top:8px;width:21px;height:21px;border:1px solid rgba(255,255,255,.25);text-align:center;line-height:19px;border-radius:3px;color:#e9c59c}
+
+.head{height:112px;background:#fff}
+.head-main{height:75px;display:flex;align-items:center}
+.logo{width:204px;color:#ff5000;padding-left:62px}
+.logo-cn{font-size:35px;font-family:STKaiti,KaiTi,serif;font-weight:bold;line-height:32px;letter-spacing:-3px}
+.logo-en{font-size:14px;margin-left:3px}
+.search-area{width:786px}
+.search-box{height:37px;border:2px solid #ff5000;border-radius:11px;display:flex;overflow:hidden;background:#fff}
+.search-type{width:76px;padding:10px 12px;border-right:1px solid #eee}
+.search-input{flex:1;padding:9px 13px;color:#333}
+.search-btn{width:63px;border:0;background:#ff5000;color:white;font-size:14px;font-weight:bold}
+.similar{width:83px;margin-left:10px;height:35px;line-height:35px;text-align:center;color:#f45124;background:#fff7f3;border-radius:8px;font-weight:bold}
+.hotwords{height:21px;line-height:21px;color:#777;padding-left:14px;white-space:nowrap;overflow:hidden}
+.hotwords b{color:#ff3b30;font-weight:normal}
+.packet{margin-left:auto;width:198px;display:flex;justify-content:center;align-items:center;gap:12px;font-size:13px;font-weight:bold}
+.packet small{display:block;color:#ff4b19;text-align:center;margin-top:7px}
+.packet-mascot{width:54px;height:42px;position:relative}
+.packet-mascot:before{content:"";position:absolute;left:11px;top:10px;width:33px;height:25px;background:#ffb228;border-radius:15px 15px 8px 8px;box-shadow:-8px 13px 0 -3px #171717,8px 13px 0 -3px #171717}
+.packet-mascot:after{content:"¥";position:absolute;left:19px;top:-1px;width:22px;height:19px;background:#f34318;color:#fff;text-align:center;line-height:19px;border-radius:4px;font-weight:bold}
+.nav{height:37px;display:flex;align-items:center;justify-content:center;gap:40px;font-size:14px;font-weight:bold}
+.nav i{font-style:normal;display:inline-block;margin-right:7px;color:#ef174a}
+.nav a:nth-child(2) i{color:#f33}
+.nav a:nth-child(3) i{color:#ff7300}
+.nav a:nth-child(4) i{color:#e62964}
+.nav a:nth-child(5) i{color:#35b854}
+.nav a:nth-child(6) i{color:#27aa6d}
+
+.main{display:grid;grid-template-columns:211px 1fr 210px;grid-template-rows:130px 130px;gap:12px;background:#fff}
+.category{grid-row:1/3;background:#f7f7f7;border-radius:12px;padding:12px 14px}
+.category-title{height:26px;color:#f05b36;font-size:13px}
+.category ul{margin:0;padding:0;list-style:none}
+.category li{height:27px;line-height:27px;font-size:13px;white-space:nowrap}
+.category .ico{display:inline-block;width:21px;font-size:16px;color:#555}
+.hero-row{display:grid;grid-template-columns:426px 426px;gap:12px}
+.hero{border-radius:12px;overflow:hidden;position:relative;background:#f1f2f4;height:130px}
+.hero h2{position:absolute;left:14px;top:23px;margin:0;font-size:17px;line-height:24px;z-index:2}
+.hero .tag{position:absolute;left:14px;top:10px;background:#f13f5d;color:#fff;padding:3px 8px;border-radius:3px;font-size:10px;z-index:2}
+.apple-art{position:absolute;right:0;top:0;width:260px;height:130px;background:linear-gradient(145deg,#e8e9eb,#f6f6f7)}
+.phone{position:absolute;border-radius:12px;box-shadow:0 6px 9px rgba(0,0,0,.25)}
+.phone.one{width:62px;height:110px;background:#c9bda4;right:145px;top:-36px;transform:rotate(-43deg);border:4px solid #222}
+.phone.two{width:74px;height:112px;background:linear-gradient(145deg,#68283b,#9e3d50);right:43px;top:31px;transform:rotate(-55deg)}
+.phone.two:after{content:"● ●\A ●";white-space:pre;position:absolute;top:11px;left:10px;color:#252027;font-size:14px;line-height:12px}
+.earbuds{position:absolute;left:52px;top:62px;width:58px;height:42px;background:white;border-radius:20px;transform:rotate(-13deg);box-shadow:0 5px 9px #bbb}
+.earbuds:before,.earbuds:after{content:"";position:absolute;width:12px;height:27px;background:#eee;border-radius:10px;top:-13px}
+.earbuds:before{left:12px;transform:rotate(-25deg)}
+.earbuds:after{right:12px;transform:rotate(25deg)}
+.watch{position:absolute;left:123px;top:94px;width:43px;height:35px;border:8px solid #be1b23;border-radius:10px;background:#222;transform:rotate(26deg)}
+.appliance{padding:12px}
+.appliance-title{font-weight:bold;margin-bottom:7px}
+.appliance-title em{font-style:normal;color:white;background:#f33;padding:2px 4px;margin-left:8px;font-size:9px}
+.appliance-products{display:flex;height:93px;justify-content:space-around;align-items:end}
+.mini-product{text-align:center;width:90px;font-size:11px}
+.mini-product .draw{height:57px;position:relative}
+.price-tag{display:inline-block;color:#fff;background:#ff551b;border-radius:3px;padding:2px 5px;font-weight:bold}
+.sofa{position:absolute;left:4px;bottom:8px;width:71px;height:25px;background:#cfc4b4;border-radius:8px 8px 3px 3px;box-shadow:0 6px 0 #9d8d78}
+.sofa:before,.sofa:after{content:"";position:absolute;top:-11px;width:34px;height:21px;background:#d9d0c3;border-radius:7px}
+.sofa:before{left:2px}.sofa:after{right:2px}
+.shelf{position:absolute;left:20px;bottom:2px;width:48px;height:53px;border:4px solid #b89168;border-top-width:7px}
+.shelf:before,.shelf:after{content:"";position:absolute;left:-7px;width:55px;height:4px;background:#b89168}
+.shelf:before{top:14px}.shelf:after{top:31px}
+.aircon{position:absolute;left:10px;bottom:17px;width:70px;height:22px;background:linear-gradient(#fff,#d3d3d3);border-radius:3px;box-shadow:0 4px 5px #bbb}
+.device{position:absolute;left:30px;bottom:5px;width:33px;height:58px;border-radius:17px 17px 7px 7px;background:linear-gradient(90deg,#e6e6ed,#aca8c0,#f5f5fa)}
+.device:before{content:"";position:absolute;left:9px;top:8px;width:14px;height:22px;border:2px solid #6a647e;border-radius:8px}
+
+.account{grid-column:3;grid-row:1/3;background:#f7f7f7;border-radius:12px;padding:12px;text-align:center}
+.greeting{display:flex;align-items:center;text-align:left;gap:9px}
+.avatar{width:37px;height:37px;border-radius:50%;background:#ffad35;position:relative}
+.avatar:before{content:"";position:absolute;width:20px;height:14px;left:8px;top:11px;border-radius:50%;background:#f47712}
+.avatar:after{content:"●  ●";position:absolute;left:7px;top:7px;font-size:7px}
+.greeting b{font-size:14px}
+.greeting small{display:block;color:#666;margin-top:5px}
+.login-tip{font-weight:bold;font-size:13px;margin:10px 0 5px}
+.subtip{font-size:10px;color:#999}
+.login{width:100%;height:39px;border:0;border-radius:11px;background:#ff5000;color:#fff;font-size:14px;font-weight:bold;margin:8px 0}
+.account-icons{display:flex;justify-content:space-around;margin:3px 0 12px}
+.account-icons span{font-size:18px;display:block;height:24px}
+.account-icons small{font-size:10px}
+.coin{border-top:1px solid #eee;padding-top:10px;text-align:left;position:relative}
+.coin b{display:block;font-size:13px}
+.coin p{margin:4px 0;color:#777}
+.coin button{border:0;background:#ff5b22;color:#fff;border-radius:4px;padding:4px 8px}
+.coin-art{position:absolute;right:5px;top:8px;width:42px;height:42px;border-radius:50%;background:#ffb834;color:#fff;font-size:25px;text-align:center;line-height:42px;font-weight:bold;box-shadow:inset 0 0 0 6px #ffd27a}
+
+.sub-row{display:grid;grid-template-columns:207px 207px 207px 207px;gap:12px}
+.channel{height:130px;border-radius:12px;background:#f7f7f7;padding:12px;position:relative;overflow:hidden}
+.channel-head{font-weight:bold;margin-bottom:9px}
+.channel-head i{font-style:normal;background:#f33;color:white;border-radius:3px;padding:1px 3px;margin-left:4px;font-size:9px}
+.channel-items{display:flex;gap:8px}
+.channel-item{width:86px;text-align:center}
+.channel-picture{height:67px;border-radius:7px;background:#e1ded8;position:relative;overflow:hidden}
+.camera{position:absolute;left:17px;top:17px;width:51px;height:30px;background:#a4a4a4;border:4px solid #d3d3d3}
+.camera:after{content:"";position:absolute;width:17px;height:17px;border:4px solid #444;border-radius:50%;left:14px;top:3px}
+.bottle-black{position:absolute;left:31px;top:8px;width:29px;height:48px;background:#181818;border-radius:4px;color:#b99c70;padding-top:14px}
+.live-one{background:linear-gradient(145deg,#ecd3c9,#94545f)}
+.live-one:before{content:"";position:absolute;left:27px;top:6px;width:33px;height:33px;border-radius:50%;background:#f1c2a8;box-shadow:0 30px 0 8px #d98897}
+.live-two{background:linear-gradient(145deg,#d4d4dd,#686e84)}
+.live-two:before{content:"";position:absolute;left:28px;top:7px;width:32px;height:34px;border-radius:50%;background:#e1b498;box-shadow:0 31px 0 9px #222c56}
+.stove{position:absolute;left:11px;top:17px;width:70px;height:36px;background:#aaa;border:4px solid #ddd}
+.stove:before{content:"◉ ◉";position:absolute;right:4px;top:7px;color:#333}
+.oven{position:absolute;left:19px;top:6px;width:57px;height:56px;background:#171717;border:4px solid #aaa}
+.oven:before{content:"● ● ●";color:#ddd;position:absolute;top:3px;left:5px}
+.oven:after{content:"";position:absolute;left:6px;bottom:6px;width:37px;height:25px;border:2px solid #777}
+.shoe{position:absolute;left:10px;top:27px;width:69px;height:27px;background:white;border-radius:40% 70% 9px 10px;transform:rotate(8deg);box-shadow:0 4px 4px #bbb}
+.shoe:before{content:"";position:absolute;left:25px;top:-20px;width:30px;height:27px;background:#f1f1f1;border-radius:5px 20px 2px 3px}
+.bottom-price{margin-top:4px}
+
+.guess-tabs{height:51px;display:flex;align-items:center;gap:31px;font-size:13px}
+.guess-tabs a{padding:9px 7px;border-radius:8px}
+.guess-tabs a:first-child{background:#fff3ef;color:#ff5000;font-weight:bold}
+.guess-tabs a:first-child:before{content:"●";margin-right:7px;color:#ff681e}
+.refresh{margin-left:auto;border:1px solid #eee;border-radius:8px;width:28px;height:28px;text-align:center;line-height:26px;font-size:18px}
+
+.goods{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.good{min-width:0}
+.pic{height:208px;border-radius:10px;overflow:hidden;position:relative;background:#eee}
+.good-title{height:47px;padding:7px 2px 0;font-size:12px;line-height:20px;overflow:hidden}
+.good-title b{color:#ff321d;margin-right:4px}
+.good-price{color:#ff4b19;font-size:16px;padding-top:7px}
+.good-price small{font-size:11px}
+.pic svg{display:block;width:100%;height:100%}
+
+.salt{background:linear-gradient(150deg,#78b5ca,#e5eef4 45%,#bdcad9)}
+.salt .headline,.wood .headline,.hair .headline{position:absolute;top:0;left:0;width:100%;height:31px;text-align:center;color:white;font-size:23px;font-weight:bold;line-height:31px;background:#d63727}
+.saltbag{position:absolute;bottom:10px;width:87px;height:137px;background:linear-gradient(120deg,#f6f6ed,#c7d5eb 47%,#7687bb);clip-path:polygon(10% 0,90% 0,100% 100%,0 100%);box-shadow:0 4px 8px #60758a}
+.saltbag.one{left:20px;transform:rotate(-6deg)}.saltbag.two{right:17px;transform:rotate(5deg)}
+.saltbag:before{content:"盐当家";position:absolute;left:16px;top:49px;background:#fff;border-radius:50%;width:59px;height:48px;line-height:48px;text-align:center;font-size:19px;font-weight:bold;color:#222}
+.salt-foot{position:absolute;bottom:0;background:#d73322;color:#fff;width:100%;font-size:20px;text-align:center;font-weight:bold;padding:5px 0}
+
+.coin-card{background:radial-gradient(circle at 40% 45%,#551184,#170534 65%,#030321)}
+.coin-card:before{content:"24小时自动充值";position:absolute;top:14px;left:56px;color:#ffca54;font-size:12px}
+.coin-card .big{position:absolute;top:46px;width:100%;text-align:center;color:#ff8149;font-size:42px;font-weight:bold;line-height:52px}
+.coin-card .big strong{font-size:59px}
+.coin-card .ribbon{position:absolute;right:-24px;top:10px;width:102px;background:#e528d3;color:#ffe85a;text-align:center;transform:rotate(42deg);padding:5px}
+.coin-card .note{position:absolute;bottom:10px;left:28px;color:#ffe3ff;font-size:14px;font-weight:bold}
+
+.keyring{background:linear-gradient(160deg,#32d9ed 0 23%,#fff 23% 78%,#27c7ee 78%)}
+.keyring:before{content:"热门 IP 软胶挂件";position:absolute;top:10px;left:12px;color:white;font-weight:bold}
+.char{position:absolute;width:43px;height:55px}
+.char:before{content:"";position:absolute;left:8px;top:12px;width:29px;height:30px;border-radius:50% 50% 45% 45%;background:var(--c);box-shadow:0 22px 0 -7px var(--c)}
+.char:after{content:"•‿•";position:absolute;top:20px;left:9px;font-size:10px;color:#222}
+.c1{left:24px;top:49px;--c:#4a8bd1}.c2{left:82px;top:45px;--c:#efa4a8}.c3{left:143px;top:51px;--c:#9ccf89}
+.c4{left:25px;top:112px;--c:#4169a5}.c5{left:82px;top:110px;--c:#ea4c73}.c6{left:143px;top:112px;--c:#f0cf56}
+.ring{position:absolute;width:17px;height:24px;border:2px solid #b79b58;border-radius:50%;top:-3px;left:14px}
+
+.cleaner{background:linear-gradient(135deg,#ffd9df,#fff1f3)}
+.cleaner .bigword{position:absolute;left:8px;top:7px;color:#dc3b54;font-size:25px;font-weight:bold}
+.cleaner .points{position:absolute;left:7px;top:43px;color:#d33;line-height:22px;font-weight:bold}
+.cleaner .bottle{position:absolute;bottom:7px;width:59px;height:135px;border-radius:15px 15px 9px 9px;background:linear-gradient(90deg,#f5a8b5,#ffe0e1,#eca0b0);border:2px solid rgba(255,255,255,.7)}
+.cleaner .b1{right:58px}.cleaner .b2{right:7px;height:151px}
+.cleaner .bottle:before{content:"清洁消毒";position:absolute;left:8px;top:48px;width:40px;height:51px;background:#fff;color:#36904f;text-align:center;padding-top:12px;border-radius:4px}
+.cleaner .bottle:after{content:"";position:absolute;top:-17px;left:15px;width:29px;height:20px;background:#fff;border-radius:3px}
+
+.wood{background:repeating-linear-gradient(90deg,#f2d8ca 0 4px,#f8e7dc 4px 8px)}
+.wood .headline{background:transparent;color:#ef701c;font-size:25px}
+.wood .sub{position:absolute;top:37px;width:100%;text-align:center;color:#e78336}
+.tissuebox{position:absolute;left:23px;bottom:22px;width:164px;height:90px;background:#fbfaf0;transform:skewY(10deg) rotate(-4deg);box-shadow:5px 7px 8px #c6a998;border:1px solid #ddd}
+.tissuebox:before{content:"原生木浆  柔韧亲肤";position:absolute;left:11px;top:29px;font-size:14px;color:#896c59}
+.tissue{position:absolute;left:82px;bottom:94px;width:69px;height:36px;background:white;border-radius:70% 20% 0 0;transform:rotate(8deg)}
+
+.hair{background:linear-gradient(100deg,#f1d0bc,#fff 48%,#e8d3c7)}
+.hair .headline{background:transparent;color:#111;text-align:right;padding-right:8px;font-size:24px}
+.hair .sub{position:absolute;right:8px;top:36px;background:#f4c36e;padding:3px 8px;border-radius:8px;font-weight:bold}
+.woman{position:absolute;left:11px;bottom:0;width:95px;height:170px}
+.woman:before{content:"";position:absolute;left:28px;top:22px;width:51px;height:61px;background:#f1bd9c;border-radius:48% 48% 42% 42%;box-shadow:-14px -6px 0 6px #5a301c,12px -4px 0 5px #6a351c,-19px 28px 0 1px #67351e,18px 29px 0 1px #67351e}
+.woman:after{content:"";position:absolute;left:12px;bottom:0;border-left:35px solid transparent;border-right:35px solid transparent;border-bottom:93px solid #18233d;width:25px}
+.hairtie{position:absolute;right:23px;width:72px;height:24px;border:11px solid #301b11;border-radius:50%;transform:rotate(-9deg)}
+.h1{top:69px}.h2{top:101px}.h3{top:134px}
+.hair .seal{position:absolute;bottom:7px;right:5px;background:#f43a1e;color:white;padding:3px 5px}
+
+.gift{background:#fff}
+.gift .brand{height:39px;color:#202d4a;font-size:11px;font-weight:bold;padding:10px}
+.gift .brand:before{content:"◉";color:#2171ca;font-size:18px;margin-right:5px}
+.giftcard{position:absolute;left:22px;top:48px;width:166px;height:105px;background:linear-gradient(165deg,#fff 58%,#0870dd 59%);border:1px solid #ddd;box-shadow:0 3px 7px #bbb;padding:13px;color:#173a75;font-weight:bold}
+.giftcard:before{content:"OFFGAMERS GIFT CARD";display:block;margin-bottom:21px}
+.giftcard:after{content:"30 CNY";position:absolute;right:10px;top:10px;background:#1765c8;color:#fff;padding:8px;font-size:18px}
+.gift .bluebar{position:absolute;bottom:0;width:100%;height:36px;background:#1472d3}
+
+.book{background:#fbf1d9;border:4px solid #ec5d25}
+.book .labels{position:absolute;left:8px;top:9px;color:#d94122;font-size:17px;font-weight:bold}
+.book .labels span{background:#fff;border:2px solid #f1663f;margin-right:4px;padding:2px}
+.book .paper{position:absolute;left:14px;top:43px;width:114px;height:145px;background:#fff;border:1px solid #bbb;transform:rotate(-2deg);padding:8px;color:#222}
+.book .paper b{font-size:14px;color:#b73824}
+.book .side{position:absolute;right:7px;top:49px;width:62px}
+.book .side i{display:block;font-style:normal;background:#ef5e26;color:#fff;border-radius:12px;padding:4px;margin-bottom:6px;text-align:center}
+
+.tissue-product{background:linear-gradient(145deg,#f4ede3,#d9c9b9)}
+.tissue-product .logo2{position:absolute;left:10px;top:8px;font-size:24px;font-weight:bold}
+.tissuepack{position:absolute;left:15px;bottom:14px;width:179px;height:89px;background:linear-gradient(#fff,#e8e0d5);border-radius:8px;box-shadow:0 6px 13px #aa9f95}
+.tissuepack:before{content:"洁柔  FACE";position:absolute;left:58px;top:47px;font-size:19px}
+.tissue-paper{position:absolute;left:58px;top:39px;width:91px;height:92px;background:#fff;clip-path:polygon(17% 100%,0 18%,44% 32%,62% 0,100% 26%,82% 100%)}
+
+.detergent{background:linear-gradient(130deg,#fff8e6,#fad7e1)}
+.detergent .vertical{position:absolute;left:6px;top:19px;color:#de3b2d;font-size:22px;font-weight:bold}
+.detergent-bag{position:absolute;right:4px;bottom:6px;width:120px;height:179px;background:linear-gradient(145deg,#f6a8cc,#fff 37%,#e787b4);clip-path:polygon(7% 0,91% 0,100% 100%,0 100%)}
+.detergent-bag:before{content:"草莓洗衣凝珠";position:absolute;top:44px;left:22px;color:#459750;background:#fff;border-radius:50%;padding:12px 5px}
+.strawberry{position:absolute;width:31px;height:27px;background:#ed3147;border-radius:50% 50% 55% 55%;bottom:20px}
+.s1{right:58px}.s2{right:21px;bottom:33px}.s3{right:84px;bottom:39px}
+.strawberry:after{content:"✦";color:#429c49;position:absolute;top:-8px;left:7px}
+
+.bigcoin{background:radial-gradient(circle,#361a7a,#09001e 70%);border:10px solid #08bed7}
+.bigcoin:before{content:"";position:absolute;inset:-10px;border:10px solid transparent;border-top-color:#ef194f;border-bottom-color:#ef194f;border-radius:50%}
+.bigcoin .text{position:absolute;top:31px;width:100%;text-align:center;color:white;font-size:18px;font-weight:bold}
+.bigcoin strong{display:block;color:#ff1d8e;font-size:68px;line-height:77px}
+.bigcoin small{display:block;color:#ffe067;font-size:12px}
+
+.vip{background:linear-gradient(145deg,#bb65ee,#5c27d1)}
+.vip .viptop{color:white;font-size:20px;font-weight:bold;padding:9px}
+.vip .viptop small{font-size:10px;float:right}
+.vip-box{position:absolute;left:12px;top:47px;width:84px;height:148px;background:linear-gradient(#fff8e9,#f7bfd7);border-radius:8px;text-align:center;padding-top:16px;color:#bd3873;font-weight:bold}
+.vip-box strong{display:block;font-size:35px;color:#ee785d;margin:12px 0}
+.vip-black{position:absolute;right:9px;top:48px;width:99px;height:148px;background:#050505;border-radius:8px;color:white;text-align:center;padding-top:13px}
+.vip-black strong{display:block;font-size:27px;margin:18px 0}
+.more{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);padding:13px 21px;background:#fff;border:1px solid #ddd;border-radius:8px;box-shadow:0 3px 12px rgba(0,0,0,.13);z-index:4}
+
+.side-tools{position:fixed;right:0;top:368px;width:47px;background:#fff;border:1px solid #eee;border-radius:10px 0 0 10px;text-align:center;color:#555}
+.side-tools div{height:48px;padding-top:7px;border-bottom:1px solid #f2f2f2;font-size:9px}
+.side-tools b{display:block;font-size:17px;font-weight:normal;margin-bottom:2px}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <div class="wrap">
+    <div><a>中国大陆⌄</a><a class="orange">亲，请登录</a><a>免费注册</a><a>网页无障碍</a><a>切换企业版</a></div>
+    <div><a>已买到的宝贝</a><a>我的淘宝⌄</a><a>🛒 购物车</a><a>☆ 收藏夹⌄</a><a>免费开店⌄</a><a>千牛卖家中心⌄</a><a>帮助中心⌄</a></div>
+  </div>
+</div>
+
+<div class="purchase">
+  <div class="wrap">
+    <div class="purchase-art"><i class="cup"></i><i class="box"></i><i class="bottle"></i></div>
+    <strong>采购节&nbsp; 企业秋季生产 拿样1元起</strong>
+    <button>立即前往</button>
+    <span class="purchase-close">×</span>
+  </div>
+</div>
+
+<header class="head">
+  <div class="wrap head-main">
+    <div class="logo"><div class="logo-cn">淘宝</div><div class="logo-en">Taobao.com</div></div>
+    <div class="search-area">
+      <div style="display:flex">
+        <div class="search-box" style="flex:1">
+          <div class="search-type">宝贝⌄</div>
+          <div class="search-input">康图虾榜</div>
+          <button class="search-btn">搜索</button>
+        </div>
+        <div class="similar">◎&nbsp;搜同款</div>
+      </div>
+      <div class="hotwords"><b>iPhone 18 pro开售</b>&nbsp;&nbsp; 换鱼星期一　中动玩具　新款乙已手办　手办　中动玩具手办　中动新款乙日手办</div>
+    </div>
+    <div class="packet">
+      <div>天天领元宝换红包<small>开启淘江湖 〉</small></div>
+      <div class="packet-mascot"></div>
+    </div>
+  </div>
+  <nav class="wrap nav">
+    <a><i>▰</i>天猫</a><a><i>▣</i>淘宝直播</a><a><i>⌂</i>阿里企业购</a><a><i>◉</i>司法拍卖</a>
+    <a><i>▰</i>天猫超市</a><a><i>▣</i>国家补贴</a><a><i>≋</i>领券中心</a><a><i>⬇</i>超级立减</a><a><i>▦</i>全部频道</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="main">
+    <aside class="category">
+      <div class="category-title">♨&nbsp; 超级立减 / 抢首钱补贴</div>
+      <ul>
+        <li><span class="ico">▣</span>电脑 / 配件 / 办公 / 文具</li>
+        <li><span class="ico">◎</span>工业品 / 商业 / 农业 / 定制</li>
+        <li><span class="ico">▯</span>家电 / 手机 / 通信 / 数码</li>
+        <li><span class="ico">▱</span>家具 / 家装 / 家居 / 厨具</li>
+        <li><span class="ico">♧</span>女装 / 男装 / 内衣 / 配饰</li>
+        <li><span class="ico">♨</span>女鞋 / 男鞋 / 运动 / 户外</li>
+        <li><span class="ico">♧</span>汽车 / 珠宝 / 文玩 / 箱包</li>
+        <li><span class="ico">◯</span>食品 / 鲜花 / 酒水 / 健康</li>
+        <li><span class="ico">▢</span>母婴 / 童装 / 玩具 / 宠物</li>
+      </ul>
+    </aside>
+
+    <div class="hero-row">
+      <div class="hero">
+        <span class="tag">天猫超级新品</span>
+        <h2>Apple新品来了<br>立享24期免息</h2>
+        <div class="apple-art">
+          <i class="phone one"></i><i class="phone two"></i><i class="earbuds"></i><i class="watch"></i>
+        </div>
+      </div>
+      <div class="hero appliance">
+        <div class="appliance-title">百亿补贴 · 买贵必赔 <em>新人</em></div>
+        <div class="appliance-products">
+          <div class="mini-product"><div class="draw"><i class="sofa"></i></div><span class="price-tag">￥14999</span></div>
+          <div class="mini-product"><div class="draw"><i class="shelf"></i></div><span class="price-tag">￥6299</span></div>
+          <div class="mini-product"><div class="draw"><i class="aircon"></i></div><span class="price-tag">￥4999</span></div>
+          <div class="mini-product"><div class="draw"><i class="device"></i></div><span class="price-tag">￥9999</span></div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="account">
+      <div class="greeting"><div class="avatar"></div><div><b>晚上好</b><small>注册　开店</small></div></div>
+      <div class="login-tip">登录淘宝后更多精彩</div>
+      <div class="subtip">赚！更懂你的推荐，更便捷的搜索</div>
+      <button class="login">立即登录</button>
+      <div class="account-icons">
+        <div><span>♧</span><small>已买到</small></div><div><span>☆</span><small>收藏夹</small></div>
+        <div><span>▱</span><small>买过的店</small></div><div><span>◷</span><small>足迹</small></div>
+      </div>
+      <div class="coin"><b>淘金币购物抵钱用</b><p>100金币抵1元</p><button>立即领取</button><i class="coin-art">币</i></div>
+    </aside>
+
+    <div class="sub-row">
+      <div class="channel">
+        <div class="channel-head">领券中心 <i>券</i></div>
+        <div class="channel-items">
+          <div class="channel-item"><div class="channel-picture"><i class="camera"></i></div><span class="price-tag bottom-price">￥10800</span></div>
+          <div class="channel-item"><div class="channel-picture"><i class="bottle-black">IR</i></div><span class="price-tag bottom-price">￥6380</span></div>
+        </div>
+      </div>
+      <div class="channel">
+        <div class="channel-head">淘宝直播 <i>红人榜</i></div>
+        <div class="channel-items">
+          <div class="channel-item"><div class="channel-picture live-one"></div><small>保姆级跟妆</small></div>
+          <div class="channel-item"><div class="channel-picture live-two"></div><small>春季穿搭专场</small></div>
+        </div>
+      </div>
+      <div class="channel">
+        <div class="channel-head" style="color:#21a763">▣ 国家补贴</div>
+        <div class="channel-items">
+          <div class="channel-item"><div class="channel-picture"><i class="stove"></i></div><span class="price-tag bottom-price">￥21800</span></div>
+          <div class="channel-item"><div class="channel-picture"><i class="oven"></i></div><span class="price-tag bottom-price">￥20411</span></div>
+        </div>
+      </div>
+      <div class="channel">
+        <div class="channel-head">淘宝秒杀 <i>超值价</i></div>
+        <div class="channel-items">
+          <div class="channel-item"><div class="channel-picture"><i class="shoe"></i></div><span class="price-tag bottom-price">￥6999</span></div>
+          <div class="channel-item"><div class="channel-picture"><i class="shoe" style="transform:rotate(-4deg);opacity:.85"></i></div><span class="price-tag bottom-price">￥652</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <nav class="guess-tabs">
+    <a>猜你喜欢</a><a>➤ 运动户外</a><a>▰ 潮电数码</a><a>♜ 服饰时尚</a><a>▰ 家装建材</a><a>◉ 办公文具</a><a>▣ 健康保健</a>
+    <span class="refresh">↻</span>
+  </nav>
+
+  <section class="goods">
+    <article class="good">
+      <div class="pic salt">
+        <div class="headline">自贡深井盐</div><i class="saltbag one"></i><i class="saltbag two"></i>
+        <div class="salt-foot">官方正品　加碘食用盐</div>
+      </div>
+      <div class="good-title">盐当家加碘精制盐350克小袋食盐炒菜调味细盐健康袋装炒菜调味料</div>
+      <div class="good-price"><small>￥</small>3.02</div>
+    </article>
+
+    <article class="good">
+      <div class="pic coin-card"><div class="ribbon">官方直充</div><div class="big">Dou音币<br><strong>60</strong></div><div class="note">务必填写正确抖音号</div></div>
+      <div class="good-title"><b>天猫</b>60抖币充值秒到300钻石douyin斗抖币充值ios抖音币</div>
+      <div class="good-price"><small>￥</small>6.5</div>
+    </article>
+
+    <article class="good">
+      <div class="pic keyring">
+        <i class="char c1"><b class="ring"></b></i><i class="char c2"><b class="ring"></b></i><i class="char c3"><b class="ring"></b></i>
+        <i class="char c4"><b class="ring"></b></i><i class="char c5"><b class="ring"></b></i><i class="char c6"><b class="ring"></b></i>
+      </div>
+      <div class="good-title"><b>天猫</b>【预售】明日方舟 Persona 3 Reload 串串挂件·结城理</div>
+      <div class="good-price"><small>￥</small>38</div>
+    </article>
+
+    <article class="good">
+      <div class="pic cleaner">
+        <div class="bigword">48H长效杀菌</div><div class="points">✓ 7天长效抑菌<br>✓ 48小时防护<br>✓ 去除干异味</div>
+        <i class="bottle b1"></i><i class="bottle b2"></i>
+      </div>
+      <div class="good-title">【全国包邮】衣物消毒除菌液洗衣服洗衣机专用杀菌液内衣内裤</div>
+      <div class="good-price"><small>￥</small>20.9</div>
+    </article>
+
+    <article class="good">
+      <div class="pic wood"><div class="headline">原生木浆</div><div class="sub">柔韧面巾纸 云柔触感</div><i class="tissue"></i><i class="tissuebox"></i></div>
+      <div class="good-title">原生木浆抽纸家用饭店办公宿舍面巾擦手纸擦拭优惠餐巾纸面巾纸</div>
+      <div class="good-price"><small>￥</small>3.02</div>
+    </article>
+
+    <article class="good">
+      <div class="pic hair"><div class="headline">狂甩不掉</div><div class="sub">不伤发 / 不勒头</div><i class="woman"></i><i class="hairtie h1"></i><i class="hairtie h2"></i><i class="hairtie h3"></i><span class="seal">断色清仓</span></div>
+      <div class="good-title">简约发圈橡皮筋女高弹力耐用扎头发不伤发百搭头饰</div>
+      <div class="good-price"><small>￥</small>5</div>
+    </article>
+
+    <article class="good">
+      <div class="pic gift"><div class="brand">OFFGAMERS</div><i class="giftcard"></i><div class="bluebar"></div></div>
+      <div class="good-title">OFFGAMERS GIFT CARD 海外游戏通用礼品充值卡 30元</div>
+      <div class="good-price"><small>￥</small>29.8</div>
+    </article>
+
+    <article class="good">
+      <div class="pic book"><div class="labels"><span>4年级</span><span>上册</span></div><div class="paper"><b>阅读六面板</b><br><br>同步教材<br>知识点汇总<br>阅读理解训练</div><div class="side"><i>同步教材</i><i>实景图解</i><i>全科组合</i><i>套装提升</i></div></div>
+      <div class="good-title">小学四年级上册同步阅读训练语文数学英语全科辅导资料</div>
+      <div class="good-price"><small>￥</small>19.8</div>
+    </article>
+
+    <article class="good">
+      <div class="pic tissue-product"><div class="logo2">洁柔 ♡</div><i class="tissue-paper"></i><i class="tissuepack"></i></div>
+      <div class="good-title">洁柔抽纸家用实惠装柔韧面巾纸母婴可用餐巾纸整箱</div>
+      <div class="good-price"><small>￥</small>14.9</div>
+    </article>
+
+    <article class="good">
+      <div class="pic detergent"><div class="vertical">食品用<br>洗洁精</div><i class="detergent-bag"></i><i class="strawberry s1"></i><i class="strawberry s2"></i><i class="strawberry s3"></i></div>
+      <div class="good-title">草莓香氛洗衣凝珠持久留香抑菌除螨家用实惠装</div>
+      <div class="good-price"><small>￥</small>45.0</div>
+    </article>
+
+    <article class="good">
+      <div class="pic bigcoin"><div class="text">收藏领券再减<br><strong>300</strong><small>亏本跑量大促销</small></div></div>
+      <div class="good-title">抖音币官方充值自动到账娱乐直播通用虚拟币</div>
+      <div class="good-price"><small>￥</small>28.8</div>
+    </article>
+
+    <article class="good">
+      <div class="pic vip"><div class="viptop">剪映 SVIP <small>官方直充到账</small></div><div class="vip-box">极速到账<strong>月卡</strong>充值自己号</div><div class="vip-black">24小时自动发货<strong>SVIP</strong>会员</div></div>
+      <div class="good-title">剪映专业版SVIP会员月卡季卡年卡官方自动充值</div>
+      <div class="good-price"><small>￥</small>9.9</div>
+    </article>
+  </section>
+</main>
+
+<div class="more">更多低价商品　⌄</div>
+<aside class="side-tools">
+  <div><b>▣</b>网页版</div><div><b>☻</b>消息</div><div><b>🛒</b>购物车</div>
+  <div><b>◯</b>规则会议</div><div><b>♧</b>官方客服</div><div><b>□</b>反馈</div>
+</aside>
+</body>
+</html>

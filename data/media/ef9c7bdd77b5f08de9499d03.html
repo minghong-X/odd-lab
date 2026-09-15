@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1200, initial-scale=1.0">
+<title>淘宝网 - 淘！我喜欢</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, "SF Pro SC", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", sans-serif; background-color: #f4f4f4; color: #333; font-size: 12px; line-height: 1.5; min-width: 1200px; }
+a { color: inherit; text-decoration: none; }
+a:hover { color: #ff5000; }
+ul { list-style: none; }
+
+/* Top Promotion Bar */
+.top-banner { background: linear-gradient(90deg, #8c3a00 0%, #d46b08 35%, #b35900 70%, #8c3a00 100%); color: #fff; height: 36px; display: flex; align-items: center; justify-content: center; position: relative; font-size: 13px; font-weight: 500; }
+.top-banner .banner-btn { background: #fff; color: #8c3a00; border-radius: 12px; padding: 2px 10px; font-size: 12px; font-weight: bold; margin-left: 15px; cursor: pointer; }
+.top-banner .close-btn { position: absolute; right: 15px; top: 8px; opacity: 0.7; cursor: pointer; font-size: 14px; }
+
+/* Global Navigation Bar */
+.site-nav { background: #f5f5f5; border-bottom: 1px solid #eee; height: 32px; line-height: 32px; color: #666; font-size: 12px; }
+.site-nav-bd { width: 1190px; margin: 0 auto; display: flex; justify-content: space-between; }
+.site-nav-list { display: flex; gap: 12px; }
+.site-nav-list li { display: flex; align-items: center; }
+.site-nav-red { color: #ff5000; }
+
+/* Header & Search */
+.header { width: 1190px; margin: 0 auto; padding: 15px 0 10px; display: flex; align-items: flex-start; justify-content: space-between; position: relative; }
+.logo { display: flex; align-items: center; gap: 6px; text-decoration: none; }
+.logo-icon { width: 140px; height: 44px; }
+.search-container { flex: 1; max-width: 630px; margin-left: 40px; }
+.search-box { display: flex; border: 2px solid #ff5000; border-radius: 20px; overflow: hidden; background: #fff; height: 40px; align-items: center; }
+.search-type { padding: 0 12px; font-size: 13px; color: #333; cursor: pointer; display: flex; align-items: center; gap: 4px; border-right: 1px solid #eee; }
+.search-input { flex: 1; border: none; outline: none; padding: 0 12px; font-size: 14px; color: #333; }
+.search-btn { background: #ff5000; color: #fff; border: none; width: 74px; height: 100%; font-size: 16px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+.search-camera { width: 80px; height: 100%; display: flex; align-items: center; justify-content: center; background: #fff; color: #ff5000; font-size: 12px; cursor: pointer; gap: 4px; border-left: 1px solid #fff; }
+
+.hot-keywords { margin-top: 6px; display: flex; gap: 10px; font-size: 12px; color: #999; white-space: nowrap; overflow: hidden; }
+.hot-keywords a { color: #666; }
+.hot-keywords a.active { color: #ff5000; }
+
+.header-right-promo { display: flex; align-items: center; background: #fff2e8; border-radius: 12px; padding: 4px 10px; border: 1px solid #ffbb96; cursor: pointer; }
+.header-right-promo .title { color: #ff5000; font-weight: bold; font-size: 12px; }
+.header-right-promo .subtitle { color: #e65a00; font-size: 11px; }
+
+/* Category Navigation Channels */
+.nav-channels { width: 1190px; margin: 0 auto 12px; display: flex; align-items: center; gap: 18px; font-size: 14px; font-weight: bold; padding-left: 210px; height: 30px; }
+.channel-item { display: flex; align-items: center; gap: 4px; cursor: pointer; }
+.channel-item.red { color: #ff0036; }
+.channel-item.orange { color: #ff5000; }
+.channel-item.green { color: #00b578; }
+.channel-item.blue { color: #007aff; }
+
+/* Main Section Layout */
+.main-layout { width: 1190px; margin: 0 auto; display: flex; gap: 12px; }
+
+/* Left Category Sidebar */
+.category-sidebar { width: 200px; background: #fff; border-radius: 12px; padding: 10px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); flex-shrink: 0; }
+.category-item { padding: 6px 14px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: #333; cursor: pointer; transition: background 0.2s; }
+.category-item:hover { background: #fff4f0; color: #ff5000; }
+.category-item .cate-left { display: flex; align-items: center; gap: 8px; }
+.category-item .cate-icon { width: 16px; height: 16px; fill: currentColor; opacity: 0.8; }
+.category-item.highlight { color: #ff5000; font-weight: bold; }
+
+/* Center Grid Content */
+.center-content { flex: 1; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+
+.grid-row-top { display: grid; grid-template-columns: 2fr 3fr; gap: 12px; }
+.banner-card { background: #fff; border-radius: 12px; padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+.apple-card { background: linear-gradient(135deg, #f6f6f6 0%, #e9e9e9 100%); }
+.card-badge { position: absolute; top: 10px; left: 10px; background: #ff0036; color: #fff; font-size: 11px; padding: 1px 6px; border-radius: 4px; font-weight: bold; }
+.apple-title { font-size: 18px; font-weight: 800; color: #000; margin-top: 18px; }
+.apple-sub { font-size: 14px; color: #ff0036; font-weight: bold; margin-top: 2px; }
+.apple-products { display: flex; gap: 8px; margin-top: 15px; justify-content: space-around; }
+.apple-prod-img { width: 70px; height: 70px; background: #fff; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+
+/* Billion Subsidy Card */
+.subsidy-card { background: #fff; border-radius: 12px; padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.card-title-group { display: flex; align-items: center; gap: 6px; }
+.card-title { font-size: 16px; font-weight: bold; color: #111; }
+.tag-red { background: #ffece8; color: #ff5000; font-size: 11px; padding: 1px 5px; border-radius: 3px; font-weight: normal; }
+
+.subsidy-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.subsidy-item { background: #f9f9f9; border-radius: 8px; padding: 6px; text-align: center; }
+.subsidy-img { width: 100%; height: 75px; background: #eee; border-radius: 6px; margin-bottom: 6px; display: flex; align-items: center; justify-content: center; }
+.price-tag { background: #ff0036; color: #fff; font-size: 12px; font-weight: bold; border-radius: 10px; padding: 1px 6px; display: inline-block; }
+
+/* Grid Row Middle */
+.grid-row-mid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+.mini-card { background: #fff; border-radius: 12px; padding: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+.mini-card-head { font-weight: bold; font-size: 14px; margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+.mini-prod-list { display: flex; gap: 6px; }
+.mini-prod { flex: 1; text-align: center; }
+.mini-prod-img { height: 65px; background: #f5f5f5; border-radius: 6px; margin-bottom: 4px; display: flex; align-items: center; justify-content: center; }
+
+/* Right Sidebar / User Panel */
+.right-sidebar { width: 230px; display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
+.user-card { background: #fff; border-radius: 12px; padding: 14px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); text-align: center; }
+.user-avatar { width: 50px; height: 50px; border-radius: 50%; background: #ffd8bf; margin: 0 auto 8px; display: flex; align-items: center; justify-content: center; border: 2px solid #ffbb96; }
+.user-greeting { font-weight: bold; font-size: 14px; }
+.user-subtext { color: #888; font-size: 11px; margin-bottom: 10px; }
+.login-btn { background: linear-gradient(90deg, #ff8f00, #ff5000); color: #fff; border: none; width: 100%; padding: 8px 0; border-radius: 18px; font-weight: bold; font-size: 13px; cursor: pointer; box-shadow: 0 3px 6px rgba(255,80,0,0.2); }
+
+.user-nav-grid { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 14px; padding-top: 10px; border-top: 1px solid #f0f0f0; }
+.user-nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; color: #666; cursor: pointer; }
+
+.coin-card { background: #fff; border-radius: 12px; padding: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; justify-content: space-between; align-items: center; }
+
+/* Feed Section */
+.feed-section { width: 1190px; margin: 20px auto 40px; }
+.feed-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+.feed-tabs { display: flex; gap: 8px; align-items: center; }
+.feed-tab { padding: 6px 16px; border-radius: 16px; background: #fff; font-size: 13px; font-weight: bold; color: #333; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+.feed-tab.active { background: #ff5000; color: #fff; }
+
+.feed-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.feed-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.04); display: flex; flex-direction: column; transition: transform 0.2s, box-shadow 0.2s; cursor: pointer; }
+.feed-card:hover { transform: translateY(-3px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+.card-img-wrap { width: 100%; height: 220px; position: relative; background: #f9f9f9; display: flex; align-items: center; justify-content: center; }
+.card-info { padding: 10px; display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+.card-title { font-size: 12px; color: #333; line-height: 1.4; height: 34px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; margin-bottom: 8px; }
+.card-price-row { display: flex; align-items: baseline; justify-content: space-between; }
+.price-symbol { font-size: 12px; color: #ff5000; font-weight: bold; }
+.price-num { font-size: 18px; color: #ff5000; font-weight: bold; }
+
+/* Tag overlays on cards */
+.tag-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.6); color: #fff; font-size: 10px; padding: 2px 6px; text-align: center; }
+.badge-tmall { background: #ff0036; color: #fff; font-size: 10px; padding: 0 3px; border-radius: 2px; margin-right: 4px; font-weight: normal; }
+
+/* Right Fixed Toolbar */
+.floating-bar { position: fixed; right: 10px; top: 50%; transform: translateY(-50%); background: #fff; border-radius: 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.1); display: flex; flex-direction: column; width: 50px; z-index: 999; }
+.float-item { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 8px 0; font-size: 10px; color: #666; border-bottom: 1px solid #f0f0f0; cursor: pointer; }
+.float-item:last-child { border-bottom: none; }
+.float-item:hover { color: #ff5000; }
+.float-icon { width: 18px; height: 18px; margin-bottom: 2px; fill: currentColor; }
+</style>
+</head>
+<body>
+
+<!-- Top Announcement Banner -->
+<div class="top-banner">
+  <span>采购节 企业秋季生产 拿样1元起</span>
+  <span class="banner-btn">立即前往</span>
+  <span class="close-btn">✕</span>
+</div>
+
+<!-- Global Top Navigation Bar -->
+<div class="site-nav">
+  <div class="site-nav-bd">
+    <ul class="site-nav-list">
+      <li><span>中国大陆</span> <span style="font-size: 10px; margin-left: 2px;">∨</span></li>
+      <li><a href="#" class="site-nav-red" style="margin-left: 8px;">亲，请登录</a></li>
+      <li><a href="#" style="margin-left: 8px;">免费注册</a></li>
+      <li><a href="#" style="margin-left: 12px;">网页无障碍</a></li>
+      <li><a href="#" style="margin-left: 8px;">切换企业版</a></li>
+    </ul>
+    <ul class="site-nav-list">
+      <li><a href="#">已买到的宝贝</a></li>
+      <li><a href="#">我的淘宝</a> <span style="font-size: 10px;">∨</span></li>
+      <li><a href="#">购物车</a></li>
+      <li><a href="#">收藏夹</a> <span style="font-size: 10px;">∨</span></li>
+      <li><a href="#">免费开店</a></li>
+      <li><a href="#">千牛卖家中心</a> <span style="font-size: 10px;">∨</span></li>
+      <li><a href="#">帮助中心</a> <span style="font-size: 10px;">∨</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Main Header: Logo & Search -->
+<div class="header">
+  <a href="#" class="logo">
+    <!-- Inline SVG Logo -->
+    <svg class="logo-icon" viewBox="0 0 200 60">
+      <path fill="#FF5000" d="M30 15 C20 15 12 22 12 32 C12 42 20 48 30 48 C36 48 42 45 45 40 L38 35 C36 38 33 40 30 40 C25 40 21 36 21 32 C21 27 25 23 30 23 C34 23 37 25 39 28 L46 22 C42 18 36 15 30 15 Z"/>
+      <text x="50" y="38" font-family="Arial, sans-serif" font-weight="900" font-size="28" fill="#FF5000">淘宝网</text>
+      <text x="52" y="50" font-family="Arial, sans-serif" font-weight="bold" font-size="10" fill="#FF5000" letter-spacing="1">Taobao.com</text>
+    </svg>
+  </a>
+
+  <div class="search-container">
+    <div class="search-box">
+      <div class="search-type">宝贝 <span>∨</span></div>
+      <input type="text" class="search-input" placeholder="基围虾榜">
+      <div class="search-camera">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+        搜同款
+      </div>
+      <button class="search-btn">搜索</button>
+    </div>
+    <div class="hot-keywords">
+      <a href="#" class="active">iPhone 18 pro发售</a>
+      <a href="#">摸鱼星期一</a>
+      <a href="#">中动玩具手办</a>
+      <a href="#">新款之日手办</a>
+      <a href="#">中动玩具手办</a>
+      <a href="#">中动新款之日手办</a>
+    </div>
+  </div>
+
+  <div class="header-right-promo">
+    <svg width="32" height="32" viewBox="0 0 40 40" style="margin-right: 6px;">
+      <circle cx="20" cy="20" r="18" fill="#FFD700"/>
+      <path d="M12 22 L20 12 L28 22 L20 18 Z" fill="#FF5000"/>
+    </svg>
+    <div>
+      <div class="title">天天领元宝换红包</div>
+      <div class="subtitle">开启淘江湖 &gt;</div>
+    </div>
+  </div>
+</div>
+
+<!-- Navigation Channels -->
+<div class="nav-channels">
+  <div class="channel-item red">天猫</div>
+  <div class="channel-item red">淘宝直播</div>
+  <div class="channel-item orange">阿里企业购</div>
+  <div class="channel-item orange">司法拍卖</div>
+  <div class="channel-item green">天猫超市</div>
+  <div class="channel-item green">国家补贴</div>
+  <div class="channel-item red">领券中心</div>
+  <div class="channel-item red">超级立减</div>
+  <div class="channel-item orange">全部频道</div>
+</div>
+
+<!-- Main Body Grid -->
+<div class="main-layout">
+
+  <!-- Left Sidebar Categories -->
+  <div class="category-sidebar">
+    <div class="category-item highlight">
+      <div class="cate-left">
+        <svg class="cate-icon" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        超级立减 / 抢省钱补贴
+      </div>
+    </div>
+    <div class="category-item">
+      <div class="cate-left">
+        <svg class="cate-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        电脑 / 配件 / 办公 / 文具
+      </div>
+    </div>
+    <div class="category-item">
+      <div class="cate-left">
+        <svg class="cate-icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        工业品 / 商业 / 农业 / 定制
+      </div>
+    </div>
+    <div class="category-item">
+      <div class="cate-left">
+        <svg class="cate-icon" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        家电 / 手机 / 通信 / 数码
+      </div>
+    </div>
+    <div class="category-item">
+      <div class="cate-left">
+        <svg class="cate-icon" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+        家具 / 家装 / 家居 / 厨具
+      </div>
+    </div>
+    <div class="category-item">
+      <div class="cate-left">
+        <svg class="cate-icon" viewBox="0 0 24 24"><path d="M20.38 3.46L16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></svg>
+        女装 / 男装 / 内衣 / 配饰
+      </div>
+    </div>
+    <div class="category-item">
+      <div class="cate-left">
+        <svg class="cate-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/></svg>
+        女鞋 / 男鞋 / 运动 / 户外
+      </div>
+    </div>
+    <div class="category-item">
+      <div class="cate-left">
+        <svg class="cate-icon" viewBox="0 0 24 24"><path d="M5 17h14M5 12h14M5 7h14"/></svg>
+        汽车 / 珠宝 / 文玩 / 箱包
+      </div>
+    </div>
+    <div class="category-item">
+      <div class="cate-left">
+        <svg class="cate-icon" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        食品 / 鲜花 / 酒店 / 健康
+      </div>
+    </div>
+    <div class="category-item">
+      <div class="cate-left">
+        <svg class="cate-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
+        母婴 / 童装 / 玩具 / 宠物
+      </div>
+    </div>
+  </div>
+
+  <!-- Center Primary Content Area -->
+  <div class="center-content">
+    
+    <!-- Top Row Banners -->
+    <div class="grid-row-top">
+      <!-- Apple Product Banner -->
+      <div class="banner-card apple-card">
+        <span class="card-badge">天猫超级新品</span>
+        <div>
+          <div class="apple-title">Apple新品来了</div>
+          <div class="apple-sub">立享24期免息</div>
+        </div>
+        <div class="apple-products">
+          <div class="apple-prod-img">
+            <svg width="40" height="50" viewBox="0 0 40 50">
+              <rect x="5" y="2" width="30" height="46" rx="6" fill="#111"/>
+              <rect x="7" y="5" width="26" height="40" rx="3" fill="#a2b4c7"/>
+              <circle cx="20" cy="42" r="2" fill="#fff"/>
+            </svg>
+          </div>
+          <div class="apple-prod-img">
+            <svg width="45" height="45" viewBox="0 0 45 45">
+              <rect x="5" y="8" width="35" height="28" rx="4" fill="#691528"/>
+              <circle cx="15" cy="18" r="4" fill="#333"/>
+              <circle cx="15" cy="26" r="4" fill="#333"/>
+            </svg>
+          </div>
+          <div class="apple-prod-img">
+            <svg width="40" height="40" viewBox="0 0 40 40">
+              <rect x="10" y="8" width="20" height="24" rx="8" fill="#e5e5e5"/>
+              <circle cx="15" cy="18" r="3" fill="#111"/>
+              <circle cx="25" cy="18" r="3" fill="#111"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- Billion Subsidy Box -->
+      <div class="subsidy-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <span class="card-title">百亿补贴 · 买贵必赔</span>
+            <span class="tag-red">新人首单</span>
+          </div>
+        </div>
+        <div class="subsidy-grid">
+          <div class="subsidy-item">
+            <div class="subsidy-img">
+              <svg width="40" height="40" viewBox="0 0 40 40"><rect x="10" y="5" width="20" height="30" fill="#a0a0a0" rx="2"/></svg>
+            </div>
+            <div class="price-tag">¥ 14999</div>
+          </div>
+          <div class="subsidy-item">
+            <div class="subsidy-img">
+              <svg width="40" height="40" viewBox="0 0 40 40"><rect x="5" y="10" width="30" height="20" fill="#e0e0e0" rx="2"/></svg>
+            </div>
+            <div class="price-tag">¥ 6299</div>
+          </div>
+          <div class="subsidy-item">
+            <div class="subsidy-img">
+              <svg width="40" height="40" viewBox="0 0 40 40"><path d="M10 30 L20 10 L30 30 Z" fill="#b0c4de"/></svg>
+            </div>
+            <div class="price-tag">¥ 4999</div>
+          </div>
+          <div class="subsidy-item">
+            <div class="subsidy-img">
+              <svg width="40" height="40" viewBox="0 0 40 40"><circle cx="20" cy="20" r="12" fill="#d8bfd8"/></svg>
+            </div>
+            <div class="price-tag">¥ 9999</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Middle Row Cards -->
+    <div class="grid-row-mid">
+      <div class="mini-card">
+        <div class="mini-card-head">
+          <span>领券中心</span>
+          <span style="color:#ff5000; font-size:10px;">券</span>
+        </div>
+        <div class="mini-prod-list">
+          <div class="mini-prod">
+            <div class="mini-prod-img">
+              <svg width="30" height="30"><rect width="30" height="30" fill="#333" rx="4"/></svg>
+            </div>
+            <div style="background:#ff0036; color:#fff; font-size:10px; border-radius:4px;">¥10800</div>
+          </div>
+          <div class="mini-prod">
+            <div class="mini-prod-img">
+              <svg width="30" height="30"><rect width="30" height="30" fill="#666" rx="4"/></svg>
+            </div>
+            <div style="background:#ff0036; color:#fff; font-size:10px; border-radius:4px;">¥6380</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-card-head">
+          <span>淘宝直播</span>
+          <span style="background:#ff0036; color:#fff; font-size:10px; padding:0 4px; border-radius:3px;">红包雨</span>
+        </div>
+        <div class="mini-prod-list">
+          <div class="mini-prod">
+            <div class="mini-prod-img" style="background:#ffe6e6;">
+              <svg width="30" height="30"><circle cx="15" cy="12" r="8" fill="#ff4d4f"/><path d="M5 28 C5 20 25 20 25 28" fill="#ff4d4f"/></svg>
+            </div>
+            <div style="font-size:10px; color:#666;">保姆级旗舰店</div>
+          </div>
+          <div class="mini-prod">
+            <div class="mini-prod-img" style="background:#e6f7ff;">
+              <svg width="30" height="30"><circle cx="15" cy="12" r="8" fill="#1890ff"/><path d="M5 28 C5 20 25 20 25 28" fill="#1890ff"/></svg>
+            </div>
+            <div style="font-size:10px; color:#666;">李佳琦Austin</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-card-head">
+          <span>国家补贴</span>
+        </div>
+        <div class="mini-prod-list">
+          <div class="mini-prod">
+            <div class="mini-prod-img">
+              <rect width="25" height="25" fill="#d9d9d9"/>
+            </div>
+            <div style="background:#ff5000; color:#fff; font-size:10px; border-radius:4px;">¥21800</div>
+          </div>
+          <div class="mini-prod">
+            <div class="mini-prod-img">
+              <rect width="25" height="25" fill="#bfbfbf"/>
+            </div>
+            <div style="background:#ff5000; color:#fff; font-size:10px; border-radius:4px;">¥20411</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mini-card">
+        <div class="mini-card-head">
+          <span>淘宝秒杀</span>
+          <span style="color:#ff5000; font-size:10px;">超低价</span>
+        </div>
+        <div class="mini-prod-list">
+          <div class="mini-prod">
+            <div class="mini-prod-img">
+              <circle cx="15" cy="15" r="10" fill="#ffd591"/>
+            </div>
+            <div style="background:#ff0036; color:#fff; font-size:10px; border-radius:4px;">¥6999</div>
+          </div>
+          <div class="mini-prod">
+            <div class="mini-prod-img">
+              <rect width="25" height="15" fill="#fff1b8"/>
+            </div>
+            <div style="background:#ff0036; color:#fff; font-size:10px; border-radius:4px;">¥652</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Right Panel -->
+  <div class="right-sidebar">
+    <div class="user-card">
+      <div class="user-avatar">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="#ff8f00"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+      </div>
+      <div class="user-greeting">晚上好</div>
+      <div class="user-subtext">注册 开店</div>
+      <button class="login-btn">立即登录</button>
+      
+      <div class="user-nav-grid">
+        <div class="user-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          已买到
+        </div>
+        <div class="user-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+          收藏夹
+        </div>
+        <div class="user-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+          买过的店
+        </div>
+        <div class="user-nav-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          足迹
+        </div>
+      </div>
+    </div>
+
+    <!-- Gold Coin Section -->
+    <div class="coin-card">
+      <div>
+        <div style="font-weight:bold; font-size:13px;">淘金币购物抵钱</div>
+        <div style="color:#999; font-size:11px;">100金币抵1元</div>
+        <span style="background:#ff5000; color:#fff; font-size:10px; padding:2px 8px; border-radius:10px; margin-top:4px; display:inline-block;">立即领取</span>
+      </div>
+      <svg width="40" height="40" viewBox="0 0 40 40">
+        <circle cx="20" cy="20" r="18" fill="#FFC107"/>
+        <circle cx="20" cy="20" r="14" fill="#FFD54F"/>
+        <text x="20" y="24" font-size="10" font-weight="bold" fill="#B78103" text-anchor="middle">省钱</text>
+      </svg>
+    </div>
+  </div>
+
+</div>
+
+<!-- Feed Stream Section -->
+<div class="feed-section">
+  <div class="feed-header">
+    <div class="feed-tabs">
+      <div class="feed-tab active">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        猜你喜欢
+      </div>
+      <div class="feed-tab">运动户外</div>
+      <div class="feed-tab">潮电数码</div>
+      <div class="feed-tab">服饰时尚</div>
+      <div class="feed-tab">家装建材</div>
+      <div class="feed-tab">办公文具</div>
+      <div class="feed-tab">健康保健</div>
+    </div>
+    <div style="color:#666; cursor:pointer;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg>
+    </div>
+  </div>
+
+  <div class="feed-grid">
+    <!-- Item 1 -->
+    <div class="feed-card">
+      <div class="card-img-wrap" style="background:#e8f4f8;">
+        <svg width="120" height="140" viewBox="0 0 120 140">
+          <rect x="25" y="20" width="70" height="100" rx="10" fill="#4a90e2"/>
+          <rect x="35" y="35" width="50" height="60" rx="5" fill="#ffffff" opacity="0.9"/>
+          <text x="60" y="65" font-size="14" font-weight="bold" fill="#1d5b96" text-anchor="middle">盐当家</text>
+          <text x="60" y="80" font-size="10" fill="#1d5b96" text-anchor="middle">加碘精制盐</text>
+        </svg>
+        <div class="tag-overlay">颗粒细腻 精选原料</div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">盐当家加碘精制盐350g小样食堂炒菜调味细盐健康袋装炒菜调味料</div>
+        <div class="card-price-row">
+          <div><span class="price-symbol">¥</span><span class="price-num">3.02</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="feed-card">
+      <div class="card-img-wrap" style="background:#2b1055;">
+        <svg width="120" height="140" viewBox="0 0 120 140">
+          <circle cx="60" cy="70" r="45" fill="#7928ca"/>
+          <text x="60" y="65" font-size="18" font-weight="900" fill="#fff" text-anchor="middle">Dou音币</text>
+          <text x="60" y="90" font-size="28" font-weight="900" fill="#ffd700" text-anchor="middle">60</text>
+        </svg>
+        <div class="tag-overlay" style="background:rgba(255,0,84,0.8);">务必填写正确抖音号</div>
+      </div>
+      <div class="card-info">
+        <div class="card-title"><span class="badge-tmall">天猫</span>60抖币充值秒到300钻石douyin抖抖币充值ios抖音1000抖币充抖音</div>
+        <div class="card-price-row">
+          <div><span class="price-symbol">¥</span><span class="price-num">6.5</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="feed-card">
+      <div class="card-img-wrap" style="background:#e6f7ff;">
+        <svg width="120" height="140" viewBox="0 0 120 140">
+          <circle cx="40" cy="50" r="18" fill="#ff7a45"/>
+          <circle cx="80" cy="50" r="18" fill="#36cfc9"/>
+          <circle cx="60" cy="90" r="22" fill="#597ef7"/>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-title"><span class="badge-tmall">天猫</span>【预售】明日方舟×Persona 3 Reload - 串串挂件 - 结城理</div>
+        <div class="card-price-row">
+          <div><span class="price-symbol">¥</span><span class="price-num">38</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 4 -->
+    <div class="feed-card">
+      <div class="card-img-wrap" style="background:#fff0f6;">
+        <svg width="120" height="140" viewBox="0 0 120 140">
+          <rect x="35" y="30" width="50" height="80" rx="8" fill="#ff4d4f"/>
+          <rect x="45" y="15" width="30" height="15" rx="3" fill="#ffffff"/>
+          <text x="60" y="70" font-size="12" fill="#fff" font-weight="bold" text-anchor="middle">消毒液</text>
+        </svg>
+        <div class="tag-overlay" style="background:#ff4d4f;">48H长效杀菌</div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">【全国包邮】衣物消毒液除菌洗衣服洗衣机专用杀菌液内衣内裤</div>
+        <div class="card-price-row">
+          <div><span class="price-symbol">¥</span><span class="price-num">20.9</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 5 -->
+    <div class="feed-card">
+      <div class="card-img-wrap" style="background:#fffbe6;">
+        <svg width="120" height="140" viewBox="0 0 120 140">
+          <rect x="20" y="40" width="80" height="60" rx="6" fill="#faad14"/>
+          <path d="M 30 40 Q 60 10 90 40 Z" fill="#ffffff" opacity="0.8"/>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-title">原生木浆抽纸家用纸巾饭店办公宿舍擦手纸擦拭优惠餐巾纸面巾纸</div>
+        <div class="card-price-row">
+          <div><span class="price-symbol">¥</span><span class="price-num">3.02</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 6 -->
+    <div class="feed-card">
+      <div class="card-img-wrap" style="background:#f9f9f9;">
+        <svg width="120" height="140" viewBox="0 0 120 140">
+          <circle cx="60" cy="70" r="35" fill="none" stroke="#333" stroke-width="12"/>
+          <circle cx="60" cy="70" r="20" fill="none" stroke="#d4b106" stroke-width="8"/>
+        </svg>
+        <div class="tag-overlay" style="background:#ff5000;">狂甩不掉</div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">简约发圈橡皮筋女高弹力耐用扎头发发绳发首搭头饰</div>
+        <div class="card-price-row">
+          <div><span class="price-symbol">¥</span><span class="price-num">5</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 7 -->
+    <div class="feed-card">
+      <div class="card-img-wrap" style="background:#003a8c;">
+        <svg width="120" height="140" viewBox="0 0 120 140">
+          <rect x="15" y="35" width="90" height="60" rx="6" fill="#096dd9"/>
+          <text x="60" y="60" font-size="10" fill="#fff" font-weight="bold" text-anchor="middle">OFFGAMERS</text>
+          <rect x="70" y="70" width="25" height="15" fill="#ff4d4f" rx="2"/>
+          <text x="82.5" y="81" font-size="9" fill="#fff" text-anchor="middle">30 CNY</text>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-title">OFFGAMERS GIFT CARD 礼品卡 游戏充值卡</div>
+        <div class="card-price-row">
+          <div><span class="price-symbol">¥</span><span class="price-num">30</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 8 -->
+    <div class="feed-card">
+      <div class="card-img-wrap" style="background:#fff2e8;">
+        <svg width="120" height="140" viewBox="0 0 120 140">
+          <rect x="25" y="20" width="70" height="100" fill="#ff7a45" rx="4"/>
+          <rect x="30" y="25" width="60" height="90" fill="#fff"/>
+          <text x="60" y="50" font-size="12" font-weight="bold" fill="#ff4d4f" text-anchor="middle">4年级</text>
+          <text x="60" y="70" font-size="10" font-weight="bold" fill="#333" text-anchor="middle">阅读大画报</text>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-title">【2026新版】4年级阅读大画报 小学知识汇总</div>
+        <div class="card-price-row">
+          <div><span class="price-symbol">¥</span><span class="price-num">15.8</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 9 -->
+    <div class="feed-card">
+      <div class="card-img-wrap" style="background:#f6ffed;">
+        <svg width="120" height="140" viewBox="0 0 120 140">
+          <rect x="20" y="35" width="80" height="70" rx="10" fill="#73d13d"/>
+          <text x="60" y="75" font-size="16" font-weight="bold" fill="#fff" text-anchor="middle">洁柔</text>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-title">洁柔 纸巾 3层100抽 柔韧抽纸 亲肤无香</div>
+        <div class="card-price-row">
+          <div><span class="price-symbol">¥</span><span class="price-num">12.9</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Item 10 -->
+    <div class="feed-card">
+      <div class="card-img-wrap" style="background:#13c2c2;">
+        <svg width="120" height="140" viewBox="0 0 120 140">
+          <rect x="20" y="30" width="80" height="80" rx="8" fill="#006d75"/>
+          <text x="60" y="70" font-size="14" font-weight="bold" fill="#e6fffb" text-anchor="middle">洗洁精</text>
+        </svg>
+      </div>
+      <div class="card-info">
+        <div class="card-title">食品用洗洁精 1kg 祛油腥无残留</div>
+        <div class="card-price-row">
+          <div><span class="price-symbol">¥</span><span class="price-num">9.9</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Floating Right Toolbar -->
+<div class="floating-bar">
+  <div class="float-item">
+    <svg class="float-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+    桌面版
+  </div>
+  <div class="float-item">
+    <svg class="float-icon" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+    消息
+  </div>
+  <div class="float-item">
+    <svg class="float-icon" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+    购物车
+  </div>
+  <div class="float-item">
+    <svg class="float-icon" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+    规则会议
+  </div>
+  <div class="float-item">
+    <svg class="float-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    官方客服
+  </div>
+  <div class="float-item">
+    <svg class="float-icon" viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+    反馈
+  </div>
+</div>
+
+</body>
+</html>

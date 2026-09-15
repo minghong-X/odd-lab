@@ -19,7 +19,9 @@ for (const viewport of [
       const problems: string[] = [];
       photos.forEach((p, i) => {
         const box = boxes[i];
-        const img = p.querySelector("img")!.getBoundingClientRect();
+        const img = p
+          .querySelector("img, .artwork-html")!
+          .getBoundingClientRect();
         if (
           box.top < 0 ||
           box.bottom > innerHeight ||

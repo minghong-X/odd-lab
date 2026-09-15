@@ -7,11 +7,12 @@ import {
   checkOrigin,
   rateKey,
 } from "@/lib/server";
+import { javaArena, javaOrigin } from "@/lib/java-arena";
 export const runtime = "nodejs";
 const input = z.discriminatedUnion("action", [
   z.object({
     action: z.literal("pair"),
-    experiment: z.enum(["pelican", "crocodile", "starship"]),
+    experiment: z.enum(["pelican", "crocodile", "taobao"]),
   }),
   z.object({
     action: z.literal("vote"),
@@ -20,6 +21,12 @@ const input = z.discriminatedUnion("action", [
     choice: z.enum(["left", "right", "draw", "neither"]),
   }),
 ]);
+const internalInput = z.object({
+  action: z.literal("vote"),
+  leftId: z.string().regex(/^[1-9]\d*$/),
+  rightId: z.string().regex(/^[1-9]\d*$/),
+  choice: z.enum(["left", "right", "draw", "neither"]),
+});
 export async function POST(request: Request) {
   try {
     checkOrigin(request);
@@ -30,6 +37,17 @@ export async function POST(request: Request) {
       json = JSON.parse(text);
     } catch {
       return errorResponse("invalidJson", 400, request);
+    }
+    const origin = javaOrigin();
+    if (origin) {
+      const parsed = internalInput.safeParse(json);
+      if (!parsed.success) return errorResponse("invalidInput", 400, request);
+      const data = parsed.data,
+        arena = javaArena(origin);
+      return Response.json(
+        await arena.vote(data.leftId, data.rightId, data.choice),
+        { headers: privateHeaders },
+      );
     }
     const parsed = input.safeParse(json);
     if (!parsed.success) return errorResponse("invalidInput", 400, request);

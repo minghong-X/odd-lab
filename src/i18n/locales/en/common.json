@@ -3,6 +3,7 @@
   "homeLabel": "Odd Lab home",
   "navLabel": "Main navigation",
   "experiments": "Experiments",
+  "github": "GitHub repository (opens in a new tab)",
   "leaderboard": "Leaderboard",
   "startArena": "Enter Arena",
   "enterArena": "Enter Arena",
@@ -19,7 +20,7 @@
   "zh": "中文",
   "en": "English",
   "metaTitle": "Odd Lab · Let imagination wander",
-  "metaDescription": "Cycling pelicans, motorcycle crocodiles, and a starship bound for Mars. Explore model creations and vote in a blind Arena. No account needed.",
+  "metaDescription": "Cycling pelicans, motorcycle crocodiles, and Taobao desktop homepage recreations. Explore model creations and vote in a blind Arena. No account needed.",
   "notFound": "This idea hasn’t landed yet.",
   "backExperiments": "Back to experiments",
   "pelicanArt": "Original illustration: a pelican riding a bicycle",
@@ -27,5 +28,6 @@
   "starshipArt": "Original starship illustration",
   "boardingArt": "A pelican and a crocodile leave the ground and board a starship for takeoff",
   "closeImage": "Close enlarged image",
-  "arenaSelect": "Choose an Arena experiment"
+  "arenaSelect": "Choose an Arena experiment",
+  "taobaoArt": "Taobao desktop homepage recreation experiment illustration"
 }

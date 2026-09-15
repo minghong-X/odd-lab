@@ -1,9 +1,14 @@
 import { getServerI18n } from "@/i18n/server";
 import Link from "next/link";
-import { localizeExperiment, experiments, getArtifacts } from "@/lib/catalog";
-import { Pelican, Crocodile, Starship } from "./art";
+import { getServerArtifacts } from "@/lib/server-artifacts";
+import { localizeExperiment, experiments } from "@/lib/catalog";
+import { TaobaoArt } from "./taobao-art";
+import { Pelican, Crocodile } from "./art";
 export async function ExperimentCards() {
   const { t } = await getServerI18n();
+  const counts = await Promise.all(
+    experiments.map(async (e) => (await getServerArtifacts(e.slug)).length),
+  );
   return (
     <div className="experiment-grid">
       {experiments
@@ -19,13 +24,7 @@ export async function ExperimentCards() {
               style={{ backgroundColor: e.color }}
             >
               <span className="experiment-number">{e.number}</span>
-              {i === 0 ? (
-                <Pelican />
-              ) : i === 1 ? (
-                <Crocodile />
-              ) : (
-                <Starship cutaway />
-              )}
+              {i === 0 ? <Pelican /> : i === 1 ? <Crocodile /> : <TaobaoArt />}
               <span className="round-arrow" aria-hidden>
                 ↗
               </span>
@@ -33,9 +32,9 @@ export async function ExperimentCards() {
             <div className="experiment-copy">
               <span>
                 {e.tag} <b>·</b>{" "}
-                {getArtifacts(e.slug).length
+                {counts[i]
                   ? t("experiments.modelCount", {
-                      count: getArtifacts(e.slug).length,
+                      count: counts[i],
                     })
                   : t("common.preparing")}
               </span>

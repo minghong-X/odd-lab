@@ -23,5 +23,9 @@
   "rules2": "A model may have multiple submissions. Full original prompts and sampling settings were not recorded. These rankings compare the current artworks, not overall model capability. Legacy votes were not imported. Ties in the ranking calculation are resolved by match count, then model name. Unrated entries have no rank.",
   "empty": "No submissions yet",
   "emptyLink": "Vote in the pelican experiment",
-  "loading": "Gathering everyone’s choices…"
+  "loading": "Gathering everyone’s choices…",
+  "supportRate": "Support rate",
+  "internalSummary": "Ranked by support rate, then by number of comparisons.",
+  "internalRules1": "Support rate = (wins + ties × 0.5) ÷ comparisons. Losses and “Neither” earn zero points and still count as comparisons.",
+  "internalRules2": "Each experiment keeps one selected artwork per model. No login is required; each submission records one vote. Unrated entries have no rank."
 }

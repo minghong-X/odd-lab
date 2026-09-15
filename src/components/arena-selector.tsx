@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useI18n } from "@/i18n/provider";
 
-const choices = ["pelican", "crocodile", "starship"] as const;
+const choices = ["pelican", "crocodile", "taobao"] as const;
 
 export function ArenaSelector() {
   const pathname = usePathname();

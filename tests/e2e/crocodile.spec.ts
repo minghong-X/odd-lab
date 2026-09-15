@@ -2,15 +2,12 @@ import { test, expect } from "@playwright/test";
 import catalog from "../../data/catalog.json" with { type: "json" };
 
 const crocodiles = catalog.filter((a) => a.experiment === "crocodile");
-test("home mixes experiments and leads visitors down the story", async ({
-  page,
-}) => {
+test("home mixes experiments and keeps Arena accessible", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator(".hero .hero-actions")).toHaveCount(0);
-  await expect(page.locator(".scroll-invite")).toHaveAttribute(
-    "href",
-    "#journey",
-  );
+  await expect(
+    page.getByRole("button", { name: "Choose an Arena experiment" }),
+  ).toBeVisible();
+  await expect(page.locator(".scroll-invite")).toHaveCount(0);
   await expect(page.locator(".photo-cloud")).toHaveAttribute(
     "data-intro-state",
     "settled",
@@ -23,13 +20,13 @@ test("home mixes experiments and leads visitors down the story", async ({
     );
   const ids = urls.map((url) => new URL(url).searchParams.get("id"));
   expect(ids.filter((id) => crocodiles.some((a) => a.id === id))).toHaveLength(
-    15,
+    10,
   );
   expect(
     ids.filter((id) =>
       catalog.some((a) => a.id === id && a.experiment === "pelican"),
     ),
-  ).toHaveLength(15);
+  ).toHaveLength(10);
 });
 
 test("crocodile gallery, blind voting and rankings work in both languages without Elo display", async ({

@@ -30,6 +30,7 @@ export default defineConfig({
     reuseExistingServer: false,
     timeout: 120_000,
     env: {
+      ODD_INTERNAL_BUILD: "0",
       ODD_DB_PATH: ".test-db",
       APP_ORIGIN: "http://127.0.0.1:3101",
       NEXT_DIST_DIR: ".next-test",

@@ -13,3 +13,6 @@ CLAUDE.md
 
 # Preserve model output bytes and content-addressed filenames.
 data/media/*.svg
+
+# Keep imported HTML byte-identical to its source.
+data/media/*.html

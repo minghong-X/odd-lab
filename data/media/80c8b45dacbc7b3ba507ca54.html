@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>淘宝网 - 淘！我喜欢</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;padding:0;font-family:Arial,"Microsoft YaHei",sans-serif;color:#333;background:#fff}body{min-width:1200px}
+.topline{height:31px;border-top:1px solid #eee;border-bottom:1px solid #eee;background:#fafafa;font-size:12px;color:#555}
+.topinner{width:1310px;margin:auto;display:flex;align-items:center;height:30px;justify-content:space-between}
+.topinner a{margin-right:16px;color:#555;text-decoration:none}.topinner .orange{color:#f40}
+.banner{height:50px;background:linear-gradient(90deg,#ae6505,#d38411 42%,#b86c05);color:white}
+.bannerin{width:1310px;height:50px;margin:auto;display:flex;align-items:center;justify-content:center;gap:18px;position:relative}
+.bannerin:before{content:"";position:absolute;left:380px;width:68px;height:36px;background:linear-gradient(135deg,#f8be57 15%,#fff1b1 16% 38%,#c7781a 39% 53%,#ffe49d 54%);transform:skew(-14deg);border-radius:4px}
+.banner b{font-size:20px;letter-spacing:1px;z-index:1}.go{z-index:1;background:#fff6d7;color:#9a5700;border-radius:7px;padding:7px 13px;font-size:13px;font-weight:bold}.close{position:absolute;right:0;background:#704208;border-radius:3px;padding:2px 6px}
+.header{width:1310px;margin:0 auto;height:112px;position:relative;padding-top:12px}
+.logo{position:absolute;left:62px;top:13px;color:#f4511e;font-size:37px;font-weight:bold;letter-spacing:2px;line-height:34px}.logo span{display:block;font-size:15px;text-align:center;letter-spacing:0}
+.searchrow{margin-left:222px;width:855px;height:39px;border:2px solid #ff5000;border-radius:10px;display:flex;overflow:hidden}
+.select{width:80px;font-size:13px;padding:10px 13px;border-right:1px solid #eee;color:#333}.input{flex:1;color:#999;font-size:13px;padding:10px}.searchbtn{width:62px;background:#ff5000;color:white;border:0;font-size:15px;font-weight:bold}.camera{color:#f4511e;background:#fff6f1;padding:10px 15px;font-weight:bold;font-size:13px}
+.hot{margin-left:238px;font-size:11px;color:#999;margin-top:6px}.hot b{color:#f45;margin-right:11px;font-weight:normal}.nav{position:absolute;bottom:4px;left:215px;display:flex;gap:40px;font-size:14px;font-weight:bold}.nav span{white-space:nowrap}.nav i{font-style:normal;color:#ff1744;margin-right:5px}.subpromo{position:absolute;right:3px;top:17px;font-size:13px;font-weight:bold;text-align:center}.subpromo b{display:block;color:#f4511e;font-size:15px;margin-top:5px}
+.container{width:1310px;margin:auto}.hero{height:273px;display:grid;grid-template-columns:210px 427px 427px 198px;gap:13px}
+.card{background:#f6f6f6;border-radius:10px;overflow:hidden}
+.cat{padding:11px 14px;font-size:13px;line-height:26px}.cat .title{color:#f56c37;font-size:14px}.ico{width:15px;display:inline-block;color:#444;font-size:15px}
+.promomain{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:130px 130px;gap:13px;background:none}.wide{grid-column:span 2;background:#f3f4f6;position:relative;padding:17px}.wide h2{font-size:17px;margin:14px 0 0}.wide .tag{font-size:10px;background:#f32d58;color:#fff;padding:3px 5px;border-radius:3px}.phone{position:absolute;width:72px;height:104px;border-radius:12px;background:linear-gradient(135deg,#202427,#eee 46%,#752638 47%,#3d0b1a);top:3px;right:80px;transform:rotate(32deg);box-shadow:0 4px 10px #aaa}.buds{position:absolute;right:20px;bottom:15px;width:46px;height:30px;border-radius:17px;background:white;box-shadow:0 2px 9px #aaa}
+.mini{padding:12px;position:relative;font-weight:bold;font-size:13px}.mini .product{position:absolute;bottom:20px;width:69px;height:43px;border-radius:4px;background:linear-gradient(145deg,#333,#999 45%,#ddd);box-shadow:0 4px 6px #bbb}.mini .product.two{left:98px;background:linear-gradient(90deg,#ddd,#e8d7a8)}.price{position:absolute;bottom:8px;background:#ff5000;color:#fff;border-radius:2px;padding:2px 5px;font-size:12px;font-weight:bold}.mini .price{left:30px}.mini .p2{left:111px}
+.rightgrid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:130px 130px;gap:13px;background:none}.rightgrid .topad{grid-column:span 2;background:#f6f6f6;padding:13px;position:relative}.topad .sofa,.topad .shelf,.topad .appliance{display:inline-block;margin:25px 17px 0;width:70px;height:31px;background:linear-gradient(#dfd4c4,#a98f77);border-radius:8px;vertical-align:bottom}.topad .shelf{height:48px;width:55px;background:repeating-linear-gradient(#d3c6b1 0 8px,#a88b67 9px 11px)}.topad .appliance{height:25px;background:linear-gradient(#eee,#bbb)}
+.login{padding:13px 12px;text-align:left}.face{float:left;width:36px;height:36px;border-radius:50%;background:radial-gradient(circle at 50% 40%,#555 2px,transparent 3px),#ffbd52;margin-right:9px}.login b{font-size:14px}.login p{font-size:11px;margin:4px 0}.login h4{clear:both;padding-top:9px;margin:0;font-size:14px}.login small{color:#999}.login button{width:100%;border:0;background:#ff5000;color:#fff;font-size:15px;font-weight:bold;border-radius:9px;padding:10px;margin-top:10px}.login .tools{display:flex;justify-content:space-around;text-align:center;margin-top:9px;font-size:11px}.coin{height:76px;padding:10px;font-size:13px;font-weight:bold}.coin strong{display:block;color:#ff7a00;font-size:27px;float:right;margin:2px 19px;border-radius:50%;background:#f9bb31;color:#fff;padding:7px}
+.tabs{height:52px;display:flex;align-items:end;gap:25px;font-size:13px}.tabs span{padding-bottom:9px}.tabs .active{font-weight:bold;color:#f4511e;border-bottom:3px solid #f4511e}
+.products{display:grid;grid-template-columns:repeat(6,1fr);gap:13px}.item{min-width:0;font-size:13px;position:relative}.pic{height:209px;border-radius:9px;overflow:hidden;position:relative;background:#eee}.item p{margin:6px 1px 0;line-height:19px;height:39px;overflow:hidden}.item .money{display:block;color:#f4511e;font-size:16px;margin-top:10px}
+.salt{background:linear-gradient(#dff0fc,#6cb9df 54%,#fff 55%)}.salt:before{content:"自贡深井盐";position:absolute;top:4px;left:7px;color:#fff;font-size:22px;font-weight:bold}.salt:after{content:"盐 当 家\A 加碘食用盐";white-space:pre;position:absolute;bottom:10px;left:18px;width:130px;height:124px;background:linear-gradient(135deg,#e8f0ff,#556fb6);color:#fff;text-align:center;padding-top:32px;font-size:17px;font-weight:bold;transform:rotate(-5deg);border-radius:5px;box-shadow:12px 7px 0 #ccd4e2}
+.dou{background:radial-gradient(circle at 30% 75%,#ea168f,transparent 19%),linear-gradient(145deg,#151766,#34219d 45%,#080c4d)}.dou:before{content:"Dou音币\A 60";white-space:pre;position:absolute;width:100%;text-align:center;top:33px;color:#ff9b2f;font-size:37px;line-height:58px;font-weight:bold}.dou:after{content:"24小时自动充值";position:absolute;top:10px;right:9px;color:#fff;background:#692acf;padding:5px;font-size:11px}
+.charms{background:linear-gradient(135deg,#40c8ed,#fff 34%,#d9f5ff)}.charms:before{content:"潮流 P3";position:absolute;top:9px;left:18px;font-size:17px;color:#fff}.charms:after{content:"♟  ♟  ♟\A\A  ♟  ♟  ♟\A\A ♟  ♟  ♟";white-space:pre;position:absolute;top:49px;left:22px;color:#2660ae;font-size:31px;line-height:37px;text-shadow:10px 0 #fd9aaa}
+.pink{background:linear-gradient(115deg,#f8e1e0,#f6b8c0)}.pink:before{content:"48H长效杀菌";position:absolute;top:9px;left:9px;font-size:25px;color:#d14d59;font-weight:bold}.pink:after{content:"安全\A 0刺激";white-space:pre;position:absolute;bottom:12px;left:17px;background:#e9495d;color:#fff;padding:5px;border-radius:17px;text-align:center;font-weight:bold}.bottle{position:absolute;bottom:18px;right:25px;width:37px;height:118px;background:linear-gradient(90deg,#ecf5eb,#70a884,#e7f0e8);border-radius:10px 10px 5px 5px;border:3px solid #fff}.bottle:before{content:"草本";position:absolute;top:38px;left:4px;color:#268257;font-size:12px}
+.tissue{background:linear-gradient(135deg,#f9d7b8,#f9f4e9)}.tissue:before{content:"原生木浆";position:absolute;top:10px;left:17px;font-size:25px;color:#e66c15;font-weight:bold}.tissue:after{content:"柔软纸巾";position:absolute;bottom:29px;left:35px;padding:27px 15px;background:#fff;border-radius:5px;box-shadow:0 10px 13px #b89d89;color:#8e9274;font-weight:bold;transform:rotate(-12deg)}
+.hair{background:linear-gradient(135deg,#d7edff,#fff1df 55%,#3b250d)}.hair:before{content:"狂甩不掉";position:absolute;top:7px;right:10px;color:#111;font-size:25px;font-weight:bold}.hair:after{content:"〰〰";position:absolute;bottom:45px;right:7px;color:#2d1708;font-size:74px;font-weight:bold;transform:rotate(-8deg)}.girl{position:absolute;bottom:0;left:25px;width:62px;height:132px;background:radial-gradient(ellipse at 60% 16%,#ffd5bc 0 19px,transparent 20px),linear-gradient(90deg,transparent 20%,#352315 21% 36%,transparent 37%),linear-gradient(#333d75,#111);border-radius:40px 40px 5px 5px}
+.row2{margin-top:13px}.gift{background:linear-gradient(#fff,#e1f2ff)}.gift:before{content:"OFFGAMERS\A GIFT CARD";white-space:pre;position:absolute;text-align:center;top:28px;left:26px;color:#153f89;font-size:19px;line-height:38px;font-weight:bold}.gift:after{content:"30\A CNY";white-space:pre;position:absolute;right:14px;top:56px;color:#fff;background:#1866c4;font-size:23px;padding:7px}
+.news{background:linear-gradient(#f15923 0 19%,#fff 20%)}.news:before{content:"4年级 阅读大画报";position:absolute;top:25px;left:12px;color:#e73618;font-size:18px;font-weight:bold}.news:after{content:"2026 大语文阅读\A 同步教材";white-space:pre;position:absolute;bottom:12px;left:10px;background:#ed6717;color:#fff;padding:8px;font-weight:bold}
+.soft{background:linear-gradient(135deg,#e4d3bb,#fff 48%,#c7ab80)}.soft:before{content:"洁柔";position:absolute;top:10px;left:12px;color:#392b1e;font-weight:bold;font-size:26px}.soft:after{content:"柔韧纸巾";position:absolute;bottom:28px;left:28px;color:#796742;background:#fff;padding:18px 25px;box-shadow:0 5px 10px #aaa}
+.clean{background:linear-gradient(#d8f8d3,#fae1e5)}.clean:before{content:"食品用\A 洁净";white-space:pre;position:absolute;top:18px;left:10px;color:#e24337;font-size:25px;font-weight:bold}.clean:after{content:"草莓去油洗洁精";position:absolute;bottom:23px;right:5px;background:#f7b0bd;padding:16px 7px;color:#218e52;font-weight:bold;border-radius:8px}
+.dou300{background:linear-gradient(45deg,#05d7e2,#f22f78 36%,#121564 37%)}.dou300:before{content:"DOU 音币\A 300";white-space:pre;position:absolute;text-align:center;top:35px;width:100%;color:#ff36e0;font-size:30px;line-height:45px;font-weight:bold;text-shadow:2px 2px #000}.vip{background:linear-gradient(130deg,#bd45ef,#204aa2)}.vip:before{content:"剪映 SVIP";position:absolute;top:12px;left:15px;color:#fff;font-size:22px;font-weight:bold}.vip:after{content:"月卡\A SVIP";white-space:pre;position:absolute;bottom:10px;left:11px;color:#7f228f;background:#fff0fc;padding:10px;font-size:24px;font-weight:bold}
+.floatbar{position:fixed;right:0;top:368px;width:47px;border:1px solid #eee;border-radius:10px 0 0 10px;background:#fff;text-align:center;font-size:10px;z-index:5}.floatbar div{padding:10px 2px;border-bottom:1px solid #f1f1f1;font-size:10px}.floatbar b{display:block;font-size:18px;font-weight:normal;margin-bottom:3px}
+</style>
+</head>
+<body>
+<div class="topline"><div class="topinner"><div>中国大陆⌄　 <a class="orange">亲，请登录</a><a>免费注册</a><a>网页无障碍</a><a>切换企业版</a></div><div><a>已买到的宝贝</a><a>我的淘宝⌄</a><a>🛒 购物车</a><a>☆ 收藏夹⌄</a><a>免费开店⌄</a><a>千牛卖家中心⌄</a><a>帮助中心⌄</a></div></div></div>
+<div class="banner"><div class="bannerin"><b>采购节 企业秋季生产 拿样1元起</b><span class="go">立即前往</span><span class="close">×</span></div></div>
+<div class="header">
+<div class="logo">淘宝<span>Taobao.com</span></div>
+<div class="searchrow"><div class="select">宝贝⌄</div><div class="input">爆国好榜</div><button class="searchbtn">搜索</button><div class="camera">◎ 搜同款</div></div>
+<div class="hot"><b>iPhone 18 pro开售</b>摸鱼星期一　中动玩具　新款之日手办　手办　中动玩具手办　中动新之日</div>
+<div class="nav"><span><i>▰</i>天猫</span><span><i>▣</i>淘宝直播</span><span><i>♙</i>阿里企业购</span><span><i>◉</i>司法拍卖</span><span><i>⚑</i>天猫超市</span><span><i>▣</i>国家补贴</span><span><i>▰</i>领券中心</span><span><i>⬇</i>超级立减</span><span><i>▦</i>全部频道</span></div>
+<div class="subpromo">天天领元宝换红包<b>开启淘江湖 ›</b></div>
+</div>
+<div class="container">
+<div class="hero">
+<div class="card cat"><div class="title">♧ 超级立减 / 抢省钱补贴</div><div><span class="ico">▣</span> 电脑 / 配件 / 办公 / 文具</div><div><span class="ico">◎</span> 工业品 / 商业 / 农业 / 定制</div><div><span class="ico">▯</span> 家电 / 手机 / 通信 / 数码</div><div><span class="ico">♧</span> 家具 / 家装 / 家居 / 厨具</div><div><span class="ico">♧</span> 女装 / 男装 / 内衣 / 配饰</div><div><span class="ico">♧</span> 女鞋 / 男鞋 / 运动 / 户外</div><div><span class="ico">♧</span> 汽车 / 珠宝 / 文玩 / 箱包</div><div><span class="ico">◉</span> 食品 / 鲜花 / 酒水 / 健康</div><div><span class="ico">▯</span> 母婴 / 童装 / 玩具 / 宠物</div></div>
+<div class="promomain">
+<div class="wide card"><span class="tag">天猫超级新品</span><h2>Apple新品来了<br>立享24期免息</h2><div class="phone"></div><div class="buds"></div></div>
+<div class="card mini">领券中心<div class="product" style="left:18px"></div><div class="product two"></div><span class="price">￥10800</span><span class="price p2">￥6380</span></div>
+<div class="card mini">淘宝直播 <small style="color:#f35">红包</small><div class="product" style="left:18px;background:linear-gradient(135deg,#edafc2,#68465b)"></div><div class="product two" style="background:linear-gradient(135deg,#90d5e7,#485a7e)"></div><span class="price">￥</span></div>
+</div>
+<div class="rightgrid">
+<div class="topad card"><b>百亿补贴 · 买贵必赔</b><span class="sofa"></span><span class="shelf"></span><span class="appliance"></span></div>
+<div class="card mini"><span style="color:#1ba85d">▣ 国家补贴</span><div class="product" style="left:24px"></div><div class="product two"></div><span class="price">￥21800</span><span class="price p2">￥20411</span></div>
+<div class="card mini">淘宝秒杀 <div class="product" style="left:29px;background:#f2f2f2"></div><div class="product two" style="background:#fff"></div><span class="price">￥6999</span><span class="price p2">￥652</span></div>
+</div>
+<div class="card login"><div class="face"></div><b>晚上好</b><p>注册　开店</p><h4>登录淘宝后更多精彩</h4><small>哇！更懂你的推荐</small><button>立即登录</button><div class="tools"><span>♡<br>已买到</span><span>☆<br>收藏夹</span><span>▱<br>买过的店</span><span>♙<br>足迹</span></div><div class="coin">淘宝币购物抵钱用<strong>币</strong><small>100淘币抵1元</small></div></div>
+</div>
+<div class="tabs"><span class="active">● 猜你喜欢</span><span>➤ 运动户外</span><span>⌁ 潮电数码</span><span>♙ 服饰时尚</span><span>▣ 家装建材</span><span>◉ 办公文具</span><span>▣ 健康保健</span></div>
+<div class="products">
+<div class="item"><div class="pic salt"></div><p>盐当家加碘精制盐350克小样食盐炒菜调味品健康袋装</p><span class="money">￥3.02</span></div>
+<div class="item"><div class="pic dou"></div><p><b style="color:#f35">天猫</b> 60抖币充值秒到300钻石douyin斗币充值</p><span class="money">￥6.5</span></div>
+<div class="item"><div class="pic charms"></div><p><b style="color:#f35">天猫</b>【预售】明日方舟×Persona 3 Reload</p><span class="money">￥38</span></div>
+<div class="item"><div class="pic pink"><div class="bottle"></div></div><p>【全国包邮】衣物消毒除菌液洗衣服洗衣机专用</p><span class="money">￥20.9</span></div>
+<div class="item"><div class="pic tissue"></div><p>原生木浆抽纸家用饭店办公宿舍面巾擦手纸</p><span class="money">￥3.02</span></div>
+<div class="item"><div class="pic hair"><div class="girl"></div></div><p>简约发圈橡皮筋女高弹力耐用扎头发不伤发</p><span class="money">￥5</span></div>
+</div>
+<div class="products row2">
+<div class="item"><div class="pic gift"></div></div><div class="item"><div class="pic news"></div></div><div class="item"><div class="pic soft"></div></div><div class="item"><div class="pic clean"></div></div><div class="item"><div class="pic dou300"></div></div><div class="item"><div class="pic vip"></div></div>
+</div>
+</div>
+<div class="floatbar"><div><b>▧</b>电脑版</div><div><b>☻</b>消息</div><div><b>🛒</b>购物车</div><div><b>◔</b>旗舰店</div><div><b>♧</b>官方客服</div><div><b>□</b>反馈</div></div>
+</body>
+</html>

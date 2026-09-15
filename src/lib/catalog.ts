@@ -7,13 +7,15 @@ export type Artifact = {
   title: string;
   experiment: string;
   file: string;
+  mediaUrl?: string;
+  mediaType?: "svg" | "png" | "gif" | "html" | "mp4" | "image" | "video";
   animatedFile?: string;
   width: number;
   height: number;
   generationTimeMs: number | null;
   tokenUsage: number | null;
 };
-export const artifacts: Artifact[] = catalog;
+export const artifacts = catalog as Artifact[];
 export const experiments = [
   {
     slug: "pelican",
@@ -28,10 +30,10 @@ export const experiments = [
     available: true,
   },
   {
-    slug: "starship",
+    slug: "taobao",
     color: "#e7dacc",
     number: "03",
-    available: false,
+    available: true,
   },
 ] as const;
 export function getExperiment(slug: string) {
@@ -56,19 +58,44 @@ export function localizeExperiment(
   };
 }
 
-// Bound the animated wall to its 6 × 5 grid; interleave experiments so new
-// submissions remain visible instead of falling into rows below the viewport.
-export function getPhotoWall(limit = 30) {
-  const groups = experiments.map((e) => getArtifacts(e.slug));
-  const pictures: Artifact[] = [];
+// Sample all experiments, then mix the 6-column desktop and 5-column mobile wall.
+// Called on the server: one order is sent to the client, avoiding hydration changes.
+export function getPhotoWall(
+  limit = 30,
+  list: Artifact[] = artifacts,
+  random = Math.random,
+) {
+  const shuffle = <T>(items: T[]) => {
+    const copy = [...items];
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  };
+  const groups = experiments.map((e) =>
+    shuffle(list.filter((a) => a.experiment === e.slug)),
+  );
+  const sample: Artifact[] = [];
   for (
     let row = 0;
-    pictures.length < limit && groups.some((g) => row < g.length);
+    sample.length < limit && groups.some((g) => row < g.length);
     row++
   ) {
     for (const group of groups) {
-      if (group[row] && pictures.length < limit) pictures.push(group[row]);
+      if (group[row] && sample.length < limit) sample.push(group[row]);
     }
+  }
+  const remaining = shuffle(sample),
+    pictures: Artifact[] = [];
+  while (remaining.length) {
+    const i = pictures.length;
+    const candidate = remaining.findIndex(
+      (a) =>
+        a.experiment !== pictures[i - 6]?.experiment &&
+        a.experiment !== pictures[i - 5]?.experiment,
+    );
+    pictures.push(remaining.splice(Math.max(candidate, 0), 1)[0]);
   }
   return pictures;
 }

@@ -92,7 +92,7 @@ test("reduced motion displays a complete static photo wall", async ({
     "settled",
   );
   expect(await page.locator(".flying-photo:visible").count()).toBe(30);
-  await expect(page.getByRole("button", { name: "Replay intro" })).toHaveCount(
-    0,
-  );
+  await expect(
+    page.getByRole("button", { name: "Replay intro" }),
+  ).not.toBeVisible();
 });

@@ -1,8 +1,13 @@
 import { getServerI18n } from "@/i18n/server";
 import Link from "next/link";
+import { appPath } from "@/lib/paths";
 import { notFound } from "next/navigation";
-import { localizeExperiment, getExperiment, getArtifacts } from "@/lib/catalog";
-import { Pelican, Crocodile, Starship } from "@/components/art";
+import { getServerArtifacts } from "@/lib/server-artifacts";
+import { localizeExperiment, getExperiment } from "@/lib/catalog";
+import { ArtworkMedia } from "@/components/artwork-media";
+import { ArtworkPreview } from "@/components/artwork-preview";
+import { TaobaoArt } from "@/components/taobao-art";
+import { Pelican, Crocodile } from "@/components/art";
 export default async function ExperimentPage({
   params,
 }: {
@@ -13,7 +18,7 @@ export default async function ExperimentPage({
     record = getExperiment(slug);
   if (!record) notFound();
   const experiment = localizeExperiment(record, t);
-  const list = getArtifacts(slug);
+  const list = await getServerArtifacts(slug);
   return (
     <main id="main" className="page-shell">
       <Link className="back-link" href="/experiments">
@@ -45,7 +50,7 @@ export default async function ExperimentPage({
           ) : slug === "crocodile" ? (
             <Crocodile />
           ) : (
-            <Starship cutaway />
+            <TaobaoArt />
           )}
         </div>
       </div>
@@ -63,29 +68,54 @@ export default async function ExperimentPage({
           <div className="art-gallery">
             {list.map((a) => (
               <article key={a.id}>
-                <a
-                  href={`/api/media?id=${a.id}&motion=1`}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label={t("experiments.enlargeModel", { model: a.title })}
-                >
-                  <picture>
-                    <source
-                      media="(prefers-reduced-motion: reduce)"
-                      srcSet={`/api/media?id=${a.id}`}
-                    />
-                    <img
-                      src={`/api/media?id=${a.id}&motion=1`}
-                      alt={t("experiments.artAlt", {
-                        model: a.title,
-                        experiment: experiment.title,
-                      })}
-                      width={a.width}
-                      height={a.height}
-                      loading="lazy"
-                    />
-                  </picture>
-                </a>
+                {a.mediaType === "html" && a.mediaUrl ? (
+                  <ArtworkPreview
+                    src={a.mediaUrl}
+                    label={a.title}
+                    mediaType="html"
+                  />
+                ) : (
+                  <a
+                    href={
+                      a.mediaUrl || appPath(`/api/media?id=${a.id}&motion=1`)
+                    }
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={t("experiments.enlargeModel", {
+                      model: a.title,
+                    })}
+                  >
+                    {a.mediaUrl ? (
+                      <ArtworkMedia
+                        src={a.mediaUrl}
+                        mediaType={a.mediaType}
+                        alt={a.title}
+                      />
+                    ) : (
+                      <picture>
+                        <source
+                          media="(prefers-reduced-motion: reduce)"
+                          srcSet={
+                            a.mediaUrl || appPath(`/api/media?id=${a.id}`)
+                          }
+                        />
+                        <img
+                          src={
+                            a.mediaUrl ||
+                            appPath(`/api/media?id=${a.id}&motion=1`)
+                          }
+                          alt={t("experiments.artAlt", {
+                            model: a.title,
+                            experiment: experiment.title,
+                          })}
+                          width={a.width}
+                          height={a.height}
+                          loading="lazy"
+                        />
+                      </picture>
+                    )}
+                  </a>
+                )}
                 <div>
                   <h3>{a.title}</h3>
                   <span>

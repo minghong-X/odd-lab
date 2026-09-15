@@ -7,12 +7,15 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node scripts/build.mjs",
+    "build:standalone": "node scripts/build.mjs --standalone",
     "start": "next start",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "test:standalone": "node scripts/check-standalone.mjs",
     "import:materials": "tsx scripts/import-materials.ts",
+    "sync:artworks": "tsx scripts/sync-artworks.ts",
     "db:migrate": "tsx scripts/migrate.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check ."

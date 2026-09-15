@@ -1,10 +1,13 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { appPath } from "@/lib/paths";
 import { useI18n } from "@/i18n/provider";
 import { isErrorCode, numberFormatter } from "@/i18n";
+import { ArtworkMedia, type MediaSource } from "./artwork-media";
 import type { Choice } from "@/lib/arena";
-type Pair = { id: string; token: string };
+type Pair =
+  { id: string; token: string } | { left: MediaSource; right: MediaSource };
 type Revealed = {
   choice: Choice;
   left: { model: string; title: string };
@@ -25,11 +28,18 @@ function previewSide(choice: Choice, index: number): "good" | "bad" {
   if (choice === "neither") return "bad";
   return choice === (index === 0 ? "left" : "right") ? "good" : "bad";
 }
-export function ArenaClient({ slug }: { slug: string }) {
+export function ArenaClient({
+  slug,
+  internalArtworks,
+}: {
+  slug: string;
+  internalArtworks?: MediaSource[];
+}) {
   const { t, locale } = useI18n();
   const format = numberFormatter(locale);
   const [pair, setPair] = useState<Pair | null>(null),
     [images, setImages] = useState<string[]>([]),
+    [mediaTypes, setMediaTypes] = useState<MediaSource["mediaType"][]>([]),
     [result, setResult] = useState<Revealed | null>(null),
     [error, setError] = useState(""),
     [loading, setLoading] = useState(true),
@@ -50,37 +60,60 @@ export function ArenaClient({ slug }: { slug: string }) {
     setResult(null);
     setError("");
     setImages([]);
+    setMediaTypes([]);
     urls.current.forEach(URL.revokeObjectURL);
     urls.current = [];
     try {
-      const response = await fetch("/api/arena", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ action: "pair", experiment: slug }),
-        signal: abort.signal,
-      });
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.code);
+      let data: Pair;
+      if (internalArtworks) {
+        const leftIndex = Math.floor(Math.random() * internalArtworks.length);
+        const others = internalArtworks.filter((_, i) => i !== leftIndex);
+        data = {
+          left: internalArtworks[leftIndex],
+          right: others[Math.floor(Math.random() * others.length)],
+        };
+      } else {
+        const response = await fetch(appPath("/api/arena"), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action: "pair", experiment: slug }),
+          signal: abort.signal,
+        });
+        const result = await response.json();
+        if (!response.ok) throw new Error(result.code);
+        data = result;
+      }
       const motion = window.matchMedia("(prefers-reduced-motion: reduce)")
         .matches
         ? "0"
         : "1";
-      const blobs = await Promise.all(
-        ["A", "B"].map(async (side) => {
-          const r = await fetch(
-            `/api/media?battle=${data.id}&side=${side}&motion=${motion}`,
-            {
-              headers: { Authorization: `Bearer ${data.token}` },
-              signal: abort.signal,
-            },
-          );
-          if (!r.ok) throw new Error("mediaLoad");
-          return r.blob();
-        }),
-      );
-      if (abort.signal.aborted) return;
-      urls.current = blobs.map(URL.createObjectURL);
-      setImages(urls.current);
+      if ("token" in data) {
+        const blobs = await Promise.all(
+          ["A", "B"].map(async (side) => {
+            const r = await fetch(
+              appPath(
+                `/api/media?battle=${data.id}&side=${side}&motion=${motion}`,
+              ),
+              {
+                headers: { Authorization: `Bearer ${data.token}` },
+                signal: abort.signal,
+              },
+            );
+            if (!r.ok) throw new Error("mediaLoad");
+            return r.blob();
+          }),
+        );
+        if (abort.signal.aborted) return;
+        urls.current = blobs.map(URL.createObjectURL);
+        setImages(urls.current);
+        setMediaTypes(
+          blobs.map((blob) =>
+            blob.type.startsWith("text/html") ? "html" : "image",
+          ),
+        );
+      } else {
+        setImages([data.left.src, data.right.src]);
+      }
       setPair(data);
     } catch (e) {
       if (!abort.signal.aborted)
@@ -90,7 +123,7 @@ export function ArenaClient({ slug }: { slug: string }) {
     } finally {
       if (!abort.signal.aborted) setLoading(false);
     }
-  }, [slug]);
+  }, [slug, internalArtworks]);
   useEffect(() => {
     next();
     return () => {
@@ -105,10 +138,19 @@ export function ArenaClient({ slug }: { slug: string }) {
       setSending(true);
       setError("");
       try {
-        const response = await fetch("/api/arena", {
+        const response = await fetch(appPath("/api/arena"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ action: "vote", ...pair, choice }),
+          body: JSON.stringify(
+            "token" in pair
+              ? { action: "vote", ...pair, choice }
+              : {
+                  action: "vote",
+                  leftId: pair.left.id,
+                  rightId: pair.right.id,
+                  choice,
+                },
+          ),
         });
         const data = await response.json();
         if (!response.ok) throw new Error(data.code);
@@ -123,7 +165,7 @@ export function ArenaClient({ slug }: { slug: string }) {
         inFlight.current = false;
       }
     },
-    [pair, loading, result],
+    [pair, loading, result, slug],
   );
   useEffect(() => {
     function onKey(e: KeyboardEvent) {
@@ -144,6 +186,12 @@ export function ArenaClient({ slug }: { slug: string }) {
     if (zoom !== null) dialog.current?.showModal();
     else dialog.current?.close();
   }, [zoom]);
+  const typeAt = (i: number) =>
+    pair && !("token" in pair)
+      ? i === 0
+        ? pair.left.mediaType
+        : pair.right.mediaType
+      : mediaTypes[i] || "image";
   return (
     <div className="arena-workspace">
       <div className="arena-status">
@@ -163,76 +211,81 @@ export function ArenaClient({ slug }: { slug: string }) {
           const previewState =
             !result && preview && pair ? previewSide(preview, i) : null;
           return (
-          <div
-            className={`comparison-card ${result?.choice === (i === 0 ? "left" : "right") ? "chosen" : ""} ${previewState ? `preview-${previewState}` : ""}`}
-            key={label}
-          >
-            {previewState && (
-              <span
-                className={`preview-flag preview-flag-${previewState}`}
-                aria-hidden="true"
-              >
-                {previewState === "good"
-                  ? t("arena.previewGood")
-                  : t("arena.previewBad")}
-              </span>
-            )}
-            <div className="comparison-top">
-              <span className="side-label">{label}</span>
-              <span>
-                {result
-                  ? i === 0
-                    ? result.left.title
-                    : result.right.title
-                  : t("arena.mystery")}
-              </span>
-              {images[i] && (
-                <button
-                  className="zoom-button"
-                  onClick={() => setZoom(i)}
-                  aria-label={t("arena.enlarge", { side: label })}
-                >
-                  ⤢
-                </button>
-              )}
-            </div>
-            <button
-              className="comparison-image"
-              onClick={() => setZoom(i)}
-              disabled={!images[i] || loading}
-              aria-label={t("arena.enlarge", { side: label })}
+            <div
+              className={`comparison-card ${result?.choice === (i === 0 ? "left" : "right") ? "chosen" : ""} ${previewState ? `preview-${previewState}` : ""}`}
+              key={label}
             >
-              {loading ? (
-                <div className="image-loading">
-                  <span className="loader" />
-                  {t("arena.unfolding")}
-                </div>
-              ) : images[i] ? (
-                <img
-                  src={images[i]}
-                  alt={t("arena.artAlt", { side: label })}
-                  onError={() => setError("imageDisplay")}
-                />
-              ) : (
-                <span>{t("arena.imageUnavailable")}</span>
-              )}
-            </button>
-            <div className="comparison-bottom">
-              {result ? (
-                <span>
-                  {result.choice === "draw"
-                    ? t("arena.tieFeedback")
-                    : result.choice === "neither"
-                      ? t("arena.neitherFeedback")
-                      : result.choice === (i === 0 ? "left" : "right")
-                        ? t("arena.winnerFeedback")
-                        : t("arena.otherFeedback")}
+              {previewState && (
+                <span
+                  className={`preview-flag preview-flag-${previewState}`}
+                  aria-hidden="true"
+                >
+                  {previewState === "good"
+                    ? t("arena.previewGood")
+                    : t("arena.previewBad")}
                 </span>
-              ) : (
-                <span>{t("arena.beforeReveal")}</span>
               )}
+              <div className="comparison-top">
+                <span className="side-label">{label}</span>
+                <span>
+                  {result
+                    ? i === 0
+                      ? result.left.title
+                      : result.right.title
+                    : t("arena.mystery")}
+                </span>
+                {images[i] && (
+                  <button
+                    className="zoom-button"
+                    onClick={() => setZoom(i)}
+                    aria-label={t("arena.enlarge", { side: label })}
+                  >
+                    ⤢
+                  </button>
+                )}
+              </div>
+              <div className="comparison-image">
+                {images[i] && !["video", "mp4"].includes(typeAt(i) || "") && (
+                  <button
+                    className="media-enlarge-overlay"
+                    onClick={() => setZoom(i)}
+                    aria-label={t("arena.enlarge", { side: label })}
+                  />
+                )}
+
+                {loading ? (
+                  <div className="image-loading">
+                    <span className="loader" />
+                    {t("arena.unfolding")}
+                  </div>
+                ) : images[i] ? (
+                  <ArtworkMedia
+                    src={images[i]}
+                    mediaType={typeAt(i)}
+                    interactive={["video", "mp4"].includes(typeAt(i) || "")}
+                    alt={t("arena.artAlt", { side: label })}
+                    onError={() => setError("imageDisplay")}
+                  />
+                ) : (
+                  <span>{t("arena.imageUnavailable")}</span>
+                )}
+              </div>
+              <div className="comparison-bottom">
+                {result ? (
+                  <span>
+                    {result.choice === "draw"
+                      ? t("arena.tieFeedback")
+                      : result.choice === "neither"
+                        ? t("arena.neitherFeedback")
+                        : result.choice === (i === 0 ? "left" : "right")
+                          ? t("arena.winnerFeedback")
+                          : t("arena.otherFeedback")}
+                  </span>
+                ) : (
+                  <span>{t("arena.beforeReveal")}</span>
+                )}
+              </div>
             </div>
-          </div>
           );
         })}
       </div>
@@ -288,10 +341,12 @@ export function ArenaClient({ slug }: { slug: string }) {
           </>
         )}
       </div>
-      <p className="arena-footnote">{t("arena.footnote")}</p>
+      <p className="arena-footnote">
+        {t(internalArtworks ? "arena.internalFootnote" : "arena.footnote")}
+      </p>
       <dialog
         ref={dialog}
-        className="image-dialog"
+        className={`image-dialog ${zoom !== null && typeAt(zoom) === "html" ? "html-dialog" : ""}`}
         onCancel={() => setZoom(null)}
         onClick={(e) => {
           if (e.target === e.currentTarget) setZoom(null);
@@ -305,8 +360,10 @@ export function ArenaClient({ slug }: { slug: string }) {
           ×
         </button>
         {zoom !== null && images[zoom] && (
-          <img
+          <ArtworkMedia
             src={images[zoom]}
+            mediaType={typeAt(zoom)}
+            interactive
             alt={t("arena.enlarge", { side: zoom === 0 ? "A" : "B" })}
           />
         )}

@@ -24,10 +24,10 @@
   "crocodileTag": "SVG 绘画",
   "crocodileCriteria": "比较角色、机械结构与构图。",
   "crocodileNote": "下方展示模型生成的原始动态作品。首页的原创角色为叙事插画，不参与模型排名。",
-  "starshipTitle": "星舰引擎剖面",
-  "starshipKicker": "把好奇心拆开看看",
-  "starshipSubtitle": "把好奇心拆开，再把想象力点燃。",
-  "starshipTag": "技术图解",
-  "starshipCriteria": "比较图解构图、标注可读性与视觉表达；不代表工程准确性。",
-  "starshipNote": "实验模型作品准备中。首页剖面为原创艺术示意，不是工程图纸。"
+  "taobaoTitle": "复刻淘宝首页(PC)",
+  "taobaoKicker": "熟悉的首页，不同的还原",
+  "taobaoSubtitle": "同一张淘宝 PC 端首页，看看哪个模型还原得更像。",
+  "taobaoTag": "网页复刻",
+  "taobaoCriteria": "比较页面布局、配色、字体、商品卡片和交互细节的还原程度。",
+  "taobaoNote": "根据相同参考页面生成，比较模型的前端还原能力。实验作品仅供展示。"
 }

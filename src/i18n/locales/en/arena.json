@@ -32,5 +32,6 @@
   "next": "Next pair",
   "skip": "Skip this pair",
   "footnote": "Open to everyone · No account needed · Each round counts once",
-  "generationRules": "Generation rules: Each model gets up to three attempts. Only its best result is selected."
+  "generationRules": "Generation rules: Each model gets up to three attempts. Only its best result is selected.",
+  "internalFootnote": "Open to everyone · No account needed · Each submission records one vote"
 }

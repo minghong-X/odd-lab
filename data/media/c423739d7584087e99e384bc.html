@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>淘宝网 - 淘！我喜欢</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;}
+body{background:#f5f5f5;color:#333;font-size:12px;}
+a{text-decoration:none;color:#333;}
+
+/* Top bar */
+.topbar{background:#c8721a;color:#fff;height:32px;display:flex;align-items:center;padding:0 40px;font-size:12px;}
+.topbar .left{display:flex;gap:20px;flex:1;justify-content:center;padding-left:280px;}
+.topbar .left a{color:#fff;opacity:.9;}
+.topbar .left .login{color:#ffe;}
+.topbar .right{display:flex;gap:22px;align-items:center;}
+.topbar .right a{color:#fff;display:flex;align-items:center;gap:3px;}
+.topbar .right .arrow::after{content:"▾";font-size:10px;margin-left:2px;}
+
+/* Banner */
+.banner{background:linear-gradient(180deg,#e28a3a,#c8721a);height:70px;display:flex;align-items:center;justify-content:center;position:relative;color:#fff;gap:20px;}
+.banner .icon-box{width:60px;height:50px;background:linear-gradient(135deg,#f4c58c,#e8a05a);border-radius:8px;position:relative;box-shadow:0 4px 10px rgba(0,0,0,.15);}
+.banner .icon-box::before{content:"";position:absolute;top:8px;left:12px;width:18px;height:20px;background:#4a7bc8;border-radius:2px;}
+.banner .icon-box::after{content:"";position:absolute;bottom:8px;right:10px;width:14px;height:14px;background:#fff;border-radius:50%;}
+.banner .title{font-size:20px;font-weight:bold;}
+.banner .subtitle{font-size:16px;}
+.banner .btn{background:#fff;color:#c8721a;padding:8px 24px;border-radius:20px;font-weight:bold;font-size:14px;cursor:pointer;}
+.banner .close{position:absolute;right:20px;top:50%;transform:translateY(-50%);color:#fff;font-size:20px;cursor:pointer;opacity:.8;}
+
+/* Search area */
+.search-wrap{background:#fff;padding:30px 40px 20px;display:flex;align-items:center;gap:40px;}
+.logo{font-size:36px;font-weight:bold;color:#ff5000;text-align:center;line-height:1;}
+.logo .sub{font-size:11px;color:#ff5000;letter-spacing:1px;margin-top:4px;}
+.search-box{flex:1;max-width:680px;}
+.search-input{display:flex;border:2px solid #ff5000;border-radius:24px;overflow:hidden;height:44px;align-items:center;background:#fff;}
+.search-input .cat{padding:0 14px;display:flex;align-items:center;gap:4px;border-right:1px solid #eee;height:24px;color:#333;font-size:13px;}
+.search-input .cat::after{content:"▾";font-size:10px;color:#999;}
+.search-input input{flex:1;border:none;outline:none;padding:0 14px;font-size:14px;height:100%;color:#999;}
+.search-input .btn-search{background:#ff5000;color:#fff;border:none;padding:0 32px;height:100%;font-size:15px;cursor:pointer;font-weight:500;}
+.search-input .btn-camera{background:#fff5f0;color:#ff5000;border:none;padding:0 14px;height:100%;font-size:12px;cursor:pointer;display:flex;align-items:center;gap:4px;border-left:1px solid #ffe0d0;}
+.search-input .btn-camera::before{content:"📷";}
+.hot-words{margin-top:10px;display:flex;gap:14px;font-size:12px;color:#888;padding-left:14px;}
+.hot-words .highlight{color:#ff5000;}
+.hot-words span{cursor:pointer;}
+
+.redpack{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#fff4e6,#ffe4c8);padding:8px 16px;border-radius:12px;position:relative;}
+.redpack .txt{font-size:13px;color:#8b4513;}
+.redpack .txt strong{display:block;font-size:14px;color:#c8721a;}
+.redpack .txt .link{color:#ff5000;font-size:12px;margin-top:2px;}
+.redpack .mascot{width:50px;height:50px;background:linear-gradient(135deg,#ffb84d,#ff8c1a);border-radius:50%;position:relative;}
+.redpack .mascot::before{content:"";position:absolute;top:12px;left:10px;width:8px;height:8px;background:#000;border-radius:50%;box-shadow:16px 0 #000;}
+.redpack .badge{position:absolute;top:-4px;right:-4px;background:#ff3030;color:#fff;font-size:10px;padding:2px 6px;border-radius:8px;}
+
+/* Nav categories */
+.nav-cat{padding:6px 40px 14px;display:flex;gap:38px;background:#fff;border-bottom:1px solid #f0f0f0;}
+.nav-cat .item{display:flex;align-items:center;gap:6px;font-size:14px;color:#333;cursor:pointer;}
+.nav-cat .icon{width:22px;height:22px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;color:#fff;}
+.i1{background:linear-gradient(135deg,#ff4444,#ff6b6b);}
+.i2{background:linear-gradient(135deg,#ff8800,#ffa844);}
+.i3{background:linear-gradient(135deg,#4a90e2,#6ba8e8);}
+.i4{background:linear-gradient(135deg,#8b6f47,#a8845c);}
+.i5{background:linear-gradient(135deg,#ff3355,#ff5577);}
+.i6{background:linear-gradient(135deg,#00b894,#00cc99);}
+.i7{background:linear-gradient(135deg,#ff5722,#ff7043);}
+.i8{background:linear-gradient(135deg,#666,#888);}
+
+/* Main content */
+.main{padding:16px 40px;display:grid;grid-template-columns:200px 1fr 320px;gap:12px;}
+
+/* Left sidebar */
+.sidebar{background:#fff;border-radius:8px;padding:14px 0;}
+.sidebar .top-menu{padding:0 16px 10px;border-bottom:1px solid #f5f5f5;display:flex;align-items:center;gap:6px;font-size:14px;color:#ff5000;font-weight:500;}
+.sidebar .top-menu::before{content:"";width:4px;height:14px;background:#ff5000;border-radius:2px;}
+.sidebar ul{list-style:none;padding:8px 0;}
+.sidebar li{padding:8px 16px;display:flex;align-items:center;gap:10px;font-size:13px;cursor:pointer;color:#333;}
+.sidebar li:hover{background:#fff5f0;color:#ff5000;}
+.sidebar li .cicon{width:16px;height:16px;color:#888;display:inline-flex;align-items:center;justify-content:center;font-size:14px;}
+.sidebar li .txt{display:flex;gap:8px;flex:1;}
+.sidebar li .txt span{position:relative;}
+.sidebar li .txt span+span::before{content:"|";color:#ddd;margin-right:8px;}
+
+/* Center banner */
+.center{display:flex;flex-direction:column;gap:12px;}
+.hero{background:linear-gradient(135deg,#f5e6d3,#e8d0b0);border-radius:8px;height:290px;position:relative;overflow:hidden;padding:40px;display:flex;flex-direction:column;justify-content:center;}
+.hero .tag{background:rgba(255,255,255,.8);padding:3px 10px;border-radius:4px;font-size:12px;color:#333;width:fit-content;margin-bottom:12px;}
+.hero h2{font-size:34px;color:#333;font-weight:bold;line-height:1.2;}
+.hero .sub{font-size:26px;color:#333;margin-top:6px;font-weight:500;}
+.hero .products{position:absolute;right:40px;top:50%;transform:translateY(-50%);display:flex;gap:20px;align-items:center;}
+.phone{width:90px;height:180px;background:linear-gradient(135deg,#8b3a4f,#6b2a3f);border-radius:16px;position:relative;box-shadow:0 8px 20px rgba(0,0,0,.2);}
+.phone::before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:30px;height:6px;background:#000;border-radius:3px;}
+.airpods{width:60px;height:50px;background:#fff;border-radius:12px;position:relative;box-shadow:0 6px 15px rgba(0,0,0,.15);}
+.airpods::before,.airpods::after{content:"";position:absolute;top:8px;width:14px;height:32px;background:#fff;border:2px solid #eee;border-radius:8px;}
+.airpods::before{left:6px;}
+.airpods::after{right:6px;}
+.watch{width:50px;height:60px;background:#8b3a4f;border-radius:10px;position:relative;box-shadow:0 6px 15px rgba(0,0,0,.2);}
+.watch::before{content:"";position:absolute;top:8px;left:6px;right:6px;bottom:8px;background:#1a1a1a;border-radius:6px;}
+.dots{position:absolute;bottom:15px;left:40px;display:flex;gap:6px;}
+.dots span{width:16px;height:4px;background:rgba(0,0,0,.2);border-radius:2px;}
+.dots span.active{background:#333;}
+
+.deal-row{background:#fff;border-radius:8px;padding:14px;}
+.deal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
+.deal-header .title{font-size:15px;font-weight:bold;color:#ff5000;display:flex;align-items:center;gap:6px;}
+.deal-header .badge{background:linear-gradient(90deg,#ff5000,#ff8800);color:#fff;font-size:10px;padding:2px 6px;border-radius:8px;}
+.deal-items{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.deal-item{text-align:center;}
+.deal-item .img{width:100%;height:80px;background:#f8f8f8;border-radius:6px;display:flex;align-items:center;justify-content:center;margin-bottom:6px;}
+.deal-item .price{color:#ff5000;font-weight:bold;font-size:14px;}
+.deal-item .price small{font-size:11px;}
+
+/* Sofa */
+.sofa{width:60px;height:36px;background:#e8dcc4;border-radius:8px 8px 4px 4px;position:relative;}
+.sofa::before{content:"";position:absolute;bottom:-4px;left:-4px;right:-4px;height:14px;background:#d4c4a0;border-radius:4px;}
+/* Chair */
+.chair{width:50px;height:50px;background:#c8a878;border-radius:4px;position:relative;}
+.chair::before{content:"";position:absolute;top:-8px;left:5px;right:5px;height:30px;background:#8b6f47;border-radius:4px 4px 0 0;}
+/* AC */
+.ac{width:65px;height:25px;background:#fff;border:1px solid #ddd;border-radius:4px;position:relative;}
+.ac::before{content:"";position:absolute;top:8px;left:4px;right:4px;height:8px;background:repeating-linear-gradient(0deg,#eee,#eee 2px,#fff 2px,#fff 4px);}
+/* Beauty device */
+.beauty{width:35px;height:55px;background:#fff;border-radius:20px 20px 8px 8px;border:1px solid #eee;position:relative;}
+.beauty::before{content:"";position:absolute;top:8px;left:50%;transform:translateX(-50%);width:20px;height:20px;background:linear-gradient(135deg,#ffd0e0,#ff90b0);border-radius:50%;}
+
+/* Small deal boxes row */
+.small-deals{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.sd-card{background:#fff;border-radius:8px;padding:12px;}
+.sd-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:13px;font-weight:bold;}
+.sd-badge{font-size:10px;padding:2px 6px;border-radius:8px;color:#fff;}
+.b1{background:linear-gradient(90deg,#00b894,#00d4a0);}
+.b2{background:linear-gradient(90deg,#e74c3c,#ff6b6b);}
+.b3{background:linear-gradient(90deg,#3498db,#5dade2);}
+.b4{background:linear-gradient(90deg,#ff5722,#ff7043);}
+.sd-body{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.sd-item{text-align:center;}
+.sd-item .img{height:60px;background:#f8f8f8;border-radius:4px;display:flex;align-items:center;justify-content:center;margin-bottom:4px;}
+.sd-item .price{color:#ff5000;font-weight:bold;font-size:12px;}
+
+/* Right sidebar - login */
+.rightbar{background:#fff;border-radius:8px;padding:16px;}
+.user-hi{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.avatar{width:44px;height:44px;background:linear-gradient(135deg,#ffb84d,#ff8c1a);border-radius:50%;position:relative;}
+.avatar::before{content:"";position:absolute;top:12px;left:10px;width:6px;height:6px;background:#fff;border-radius:50%;box-shadow:14px 0 #fff;}
+.avatar::after{content:"";position:absolute;bottom:12px;left:50%;transform:translateX(-50%);width:14px;height:6px;background:#fff;border-radius:0 0 8px 8px;}
+.user-hi .greet{font-size:14px;font-weight:500;}
+.user-hi .actions{font-size:12px;color:#888;margin-top:2px;}
+.user-hi .actions span{margin-right:8px;color:#666;}
+.login-tip{text-align:center;font-size:14px;margin:10px 0 4px;}
+.login-sub{text-align:center;font-size:12px;color:#999;margin-bottom:12px;}
+.btn-login{display:block;width:100%;background:linear-gradient(90deg,#ff6a00,#ff5000);color:#fff;border:none;padding:11px;border-radius:22px;font-size:15px;font-weight:500;cursor:pointer;margin-bottom:14px;}
+.quick-icons{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;text-align:center;padding:10px 0;border-top:1px solid #f5f5f5;border-bottom:1px solid #f5f5f5;}
+.qi{font-size:11px;color:#666;cursor:pointer;}
+.qi .ico{width:28px;height:28px;margin:0 auto 4px;color:#ff5000;display:flex;align-items:center;justify-content:center;font-size:20px;}
+.coin-box{margin-top:12px;padding:12px;background:linear-gradient(135deg,#fff5e6,#ffe4c8);border-radius:8px;display:flex;align-items:center;gap:10px;position:relative;}
+.coin-box .info{flex:1;}
+.coin-box .t{font-size:13px;font-weight:500;color:#8b4513;}
+.coin-box .s{font-size:11px;color:#a67c3a;margin-top:2px;}
+.coin-box .btn{background:#c8721a;color:#fff;font-size:12px;padding:4px 12px;border-radius:12px;}
+.coin-icon{width:36px;height:36px;background:linear-gradient(135deg,#ffcc44,#ff9900);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:bold;font-size:14px;position:relative;}
+.coin-icon::after{content:"省钱";position:absolute;top:-8px;right:-14px;background:#ff5000;color:#fff;font-size:9px;padding:1px 4px;border-radius:6px;white-space:nowrap;}
+
+/* Guess like tabs */
+.guess-section{grid-column:1/-1;background:#fff;border-radius:8px;padding:16px;margin-top:4px;}
+.guess-tabs{display:flex;gap:10px;align-items:center;margin-bottom:16px;}
+.guess-tabs .tab{padding:8px 16px;border-radius:20px;background:#f5f5f5;font-size:13px;color:#666;cursor:pointer;display:flex;align-items:center;gap:4px;}
+.guess-tabs .tab.active{background:linear-gradient(90deg,#ff6a00,#ff5000);color:#fff;font-weight:500;}
+.guess-tabs .refresh{margin-left:auto;color:#888;font-size:18px;cursor:pointer;}
+
+.products-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;}
+.product{background:#fff;border:1px solid #f0f0f0;border-radius:8px;overflow:hidden;cursor:pointer;transition:.2s;}
+.product:hover{box-shadow:0 4px 12px rgba(0,0,0,.1);}
+.product .pimg{width:100%;aspect-ratio:1;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.product .ptitle{font-size:12px;padding:8px 8px 4px;color:#333;line-height:1.4;height:48px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+.product .pprice{font-size:14px;color:#ff5000;font-weight:bold;padding:0 8px 10px;}
+
+/* Product 1 - Salt */
+.p1{background:linear-gradient(180deg,#4a90e2,#2e5c8a);}
+.p1::before{content:"自贡深井盐";position:absolute;top:8px;left:8px;background:#c8721a;color:#fff;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:bold;}
+.p1 .salt{position:absolute;bottom:20%;left:50%;transform:translateX(-50%);display:flex;gap:4px;}
+.p1 .bag{width:36px;height:50px;background:linear-gradient(180deg,#fff,#ddd);border-radius:4px;position:relative;}
+.p1 .bag::before{content:"盐";position:absolute;top:8px;left:50%;transform:translateX(-50%);color:#c8721a;font-weight:bold;font-size:12px;}
+.p1 .banner-t{position:absolute;bottom:8px;left:0;right:0;text-align:center;color:#fff;font-size:11px;font-weight:bold;background:rgba(255,80,0,.9);padding:3px;}
+
+/* Product 2 - Purple coin */
+.p2{background:linear-gradient(135deg,#6a1b9a,#4a148c);color:#fff;}
+.p2 .num{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:52px;font-weight:900;color:#ffeb3b;text-shadow:2px 2px 0 #d81b60;}
+.p2 .top-t{position:absolute;top:8px;left:50%;transform:translateX(-50%);background:#000;color:#fff;font-size:10px;padding:2px 8px;border-radius:10px;}
+.p2 .bot-t{position:absolute;bottom:8px;left:0;right:0;text-align:center;font-size:11px;color:#fff;font-weight:bold;}
+
+/* Product 3 - Keychains */
+.p3{background:linear-gradient(180deg,#a8e6ff,#4fc3f7);}
+.p3 .kc{position:absolute;top:30%;left:50%;transform:translateX(-50%);display:grid;grid-template-columns:repeat(3,1fr);gap:4px;}
+.p3 .kc div{width:22px;height:22px;background:#fff;border-radius:50%;border:2px solid #333;}
+.p3 .kc div:nth-child(1){background:#ffcc80;}
+.p3 .kc div:nth-child(2){background:#90caf9;}
+.p3 .kc div:nth-child(3){background:#ffab91;}
+.p3 .kc div:nth-child(4){background:#ce93d8;}
+.p3 .kc div:nth-child(5){background:#a5d6a7;}
+.p3 .kc div:nth-child(6){background:#fff59d;}
+.p3 .top-t{position:absolute;top:8px;left:8px;background:#ff5000;color:#fff;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:bold;}
+.p3 .bot-t{position:absolute;bottom:8px;left:0;right:0;text-align:center;color:#333;font-size:11px;font-weight:bold;}
+
+/* Product 4 - Sanitizer */
+.p4{background:linear-gradient(180deg,#ffe0e6,#ffb3c1);}
+.p4 .bottles{position:absolute;bottom:15%;left:50%;transform:translateX(-50%);display:flex;gap:6px;}
+.p4 .bt{width:24px;height:60px;background:linear-gradient(180deg,#fff,#ffccd5);border-radius:4px 4px 2px 2px;position:relative;border:1px solid #ff8fa3;}
+.p4 .bt::before{content:"";position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:10px;height:8px;background:#ff5577;border-radius:2px;}
+.p4 .top-t{position:absolute;top:10px;left:8px;color:#d81b60;font-weight:bold;font-size:14px;line-height:1.1;}
+
+/* Product 5 - Tissue */
+.p5{background:linear-gradient(180deg,#f5f5f0,#e0d5c0);}
+.p5 .box{position:absolute;top:35%;left:50%;transform:translateX(-50%);width:80px;height:50px;background:linear-gradient(180deg,#fff,#f0e8d8);border-radius:4px;box-shadow:0 4px 8px rgba(0,0,0,.1);}
+.p5 .box::before{content:"";position:absolute;top:16px;left:20px;right:20px;height:2px;background:#c8b898;}
+.p5 .top-t{position:absolute;top:10px;left:8px;color:#8b5a2b;font-weight:bold;font-size:14px;line-height:1.1;}
+
+/* Product 6 - Hair ties */
+.p6{background:linear-gradient(135deg,#f5deb3,#deb887);}
+.p6 .girl{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:50px;height:60px;background:linear-gradient(180deg,#8b4513 30%,#f5deb3 30%);border-radius:25px 25px 10px 10px;}
+.p6 .ties{position:absolute;bottom:20%;left:50%;transform:translateX(-50%);display:flex;gap:3px;}
+.p6 .ties div{width:12px;height:12px;background:#5c2e0d;border-radius:50%;border:2px solid #8b4513;}
+.p6 .top-t{position:absolute;top:8px;left:8px;background:#000;color:#ffcc00;font-size:11px;padding:3px 8px;border-radius:3px;font-weight:bold;}
+.p6 .bot-t{position:absolute;bottom:8px;right:8px;background:#ff3030;color:#fff;font-size:10px;padding:2px 6px;border-radius:3px;font-weight:bold;}
+
+.price-label{margin-top:6px;font-size:14px;color:#ff5000;font-weight:bold;padding:0 8px 10px;}
+
+/* More products button */
+.more-btn{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#fff;padding:10px 24px;border-radius:24px;box-shadow:0 4px 20px rgba(0,0,0,.15);font-size:13px;cursor:pointer;z-index:100;display:flex;align-items:center;gap:6px;}
+
+/* Right floating */
+.right-float{position:fixed;right:8px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;z-index:50;}
+.rf-item{width:48px;height:56px;background:#fff;border-radius:6px;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:11px;color:#666;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.08);gap:2px;}
+.rf-item .ico{font-size:16px;color:#ff5000;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="left">
+    <a href="#">中国大陆 ▾</a>
+    <a href="#" class="login">亲，请登录</a>
+    <a href="#">免费注册</a>
+    <a href="#">网页无障碍</a>
+    <a href="#">切换企业版</a>
+  </div>
+  <div class="right">
+    <a href="#">已买到的宝贝</a>
+    <a href="#" class="arrow">我的淘宝</a>
+    <a href="#">🛒 购物车</a>
+    <a href="#">☆ 收藏夹</a>
+    <a href="#">免费开店</a>
+    <a href="#">千牛卖家中心</a>
+    <a href="#">帮助中心</a>
+  </div>
+</div>
+
+<div class="banner">
+  <div class="icon-box"></div>
+  <div class="title">采购节</div>
+  <div class="subtitle">企业秋季生产　拿样1元起</div>
+  <div class="btn">立即前往</div>
+  <div class="close">✕</div>
+</div>
+
+<div class="search-wrap">
+  <div class="logo">淘宝<div class="sub">Taobao.com</div></div>
+  <div class="search-box">
+    <div class="search-input">
+      <div class="cat">宝贝</div>
+      <input type="text" value="基围虾榜">
+      <button class="btn-search">搜索</button>
+      <button class="btn-camera">搜同款</button>
+    </div>
+    <div class="hot-words">
+      <span class="highlight">iPhone 18 pro开售</span>
+      <span>摸鱼星期一</span>
+      <span>中动玩具</span>
+      <span>崭新之日手办</span>
+      <span>手办</span>
+      <span>中动玩具手办</span>
+      <span>中动崭新之日手办</span>
+      <span>中动崭新之日</span>
+      <span>中动玩具</span>
+      <span>崭新之日手办</span>
+    </div>
+  </div>
+  <div class="redpack">
+    <div class="txt">
+      <strong>天天领元宝换红包</strong>
+      <div class="link">开启淘江湖 ›</div>
+    </div>
+    <div class="mascot"></div>
+    <div class="badge">10</div>
+  </div>
+</div>
+
+<div class="nav-cat">
+  <div class="item"><span class="icon i1">♥</span>天猫</div>
+  <div class="item"><span class="icon i2">▶</span>淘宝直播</div>
+  <div class="item"><span class="icon i3">企</span>阿里企业购</div>
+  <div class="item"><span class="icon i4">⚖</span>司法拍卖</div>
+  <div class="item"><span class="icon i5">🛒</span>天猫超市</div>
+  <div class="item"><span class="icon i6">补</span>国家补贴</div>
+  <div class="item"><span class="icon i7">券</span>领券中心</div>
+  <div class="item"><span class="icon i8">⇓</span>超级立减</div>
+  <div class="item"><span class="icon i8">≡</span>全部频道</div>
+</div>
+
+<div class="main">
+  <div class="sidebar">
+    <div class="top-menu">超级立减 / 抢省钱补贴</div>
+    <ul>
+      <li><span class="cicon">🖥</span><div class="txt"><span>电脑</span><span>配件</span><span>办公</span><span>文具</span></div></li>
+      <li><span class="cicon">🏭</span><div class="txt"><span>工业品</span><span>商用</span><span>农业</span><span>定制</span></div></li>
+      <li><span class="cicon">📱</span><div class="txt"><span>家电</span><span>手机</span><span>通信</span><span>数码</span></div></li>
+      <li><span class="cicon">🛋</span><div class="txt"><span>家具</span><span>家装</span><span>家居</span><span>厨具</span></div></li>
+      <li><span class="cicon">👗</span><div class="txt"><span>女装</span><span>男装</span><span>内衣</span><span>配饰</span></div></li>
+      <li><span class="cicon">👟</span><div class="txt"><span>女鞋</span><span>男鞋</span><span>运动</span><span>户外</span></div></li>
+      <li><span class="cicon">🚗</span><div class="txt"><span>汽车</span><span>珠宝</span><span>文玩</span><span>箱包</span></div></li>
+      <li><span class="cicon">🍎</span><div class="txt"><span>食品</span><span>鲜花</span><span>酒水</span><span>健康</span></div></li>
+      <li><span class="cicon">🍼</span><div class="txt"><span>母婴</span><span>童装</span><span>玩具</span><span>宠物</span></div></li>
+    </ul>
+  </div>
+
+  <div class="center">
+    <div class="hero">
+      <div class="tag">天猫超级新品</div>
+      <h2>Apple新品来了</h2>
+      <div class="sub">立享24期免息</div>
+      <div class="products">
+        <div class="phone"></div>
+        <div class="airpods"></div>
+        <div class="watch"></div>
+      </div>
+      <div class="dots"><span class="active"></span><span></span><span></span></div>
+    </div>
+
+    <div class="deal-row">
+      <div class="deal-header">
+        <div class="title">百亿补贴・买贵必赔 <span class="badge">新人✦</span></div>
+      </div>
+      <div class="deal-items">
+        <div class="deal-item">
+          <div class="img"><div class="sofa"></div></div>
+          <div class="price"><small>¥</small>14999</div>
+        </div>
+        <div class="deal-item">
+          <div class="img"><div class="chair"></div></div>
+          <div class="price"><small>¥</small>6299</div>
+        </div>
+        <div class="deal-item">
+          <div class="img"><div class="ac"></div></div>
+          <div class="price"><small>¥</small>4999</div>
+        </div>
+        <div class="deal-item">
+          <div class="img"><div class="beauty"></div></div>
+          <div class="price"><small>¥</small>9999</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="small-deals">
+      <div class="sd-card">
+        <div class="sd-header">领券中心<span class="sd-badge b1">券</span></div>
+        <div class="sd-body">
+          <div class="sd-item"><div class="img"><div class="ac" style="transform:scale(.7)"></div></div><div class="price">¥10800</div></div>
+          <div class="sd-item"><div class="img"><div class="beauty" style="transform:scale(.7)"></div></div><div class="price">¥6380</div></div>
+        </div>
+      </div>
+      <div class="sd-card">
+        <div class="sd-header">淘宝直播<span class="sd-badge b2">红包雨</span></div>
+        <div class="sd-body">
+          <div class="sd-item"><div class="img" style="background:linear-gradient(135deg,#ffb3c1,#ff8fa3);"></div><div class="price" style="color:#333;font-size:11px">保姆鹅旗舰店</div></div>
+          <div class="sd-item"><div class="img" style="background:linear-gradient(135deg,#a8d8ea,#7ec4d4);"></div><div class="price" style="color:#333;font-size:11px">李佳琦Austin</div></div>
+        </div>
+      </div>
+      <div class="sd-card">
+        <div class="sd-header">国家补贴<span class="sd-badge b3">超低价</span></div>
+        <div class="sd-body">
+          <div class="sd-item"><div class="img"><div class="ac" style="transform:scale(.7)"></div></div><div class="price">¥21800</div></div>
+          <div class="sd-item"><div class="img"><div class="beauty" style="transform:scale(.7)"></div></div><div class="price">¥20411</div></div>
+        </div>
+      </div>
+      <div class="sd-card">
+        <div class="sd-header">淘宝秒杀<span class="sd-badge b4">超低价</span></div>
+        <div class="sd-body">
+          <div class="sd-item"><div class="img"><div style="width:40px;height:40px;background:radial-gradient(#fff,#ddd);border-radius:50%;"></div></div><div class="price">¥6999</div></div>
+          <div class="sd-item"><div class="img"><div style="width:50px;height:30px;background:#eee;border-radius:4px;"></div></div><div class="price">¥652</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="rightbar">
+    <div class="user-hi">
+      <div class="avatar"></div>
+      <div>
+        <div class="greet">晚上好</div>
+        <div class="actions"><span>注册</span><span>开店</span></div>
+      </div>
+    </div>
+    <div class="login-tip">登录淘宝后更多精彩</div>
+    <div class="login-sub">嘘！更懂你的推荐，更便捷的搜索</div>
+    <button class="btn-login">立即登录</button>
+    <div class="quick-icons">
+      <div class="qi"><div class="ico">📋</div>已买到</div>
+      <div class="qi"><div class="ico">☆</div>收藏夹</div>
+      <div class="qi"><div class="ico">🏬</div>买过的店</div>
+      <div class="qi"><div class="ico">⏱</div>足迹</div>
+    </div>
+    <div class="coin-box">
+      <div class="info">
+        <div class="t">淘金币购物抵钱用</div>
+        <div class="s">100淘金币抵1元</div>
+      </div>
+      <div class="coin-icon">淘</div>
+      <div class="btn" style="position:absolute;bottom:10px;right:12px;">立即领取</div>
+    </div>
+  </div>
+
+  <div class="guess-section">
+    <div class="guess-tabs">
+      <div class="tab active">❤ 猜你喜欢</div>
+      <div class="tab">✈ 运动户外</div>
+      <div class="tab">📱 潮电数码</div>
+      <div class="tab">👔 服饰时尚</div>
+      <div class="tab">🏠 家装建材</div>
+      <div class="tab">📎 办公文具</div>
+      <div class="tab">🥫 健康保健</div>
+      <div class="refresh">↻</div>
+    </div>
+    <div class="products-grid">
+      <div class="product">
+        <div class="pimg p1">
+          <div class="salt"><div class="bag"></div><div class="bag"></div></div>
+          <div class="banner-t">加碘食用盐</div>
+        </div>
+        <div class="ptitle">盐当家加碘精制盐350克小样食盐炒菜调味细盐健康袋装炒菜调味料</div>
+        <div class="pprice">¥3.02</div>
+      </div>
+      <div class="product">
+        <div class="pimg p2">
+          <div class="top-t">24小时自动充值</div>
+          <div class="num">Dou音币<br>60</div>
+          <div class="bot-t">务必填写正确抖音号</div>
+        </div>
+        <div class="ptitle">天猫 60抖币充值秒到300钻石douyin斗抖币充值ios抖音币1000抖充币抖音</div>
+        <div class="pprice">¥6.5</div>
+      </div>
+      <div class="product">
+        <div class="pimg p3">
+          <div class="top-t">明日方舟</div>
+          <div class="kc"><div></div><div></div><div></div><div></div><div></div><div></div></div>
+          <div class="bot-t">串串挂件-结城理</div>
+        </div>
+        <div class="ptitle">天猫【预售】明日方舟× Persona 3 Reload-串串挂件-结城理</div>
+        <div class="pprice">¥38</div>
+      </div>
+      <div class="product">
+        <div class="pimg p4">
+          <div class="top-t">48H长效杀菌<br>远离交叉感染</div>
+          <div class="bottles"><div class="bt"></div><div class="bt"></div></div>
+        </div>
+        <div class="ptitle">【全国包邮】衣物消毒除菌液洗衣服洗衣机专用杀菌液内衣内裤</div>
+        <div class="pprice">¥20.9</div>
+      </div>
+      <div class="product">
+        <div class="pimg p5">
+          <div class="top-t">原生木浆<br>柔韧面巾纸</div>
+          <div class="box"></div>
+        </div>
+        <div class="ptitle">原生木浆抽纸家用饭店办公宿舍面巾擦手纸擦拭优惠餐巾纸面巾纸</div>
+        <div class="pprice">¥3.02</div>
+      </div>
+      <div class="product">
+        <div class="pimg p6">
+          <div class="top-t">狂甩不掉</div>
+          <div class="girl"></div>
+          <div class="ties"><div></div><div></div><div></div><div></div><div></div></div>
+          <div class="bot-t">断包赔</div>
+        </div>
+        <div class="ptitle">简约发圈橡皮筋女高弹力耐用扎头发不伤发百搭头饰</div>
+        <div class="pprice">¥5</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="more-btn">更多低价商品 ▾</div>
+
+<div class="right-float">
+  <div class="rf-item"><div class="ico">💻</div>桌面版</div>
+  <div class="rf-item"><div class="ico">💬</div>消息</div>
+  <div class="rf-item"><div class="ico">🛒</div>购物车</div>
+  <div class="rf-item"><div class="ico">📖</div>规则众议</div>
+  <div class="rf-item"><div class="ico">🎧</div>官方客服</div>
+  <div class="rf-item"><div class="ico">✎</div>反馈</div>
+</div>
+
+</body>
+</html>

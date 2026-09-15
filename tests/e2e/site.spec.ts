@@ -4,53 +4,32 @@ test.beforeEach(async ({ context }) => {
     { name: "odd-lab-lang", value: "zh", url: "http://127.0.0.1:3101" },
   ]);
 });
-test("original story renders, stays within viewport and offers direct Arena access", async ({
+test("home stays on the first screen and offers Arena access", async ({
   page,
-}, testInfo) => {
+}) => {
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
   await expect(
-    page.getByRole("heading", { name: /让想象力，\s*出个小差。/ }),
+    page.getByRole("heading", { name: /一句话试遍所有模型/ }),
   ).toBeVisible();
-  await expect(page.locator(".flying-photo img").first()).toBeVisible();
-  await page.waitForTimeout(2300);
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= innerWidth,
-    ),
-  ).toBe(true);
-  await page.screenshot({
-    path: `test-results/hero-${testInfo.project.name}.png`,
-  });
-  await page.locator("#journey").scrollIntoViewIfNeeded();
-  await page.waitForTimeout(900);
-  const wheelsInside = await page
-    .locator(".traveler-pelican .bike-wheel")
-    .evaluateAll((wheels) =>
-      wheels.every((wheel) => {
-        const box = wheel.getBoundingClientRect();
-        const svg = wheel.closest("svg")!.getBoundingClientRect();
-        return (
-          box.width > 0 &&
-          box.left >= svg.left - 2 &&
-          box.right <= svg.right + 2 &&
-          box.top >= svg.top - 2 &&
-          box.bottom <= svg.bottom + 2
-        );
-      }),
-    );
-  expect(wheelsInside).toBe(true);
-  await page.screenshot({
-    path: `test-results/journey-${testInfo.project.name}.png`,
-  });
-  await page.locator(".mars-finale").scrollIntoViewIfNeeded();
-  await page.screenshot({
-    path: `test-results/mars-${testInfo.project.name}.png`,
-  });
-  await page.locator("#experiments").scrollIntoViewIfNeeded();
+  await expect(page.locator(".photo-cloud")).toHaveAttribute(
+    "data-intro-state",
+    "settled",
+    { timeout: 12000 },
+  );
   await expect(
-    page.getByRole("heading", { name: "下一站，哪个实验？" }),
+    page.locator("#journey, .mars-finale, #experiments, .scroll-invite"),
+  ).toHaveCount(0);
+  await expect(page.locator(".site-footer")).not.toBeVisible();
+  expect(
+    await page.evaluate(() => ({
+      horizontal: document.documentElement.scrollWidth <= innerWidth,
+      vertical: document.documentElement.scrollHeight <= innerHeight + 1,
+    })),
+  ).toEqual({ horizontal: true, vertical: true });
+  await expect(
+    page.getByRole("button", { name: "选择盲测实验" }),
   ).toBeVisible();
   expect(errors).toEqual([]);
 });
@@ -78,17 +57,21 @@ test("anyone can load, enlarge, vote and see revealed models and a ranking", asy
   await expect(page.getByText("本次已投 1 票")).toBeVisible();
   await expect(page.getByText("神秘模型")).toHaveCount(0);
   await page.getByRole("link", { name: "看看排行榜" }).click();
-  await expect(page.locator("tbody tr")).toHaveCount(30);
+  await expect(page.locator("tbody tr")).toHaveCount(33);
   await expect(page.getByRole("columnheader", { name: "Elo" })).toHaveCount(0);
 });
-test("reduced motion and unavailable experiments remain usable", async ({
+test("reduced motion and the Taobao experiment remain usable", async ({
   page,
 }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
-  await expect(page.locator(".story")).toHaveClass(/reduced/);
-  await page.goto("/experiments/starship");
-  await expect(page.getByText("模型作品准备中", { exact: true })).toBeVisible();
-  await page.getByRole("link", { name: "去鹈鹕盲测" }).click();
-  await expect(page).toHaveURL(/arena\/pelican/);
+  await expect(page.locator(".photo-cloud")).toHaveAttribute(
+    "data-intro-state",
+    "settled",
+  );
+  await page.goto("/experiments/taobao");
+  await expect(page.locator(".art-gallery article")).toHaveCount(24);
+  await expect(page.getByText("模型作品准备中", { exact: true })).toHaveCount(
+    0,
+  );
 });

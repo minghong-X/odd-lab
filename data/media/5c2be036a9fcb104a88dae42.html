@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>淘宝</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font:12px/1.5 "Microsoft YaHei",Arial,sans-serif;color:#333;background:#fff;min-width:1680px}
+a{text-decoration:none;color:inherit}
+ul,li{list-style:none}
+svg{display:block}
+.wrap{width:1640px;margin:0 auto}
+.caret{display:inline-block;width:0;height:0;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid #9a9a9a;margin-left:4px;vertical-align:middle}
+/* top bar */
+.topbar{background:#f7f7f7;border-bottom:1px solid #ececec;height:32px;line-height:32px;font-size:12px;color:#666}
+.topbar .wrap{display:flex;justify-content:space-between}
+.tb-l span,.tb-r span{margin-right:20px;cursor:pointer}
+.tb-hi{color:#ff5000}
+/* promo strip */
+.strip{background:linear-gradient(90deg,#b78b00,#a47700 60%,#b78b00);height:50px;position:relative;color:#fff}
+.strip .wrap{display:flex;align-items:center;justify-content:center;gap:16px;height:50px}
+.strip b{font-size:20px;margin-right:8px}
+.strip span.t{font-size:18px;font-weight:600}
+.strip .btn{background:#fff;color:#8a6a00;font-weight:700;font-size:14px;padding:5px 16px;border-radius:16px;margin-left:14px}
+.strip .close{position:absolute;right:18px;top:15px;width:20px;height:20px;line-height:20px;text-align:center;background:rgba(0,0,0,.25);border-radius:4px;color:#fff;font-size:14px}
+/* header */
+.header{background:#fff;padding:22px 0 0}
+.header .wrap{display:flex;align-items:flex-start;gap:36px}
+.logo{width:190px;text-align:center}
+.logo .t{font-size:46px;font-weight:800;color:#ff5000;letter-spacing:8px;line-height:1}
+.logo .s{font-size:15px;color:#ff5000;font-weight:700;letter-spacing:2px;margin-top:2px}
+.search-zone{flex:1}
+.search-row{display:flex;gap:14px;align-items:stretch}
+.search-box{flex:1;display:flex;border:2px solid #ff5000;border-radius:10px;height:42px;background:#fff}
+.s-type{display:flex;align-items:center;gap:4px;padding:0 14px;color:#555;font-size:13px;border-right:1px solid #f0f0f0}
+.s-input{flex:1;border:none;outline:none;font-size:14px;padding:0 12px;color:#333}
+.s-btn{width:92px;margin:3px;border:none;border-radius:8px;background:#ff5000;color:#fff;font-size:16px;font-weight:700;cursor:pointer}
+.same{display:flex;align-items:center;gap:8px;background:#ffece4;color:#ff5000;font-size:14px;font-weight:600;padding:0 20px;border-radius:10px;height:42px}
+.hot-words{margin-top:9px;display:flex;gap:16px;font-size:12px;color:#8a8a8a}
+.hot-words .r{color:#ff5000}
+.hp{width:230px;display:flex;align-items:center;gap:10px}
+.hp .txt{font-size:14px;font-weight:700;color:#222;line-height:1.5}
+.hp .txt b{color:#ff5000;display:block}
+/* nav icons */
+.mainnav{padding:20px 0 6px}
+.mainnav .wrap{display:flex;gap:64px;align-items:center;font-size:14px;font-weight:600;color:#222}
+.ni{display:flex;align-items:center;gap:7px}
+/* main grid */
+.maingrid{display:grid;grid-template-columns:260px repeat(4,1fr) 260px;grid-template-rows:152px 148px;grid-template-areas:"cats apple apple subsidy subsidy user" "cats cp live gb ms user";gap:14px;margin-top:6px}
+.card{border-radius:12px;background:#f6f6f6;position:relative;overflow:hidden}
+.chead{display:flex;align-items:center;gap:7px;font-size:15px;font-weight:700;color:#222}
+.tag{font-size:10px;color:#fff;border-radius:4px;padding:1px 5px;font-weight:600}
+.pt{display:inline-block;background:#ff5000;color:#fff;border-radius:4px;font-size:12px;font-weight:600;padding:1px 7px;margin-top:4px}
+/* categories */
+.cats{grid-area:cats;background:#f8f8f8;border-radius:12px;padding:12px 16px}
+.cats-head{display:flex;align-items:center;gap:6px;color:#ff5000;font-weight:700;font-size:14px;padding:2px 0 8px}
+.cats-head i{font-style:normal;color:#ff5000;margin:0 2px}
+.cat-row{display:flex;align-items:center;gap:9px;padding:6.5px 0;font-size:13px;color:#333}
+.cat-row em{font-style:normal;color:#e0e0e0;margin:0 3px}
+.cat-row svg{width:15px;height:15px;flex:none}
+/* apple banner */
+.apple{grid-area:apple;background:linear-gradient(100deg,#f2f2f2,#e7e7e7);padding:18px 22px}
+.apple h2{font-size:21px;line-height:1.4;color:#111;font-weight:800;margin-top:10px}
+.apple svg{position:absolute;right:4px;top:4px;width:55%;height:92%}
+/* subsidy */
+.subsidy{grid-area:subsidy;padding:14px 18px}
+.subs-items{display:flex;justify-content:space-between;margin-top:10px}
+.subs-item{text-align:center}
+.subs-item svg{width:66px;height:64px;margin:0 auto}
+/* row2 cards */
+.cp{grid-area:cp;padding:12px 14px}
+.live{grid-area:live;padding:12px 14px}
+.gb{grid-area:gb;padding:12px 14px}
+.ms{grid-area:ms;padding:12px 14px}
+.slots{display:flex;gap:10px;margin-top:8px}
+.slot{flex:1;text-align:center}
+.slot svg{width:100%;height:72px}
+.live-thumbs{display:flex;gap:8px;margin-top:8px}
+.lt{flex:1;border-radius:8px;overflow:hidden;position:relative;height:94px}
+.lt svg{width:100%;height:100%}
+.lt .cap{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(0,0,0,.6));color:#fff;font-size:10px;padding:10px 6px 3px}
+.lt .lv{position:absolute;top:5px;left:5px;background:#ff2d7c;color:#fff;font-size:9px;border-radius:3px;padding:0 4px;line-height:14px}
+/* user card */
+.user{grid-area:user;background:#f7f7f7;border-radius:12px;padding:18px 16px}
+.uc-top{display:flex;align-items:center;gap:10px}
+.uc-top .name{font-size:15px;font-weight:700}
+.uc-top .links{color:#888;font-size:12px;margin-top:2px}
+.uc-top .links a{margin-right:10px}
+.uc-mid{margin-top:16px;font-size:15px;font-weight:700;text-align:center}
+.uc-sub{margin-top:6px;color:#999;text-align:center}
+.uc-btn{margin:14px 0 12px;display:block;background:#ff5000;color:#fff;border-radius:8px;height:36px;line-height:36px;text-align:center;font-size:14px;font-weight:700}
+.uc-icons{display:flex;justify-content:space-between;padding:2px 4px 0}
+.uc-icons div{text-align:center;color:#666;font-size:11px}
+.uc-icons svg{width:19px;height:19px;margin:0 auto 3px}
+.uc-coin{margin-top:16px;display:flex;justify-content:space-between;align-items:center;position:relative}
+.uc-coin .ct{font-size:13px;font-weight:700}
+.uc-coin .cs{color:#999;margin:3px 0 6px}
+.uc-coin .cb{display:inline-block;background:#ff5000;color:#fff;font-size:11px;border-radius:4px;padding:2px 8px}
+.uc-coin .coin{position:relative}
+.uc-coin .save{position:absolute;top:-4px;right:-4px;background:#ff2d3c;color:#fff;font-size:9px;border-radius:3px;padding:0 3px}
+/* tabs */
+.tabs{display:flex;align-items:center;gap:36px;margin:24px 0 16px;font-size:15px}
+.tab{display:flex;align-items:center;gap:7px;font-weight:600;color:#333}
+.tab.on{background:#ffece4;color:#ff5000;padding:6px 16px;border-radius:9px}
+.refresh{margin-left:auto;width:28px;height:28px;border:1px solid #ddd;border-radius:50%;display:flex;align-items:center;justify-content:center}
+/* goods */
+.goods{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;padding-bottom:70px}
+.good-img{aspect-ratio:1/1;border-radius:10px;overflow:hidden;position:relative;background:#fff}
+.good-img svg{width:100%;height:100%}
+.good-title{font-size:13px;line-height:1.45;margin:8px 4px 4px;height:38px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;color:#333}
+.good-title .tm{color:#ff0036;font-weight:700}
+.good-price{color:#ff5000;font-size:16px;font-weight:700;margin:0 4px 6px}
+.good-price i{font-style:normal;font-size:12px}
+/* sidebar */
+.sidebar{position:fixed;right:8px;top:50%;transform:translateY(-50%);width:58px;background:#fff;border:1px solid #eee;border-radius:10px;box-shadow:0 2px 10px rgba(0,0,0,.08);padding:6px 0;text-align:center;z-index:50}
+.sb{padding:9px 0;font-size:10px;color:#666}
+.sb svg{width:20px;height:20px;margin:0 auto 3px}
+/* more pill */
+.more{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:#fff;border-radius:20px;box-shadow:0 4px 16px rgba(0,0,0,.18);display:flex;align-items:center;gap:9px;padding:5px 18px 5px 8px;font-size:13px;color:#333;z-index:60}
+.more svg{width:34px;height:26px;border-radius:4px}
+</style>
+</head>
+<body>
+<!-- top bar -->
+<div class="topbar"><div class="wrap">
+<div class="tb-l">
+<span>中国大陆<i class="caret"></i></span>
+<span class="tb-hi">亲，请登录</span>
+<span>免费注册</span>
+<span>网页无障碍</span>
+<span>切换企业版</span>
+</div>
+<div class="tb-r">
+<span>已买到的宝贝</span>
+<span>我的淘宝<i class="caret"></i></span>
+<span>🛒 购物车</span>
+<span>☆ 收藏夹<i class="caret"></i></span>
+<span>免费开店<i class="caret"></i></span>
+<span>千牛卖家中心<i class="caret"></i></span>
+<span>帮助中心<i class="caret"></i></span>
+</div>
+</div></div>
+<!-- promo strip -->
+<div class="strip"><div class="wrap">
+<svg width="96" height="40" viewBox="0 0 96 40"><polygon points="20,14 44,8 50,26 26,32" fill="#e8c76a"/><polygon points="44,8 60,14 64,30 50,26" fill="#c99b3f"/><rect x="52" y="16" width="14" height="14" fill="#4aa3e0" transform="rotate(12 59 23)"/><polygon points="70,10 82,6 86,18 74,22" fill="#e07030"/><rect x="30" y="20" width="4" height="16" fill="#8a5a20" transform="rotate(-14 32 28)"/><circle cx="80" cy="28" r="5" fill="#f2d34b"/></svg>
+<b>采购节</b><span class="t">企业秋季生产 拿样1元起</span>
+<span class="btn">立即前往</span>
+</div><span class="close">×</span></div>
+<!-- header -->
+<header class="header"><div class="wrap">
+<div class="logo"><div class="t">淘宝</div><div class="s">Taobao.com</div></div>
+<div class="search-zone">
+<div class="search-row">
+<div class="search-box">
+<span class="s-type">宝贝<i class="caret"></i></span>
+<input class="s-input" value="基围虾榜">
+<button class="s-btn">搜索</button>
+</div>
+<div class="same"><svg width="18" height="18" viewBox="0 0 18 18"><rect x="1" y="4" width="16" height="12" rx="3" fill="none" stroke="#ff5000" stroke-width="1.6"/><circle cx="9" cy="10" r="3.4" fill="none" stroke="#ff5000" stroke-width="1.6"/><rect x="6" y="1.6" width="6" height="3" rx="1" fill="#ff5000"/></svg>搜同款</div>
+</div>
+<div class="hot-words">
+<span class="r">iPhone 18 pro开售</span><span class="r">摸鱼星期一</span><span>中动玩具</span><span>崭新之日手办</span><span>手办</span><span>中动玩具手办</span><span>中动崭新之日手办</span><span>中动崭新之日</span><span>中动玩具</span><span>崭新之日手办</span>
+</div>
+</div>
+<div class="hp">
+<div class="txt">天天领元宝换红包<b>开启淘江湖 ›</b></div>
+<svg width="72" height="62" viewBox="0 0 72 62"><polygon points="36,2 20,16 52,16" fill="#c98a4b"/><rect x="18" y="15" width="36" height="4" rx="2" fill="#a86f36"/><circle cx="36" cy="26" r="9" fill="#f8d8b8"/><circle cx="33" cy="25" r="1.2" fill="#333"/><circle cx="39" cy="25" r="1.2" fill="#333"/><path d="M33 29 q3 2 6 0" stroke="#333" fill="none"/><rect x="26" y="34" width="20" height="18" rx="8" fill="#ff9600"/><rect x="46" y="30" width="12" height="16" rx="2" fill="#e8382f"/><text x="52" y="42" font-size="10" fill="#ffd34b" text-anchor="middle">¥</text><rect x="28" y="52" width="7" height="8" rx="3" fill="#333"/><rect x="37" y="52" width="7" height="8" rx="3" fill="#333"/></svg>
+</div>
+</div></header>
+<!-- nav icons -->
+<nav class="mainnav"><div class="wrap">
+<span class="ni"><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="#ff0036"/><path d="M4.5 7 6.5 4.4 9 6.4 11.5 4.4 13.5 7 v6 h-9 z" fill="#fff"/></svg>天猫</span>
+<span class="ni"><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="#ff2d7c"/><polygon points="7,5 13,9 7,13" fill="#fff"/></svg>淘宝直播</span>
+<span class="ni"><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="#ff9600"/><rect x="4" y="6" width="10" height="8" rx="1.5" fill="#fff"/><path d="M7 6 V4.6 h4 V6" stroke="#fff" fill="none" stroke-width="1.4"/></svg>阿里企业购</span>
+<span class="ni"><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="#f0529c"/><rect x="4" y="5" width="8" height="3.4" rx="1" fill="#fff" transform="rotate(-20 8 7)"/><rect x="8" y="9" width="3" height="5" fill="#fff"/></svg>司法拍卖</span>
+<span class="ni"><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="#31c243"/><path d="M4 6 h2 l1.6 6 h5 l1.6-4.6 H7" stroke="#fff" fill="none" stroke-width="1.5"/><circle cx="8.4" cy="14" r="1.2" fill="#fff"/><circle cx="12.4" cy="14" r="1.2" fill="#fff"/></svg>天猫超市</span>
+<span class="ni"><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="#0cb360"/><text x="9" y="13" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">¥</text></svg>国家补贴</span>
+<span class="ni"><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="#ff3b30"/><rect x="3.5" y="5.5" width="11" height="7" rx="1.5" fill="#fff"/><circle cx="9" cy="9" r="1.8" fill="#ff3b30"/></svg>领券中心</span>
+<span class="ni"><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="#ff3b30"/><polygon points="9,13.5 4.5,8 7.5,8 7.5,4.5 10.5,4.5 10.5,8 13.5,8" fill="#fff"/></svg>超级立减</span>
+<span class="ni"><svg width="18" height="18" viewBox="0 0 18 18"><rect width="18" height="18" rx="4" fill="#ff9600"/><rect x="4" y="4" width="4.4" height="4.4" fill="#fff"/><rect x="9.6" y="4" width="4.4" height="4.4" fill="#fff"/><rect x="4" y="9.6" width="4.4" height="4.4" fill="#fff"/><rect x="9.6" y="9.6" width="4.4" height="4.4" fill="#fff"/></svg>全部频道</span>
+</div></nav>
+<!-- main grid -->
+<main class="wrap"><section class="maingrid">
+<!-- categories -->
+<aside class="cats">
+<div class="cats-head"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M7 1 C9 4 11 5 11 8 a4 4 0 0 1 -8 0 C3 5 5 4 7 1z" fill="#ff5000"/></svg>超级立减<i>/</i>抢省钱补贴</div>
+<div class="cat-row"><svg viewBox="0 0 15 15"><rect x="2" y="2.5" width="11" height="7" rx="1" fill="none" stroke="#555" stroke-width="1.2"/><line x1="7.5" y1="9.5" x2="7.5" y2="12" stroke="#555" stroke-width="1.2"/><line x1="4.5" y1="12.5" x2="10.5" y2="12.5" stroke="#555" stroke-width="1.2"/></svg>电脑<em>/</em>配件<em>/</em>办公<em>/</em>文具</div>
+<div class="cat-row"><svg viewBox="0 0 15 15"><circle cx="7.5" cy="7.5" r="3" fill="none" stroke="#555" stroke-width="1.2"/><line x1="7.5" y1="1.5" x2="7.5" y2="3.5" stroke="#555" stroke-width="1.2"/><line x1="7.5" y1="11.5" x2="7.5" y2="13.5" stroke="#555" stroke-width="1.2"/><line x1="1.5" y1="7.5" x2="3.5" y2="7.5" stroke="#555" stroke-width="1.2"/><line x1="11.5" y1="7.5" x2="13.5" y2="7.5" stroke="#555" stroke-width="1.2"/></svg>工业品<em>/</em>商业<em>/</em>农业<em>/</em>定制</div>
+<div class="cat-row"><svg viewBox="0 0 15 15"><rect x="4.5" y="1.5" width="6" height="12" rx="1.2" fill="none" stroke="#555" stroke-width="1.2"/><circle cx="7.5" cy="11" r="0.8" fill="#555"/></svg>家电<em>/</em>手机<em>/</em>通信<em>/</em>数码</div>
+<div class="cat-row"><svg viewBox="0 0 15 15"><path d="M2 8 h11 v4.5 h-11 z" fill="none" stroke="#555" stroke-width="1.2"/><path d="M3.5 8 V5.5 h8 V8" fill="none" stroke="#555" stroke-width="1.2"/><line x1="1.5" y1="8" x2="1.5" y2="12.5" stroke="#555" stroke-width="1.2"/><line x1="13.5" y1="8" x2="13.5" y2="12.5" stroke="#555" stroke-width="1.2"/></svg>家具<em>/</em>家装<em>/</em>家居<em>/</em>厨具</div>
+<div class="cat-row"><svg viewBox="0 0 15 15"><path d="M5 1.5 7.5 3 10 1.5 13 4.5 11 6.5 V13 H4 V6.5 L2 4.5 z" fill="none" stroke="#555" stroke-width="1.2"/></svg>女装<em>/</em>男装<em>/</em>内衣<em>/</em>配饰</div>
+<div class="cat-row"><svg viewBox="0 0 15 15"><path d="M1.5 11.5 c0-2 3-2 4.5-4 l1-1.2 c2.5 2 6.5 2 6.5 4.2 v1.5 h-12 z" fill="none" stroke="#555" stroke-width="1.2"/></svg>女鞋<em>/</em>男鞋<em>/</em>运动<em>/</em>户外</div>
+<div class="cat-row"><svg viewBox="0 0 15 15"><rect x="1.5" y="6" width="12" height="4.5" rx="1.2" fill="none" stroke="#555" stroke-width="1.2"/><path d="M4 6 5.5 3.5 h4 L11 6" fill="none" stroke="#555" stroke-width="1.2"/><circle cx="4.5" cy="11.5" r="1.3" fill="none" stroke="#555" stroke-width="1.2"/><circle cx="10.5" cy="11.5" r="1.3" fill="none" stroke="#555" stroke-width="1.2"/></svg>汽车<em>/</em>珠宝<em>/</em>文玩<em>/</em>箱包</div>
+<div class="cat-row"><svg viewBox="0 0 15 15"><circle cx="7.5" cy="8.5" r="4.5" fill="none" stroke="#555" stroke-width="1.2"/><path d="M7.5 4 q1-2 3-2" fill="none" stroke="#555" stroke-width="1.2"/></svg>食品<em>/</em>鲜花<em>/</em>酒水<em>/</em>健康</div>
+<div class="cat-row"><svg viewBox="0 0 15 15"><rect x="3" y="5" width="9" height="8" rx="2" fill="none" stroke="#555" stroke-width="1.2"/><path d="M5.5 5 V3.5 h4 V5" fill="none" stroke="#555" stroke-width="1.2"/></svg>母婴<em>/</em>童装<em>/</em>玩具<em>/</em>宠物</div>
+</aside>
+<!-- apple banner -->
+<div class="card apple">
+<span class="tag" style="background:#ff0036">天猫超级新品</span>
+<h2>Apple新品来了<br>立享24期免息</h2>
+<svg viewBox="0 0 300 150">
+<rect x="18" y="-6" width="120" height="82" rx="8" fill="#d9d9d9" transform="rotate(-8 78 35)"/>
+<rect x="26" y="0" width="104" height="66" rx="4" fill="#efefef" transform="rotate(-8 78 35)"/>
+<rect x="168" y="18" width="72" height="132" rx="14" fill="#8f3a44" transform="rotate(16 204 84)"/>
+<circle cx="186" cy="38" r="5" fill="#5e242c" transform="rotate(16 204 84)"/>
+<circle cx="200" cy="42" r="5" fill="#5e242c" transform="rotate(16 204 84)"/>
+<circle cx="192" cy="52" r="5" fill="#5e242c" transform="rotate(16 204 84)"/>
+<rect x="70" y="72" width="62" height="52" rx="12" fill="#ffffff"/>
+<line x1="70" y1="88" x2="132" y2="88" stroke="#e2e2e2" stroke-width="2"/>
+<circle cx="90" cy="80" r="4" fill="#ececec"/><circle cx="112" cy="80" r="4" fill="#ececec"/>
+<rect x="128" y="96" width="16" height="46" rx="6" fill="#c0392b"/>
+<rect x="122" y="108" width="28" height="26" rx="7" fill="#2b2b2b"/>
+<rect x="126" y="112" width="20" height="18" rx="4" fill="#e74c3c"/>
+</svg>
+</div>
+<!-- subsidy -->
+<div class="card subsidy">
+<div class="chead">百亿补贴 · 买贵必赔 <span class="tag" style="background:#e8382f">入口 1</span></div>
+<div class="subs-items">
+<div class="subs-item"><svg viewBox="0 0 66 64"><rect x="10" y="16" width="46" height="14" rx="4" fill="#e6d3b8"/><rect x="6" y="28" width="54" height="14" rx="5" fill="#d9c09c"/><rect x="4" y="22" width="9" height="20" rx="4" fill="#cbb08a"/><rect x="53" y="22" width="9" height="20" rx="4" fill="#cbb08a"/><line x1="12" y1="42" x2="12" y2="50" stroke="#8a6f4d" stroke-width="3"/><line x1="54" y1="42" x2="54" y2="50" stroke="#8a6f4d" stroke-width="3"/></svg><span class="pt">¥14999</span></div>
+<div class="subs-item"><svg viewBox="0 0 66 64"><rect x="6" y="22" width="40" height="5" rx="2" fill="#c8a06a"/><line x1="10" y1="27" x2="10" y2="50" stroke="#c8a06a" stroke-width="3"/><line x1="42" y1="27" x2="42" y2="50" stroke="#c8a06a" stroke-width="3"/><rect x="46" y="14" width="6" height="20" rx="3" fill="#a87c48"/><rect x="46" y="32" width="14" height="5" rx="2" fill="#a87c48"/><line x1="49" y1="37" x2="49" y2="52" stroke="#a87c48" stroke-width="3"/><line x1="57" y1="37" x2="57" y2="52" stroke="#a87c48" stroke-width="3"/></svg><span class="pt">¥6299</span></div>
+<div class="subs-item"><svg viewBox="0 0 66 64"><rect x="7" y="22" width="52" height="16" rx="5" fill="#f6f6f6" stroke="#ddd"/><line x1="12" y1="33" x2="54" y2="33" stroke="#ddd" stroke-width="2"/><rect x="46" y="26" width="8" height="4" rx="1" fill="#bcd8ee"/></svg><span class="pt">¥4999</span></div>
+<div class="subs-item"><svg viewBox="0 0 66 64"><rect x="20" y="8" width="20" height="34" rx="9" fill="#b9a0d8" transform="rotate(-8 30 25)"/><rect x="16" y="34" width="30" height="12" rx="6" fill="#a58cc8"/><rect x="24" y="46" width="16" height="8" rx="3" fill="#8d74b0"/><circle cx="46" cy="18" r="6" fill="#cbb8e4"/></svg><span class="pt">¥9999</span></div>
+</div>
+</div>
+<!-- coupon center -->
+<div class="card cp">
+<div class="chead">领券中心 <span class="tag" style="background:#ff2d7c">券</span></div>
+<div class="slots">
+<div class="slot"><svg viewBox="0 0 90 72"><rect x="10" y="18" width="66" height="34" rx="5" fill="#b9c0c7"/><rect x="16" y="26" width="20" height="14" rx="2" fill="#2e6da4"/><rect x="42" y="28" width="28" height="4" rx="2" fill="#8f979e"/><rect x="42" y="36" width="28" height="4" rx="2" fill="#8f979e"/><rect x="24" y="8" width="38" height="12" rx="2" fill="#fff"/><rect x="14" y="52" width="58" height="6" rx="3" fill="#9aa2a9"/></svg><span class="pt">¥10800</span></div>
+<div class="slot"><svg viewBox="0 0 90 72"><circle cx="34" cy="38" r="18" fill="#1c1c1c"/><rect x="28" y="12" width="12" height="10" rx="2" fill="#c9a06a"/><rect x="26" y="32" width="16" height="12" rx="2" fill="#f4ead8"/><rect x="56" y="30" width="14" height="30" rx="4" fill="#2a2a2a"/><rect x="59" y="24" width="8" height="7" rx="2" fill="#c9a06a"/></svg><span class="pt">¥6380</span></div>
+</div>
+</div>
+<!-- live -->
+<div class="card live">
+<div class="chead">淘宝直播 <span class="tag" style="background:#e8382f">红包雨</span></div>
+<div class="live-thumbs">
+<div class="lt"><svg viewBox="0 0 100 94" preserveAspectRatio="xMidYMid slice"><rect width="100" height="94" fill="#f6dce4"/><circle cx="50" cy="40" r="16" fill="#f6d0b8"/><path d="M32 34 q18 -18 36 0 l-4 4 q-14 -10 -28 0 z" fill="#e05a7a"/><rect x="30" y="56" width="40" height="38" rx="12" fill="#e77c95"/></svg><span class="lv">Live</span><span class="cap">保姆鹅旗舰店</span></div>
+<div class="lt"><svg viewBox="0 0 100 94" preserveAspectRatio="xMidYMid slice"><rect width="100" height="94" fill="#dfe9f5"/><circle cx="44" cy="38" r="15" fill="#f6d0b8"/><path d="M29 36 q15 -16 30 0 v-6 q-15 -10 -30 0 z" fill="#2b2b2b"/><rect x="26" y="54" width="36" height="40" rx="12" fill="#3f7fd6"/><circle cx="70" cy="62" r="12" fill="#fff"/><circle cx="66" cy="58" r="4" fill="#d8d8d8"/><circle cx="74" cy="58" r="4" fill="#d8d8d8"/><circle cx="68" cy="62" r="1.6" fill="#333"/><circle cx="73" cy="62" r="1.6" fill="#333"/></svg><span class="lv">Live</span><span class="cap">李佳琦直播间</span></div>
+</div>
+</div>
+<!-- guobu -->
+<div class="card gb">
+<div class="chead"><svg width="16" height="16" viewBox="0 0 16 16"><rect width="16" height="16" rx="4" fill="#0cb360"/><text x="8" y="12" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">¥</text></svg>国家补贴</div>
+<div class="slots">
+<div class="slot"><svg viewBox="0 0 90 72"><rect x="14" y="10" width="52" height="52" rx="6" fill="#f4f4f4" stroke="#ddd"/><circle cx="40" cy="40" r="15" fill="#e0e6ea" stroke="#b9c0c7" stroke-width="2"/><circle cx="40" cy="40" r="8" fill="#cfd8de"/><rect x="20" y="15" width="18" height="5" rx="2" fill="#b9c0c7"/></svg><span class="pt">¥21800</span></div>
+<div class="slot"><svg viewBox="0 0 90 72"><rect x="28" y="8" width="34" height="56" rx="4" fill="#232323"/><rect x="33" y="14" width="24" height="10" rx="2" fill="#4a4a4a"/><rect x="36" y="32" width="6" height="10" rx="2" fill="#d8d8d8"/><rect x="48" y="32" width="6" height="10" rx="2" fill="#d8d8d8"/><rect x="33" y="50" width="24" height="8" rx="2" fill="#3a3a3a"/></svg><span class="pt">¥20411</span></div>
+</div>
+</div>
+<!-- miaosha -->
+<div class="card ms">
+<div class="chead">淘宝秒杀 <span class="tag" style="background:#ff9600">超低价</span></div>
+<div class="slots">
+<div class="slot"><svg viewBox="0 0 90 72"><circle cx="45" cy="34" r="8" fill="#fff" stroke="#ddd"/><ellipse cx="45" cy="16" rx="7" ry="12" fill="#ececec"/><ellipse cx="29" cy="44" rx="7" ry="12" fill="#ececec" transform="rotate(60 29 44)"/><ellipse cx="61" cy="44" rx="7" ry="12" fill="#ececec" transform="rotate(-60 61 44)"/><circle cx="45" cy="34" r="4" fill="#f6d34b"/></svg><span class="pt">¥6999</span></div>
+<div class="slot"><svg viewBox="0 0 90 72"><ellipse cx="45" cy="40" rx="30" ry="9" fill="#fff" stroke="#e2e2e2"/><ellipse cx="45" cy="36" rx="30" ry="9" fill="#f8f8f8" stroke="#e2e2e2"/><ellipse cx="45" cy="36" rx="20" ry="5" fill="#efefef"/></svg><span class="pt">¥652</span></div>
+</div>
+</div>
+<!-- user card -->
+<div class="user">
+<div class="uc-top">
+<svg width="42" height="42" viewBox="0 0 42 42"><circle cx="21" cy="21" r="20" fill="#ffb400"/><circle cx="21" cy="18" r="9" fill="#f8d8b8"/><circle cx="18" cy="17" r="1.3" fill="#333"/><circle cx="24" cy="17" r="1.3" fill="#333"/><path d="M17.5 21 q3.5 2.6 7 0" stroke="#333" fill="none" stroke-width="1.2"/><path d="M10 36 q11 -10 22 0" fill="#ff7a00"/></svg>
+<div><div class="name">晚上好</div><div class="links"><a>注册</a><a>开店</a></div></div>
+</div>
+<div class="uc-mid">登录淘宝后更精彩</div>
+<div class="uc-sub">嘿！更懂你的推荐，更便捷的搜索</div>
+<a class="uc-btn">立即登录</a>
+<div class="uc-icons">
+<div><svg viewBox="0 0 19 19"><rect x="4" y="6" width="11" height="10" rx="2" fill="none" stroke="#666" stroke-width="1.3"/><path d="M7 6 V4.5 h5 V6" fill="none" stroke="#666" stroke-width="1.3"/><path d="M7.5 11 l1.6 1.6 3-3" fill="none" stroke="#666" stroke-width="1.3"/></svg>已买到</div>
+<div><svg viewBox="0 0 19 19"><polygon points="9.5,2.5 11.6,7 16.5,7.4 12.8,10.6 14,15.5 9.5,12.8 5,15.5 6.2,10.6 2.5,7.4 7.4,7" fill="none" stroke="#666" stroke-width="1.3"/></svg>收藏夹</div>
+<div><svg viewBox="0 0 19 19"><path d="M3 8 9.5 3 16 8 V16 H3 z" fill="none" stroke="#666" stroke-width="1.3"/><rect x="7.5" y="10" width="4" height="6" fill="none" stroke="#666" stroke-width="1.3"/></svg>买过的店</div>
+<div><svg viewBox="0 0 19 19"><circle cx="9.5" cy="9.5" r="7" fill="none" stroke="#666" stroke-width="1.3"/><path d="M9.5 5.5 v4 l3 2" fill="none" stroke="#666" stroke-width="1.3"/></svg>足迹</div>
+</div>
+<div class="uc-coin">
+<div><div class="ct">淘金币购物抵钱用</div><div class="cs">100金币抵1元</div><span class="cb">立即领取</span></div>
+<div class="coin"><svg width="46" height="46" viewBox="0 0 46 46"><circle cx="23" cy="23" r="21" fill="#ffc44d"/><circle cx="23" cy="23" r="15" fill="#ffab2e"/><text x="23" y="30" font-size="18" fill="#fff" text-anchor="middle" font-weight="bold">币</text></svg><span class="save">省钱</span></div>
+</div>
+</div>
+</section>
+<!-- tabs -->
+<div class="tabs">
+<span class="tab on"><svg width="15" height="15" viewBox="0 0 15 15"><path d="M7.5 13 C3 9.5 1.5 7 1.5 5 A3.4 3.4 0 0 1 7.5 3 A3.4 3.4 0 0 1 13.5 5 C13.5 7 12 9.5 7.5 13z" fill="#ff5000"/></svg>猜你喜欢</span>
+<span class="tab"><svg width="15" height="15" viewBox="0 0 15 15"><path d="M1.5 10.5 c0-2 3-2 4.5-4 l1-1.2 c2.5 2 6.5 2 6.5 4.2 v1.5 h-12 z" fill="none" stroke="#4aa3e0" stroke-width="1.2"/></svg>运动户外</span>
+<span class="tab"><svg width="15" height="15" viewBox="0 0 15 15"><rect x="4.5" y="1.5" width="6" height="12" rx="1.2" fill="none" stroke="#8a6fd8" stroke-width="1.2"/></svg>潮电数码</span>
+<span class="tab"><svg width="15" height="15" viewBox="0 0 15 15"><path d="M5 1.5 7.5 3 10 1.5 13 4.5 11 6.5 V13 H4 V6.5 L2 4.5 z" fill="none" stroke="#5ab0c8" stroke-width="1.2"/></svg>服饰时尚</span>
+<span class="tab"><svg width="15" height="15" viewBox="0 0 15 15"><path d="M2 7 7.5 2 13 7 V13 H2 z" fill="none" stroke="#8a8a8a" stroke-width="1.2"/></svg>家装建材</span>
+<span class="tab"><svg width="15" height="15" viewBox="0 0 15 15"><rect x="2" y="2.5" width="11" height="7" rx="1" fill="none" stroke="#666" stroke-width="1.2"/><line x1="7.5" y1="9.5" x2="7.5" y2="12" stroke="#666" stroke-width="1.2"/></svg>办公文具</span>
+<span class="tab"><svg width="15" height="15" viewBox="0 0 15 15"><path d="M3 12 q0-7 9-9 q-1 9-9 9z" fill="none" stroke="#5cb85c" stroke-width="1.2"/></svg>健康保健</span>
+<span class="refresh"><svg width="14" height="14" viewBox="0 0 14 14"><path d="M12 7 a5 5 0 1 1 -2-4" fill="none" stroke="#666" stroke-width="1.4"/><polygon points="12,1 12.6,5 9,4" fill="#666"/></svg></span>
+</div>
+<!-- goods -->
+<section class="goods">
+<div class="good"><div class="good-img"><svg viewBox="0 0 260 260" preserveAspectRatio="xMidYMid slice"><rect width="260" height="260" fill="#e8f1fb"/><rect x="55" y="0" width="150" height="30" rx="4" fill="#d8382f"/><text x="130" y="21" fill="#fff" font-size="17" text-anchor="middle" font-weight="bold">自贡深井盐</text><g><rect x="50" y="66" width="74" height="118" rx="9" fill="#f4f8fd" stroke="#b9c9dd"/><circle cx="87" cy="112" r="21" fill="#fff" stroke="#33517a" stroke-width="2"/><text x="87" y="110" font-size="13" fill="#33517a" text-anchor="middle" font-weight="bold">盐当</text><text x="87" y="125" font-size="12" fill="#33517a" text-anchor="middle" font-weight="bold">家</text><text x="87" y="152" font-size="9" fill="#6a86a8" text-anchor="middle">加碘精制盐</text></g><g><rect x="132" y="52" width="74" height="118" rx="9" fill="#eef4fb" stroke="#b9c9dd"/><circle cx="169" cy="98" r="21" fill="#fff" stroke="#33517a" stroke-width="2"/><text x="169" y="96" font-size="13" fill="#33517a" text-anchor="middle" font-weight="bold">盐当</text><text x="169" y="111" font-size="12" fill="#33517a" text-anchor="middle" font-weight="bold">家</text><text x="169" y="138" font-size="9" fill="#6a86a8" text-anchor="middle">加碘精制盐</text></g><rect x="14" y="182" width="62" height="56" rx="6" fill="#d8382f"/><text x="45" y="206" font-size="15" fill="#fff" text-anchor="middle" font-weight="bold">官方</text><text x="45" y="226" font-size="15" fill="#fff" text-anchor="middle" font-weight="bold">正品</text><rect x="84" y="192" width="104" height="17" rx="8" fill="#2ba3a0"/><text x="136" y="204" font-size="10" fill="#fff" text-anchor="middle">颗粒细腻 精选原料</text><text x="150" y="243" font-size="26" fill="#d8382f" text-anchor="middle" font-weight="bold">加碘食用盐</text></svg></div>
+<div class="good-title">盐当家加碘精制盐350克小样食盐盐菜调味细盐健康袋装炒菜调味料</div>
+<div class="good-price"><i>¥</i>3.02</div></div>
+<div class="good"><div class="good-img"><svg viewBox="0 0 260 260" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="dy1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2c2470"/><stop offset="1" stop-color="#6b2bd6"/></linearGradient></defs><rect width="260" height="260" fill="url(#dy1)"/><circle cx="30" cy="220" r="40" fill="#ff3d7a" opacity=".5"/><circle cx="240" cy="40" r="30" fill="#4dc3ff" opacity=".35"/><rect x="60" y="16" width="140" height="24" rx="12" fill="#171243" stroke="#8f7bff"/><text x="130" y="33" font-size="12" fill="#fff" text-anchor="middle">24小时自动充值</text><text x="130" y="118" font-size="46" fill="#ff4d94" text-anchor="middle" font-weight="bold">Dou音币</text><text x="130" y="188" font-size="62" fill="#ff4d94" text-anchor="middle" font-weight="bold">60</text><polygon points="60,160 78,150 74,176" fill="#ff9ad5"/><rect x="20" y="212" width="220" height="27" rx="13" fill="#ff2d7c"/><text x="130" y="230" font-size="13" fill="#fff" text-anchor="middle" font-weight="bold">务必填写正确抖音号</text></svg></div>
+<div class="good-title"><span class="tm">天猫</span> 60抖币充值秒到300钻石douyin斗抖充值ios抖音币1000抖充币抖音</div>
+<div class="good-price"><i>¥</i>6.5</div></div>
+<div class="good"><div class="good-img"><svg viewBox="0 0 260 260" preserveAspectRatio="xMidYMid slice"><rect width="260" height="260" fill="#eaf4fe"/><polygon points="0,260 260,0 260,60 60,260" fill="#dcecfb"/><g><circle cx="52" cy="42" r="7" fill="none" stroke="#d4a017" stroke-width="3"/><rect x="34" y="50" width="36" height="44" rx="6" fill="#7fb3e6"/><circle cx="52" cy="68" r="9" fill="#f6d0b8"/><path d="M43 64 q9 -8 18 0 v-4 q-9 -6 -18 0z" fill="#3a5a8c"/></g><g><circle cx="112" cy="42" r="7" fill="none" stroke="#d4a017" stroke-width="3"/><rect x="94" y="50" width="36" height="44" rx="6" fill="#f2a3b8"/><circle cx="112" cy="68" r="9" fill="#f6d0b8"/><path d="M103 64 q9 -8 18 0 v-4 q-9 -6 -18 0z" fill="#8c4a5a"/></g><g><circle cx="172" cy="42" r="7" fill="none" stroke="#d4a017" stroke-width="3"/><rect x="154" y="50" width="36" height="44" rx="6" fill="#f6d36b"/><circle cx="172" cy="68" r="9" fill="#f6d0b8"/><path d="M163 64 q9 -8 18 0 v-4 q-9 -6 -18 0z" fill="#b8862b"/></g><g><circle cx="232" cy="42" r="7" fill="none" stroke="#d4a017" stroke-width="3"/><rect x="214" y="50" width="36" height="44" rx="6" fill="#9fd6a6"/><circle cx="232" cy="68" r="9" fill="#f6d0b8"/><path d="M223 64 q9 -8 18 0 v-4 q-9 -6 -18 0z" fill="#3a7a44"/></g><g><circle cx="82" cy="122" r="7" fill="none" stroke="#d4a017" stroke-width="3"/><rect x="64" y="130" width="36" height="44" rx="6" fill="#b89fe0"/><circle cx="82" cy="148" r="9" fill="#f6d0b8"/><path d="M73 144 q9 -8 18 0 v-4 q-9 -6 -18 0z" fill="#5a3a8c"/></g><g><circle cx="142" cy="122" r="7" fill="none" stroke="#d4a017" stroke-width="3"/><rect x="124" y="130" width="36" height="44" rx="6" fill="#f0b27a"/><circle cx="142" cy="148" r="9" fill="#f6d0b8"/><path d="M133 144 q9 -8 18 0 v-4 q-9 -6 -18 0z" fill="#8c5a2b"/></g><g><circle cx="202" cy="122" r="7" fill="none" stroke="#d4a017" stroke-width="3"/><rect x="184" y="130" width="36" height="44" rx="6" fill="#8fd0e0"/><circle cx="202" cy="148" r="9" fill="#f6d0b8"/><path d="M193 144 q9 -8 18 0 v-4 q-9 -6 -18 0z" fill="#2b6a7a"/></g><rect x="14" y="196" width="86" height="24" rx="4" fill="#111"/><text x="57" y="212" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">串串挂件</text><polygon points="100,196 116,196 100,212" fill="#e8382f"/><text x="20" y="240" font-size="9" fill="#7a94b5">MINI PENDANT COLLECTION</text><text x="20" y="252" font-size="9" fill="#7a94b5">正版授权 角色全系列</text></svg></div>
+<div class="good-title"><span class="tm">天猫</span> 【预售】明日方舟× Persona 3 Reload- 串串挂件- 结城理</div>
+<div class="good-price"><i>¥</i>38</div></div>
+<div class="good"><div class="good-img"><svg viewBox="0 0 260 260" preserveAspectRatio="xMidYMid slice"><rect width="260" height="260" fill="#fbe3ec"/><text x="18" y="38" font-size="26" fill="#d2334f" font-weight="bold">48H长效杀菌</text><text x="18" y="60" font-size="13" fill="#d2334f">远离交叉感染</text><g fill="#d2334f" font-size="10"><circle cx="26" cy="82" r="7" fill="#f27a97"/><path d="M23 82 l2.4 2.4 4-4" stroke="#fff" fill="none" stroke-width="1.6"/><text x="40" y="86">7天长效杀菌</text><circle cx="26" cy="104" r="7" fill="#f27a97"/><path d="M23 104 l2.4 2.4 4-4" stroke="#fff" fill="none" stroke-width="1.6"/><text x="40" y="108">48小时留香</text><circle cx="26" cy="126" r="7" fill="#f27a97"/><path d="M23 126 l2.4 2.4 4-4" stroke="#fff" fill="none" stroke-width="1.6"/><text x="40" y="130">去除干异味</text></g><g><rect x="120" y="80" width="52" height="120" rx="14" fill="#f7a8c0"/><rect x="134" y="66" width="24" height="16" rx="4" fill="#fff"/><circle cx="146" cy="140" r="20" fill="#2e7d4f"/><text x="146" y="137" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">自然</text><text x="146" y="149" font-size="10" fill="#fff" text-anchor="middle" font-weight="bold">消毒液</text></g><g><rect x="182" y="92" width="48" height="108" rx="13" fill="#fbc3d4"/><rect x="194" y="80" width="22" height="14" rx="4" fill="#fff"/><circle cx="206" cy="146" r="17" fill="#2e7d4f"/><text x="206" y="150" font-size="9" fill="#fff" text-anchor="middle" font-weight="bold">杀菌</text></g><circle cx="42" cy="176" r="24" fill="#f6d3dc"/><text x="42" y="172" font-size="10" fill="#d2334f" text-anchor="middle">温和</text><text x="42" y="186" font-size="10" fill="#d2334f" text-anchor="middle">配方</text><rect x="14" y="216" width="40" height="34" rx="6" fill="#d2334f"/><text x="34" y="231" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">安全</text><text x="34" y="245" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">0刺激</text><rect x="62" y="222" width="184" height="24" rx="12" fill="#fff"/><text x="154" y="239" font-size="13" fill="#d2334f" text-anchor="middle" font-weight="bold">全家衣物放心混洗</text></svg></div>
+<div class="good-title">【全国包邮】衣物消毒除菌液洗衣服洗衣机专用杀菌液内衣内裤</div>
+<div class="good-price"><i>¥</i>20.9</div></div>
+<div class="good"><div class="good-img"><svg viewBox="0 0 260 260" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="tj1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8ddc8"/><stop offset="1" stop-color="#f3c9ae"/></linearGradient></defs><rect width="260" height="260" fill="url(#tj1)"/><text x="130" y="46" font-size="30" fill="#e2600f" text-anchor="middle" font-weight="bold">原生木浆</text><rect x="62" y="58" width="136" height="20" rx="10" fill="#e2600f"/><text x="130" y="72" font-size="11" fill="#fff" text-anchor="middle">柔韧面巾纸 云柔触感</text><ellipse cx="130" cy="216" rx="86" ry="12" fill="#e8b28f" opacity=".6"/><polygon points="60,150 150,120 210,140 120,175" fill="#ffffff"/><polygon points="60,150 120,175 120,210 60,185" fill="#f0ece6"/><polygon points="210,140 120,175 120,210 210,175" fill="#e6e0d8"/><g fill="#9fb8d8"><circle cx="90" cy="160" r="4"/><circle cx="98" cy="156" r="4"/><circle cx="94" cy="166" r="4"/><circle cx="160" cy="150" r="4"/><circle cx="168" cy="146" r="4"/><circle cx="164" cy="156" r="4"/></g><path d="M120 130 q10 -18 22 -6 q-4 12 -22 6z" fill="#fff"/><path d="M132 128 q12 -14 20 -2 q-6 10 -20 2z" fill="#f8f8f8"/><rect x="96" y="182" width="40" height="16" rx="3" fill="#fff" opacity=".85"/><text x="116" y="194" font-size="9" fill="#b59a7a" text-anchor="middle">清抚棉</text></svg></div>
+<div class="good-title">原生木浆抽纸家用饭店办公宿舍面巾擦手纸擦拭优惠餐巾纸面巾纸</div>
+<div class="good-price"><i>¥</i>3.02</div></div>
+<div class="good"><div class="good-img"><svg viewBox="0 0 260 260" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="hf1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6ece2"/><stop offset="1" stop-color="#ecd9c6"/></linearGradient></defs><rect width="260" height="260" fill="url(#hf1)"/><text x="246" y="42" font-size="27" fill="#111" text-anchor="end" font-weight="bold">狂甩不掉</text><rect x="150" y="54" width="96" height="20" rx="10" fill="#f6d34b"/><text x="198" y="68" font-size="11" fill="#5a4a10" text-anchor="middle">不伤发\不勒发</text><circle cx="66" cy="86" r="26" fill="#f6d7c0"/><path d="M40 84 q-4 -34 26 -34 q30 0 26 34 q-6 -14 -10 -16 q2 12 -4 16 q-2 -14 -8 -18 q-16 -6 -30 18z" fill="#6b4a2f"/><path d="M42 92 q-16 40 6 74 l14 -8 q-12 -30 -6 -50z" fill="#6b4a2f"/><path d="M46 112 q20 14 40 0 l6 60 h-52z" fill="#1c1c1c"/><circle cx="176" cy="120" r="20" fill="none" stroke="#6b4a2f" stroke-width="11"/><circle cx="204" cy="150" r="20" fill="none" stroke="#3a2a1c" stroke-width="11"/><circle cx="176" cy="182" r="20" fill="none" stroke="#d9c6a8" stroke-width="11"/><circle cx="204" cy="212" r="20" fill="none" stroke="#8a5a33" stroke-width="11"/><rect x="176" y="238" width="70" height="16" rx="3" fill="#111"/><text x="211" y="250" font-size="10" fill="#fff" text-anchor="middle">一整天不塌</text><polygon points="20,214 34,214 31,232 23,232" fill="#f2c34b"/><rect x="18" y="232" width="20" height="5" rx="2" fill="#c99b3f"/><rect x="44" y="238" width="150" height="20" rx="4" fill="#111"/><text x="119" y="252" font-size="11" fill="#fff" text-anchor="middle">升级加粗款 高弹力耐用</text><rect x="196" y="238" width="40" height="20" rx="4" fill="#e8382f"/><text x="216" y="252" font-size="10" fill="#fff" text-anchor="middle">断包赔</text></svg></div>
+<div class="good-title">简约发圈橡皮筋女高弹力耐用扎头发不伤发百搭头饰</div>
+<div class="good-price"><i>¥</i>5</div></div>
+<div class="good"><div class="good-img"><svg viewBox="0 0 260 260" preserveAspectRatio="xMidYMid slice"><rect width="260" height="260" fill="#e8f2fb"/><circle cx="30" cy="30" r="12" fill="#1f5aa8"/><path d="M24 30 l4 4 8 -8" stroke="#fff" fill="none" stroke-width="2"/><text x="50" y="35" font-size="14" fill="#123" font-weight="bold">OFFGAMERS</text><rect x="180" y="16" width="64" height="26" rx="4" fill="#1f5aa8"/><text x="212" y="28" font-size="9" fill="#fff" text-anchor="middle">中国区专用</text><text x="212" y="38" font-size="7" fill="#bcd8ee" text-anchor="middle">CHINA REGION</text><text x="130" y="76" font-size="15" fill="#123" text-anchor="middle" font-weight="bold">OFFGAMERS GIFT CARD</text><text x="130" y="92" font-size="9" fill="#7a8ba0" text-anchor="middle">全球游戏平台特权礼品甄选</text><rect x="40" y="106" width="180" height="96" rx="10" fill="#fff" stroke="#d5e2f0"/><circle cx="70" cy="140" r="13" fill="#1f5aa8"/><path d="M64 140 l4 4 8 -8" stroke="#fff" fill="none" stroke-width="2"/><text x="90" y="144" font-size="12" fill="#123" font-weight="bold">OFFGAMERS</text><text x="130" y="182" font-size="20" fill="#1f5aa8" text-anchor="middle" font-weight="bold">GIFT CARD</text><rect x="176" y="116" width="36" height="36" rx="6" fill="#1f5aa8"/><text x="194" y="134" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">30</text><text x="194" y="146" font-size="8" fill="#bcd8ee" text-anchor="middle">CNY</text><rect x="0" y="212" width="260" height="48" fill="#1f5aa8"/><g fill="#fff" font-size="8" text-anchor="middle"><circle cx="50" cy="230" r="8" fill="#2e6db8"/><text x="50" y="250">官方直充</text><circle cx="103" cy="230" r="8" fill="#2e6db8"/><text x="103" y="250">极速到账</text><circle cx="156" cy="230" r="8" fill="#2e6db8"/><text x="156" y="250">安全无忧</text><circle cx="209" cy="230" r="8" fill="#2e6db8"/><text x="209" y="250">客服在线</text></g></svg></div>
+<div class="good-title">Offgamers礼品卡SEA区游戏充值卡30CNY面值自动发货秒到账</div>
+<div class="good-price"><i>¥</i>28</div></div>
+<div class="good"><div class="good-img"><svg viewBox="0 0 260 260" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="bk1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f0851f"/><stop offset="1" stop-color="#e66a10"/></linearGradient></defs><rect width="260" height="260" fill="url(#bk1)"/><polygon points="14,10 96,10 88,34 22,34" fill="#d8382f"/><text x="54" y="27" font-size="14" fill="#fff" text-anchor="middle" font-weight="bold">4年级</text><rect x="104" y="12" width="76" height="22" rx="11" fill="#d8382f"/><text x="142" y="27" font-size="11" fill="#fff" text-anchor="middle">抖半批</text><rect x="26" y="46" width="118" height="160" rx="6" fill="#fff" stroke="#d8382f" stroke-width="3"/><rect x="34" y="54" width="102" height="26" rx="3" fill="#d8382f"/><text x="85" y="72" font-size="15" fill="#fff" text-anchor="middle" font-weight="bold">阅读大画报</text><polygon points="85,92 65,132 75,132 60,168 72,168 58,196 112,196 98,168 110,168 95,132 105,132" fill="#e8eef5"/><polygon points="85,96 74,128 96,128" fill="#8aa8c8"/><polygon points="85,110 70,150 100,150" fill="#6a8cae"/><polygon points="85,126 64,176 106,176" fill="#4a6c92"/><rect x="34" y="182" width="30" height="16" rx="3" fill="#f6d34b"/><text x="49" y="193" font-size="8" fill="#8a5a00" text-anchor="middle">跨学科</text><g font-size="11" fill="#fff" font-weight="bold"><rect x="156" y="52" width="80" height="22" rx="11" fill="#c94a00"/><text x="196" y="67" text-anchor="middle">同步教材</text><rect x="156" y="82" width="80" height="22" rx="11" fill="#c94a00"/><text x="196" y="97" text-anchor="middle">实景图解</text><rect x="156" y="112" width="80" height="22" rx="11" fill="#c94a00"/><text x="196" y="127" text-anchor="middle">全科融合</text><rect x="156" y="142" width="80" height="22" rx="11" fill="#c94a00"/><text x="196" y="157" text-anchor="middle">素养提升</text><rect x="156" y="176" width="80" height="22" rx="11" fill="#8a2b00"/><text x="196" y="191" text-anchor="middle">赠动画视频</text></g><rect x="0" y="212" width="260" height="48" fill="#f6d34b"/><text x="20" y="244" font-size="20" fill="#d8382f" font-weight="bold">2026</text><text x="86" y="232" font-size="12" fill="#8a2b00" font-weight="bold">大语文阅读 知识点汇总</text><text x="86" y="250" font-size="12" fill="#8a2b00" font-weight="bold">春季同步 人教版</text></svg></div>
+<div class="good-title">4年级阅读大画报春季同步抖音同款跨学科融合附动画视频</div>
+<div class="good-price"><i>¥</i>29.8</div></div>
+<div class="good"><div class="good-img"><svg viewBox="0 0 260 260" preserveAspectRatio="xMidYMid slice"><rect width="260" height="260" fill="#efeaf4"/><text x="24" y="42" font-size="26" fill="#222" font-weight="bold">洁柔</text><polygon points="76,22 82,34 70,34" fill="#c9a06a"/><rect x="68" y="32" width="16" height="6" rx="3" fill="#c9a06a"/><path d="M96 96 q10 -34 26 -10 q6 -26 20 -6 q10 -18 18 4 q14 -12 12 12z" fill="#ffffff"/><polygon points="60,110 200,110 214,150 74,150" fill="#ffffff"/><polygon points="60,110 74,150 74,196 60,156" fill="#e4dcec"/><polygon points="214,150 74,150 74,196 214,196" fill="#d8cfe4"/><g fill="#b9a8d4"><circle cx="110" cy="170" r="5"/><circle cx="120" cy="164" r="5"/><circle cx="115" cy="178" r="5"/><circle cx="170" cy="170" r="5"/><circle cx="180" cy="164" r="5"/><circle cx="175" cy="178" r="5"/></g><rect x="120" y="158" width="44" height="26" rx="3" fill="#fff" opacity=".9"/><text x="142" y="175" font-size="11" fill="#8a7aa8" text-anchor="middle">洁柔</text><rect x="16" y="212" width="66" height="20" rx="4" fill="#222"/><text x="49" y="226" font-size="11" fill="#fff" text-anchor="middle">3层100抽</text><text x="96" y="227" font-size="12" fill="#555">大规格：180mm</text><text x="16" y="252" font-size="14" fill="#222" font-weight="bold">柔韧亲肤 湿水不破</text></svg></div>
+<div class="good-title">洁柔抽纸3层100抽面巾纸家用实惠装大规格花香纸巾</div>
+<div class="good-price"><i>¥</i>9.9</div></div>
+<div class="good"><div class="good-img"><svg viewBox="0 0 260 260" preserveAspectRatio="xMidYMid slice"><rect width="260" height="260" fill="#fdeef0"/><circle cx="52" cy="52" r="34" fill="#fff" stroke="#2e6da4" stroke-width="5"/><text x="52" y="48" font-size="14" fill="#d8382f" text-anchor="middle" font-weight="bold">食品用</text><text x="52" y="66" font-size="10" fill="#2e7d4f" text-anchor="middle">洗洁精</text><g font-size="10" fill="#333"><circle cx="26" cy="110" r="8" fill="#2e7d4f"/><path d="M22 110 l3 3 5 -5" stroke="#fff" fill="none" stroke-width="1.6"/><text x="40" y="114">清新祛味</text><circle cx="26" cy="134" r="8" fill="#2e7d4f"/><path d="M22 134 l3 3 5 -5" stroke="#fff" fill="none" stroke-width="1.6"/><text x="40" y="138">无磷配方</text><circle cx="26" cy="158" r="8" fill="#2e7d4f"/><path d="M22 158 l3 3 5 -5" stroke="#fff" fill="none" stroke-width="1.6"/><text x="40" y="162">果蔬无忧</text></g><path d="M140 60 h44 l10 26 v118 q0 10 -10 10 h-44 q-10 0 -10 -10 v-118z" fill="#f7b6c4"/><rect x="152" y="42" width="22" height="18" rx="4" fill="#2e7d4f"/><rect x="146" y="96" width="66" height="70" rx="6" fill="#fff"/><path d="M164 128 q-8 -14 4 -18 q2 -8 12 -6 q10 -2 12 6 q12 4 4 18 q-6 12 -16 14 q-10 -2 -16 -14z" fill="#e8382f"/><g fill="#ffd9d9"><circle cx="172" cy="120" r="1.4"/><circle cx="182" cy="116" r="1.4"/><circle cx="190" cy="124" r="1.4"/><circle cx="178" cy="130" r="1.4"/></g><path d="M172 106 q6 -8 14 -2 q-6 6 -14 2z" fill="#2e7d4f"/><text x="179" y="156" font-size="9" fill="#d2334f" text-anchor="middle" font-weight="bold">草莓去油洗洁精</text><circle cx="216" cy="196" r="16" fill="#e8382f"/><path d="M210 190 q-4 -8 3 -9 q1 -5 7 -4 q6 -1 7 4 q7 1 3 9 q-4 7 -10 8 q-6 -1 -10 -8z" fill="#e8382f"/><rect x="60" y="222" width="150" height="22" rx="11" fill="#2e7d4f"/><text x="135" y="237" font-size="11" fill="#fff" text-anchor="middle">果蔬去油洗洁精 无残留</text><text x="16" y="246" font-size="22" fill="#d8382f" font-weight="bold">450g</text></svg></div>
+<div class="good-title">草莓香型果蔬洗洁精食品用配方无残留450g补充装</div>
+<div class="good-price"><i>¥</i>15.8</div></div>
+<div class="good"><div class="good-img"><svg viewBox="0 0 260 260" preserveAspectRatio="xMidYMid slice"><rect width="260" height="260" fill="#29c0e6"/><g fill="#ff2d7c"><polygon points="0,0 60,0 0,60"/><polygon points="260,260 200,260 260,200"/><polygon points="260,0 260,50 210,0"/><polygon points="0,260 0,210 50,260"/></g><rect x="18" y="30" width="26" height="18" rx="3" fill="#e8382f" transform="rotate(-16 31 39)"/><rect x="216" y="40" width="26" height="18" rx="3" fill="#e8382f" transform="rotate(14 229 49)"/><circle cx="130" cy="132" r="82" fill="#111"/><rect x="86" y="76" width="88" height="20" rx="10" fill="#ff2d7c"/><text x="130" y="90" font-size="11" fill="#fff" text-anchor="middle">收藏领券再减</text><text x="130" y="116" font-size="16" fill="#fff" text-anchor="middle" font-weight="bold">DOU音币</text><text x="130" y="172" font-size="52" fill="#ff2d7c" text-anchor="middle" font-weight="bold">300</text><text x="130" y="194" font-size="12" fill="#fff" text-anchor="middle" font-weight="bold">亏本跑量大促销</text><rect x="92" y="200" width="76" height="16" rx="8" fill="#fff"/><text x="130" y="212" font-size="9" fill="#111" text-anchor="middle">24小时自动充值</text><rect x="52" y="228" width="156" height="22" rx="11" fill="#ff2d7c"/><text x="130" y="243" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">请填写正确抖音号</text></svg></div>
+<div class="good-title">抖音币300充值秒到账24小时自动收藏领券再减亏本跑量</div>
+<div class="good-price"><i>¥</i>28</div></div>
+<div class="good"><div class="good-img"><svg viewBox="0 0 260 260" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="sv1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7a4dff"/><stop offset="1" stop-color="#5a3be0"/></linearGradient></defs><rect width="260" height="260" fill="url(#sv1)"/><text x="16" y="34" font-size="22" fill="#fff" font-weight="bold">剪映SVIP</text><rect x="150" y="16" width="94" height="20" rx="10" fill="#fff" opacity=".22"/><text x="197" y="30" font-size="10" fill="#fff" text-anchor="middle">剪映 ｜ 直充到账</text><rect x="16" y="52" width="110" height="150" rx="10" fill="#fdf3dc"/><rect x="30" y="62" width="52" height="16" rx="8" fill="#e8c76a"/><text x="56" y="74" font-size="9" fill="#6a4a10" text-anchor="middle">极速到账</text><text x="71" y="130" font-size="40" fill="#e8382f" text-anchor="middle" font-weight="bold">月卡</text><text x="71" y="156" font-size="11" fill="#8a6a30" text-anchor="middle">充值自己号</text><text x="71" y="172" font-size="10" fill="#8a6a30" text-anchor="middle">直充·秒到账</text><rect x="30" y="180" width="82" height="16" rx="8" fill="#7a4dff"/><text x="71" y="192" font-size="9" fill="#fff" text-anchor="middle">SVIP会员</text><rect x="140" y="52" width="104" height="150" rx="10" fill="#161226"/><text x="192" y="76" font-size="10" fill="#9f8fff" text-anchor="middle">24小时 自动发货</text><text x="192" y="118" font-size="34" fill="#fff" text-anchor="middle" font-weight="bold">SVIP</text><rect x="170" y="130" width="44" height="44" rx="8" fill="#fff"/><polygon points="184,142 202,142 190,154 200,154 182,168 188,156 180,156" fill="#161226"/><text x="226" y="150" font-size="12" fill="#fff" writing-mode="tb">会员</text><g font-size="9" fill="#fff"><rect x="16" y="216" width="70" height="18" rx="9" fill="#fff" opacity=".22"/><text x="51" y="229" text-anchor="middle">SVIP会员</text><rect x="94" y="216" width="70" height="18" rx="9" fill="#fff" opacity=".22"/><text x="129" y="229" text-anchor="middle">电视|手机|平板</text><rect x="172" y="216" width="72" height="18" rx="9" fill="#fff" opacity=".22"/><text x="208" y="229" text-anchor="middle">官方直充</text></g></svg></div>
+<div class="good-title">剪映SVIP会员月卡直充到账24小时自动发货手机平板通用</div>
+<div class="good-price"><i>¥</i>9.9</div></div>
+</section>
+</main>
+<!-- sidebar -->
+<div class="sidebar">
+<div class="sb"><svg viewBox="0 0 20 20"><rect x="3" y="3.5" width="14" height="9.5" rx="1.5" fill="none" stroke="#666" stroke-width="1.3"/><line x1="10" y1="13" x2="10" y2="16" stroke="#666" stroke-width="1.3"/><line x1="6.5" y1="16.5" x2="13.5" y2="16.5" stroke="#666" stroke-width="1.3"/></svg>桌面版</div>
+<div class="sb"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="#666" stroke-width="1.3"/><circle cx="7.5" cy="8.5" r="1" fill="#666"/><circle cx="12.5" cy="8.5" r="1" fill="#666"/><path d="M7 12 q3 2.4 6 0" stroke="#666" fill="none" stroke-width="1.3"/></svg>消息</div>
+<div class="sb"><svg viewBox="0 0 20 20"><path d="M4 6 h2 l1.8 7 h6 l1.8-5.4 H7" fill="none" stroke="#666" stroke-width="1.3"/><circle cx="8.6" cy="15.6" r="1.3" fill="#666"/><circle cx="13" cy="15.6" r="1.3" fill="#666"/></svg>购物车</div>
+<div class="sb"><svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="7" fill="none" stroke="#666" stroke-width="1.3"/><path d="M10 6 v4 l3 1.6" fill="none" stroke="#666" stroke-width="1.3"/></svg>规则众议</div>
+<div class="sb"><svg viewBox="0 0 20 20"><path d="M4 12 a6 6 0 0 1 12 0" fill="none" stroke="#666" stroke-width="1.3"/><rect x="2.6" y="11" width="3.4" height="5.4" rx="1.6" fill="#666"/><rect x="14" y="11" width="3.4" height="5.4" rx="1.6" fill="#666"/></svg>官方客服</div>
+<div class="sb"><svg viewBox="0 0 20 20"><path d="M5 15 l1-3.6 7-7 2.6 2.6 -7 7 z" fill="none" stroke="#666" stroke-width="1.3"/><line x1="4" y1="16.5" x2="9" y2="16.5" stroke="#666" stroke-width="1.3"/></svg>反馈</div>
+</div>
+<!-- more pill -->
+<div class="more">
+<svg viewBox="0 0 34 26"><rect width="34" height="26" rx="4" fill="#e8f1fb"/><rect x="5" y="5" width="10" height="14" rx="2" fill="#7fb3e6"/><rect x="19" y="5" width="10" height="14" rx="2" fill="#f2a3b8"/></svg>
+更多低价商品<i class="caret"></i>
+</div>
+</body>
+</html>

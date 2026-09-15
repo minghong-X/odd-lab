@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>淘宝网 - 淘！我喜欢</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "Microsoft YaHei", Arial, sans-serif; background: #f5f5f5; color: #333; font-size: 12px; }
+a { text-decoration: none; color: inherit; }
+
+/* Top bar */
+.topbar { background: #ffffff; border-bottom: 1px solid #eee; }
+.topbar-inner { max-width: 1920px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 8px 40px; font-size: 12px; color: #666; }
+.topbar-left span, .topbar-right span { margin-right: 18px; cursor: pointer; }
+.topbar-left .login { color: #ff4200; }
+.topbar-right { display: flex; }
+.topbar-right span { display: flex; align-items: center; }
+.topbar-right .arrow { font-size: 8px; margin-left: 3px; }
+
+/* Banner */
+.banner { background: linear-gradient(90deg,#c47510,#d98a1a); position: relative; }
+.banner-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: center; padding: 14px 0; color: #fff; }
+.banner-inner .box { width: 120px; height: 55px; margin-right: 20px; position: relative; }
+.banner-text { font-size: 22px; font-weight: bold; letter-spacing: 1px; }
+.banner-text .sub { font-weight: normal; }
+.banner-btn { background: #fff; color: #c47510; padding: 8px 22px; border-radius: 20px; font-weight: bold; margin-left: 25px; font-size: 15px; cursor: pointer; }
+.banner-close { position: absolute; right: 30px; top: 50%; transform: translateY(-50%); color: #fff; font-size: 22px; cursor: pointer; }
+
+/* Search area */
+.search-area { background: #fff; }
+.search-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: flex-start; padding: 20px 0 12px; }
+.logo { color: #ff4200; font-size: 40px; font-weight: bold; margin-right: 40px; line-height: 1; }
+.logo .dot { font-size: 15px; font-weight: normal; letter-spacing: 1px; }
+.search-center { flex: 1; }
+.search-box { display: flex; border: 2px solid #ff4200; border-radius: 20px; overflow: hidden; height: 40px; }
+.search-cat { display: flex; align-items: center; padding: 0 12px; font-size: 13px; color: #333; border-right: 1px solid #eee; }
+.search-cat .arrow { font-size: 8px; margin-left: 4px; color: #999; }
+.search-input { flex: 1; border: none; outline: none; padding: 0 15px; font-size: 14px; color: #999; }
+.search-camera { display: flex; align-items: center; padding: 0 12px; color: #ff4200; font-size: 13px; }
+.search-btn { background: #ff4200; color: #fff; width: 90px; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: bold; cursor: pointer; }
+.hotwords { margin-top: 10px; font-size: 12px; color: #999; }
+.hotwords .hot { color: #ff4200; margin-right: 12px; }
+.hotwords span { margin-right: 12px; cursor: pointer; }
+.search-right { margin-left: 40px; display: flex; align-items: center; text-align: right; }
+.hongbao-text { line-height: 1.6; }
+.hongbao-text .t1 { color: #333; font-size: 13px; }
+.hongbao-text .t2 { color: #ff4200; font-size: 15px; font-weight: bold; }
+.hongbao-icon { width: 55px; height: 55px; margin-left: 8px; background: radial-gradient(circle,#ffd54a,#ff8f00); border-radius: 50%; position: relative; }
+.hongbao-icon::after { content:'红'; position: absolute; right:0; top:0; background:#ff4200; color:#fff; border-radius:50%; width:16px; height:16px; font-size:10px; display:flex; align-items:center; justify-content:center; }
+
+/* Nav channels */
+.channels { max-width: 1200px; margin: 0 auto; display: flex; padding: 12px 0 16px; }
+.channels a { display: flex; align-items: center; margin-right: 26px; font-size: 14px; color: #333; }
+.ch-icon { width: 18px; height: 18px; border-radius: 4px; margin-right: 5px; }
+
+/* Main layout */
+.main { max-width: 1200px; margin: 0 auto; }
+.top-section { display: flex; gap: 12px; }
+
+/* Sidebar categories */
+.sidebar { width: 250px; background: #fff; border-radius: 10px; padding: 14px 18px; }
+.sidebar-title { color: #ff4200; font-weight: bold; font-size: 14px; margin-bottom: 8px; display: flex; align-items: center; }
+.sidebar-title .sep { color: #ddd; margin: 0 4px; font-weight: normal; }
+.cat-row { display: flex; align-items: center; padding: 9px 0; font-size: 13px; color: #333; border-bottom: 1px dashed #f0f0f0; }
+.cat-icon { width: 16px; height: 16px; margin-right: 10px; opacity: 0.7; }
+.cat-row a { margin: 0 3px; }
+.cat-row .sep { color: #ddd; }
+
+/* Center content */
+.center { flex: 1; }
+.promo-row { display: flex; gap: 12px; }
+.big-promo { flex: 0 0 300px; background: linear-gradient(160deg,#e8ecf3,#f5f7fa); border-radius: 10px; padding: 16px; position: relative; height: 200px; overflow: hidden; }
+.tmall-tag { background: #ff0036; color: #fff; font-size: 11px; padding: 3px 8px; border-radius: 4px 0 8px 0; position: absolute; top:0; left:0; }
+.big-promo h2 { margin-top: 30px; font-size: 22px; color: #222; }
+.big-promo p { font-size: 15px; color: #444; margin-top: 4px; }
+.phones { position: absolute; right: 10px; top: 20px; }
+.phone { width: 55px; height: 110px; background: linear-gradient(135deg,#3a3a5a,#1a1a2e); border-radius: 12px; position: absolute; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+.phone.p1 { transform: rotate(-15deg); left: 0; background: linear-gradient(135deg,#e8c9a0,#d4a373); }
+.phone.p2 { transform: rotate(10deg); left: 45px; top: 10px; background: linear-gradient(135deg,#8b1a2e,#6a0f22); }
+.dots { position: absolute; bottom: 12px; left: 16px; display: flex; gap: 5px; }
+.dots span { width: 16px; height: 4px; background: rgba(0,0,0,0.2); border-radius: 2px; }
+.dots span.on { background: #ff4200; }
+
+.subsidy-panel { flex: 1; background: #fff; border-radius: 10px; padding: 14px; }
+.subsidy-panel .ph { display: flex; align-items: center; font-size: 14px; font-weight: bold; margin-bottom: 12px; }
+.subsidy-panel .ph .new { background: #ff4200; color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 4px; margin-left: 8px; }
+.subsidy-items { display: flex; gap: 10px; }
+.subsidy-item { flex: 1; text-align: center; }
+.si-img { height: 100px; background: #f7f7f7; border-radius: 8px; margin-bottom: 8px; position: relative; overflow: hidden; }
+.si-price { color: #ff4200; font-weight: bold; font-size: 15px; }
+
+.four-panels { display: flex; gap: 12px; margin-top: 12px; }
+.panel { background: #fff; border-radius: 10px; padding: 12px; }
+.panel-head { display: flex; align-items: center; font-size: 13px; font-weight: bold; margin-bottom: 10px; }
+.panel-tag { color: #fff; font-size: 10px; padding: 2px 5px; border-radius: 3px; margin-left: 6px; font-weight: normal; }
+.p-a { flex: 1.3; }
+.p-b { flex: 1.5; }
+.p-c { flex: 1.3; }
+.p-d { flex: 1.3; }
+.panel-imgs { display: flex; gap: 8px; }
+.pimg { flex: 1; }
+.pimg-box { height: 100px; background: #f5f5f5; border-radius: 8px; position: relative; overflow: hidden; margin-bottom: 6px; }
+.pimg-price { color: #ff4200; font-weight: bold; font-size: 13px; text-align: center; }
+
+/* Guess you like tabs */
+.guess-tabs { display: flex; align-items: center; margin: 18px 0 12px; gap: 22px; }
+.guess-tabs .active { background: #ff4200; color: #fff; padding: 6px 16px; border-radius: 16px; font-weight: bold; display: flex; align-items: center; }
+.guess-tabs a { color: #333; font-size: 14px; display: flex; align-items: center; }
+.guess-tabs .tico { width: 16px; height: 16px; margin-right: 5px; }
+.refresh { margin-left: auto; width: 30px; height: 30px; border-radius: 50%; background: #fff; display: flex; align-items: center; justify-content: center; color: #999; }
+
+/* Product grid */
+.grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.card { background: #fff; border-radius: 10px; overflow: hidden; cursor: pointer; }
+.card-img { height: 230px; position: relative; overflow: hidden; }
+.card-info { padding: 10px; }
+.card-title { font-size: 13px; color: #333; line-height: 1.4; height: 36px; overflow: hidden; }
+.card-title .tm { background: #ff0036; color: #fff; font-size: 10px; padding: 1px 4px; border-radius: 3px; margin-right: 4px; }
+.card-price { color: #ff4200; font-size: 17px; font-weight: bold; margin-top: 10px; }
+.card-price span { font-size: 12px; }
+
+/* Product image designs */
+.pimg-salt { background: linear-gradient(160deg,#4a90d9,#a8d0f0); }
+.pimg-salt .bag { position: absolute; left: 30%; top: 25%; width: 60px; height: 75px; background: linear-gradient(#fff,#f0f0f0); border-radius: 6px; box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
+.pimg-salt .bag2 { left: 12%; top: 32%; transform: rotate(-8deg); }
+.pimg-salt .tag { position: absolute; top: 8px; left: 50%; transform: translateX(-50%); background: #ff0036; color: #fff; padding: 3px 12px; border-radius: 12px; font-weight: bold; }
+.pimg-salt .bottom { position: absolute; bottom: 0; width: 100%; text-align: center; color: #d40000; font-size: 26px; font-weight: bold; padding-bottom: 8px; background: rgba(255,255,255,0.85); }
+
+.pimg-dou { background: linear-gradient(160deg,#3a2a6a,#7b3fc4); display: flex; align-items: center; justify-content: center; flex-direction: column; }
+.pimg-dou .big { font-size: 42px; font-weight: bold; color: #fff; text-shadow: 2px 2px #ff00aa; }
+.pimg-dou .num { font-size: 60px; font-weight: bold; color: #ffde59; line-height: 0.9; }
+.pimg-dou .badge { position: absolute; top: 10px; left: 10px; background: #ff0036; color: #fff; padding: 4px 10px; border-radius: 12px; }
+
+.pimg-key { background: linear-gradient(160deg,#dceaf7,#f0f6fc); }
+.pimg-key .keys { position: absolute; top: 30px; left: 15%; display: flex; gap: 6px; }
+.pimg-key .k { width: 34px; height: 44px; background: linear-gradient(#5a9bd4,#3a7bb8); border-radius: 6px; box-shadow: 0 3px 6px rgba(0,0,0,0.15); }
+.pimg-key .k:nth-child(2){background:linear-gradient(#f0a030,#d4802a);}
+.pimg-key .k:nth-child(3){background:linear-gradient(#e05050,#c03030);}
+.pimg-key .k:nth-child(4){background:linear-gradient(#60c0b0,#40a090);}
+.pimg-key .banner-top { position: absolute; top:0; width: 100%; background: #2a5a8a; color:#fff; text-align: center; padding: 6px; font-size: 13px; }
+
+.pimg-clean { background: linear-gradient(160deg,#ffe0e8,#fff0f3); }
+.pimg-clean .bottle { position: absolute; width: 40px; height: 90px; background: linear-gradient(#ff9bb5,#ff6a90); border-radius: 8px 8px 4px 4px; top: 30%; }
+.pimg-clean .b1 { left: 40%; }
+.pimg-clean .b2 { left: 58%; top: 33%; }
+.pimg-clean .txt { position: absolute; top: 12px; left: 12px; color: #e0004a; font-weight: bold; font-size: 20px; line-height: 1.2; }
+
+.pimg-tissue { background: linear-gradient(160deg,#e8ede8,#f5f8f5); }
+.pimg-tissue .pack { position: absolute; width: 130px; height: 80px; background: linear-gradient(#fff,#eef1ee); border-radius: 8px; left: 20%; top: 30%; box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+.pimg-tissue .txt { position: absolute; top: 14px; left: 50%; transform: translateX(-50%); color: #a0651a; font-weight: bold; font-size: 22px; }
+
+.pimg-hair { background: linear-gradient(160deg,#ff9a6a,#ffb08a); }
+.pimg-hair .txt { position: absolute; top: 14px; right: 12px; color: #fff; font-weight: bold; font-size: 22px; text-align: right; line-height: 1.2; }
+.pimg-hair .band { position: absolute; width: 40px; height: 40px; border: 8px solid #6a4a2a; border-radius: 50%; }
+.pimg-hair .n1 { right: 30px; top: 100px; }
+.pimg-hair .n2 { right: 65px; top: 115px; }
+.pimg-hair .n3 { right: 100px; top: 100px; }
+
+.pimg-gift { background: linear-gradient(160deg,#1a3a6a,#2a5a9a); display: flex; align-items: center; justify-content: center; flex-direction: column; }
+.pimg-gift .card-white { width: 120px; height: 70px; background: linear-gradient(135deg,#fff,#e0e8f0); border-radius: 8px; margin-top: 20px; }
+.pimg-gift .txt { color: #fff; font-weight: bold; font-size: 15px; margin-top: 10px; }
+.pimg-gift .badge { position: absolute; top: 10px; right: 10px; background: #c00; color: #fff; padding: 3px 8px; border-radius: 4px; }
+
+.pimg-book { background: linear-gradient(160deg,#f5d54a,#f0b830); }
+.pimg-book .txt { position: absolute; top: 14px; left: 14px; color: #c04000; font-weight: bold; font-size: 26px; }
+.pimg-book .cover { position: absolute; bottom: 15px; left: 20%; width: 90px; height: 110px; background: linear-gradient(#fff,#f5f5f5); border-radius: 4px; box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
+
+.pimg-jierou { background: linear-gradient(160deg,#eaf4ff,#f5faff); }
+.pimg-jierou .pack { position: absolute; width: 100px; height: 100px; background: linear-gradient(#fff,#e8f0f8); border-radius: 10px; left: 25%; top: 30%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.pimg-jierou .txt { position: absolute; top: 12px; left: 14px; color: #2a7bc4; font-weight: bold; font-size: 22px; }
+
+.pimg-wash { background: linear-gradient(160deg,#ffdce4,#fff0f4); }
+.pimg-wash .bag { position: absolute; width: 60px; height: 80px; background: linear-gradient(#ff9bb5,#ff6a90); border-radius: 8px; left: 35%; top: 30%; }
+.pimg-wash .badge { position: absolute; top: 12px; left: 14px; background: #e0004a; color: #fff; padding: 4px 10px; border-radius: 6px; font-weight: bold; }
+.pimg-wash .strawb { position: absolute; width: 30px; height: 32px; background: #e0304a; border-radius: 0 50% 50% 50%; bottom: 20px; right: 20px; }
+
+.pimg-dou300 { background: radial-gradient(circle,#1a1a2a,#000); display: flex; align-items: center; justify-content: center; flex-direction: column; }
+.pimg-dou300 .big { color: #ff59c7; font-size: 34px; font-weight: bold; }
+.pimg-dou300 .num { color: #ffde59; font-size: 60px; font-weight: bold; line-height: 0.9; }
+.pimg-dou300 .top-badge { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); background: linear-gradient(90deg,#ff6a00,#ff0080); color: #fff; padding: 5px 14px; border-radius: 14px; font-weight: bold; }
+.pimg-dou300 .bottom-txt { color: #fff; font-size: 12px; margin-top: 8px; }
+
+.pimg-svip { background: linear-gradient(160deg,#7b3fc4,#4a2a8a); }
+.pimg-svip .card-b { position: absolute; width: 90px; height: 110px; background: linear-gradient(#fff,#f0e8ff); border-radius: 8px; right: 15px; top: 60px; }
+.pimg-svip .card-l { position: absolute; width: 60px; height: 110px; background: linear-gradient(#ff6a90,#ff3a70); border-radius: 8px; left: 15px; top: 60px; }
+.pimg-svip .txt { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); color: #fff; font-weight: bold; font-size: 18px; }
+.pimg-svip .logo-x { position: absolute; right: 40px; top: 100px; color: #fff; font-size: 30px; font-weight: bold; }
+
+/* Float bar */
+.floatbar { position: fixed; right: 0; top: 50%; transform: translateY(-50%); background: #fff; border-radius: 8px 0 0 8px; box-shadow: -2px 0 10px rgba(0,0,0,0.08); z-index: 100; }
+.floatbar div { padding: 12px 8px; text-align: center; font-size: 11px; color: #666; border-bottom: 1px solid #f0f0f0; cursor: pointer; }
+.floatbar .fico { width: 20px; height: 20px; margin: 0 auto 4px; background: #ff4200; border-radius: 4px; opacity: 0.8; }
+
+.more-btn { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: #fff; padding: 10px 24px; border-radius: 22px; box-shadow: 0 2px 12px rgba(0,0,0,0.12); font-size: 13px; z-index: 90; }
+.more-btn .arr { font-size: 8px; margin-left: 4px; color: #999; }
+</style>
+</head>
+<body>
+
+<!-- Top bar -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-left">
+      <span>中国大陆 ▾</span>
+      <span class="login">亲，请登录</span>
+      <span>免费注册</span>
+      <span>网页无障碍</span>
+      <span>切换企业版</span>
+    </div>
+    <div class="topbar-right">
+      <span>已买到的宝贝</span>
+      <span>我的淘宝<i class="arrow">▾</i></span>
+      <span>购物车</span>
+      <span>收藏夹<i class="arrow">▾</i></span>
+      <span>免费开店</span>
+      <span>千牛卖家中心</span>
+      <span>帮助中心<i class="arrow">▾</i></span>
+    </div>
+  </div>
+</div>
+
+<!-- Banner -->
+<div class="banner">
+  <div class="banner-inner">
+    <div class="box">
+      <svg viewBox="0 0 120 55" width="120" height="55">
+        <rect x="10" y="15" width="45" height="35" rx="3" fill="#e8b878"/>
+        <rect x="10" y="15" width="45" height="10" fill="#d4a05a"/>
+        <rect x="60" y="5" width="30" height="30" rx="3" fill="#5a8ac4"/>
+        <circle cx="100" cy="35" r="10" fill="#f0d0a0"/>
+      </svg>
+    </div>
+    <div class="banner-text"><span class="sub">采购节</span> 企业秋季生产 拿样1元起</div>
+    <div class="banner-btn">立即前往</div>
+  </div>
+  <div class="banner-close">×</div>
+</div>
+
+<!-- Search area -->
+<div class="search-area">
+  <div class="search-inner">
+    <div class="logo">淘宝<div class="dot">Taobao.com</div></div>
+    <div class="search-center">
+      <div class="search-box">
+        <div class="search-cat">宝贝<i class="arrow">▾</i></div>
+        <input class="search-input" value="基围虾榜">
+        <div class="search-camera">📷 搜同款</div>
+        <div class="search-btn">🔍 搜索</div>
+      </div>
+      <div class="hotwords">
+        <span class="hot">iPhone 18 pro开售</span>
+        <span>摸鱼星期一</span><span>中动玩具</span><span>崭新之日手办</span><span>手办</span>
+        <span>中动玩具手办</span><span>中动崭新之日手办</span><span>中动崭新之日</span><span>中动玩具</span><span>崭新之日手办</span>
+      </div>
+    </div>
+    <div class="search-right">
+      <div class="hongbao-text">
+        <div class="t1">天天领元宝换红包</div>
+        <div class="t2">开启淘江湖 ›</div>
+      </div>
+      <div class="hongbao-icon"></div>
+    </div>
+  </div>
+
+  <!-- Channels -->
+  <div class="channels">
+    <a><span class="ch-icon" style="background:#ff0036"></span>天猫</a>
+    <a><span class="ch-icon" style="background:#ff4200"></span>淘宝直播</a>
+    <a><span class="ch-icon" style="background:#ffb300"></span>阿里企业购</a>
+    <a><span class="ch-icon" style="background:#e02020"></span>司法拍卖</a>
+    <a><span class="ch-icon" style="background:#37c871"></span>天猫超市</a>
+    <a><span class="ch-icon" style="background:#37a3f0"></span>国家补贴</a>
+    <a><span class="ch-icon" style="background:#ff6a00"></span>领券中心</a>
+    <a><span class="ch-icon" style="background:#ff9500"></span>超级立减</a>
+    <a><span class="ch-icon" style="background:#7b3fc4"></span>全部频道</a>
+  </div>
+</div>
+
+<!-- Main -->
+<div class="main">
+  <div class="top-section">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-title">超级立减 <span class="sep">/</span> 抢省钱补贴</div>
+      <div class="cat-row"><span class="cat-icon">💻</span><a>电脑</a><span class="sep">/</span><a>配件</a><span class="sep">/</span><a>办公</a><span class="sep">/</span><a>文具</a></div>
+      <div class="cat-row"><span class="cat-icon">⚙️</span><a>工业品</a><span class="sep">/</span><a>商业</a><span class="sep">/</span><a>农业</a><span class="sep">/</span><a>定制</a></div>
+      <div class="cat-row"><span class="cat-icon">📱</span><a>家电</a><span class="sep">/</span><a>手机</a><span class="sep">/</span><a>通信</a><span class="sep">/</span><a>数码</a></div>
+      <div class="cat-row"><span class="cat-icon">🛋️</span><a>家具</a><span class="sep">/</span><a>家装</a><span class="sep">/</span><a>家居</a><span class="sep">/</span><a>厨具</a></div>
+      <div class="cat-row"><span class="cat-icon">👗</span><a>女装</a><span class="sep">/</span><a>男装</a><span class="sep">/</span><a>内衣</a><span class="sep">/</span><a>配饰</a></div>
+      <div class="cat-row"><span class="cat-icon">👟</span><a>女鞋</a><span class="sep">/</span><a>男鞋</a><span class="sep">/</span><a>运动</a><span class="sep">/</span><a>户外</a></div>
+      <div class="cat-row"><span class="cat-icon">🚗</span><a>汽车</a><span class="sep">/</span><a>珠宝</a><span class="sep">/</span><a>文玩</a><span class="sep">/</span><a>箱包</a></div>
+      <div class="cat-row"><span class="cat-icon">🍎</span><a>食品</a><span class="sep">/</span><a>鲜花</a><span class="sep">/</span><a>酒水</a><span class="sep">/</span><a>健康</a></div>
+      <div class="cat-row" style="border:none"><span class="cat-icon">🍼</span><a>母婴</a><span class="sep">/</span><a>童装</a><span class="sep">/</span><a>玩具</a><span class="sep">/</span><a>宠物</a></div>
+    </div>
+
+    <!-- Center -->
+    <div class="center">
+      <div class="promo-row">
+        <div class="big-promo">
+          <span class="tmall-tag">天猫超级新品</span>
+          <h2>Apple新品来了</h2>
+          <p>立享24期免息</p>
+          <div class="phones">
+            <div class="phone p1"></div>
+            <div class="phone p2"></div>
+          </div>
+          <div class="dots"><span class="on"></span><span></span><span></span><span></span></div>
+        </div>
+
+        <div class="subsidy-panel">
+          <div class="ph">百亿补贴·买贵必赔 <span class="new">新人</span></div>
+          <div class="subsidy-items">
+            <div class="subsidy-item"><div class="si-img" style="background:#f2ede6"><svg viewBox="0 0 100 100" width="100%" height="100"><rect x="15" y="40" width="70" height="35" rx="6" fill="#e8ddd0"/><rect x="10" y="55" width="18" height="25" rx="3" fill="#ddd0bd"/><rect x="72" y="55" width="18" height="25" rx="3" fill="#ddd0bd"/></svg></div><div class="si-price">¥14999</div></div>
+            <div class="subsidy-item"><div class="si-img"><svg viewBox="0 0 100 100" width="100%" height="100"><rect x="25" y="25" width="50" height="55" rx="4" fill="#c9a878"/><rect x="30" y="35" width="40" height="30" fill="#e8d5b8"/></svg></div><div class="si-price">¥6299</div></div>
+            <div class="subsidy-item"><div class="si-img"><svg viewBox="0 0 100 100" width="100%" height="100"><rect x="20" y="35" width="60" height="30" rx="6" fill="#fff"/><rect x="20" y="35" width="60" height="30" rx="6" fill="none" stroke="#ddd"/><line x1="30" y1="55" x2="70" y2="55" stroke="#ccc"/></svg></div><div class="si-price">¥4999</div></div>
+            <div class="subsidy-item"><div class="si-img"><svg viewBox="0 0 100 100" width="100%" height="100"><rect x="42" y="20" width="16" height="55" rx="8" fill="#e8b0b0"/><circle cx="50" cy="20" r="12" fill="#d89090"/></svg></div><div class="si-price">¥9999</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="four-panels">
+        <div class="panel p-a">
+          <div class="panel-head">领券中心 <span class="panel-tag" style="background:#ff6a00">券</span></div>
+          <div class="panel-imgs">
+            <div class="pimg"><div class="pimg-box" style="background:#eef1f5"><svg viewBox="0 0 80 90" width="100%" height="100"><rect x="20" y="20" width="40" height="50" rx="4" fill="#3a3a4a"/><rect x="26" y="26" width="28" height="20" fill="#5a6a7a"/></svg></div><div class="pimg-price">¥10800</div></div>
+            <div class="pimg"><div class="pimg-box" style="background:#f5eee8"><svg viewBox="0 0 80 90" width="100%" height="100"><rect x="28" y="20" width="24" height="55" rx="3" fill="#d4c4a8"/><rect x="30" y="28" width="20" height="15" fill="#b89a6a"/></svg></div><div class="pimg-price">¥6380</div></div>
+          </div>
+        </div>
+        <div class="panel p-b">
+          <div class="panel-head">淘宝直播 <span class="panel-tag" style="background:#ff0036">红包雨</span></div>
+          <div class="panel-imgs">
+            <div class="pimg"><div class="pimg-box" style="background:#ffe0e8"><svg viewBox="0 0 90 100" width="100%" height="100"><circle cx="45" cy="35" r="18" fill="#f5c8d5"/><path d="M20 100 Q45 60 70 100" fill="#ff9bb5"/></svg><div style="position:absolute;bottom:4px;left:4px;font-size:9px;color:#fff;background:rgba(0,0,0,0.4);padding:2px 4px;border-radius:3px">保姆鹅旗舰店</div></div></div>
+            <div class="pimg"><div class="pimg-box" style="background:#dceaf5"><svg viewBox="0 0 90 100" width="100%" height="100"><circle cx="45" cy="35" r="18" fill="#e8d0b8"/><path d="M20 100 Q45 55 70 100" fill="#5a8ac4"/><circle cx="60" cy="70" r="12" fill="#fff"/></svg><div style="position:absolute;bottom:4px;left:4px;font-size:9px;color:#fff;background:rgba(0,0,0,0.4);padding:2px 4px;border-radius:3px">李佳琦Austin</div></div></div>
+          </div>
+        </div>
+        <div class="panel p-c">
+          <div class="panel-head">国家补贴</div>
+          <div class="pimg"><div class="pimg-box" style="background:#eaf1f7"><svg viewBox="0 0 160 90" width="100%" height="100"><rect x="55" y="15" width="50" height="60" rx="6" fill="#fff" stroke="#ddd"/><rect x="62" y="24" width="36" height="30" fill="#e0e8f0"/></svg></div><div class="pimg-price">¥21800</div></div>
+        </div>
+        <div class="panel p-d">
+          <div class="panel-head">淘宝秒杀 <span class="panel-tag" style="background:#ff4200">超低价</span></div>
+          <div class="panel-imgs">
+            <div class="pimg"><div class="pimg-box" style="background:#f5f5f5"><svg viewBox="0 0 80 90" width="100%" height="100"><circle cx="40" cy="40" r="20" fill="#e0e0e0"/><circle cx="40" cy="40" r="8" fill="#fff"/></svg></div><div class="pimg-price">¥6999</div></div>
+            <div class="pimg"><div class="pimg-box" style="background:#f5f2ee"><svg viewBox="0 0 80 90" width="100%" height="100"><rect x="15" y="35" width="50" height="30" rx="4" fill="#e8e0d5"/></svg></div><div class="pimg-price">¥652</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right login panel -->
+    <div class="sidebar" style="width:250px">
+      <div style="display:flex;align-items:center;margin-bottom:10px">
+        <div style="width:40px;height:40px;border-radius:50%;background:#ffd54a;margin-right:10px"></div>
+        <div><div style="font-size:14px;font-weight:bold">晚上好</div><div style="font-size:12px;color:#999">注册 ｜ 开店</div></div>
+      </div>
+      <div style="font-weight:bold;font-size:14px;margin:8px 0 3px">登录淘宝后更多精彩</div>
+      <div style="font-size:11px;color:#999;margin-bottom:12px">嘿！更懂你的推荐，更便捷的搜索</div>
+      <div style="background:#ff4200;color:#fff;text-align:center;padding:11px;border-radius:20px;font-size:15px;font-weight:bold;cursor:pointer">立即登录</div>
+      <div style="display:flex;justify-content:space-between;margin:18px 4px;text-align:center;font-size:12px;color:#666">
+        <div><div style="font-size:20px">📋</div>已买到</div>
+        <div><div style="font-size:20px">⭐</div>收藏夹</div>
+        <div><div style="font-size:20px">🛍️</div>买过的店</div>
+        <div><div style="font-size:20px">🕐</div>足迹</div>
+      </div>
+      <div style="border-top:1px solid #f0f0f0;padding-top:12px;display:flex;align-items:center;justify-content:space-between">
+        <div>
+          <div style="font-weight:bold;font-size:13px">淘金币购物抵钱用</div>
+          <div style="font-size:11px;color:#999;margin:4px 0">100金币抵1元</div>
+          <div style="color:#ff4200;font-weight:bold;font-size:13px;cursor:pointer">立即领取</div>
+        </div>
+        <div style="width:50px;height:50px;border-radius:50%;background:radial-gradient(circle,#ffd54a,#ff8f00);color:#c47000;font-weight:bold;display:flex;align-items:center;justify-content:center;font-size:22px">币</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Guess you like -->
+  <div class="guess-tabs">
+    <div class="active">❤️ 猜你喜欢</div>
+    <a><span class="tico">✈️</span>运动户外</a>
+    <a><span class="tico">🔌</span>潮电数码</a>
+    <a><span class="tico">👕</span>服饰时尚</a>
+    <a><span class="tico">🏠</span>家装建材</a>
+    <a><span class="tico">📎</span>办公文具</a>
+    <a><span class="tico">💊</span>健康保健</a>
+    <div class="refresh">↻</div>
+  </div>
+
+  <!-- Row 1 -->
+  <div class="grid">
+    <div class="card">
+      <div class="card-img pimg-salt">
+        <div class="tag">自贡深井盐</div>
+        <div class="bag bag2"></div><div class="bag"></div>
+        <div class="bottom">加碘食用盐</div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">盐当家加碘精制盐350克小样食盐炒菜调味细盐健康袋装炒菜调味料</div>
+        <div class="card-price"><span>¥</span>3.02</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img pimg-dou">
+        <div class="badge">秒充到账</div>
+        <div style="position:absolute;top:8px;right:8px;background:#ff0036;color:#fff;padding:3px 8px;border-radius:10px">24小时自动充值</div>
+        <div class="big">Dou音币</div>
+        <div class="num">60</div>
+      </div>
+      <div class="card-info">
+        <div class="card-title"><span class="tm">天猫</span>60抖币充值秒到300钻石douyin斗抖币充值ios抖音币1000元充币抖音</div>
+        <div class="card-price"><span>¥</span>6.5</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img pimg-key">
+        <div class="banner-top">明日方舟 · Persona 3</div>
+        <div class="keys"><div class="k"></div><div class="k"></div><div class="k"></div><div class="k"></div></div>
+      </div>
+      <div class="card-info">
+        <div class="card-title"><span class="tm">天猫</span>【预售】明日方舟× Persona 3 Reload-串串挂件-结城理</div>
+        <div class="card-price"><span>¥</span>38</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img pimg-clean">
+        <div class="txt">48H<br>长效杀菌</div>
+        <div class="bottle b1"></div><div class="bottle b2"></div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">衣物消毒除菌液洗衣服洗衣机专用杀菌液内衣内裤</div>
+        <div class="card-price"><span>¥</span>20.9</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img pimg-tissue">
+        <div class="txt">原生木浆</div>
+        <div class="pack"></div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">原生木浆抽纸家用饭店办公宿舍面巾擦手纸擦拭优惠餐巾纸面巾纸</div>
+        <div class="card-price"><span>¥</span>3.02</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img pimg-hair">
+        <div class="txt">狂甩不掉</div>
+        <div class="band n1"></div><div class="band n2"></div><div class="band n3"></div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">简约发圈橡皮筋女高弹力耐用扎头发不伤发百搭头饰</div>
+        <div class="card-price"><span>¥</span>5</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Row 2 -->
+  <div class="grid" style="margin-top:12px">
+    <div class="card">
+      <div class="card-img pimg-gift">
+        <div class="badge">中国区专用</div>
+        <div style="color:#fff;font-size:13px;margin-top:14px">OFFGAMERS GIFT CARD</div>
+        <div class="card-white"></div>
+        <div class="txt">GIFT CARD</div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">全球游戏平台与数字产品商城 30CNY礼品卡</div>
+        <div class="card-price"><span>¥</span>30</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img pimg-book">
+        <div class="txt">阅读大画报</div>
+        <div class="cover"></div>
+        <div style="position:absolute;top:10px;right:10px;background:#c00;color:#fff;padding:3px 8px;border-radius:4px;font-size:11px">4年级</div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">跨学科小学拓展阅读 同步教材 大语文阅读知识点汇总</div>
+        <div class="card-price"><span>¥</span>29.9</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img pimg-jierou">
+        <div class="txt">洁柔</div>
+        <div class="pack"></div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">洁柔面巾纸3层100抽抽纸家用实惠装柔软亲肤面纸巾</div>
+        <div class="card-price"><span>¥</span>19.9</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img pimg-wash">
+        <div class="badge">食品用洗洁精</div>
+        <div class="bag"></div><div class="strawb"></div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">草莓茶油洗洁精清新祛味无磷配方易冲无残留餐具清洁</div>
+        <div class="card-price"><span>¥</span>9.9</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img pimg-dou300">
+        <div class="top-badge">收藏领券再减</div>
+        <div class="big">DOU音币</div>
+        <div class="num">300</div>
+        <div class="bottom-txt">24小时自动充值</div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">亏本跑单大促销 请填写正确抖音号 极速自动发货</div>
+        <div class="card-price"><span>¥</span>30</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-img pimg-svip">
+        <div class="txt">剪映 SVIP</div>
+        <div class="card-l"></div><div class="card-b"></div>
+        <div class="logo-x">✂️</div>
+        <div style="position:absolute;bottom:10px;right:10px;color:#fff;font-size:11px">24小时自动发货</div>
+      </div>
+      <div class="card-info">
+        <div class="card-title">剪映SVIP会员 电脑手机平板通用 直充秒到账</div>
+        <div class="card-price"><span>¥</span>18</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Float bar -->
+<div class="floatbar">
+  <div><div class="fico"></div>桌面版</div>
+  <div><div class="fico"></div>消息</div>
+  <div><div class="fico"></div>购物车</div>
+  <div><div class="fico"></div>规则众议</div>
+  <div><div class="fico"></div>官方客服</div>
+  <div><div class="fico"></div>反馈</div>
+</div>
+
+<div class="more-btn">更多低价商品 <span class="arr">▾</span></div>
+
+</body>
+</html>

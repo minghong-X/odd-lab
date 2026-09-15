@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淘宝网 - 淘！我喜欢</title>
+    <style>
+        /* Reset & Base */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #3c3c3c;
+            font-size: 12px;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul, ol { list-style: none; }
+
+        /* Layout */
+        .site-nav {
+            background-color: #f5f5f5;
+            border-bottom: 1px solid #eee;
+            height: 36px;
+            line-height: 36px;
+        }
+        .site-nav-inner {
+            width: 1190px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .site-nav .menu-item {
+            margin-right: 20px;
+            color: #6c6c6c;
+            cursor: pointer;
+        }
+        .site-nav .menu-item:hover { color: #ff5000; }
+        .site-nav .menu-item .arrow { font-size: 10px; margin-left: 2px; }
+        .site-nav .login { color: #ff5000; }
+
+        /* Header */
+        .header-wrap {
+            background: #fff;
+            padding: 24px 0;
+        }
+        .header {
+            width: 1190px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            width: 190px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+        .logo a {
+            font-size: 48px;
+            color: #ff5000;
+            font-weight: bold;
+            letter-spacing: -2px;
+        }
+        .logo span {
+            display: block;
+            font-size: 12px;
+            color: #999;
+            margin-top: -5px;
+            letter-spacing: 1px;
+        }
+
+        /* Search */
+        .search-box {
+            width: 630px;
+        }
+        .search-tab {
+            display: flex;
+            margin-bottom: 4px;
+        }
+        .search-tab span {
+            padding: 0 12px;
+            height: 24px;
+            line-height: 24px;
+            color: #ff5000;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .search-tab span.active {
+            background: #ff5000;
+            color: #fff;
+            border-radius: 6px 6px 0 0;
+        }
+        .search-input-wrap {
+            display: flex;
+            border: 2px solid #ff5000;
+            border-radius: 20px;
+            overflow: hidden;
+            height: 40px;
+            background: #fff;
+        }
+        .search-input {
+            flex: 1;
+            border: none;
+            padding: 0 15px;
+            font-size: 14px;
+            outline: none;
+        }
+        .search-btn {
+            width: 74px;
+            background: #ff5000;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .search-btn:hover { background: #e64a00; }
+        .search-hot {
+            margin-top: 6px;
+            display: flex;
+            gap: 12px;
+        }
+        .search-hot a {
+            color: #999;
+            font-size: 12px;
+        }
+        .search-hot a:hover { color: #ff5000; }
+
+        /* QR Code */
+        .header-qr {
+            width: 100px;
+            text-align: center;
+        }
+        .header-qr p {
+            color: #ff5000;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+        .qr-box {
+            width: 80px;
+            height: 80px;
+            background: #fff0e8;
+            border: 1px solid #ff5000;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff5000;
+            font-size: 12px;
+        }
+
+        /* Nav */
+        .main-nav {
+            background: #fff;
+            border-bottom: 1px solid #ff5000;
+            height: 30px;
+            line-height: 30px;
+        }
+        .main-nav-inner {
+            width: 1190px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+        }
+        .main-nav h2 {
+            width: 190px;
+            text-align: center;
+            background: #ff5000;
+            color: #fff;
+            font-size: 14px;
+            margin-right: 20px;
+        }
+        .main-nav ul {
+            display: flex;
+            flex: 1;
+        }
+        .main-nav li {
+            padding: 0 12px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #3c3c3c;
+            cursor: pointer;
+        }
+        .main-nav li:hover { color: #ff5000; }
+        .main-nav li.hot { color: #ff5000; }
+
+        /* Main Content */
+        .main-wrap {
+            width: 1190px;
+            margin: 0 auto;
+            display: flex;
+            padding-top: 10px;
+            gap: 10px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 190px;
+            background: #fff;
+            border: 1px solid #ff5000;
+            border-top: none;
+            height: 522px;
+        }
+        .sidebar li {
+            height: 32px;
+            line-height: 32px;
+            padding-left: 10px;
+            font-size: 14px;
+            color: #3c3c3c;
+            cursor: pointer;
+        }
+        .sidebar li:hover {
+            background: #ffe4dd;
+            color: #ff5000;
+        }
+        .sidebar li i {
+            margin-right: 6px;
+            color: #ff5000;
+        }
+
+        /* Center Area */
+        .center-area {
+            width: 690px;
+        }
+        .banner-top {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .banner-main {
+            width: 520px;
+            height: 280px;
+            background: #e8e8e8;
+            position: relative;
+            overflow: hidden;
+        }
+        .banner-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .banner-side {
+            width: 160px;
+            height: 280px;
+            background: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+        .banner-side .user-info {
+            padding: 15px;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #ff5000;
+            margin: 0 auto 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 24px;
+        }
+        .user-info p { color: #3c3c3c; margin-bottom: 8px; }
+        .user-info .btn {
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin: 0 4px;
+        }
+        .btn-login {
+            background: #ff5000;
+            color: #fff;
+        }
+        .btn-reg {
+            border: 1px solid #ff5000;
+            color: #ff5000;
+        }
+        .banner-bottom {
+            display: flex;
+            gap: 10px;
+        }
+        .banner-bottom .small-banner {
+            width: 250px;
+            height: 200px;
+            background: #fff;
+            position: relative;
+        }
+        .banner-bottom .small-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .banner-bottom .notice {
+            flex: 1;
+            background: #fff;
+            padding: 10px;
+        }
+        .notice-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: #3c3c3c;
+            margin-bottom: 10px;
+            border-left: 3px solid #ff5000;
+            padding-left: 8px;
+        }
+        .notice-list li {
+            height: 28px;
+            line-height: 28px;
+            color: #6c6c6c;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .notice-list li:hover { color: #ff5000; }
+
+        /* Right Sidebar */
+        .right-sidebar {
+            width: 290px;
+        }
+        .app-list {
+            background: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .app-list h3 {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .app-item {
+            text-align: center;
+            cursor: pointer;
+        }
+        .app-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            margin: 0 auto 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 20px;
+        }
+        .app-item p { color: #6c6c6c; }
+
+        /* Goods Section */
+        .goods-section {
+            margin-top: 20px;
+        }
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .section-title h3 {
+            font-size: 20px;
+            color: #3c3c3c;
+        }
+        .section-title a {
+            color: #999;
+            font-size: 12px;
+        }
+        .goods-list {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+        .goods-item {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+        .goods-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .goods-img {
+            width: 100%;
+            height: 220px;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .goods-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .goods-info {
+            padding: 10px;
+        }
+        .goods-title {
+            font-size: 14px;
+            color: #3c3c3c;
+            line-height: 1.5;
+            height: 42px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .goods-price {
+            margin-top: 8px;
+            color: #ff5000;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .goods-price span {
+            font-size: 12px;
+            font-weight: normal;
+        }
+        .goods-sales {
+            color: #999;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 40px;
+            padding: 40px 0;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+        .footer-inner {
+            width: 1190px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: #6c6c6c;
+            margin: 0 10px;
+        }
+        .footer-links a:hover { color: #ff5000; }
+        .footer-copyright {
+            color: #999;
+            line-height: 2;
+        }
+
+        /* SVG Styles */
+        .svg-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Site Nav -->
+    <div class="site-nav">
+        <div class="site-nav-inner">
+            <div class="left">
+                <span class="menu-item">中国大陆 <span class="arrow">▼</span></span>
+                <span class="menu-item login">亲，请登录</span>
+                <span class="menu-item">免费注册</span>
+                <span class="menu-item">手机逛淘宝</span>
+            </div>
+            <div class="right">
+                <span class="menu-item">我的淘宝 <span class="arrow">▼</span></span>
+                <span class="menu-item">购物车 <span class="arrow">▼</span></span>
+                <span class="menu-item">收藏夹 <span class="arrow">▼</span></span>
+                <span class="menu-item">商品分类</span>
+                <span class="menu-item">卖家中心 <span class="arrow">▼</span></span>
+                <span class="menu-item">联系客服 <span class="arrow">▼</span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <div class="header-wrap">
+        <div class="header">
+            <div class="logo">
+                <div>
+                    <a href="#">淘宝</a>
+                    <span>taobao.com</span>
+                </div>
+            </div>
+            <div class="search-box">
+                <div class="search-tab">
+                    <span class="active">宝贝</span>
+                    <span>天猫</span>
+                    <span>店铺</span>
+                </div>
+                <div class="search-input-wrap">
+                    <input type="text" class="search-input" placeholder="搜索宝贝...">
+                    <button class="search-btn">搜索</button>
+                </div>
+                <div class="search-hot">
+                    <a href="#">新款连衣裙</a>
+                    <a href="#">四件套</a>
+                    <a href="#">潮流男鞋</a>
+                    <a href="#">耳机</a>
+                    <a href="#">零食大礼包</a>
+                </div>
+            </div>
+            <div class="header-qr">
+                <p>手机淘宝</p>
+                <div class="qr-box">QR</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Nav -->
+    <div class="main-nav">
+        <div class="main-nav-inner">
+            <h2>主题市场</h2>
+            <ul>
+                <li class="hot">天猫</li>
+                <li class="hot">聚划算</li>
+                <li class="hot">天猫超市</li>
+                <li>司法拍卖</li>
+                <li>飞猪旅行</li>
+                <li>天天特卖</li>
+                <li>造点新货</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-wrap">
+        <!-- Sidebar -->
+        <ul class="sidebar">
+            <li><i>👗</i> 女装 / 内衣 / 家居</li>
+            <li><i>👟</i> 女鞋 / 男鞋 / 箱包</li>
+            <li><i>💄</i> 美妆 / 个人洗护</li>
+            <li><i>💍</i> 腕表 / 眼镜 / 珠宝饰品</li>
+            <li><i>📱</i> 手机 / 数码 / 电脑办公</li>
+            <li><i>🔌</i> 母婴 / 玩具 / 乐器</li>
+            <li><i>🍎</i> 食品 / 生鲜 / 零食</li>
+            <li><i>🏠</i> 家电 / 家居 / 家装</li>
+            <li><i>🎮</i> 游戏 / 动漫 / 影视</li>
+            <li><i>🌸</i> 鲜花 / 宠物 / 农资</li>
+            <li><i>🏃</i> 运动 / 户外 / 乐器</li>
+            <li><i>🚗</i> 汽车 / 二手车 / 用品</li>
+            <li><i>📚</i> 图书 / 音像 / 电子书</li>
+        </ul>
+
+        <!-- Center Area -->
+        <div class="center-area">
+            <div class="banner-top">
+                <div class="banner-main">
+                    <!-- SVG Banner -->
+                    <svg viewBox="0 0 520 280" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="520" height="280" fill="#FF6B00"/>
+                        <text x="50%" y="40%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="32" font-weight="bold">淘宝造物节</text>
+                        <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="18">发现新鲜好物</text>
+                        <circle cx="450" cy="220" r="40" fill="#FF8C42" opacity="0.5"/>
+                        <circle cx="80" cy="60" r="30" fill="#FF8C42" opacity="0.5"/>
+                        <rect x="200" y="180" width="120" height="80" rx="10" fill="white" opacity="0.9"/>
+                        <text x="260" y="220" dominant-baseline="middle" text-anchor="middle" fill="#FF6B00" font-size="14" font-weight="bold">立即抢购</text>
+                    </svg>
+                </div>
+                <div class="banner-side">
+                    <div class="user-info">
+                        <div class="avatar">Hi</div>
+                        <p>Hi! 你好</p>
+                        <a href="#" class="btn btn-login">登录</a>
+                        <a href="#" class="btn btn-reg">注册</a>
+                    </div>
+                    <div style="padding: 10px;">
+                        <p style="color: #ff5000; font-weight: bold; margin-bottom: 8px;">网上有害信息举报专区</p>
+                        <p style="color: #999; font-size: 12px;">举报电话：12377</p>
+                    </div>
+                </div>
+            </div>
+            <div class="banner-bottom">
+                <div class="small-banner">
+                    <!-- SVG Small Banner 1 -->
+                    <svg viewBox="0 0 250 200" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="250" height="200" fill="#FFF5F0"/>
+                        <text x="20" y="40" fill="#FF6B00" font-size="18" font-weight="bold">淘抢购</text>
+                        <text x="20" y="65" fill="#666" font-size="14">限时抢购 手慢无</text>
+                        <rect x="20" y="90" width="100" height="100" rx="10" fill="#FF6B00"/>
+                        <text x="70" y="150" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14">GO</text>
+                    </svg>
+                </div>
+                <div class="notice">
+                    <div class="notice-title">淘宝公告</div>
+                    <ul class="notice-list">
+                        <li>• 淘宝造物节即将开启，快来参与！</li>
+                        <li>• 关于虚假交易违规处罚通知</li>
+                        <li>• 淘宝直播新规则发布</li>
+                        <li>• 消费者权益保护专题上线</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="app-list">
+                <h3>淘宝服务</h3>
+                <div class="app-grid">
+                    <div class="app-item">
+                        <div class="app-icon" style="background: #FF6B00;">📱</div>
+                        <p>手机充值</p>
+                    </div>
+                    <div class="app-item">
+                        <div class="app-icon" style="background: #1890FF;">✈️</div>
+                        <p>机票</p>
+                    </div>
+                    <div class="app-item">
+                        <div class="app-icon" style="background: #52C41A;">🏨</div>
+                        <p>酒店</p>
+                    </div>
+                    <div class="app-item">
+                        <div class="app-icon" style="background: #722ED1;">🎬</div>
+                        <p>电影票</p>
+                    </div>
+                    <div class="app-item">
+                        <div class="app-icon" style="background: #EB2F96;">💰</div>
+                        <p>理财</p>
+                    </div>
+                    <div class="app-item">
+                        <div class="app-icon" style="background: #FAAD14;">🎁</div>
+                        <p>彩票</p>
+                    </div>
+                    <div class="app-item">
+                        <div class="app-icon" style="background: #13C2C2;">🚗</div>
+                        <p>车票</p>
+                    </div>
+                    <div class="app-item">
+                        <div class="app-icon" style="background: #F5222D;">🏠</div>
+                        <p>租房</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Goods Section -->
+    <div style="width: 1190px; margin: 0 auto;">
+        <div class="goods-section">
+            <div class="section-title">
+                <h3>猜你喜欢</h3>
+                <a href="#">更多 ></a>
+            </div>
+            <div class="goods-list">
+                <!-- Goods Item 1 -->
+                <div class="goods-item">
+                    <div class="goods-img">
+                        <!-- SVG Product 1 -->
+                        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="220" height="220" fill="#F5F5F5"/>
+                            <rect x="50" y="40" width="120" height="140" rx="10" fill="#E8D5C4"/>
+                            <text x="110" y="110" dominant-baseline="middle" text-anchor="middle" fill="#8B4513" font-size="14">时尚女包</text>
+                            <rect x="60" y="160" width="100" height="20" rx="5" fill="#FF6B00"/>
+                            <text x="110" y="172" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="12">新品上市</text>
+                        </svg>
+                    </div>
+                    <div class="goods-info">
+                        <p class="goods-title">2024新款时尚单肩包女包百搭斜挎包大容量手提包</p>
+                        <p class="goods-price"><span>¥</span>129.00</p>
+                        <p class="goods-sales">已售 1.2万+</p>
+                    </div>
+                </div>
+
+                <!-- Goods Item 2 -->
+                <div class="goods-item">
+                    <div class="goods-img">
+                        <!-- SVG Product 2 -->
+                        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="220" height="220" fill="#F0F8FF"/>
+                            <rect x="40" y="50" width="140" height="120" rx="15" fill="#4169E1"/>
+                            <text x="110" y="110" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14">智能手机</text>
+                            <rect x="90" y="140" width="40" height="40" rx="20" fill="white"/>
+                            <text x="110" y="165" dominant-baseline="middle" text-anchor="middle" fill="#4169E1" font-size="10">5G</text>
+                        </svg>
+                    </div>
+                    <div class="goods-info">
+                        <p class="goods-title">【官方正品】新款5G智能手机全网通超长待机</p>
+                        <p class="goods-price"><span>¥</span>1999.00</p>
+                        <p class="goods-sales">已售 5000+</p>
+                    </div>
+                </div>
+
+                <!-- Goods Item 3 -->
+                <div class="goods-item">
+                    <div class="goods-img">
+                        <!-- SVG Product 3 -->
+                        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="220" height="220" fill="#FFF0F5"/>
+                            <rect x="60" y="60" width="100" height="100" rx="50" fill="#FF69B4"/>
+                            <text x="110" y="110" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14">护肤套装</text>
+                            <rect x="80" y="150" width="60" height="30" rx="5" fill="#FF1493"/>
+                            <text x="110" y="165" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="12">热卖</text>
+                        </svg>
+                    </div>
+                    <div class="goods-info">
+                        <p class="goods-title">【旗舰店】美白保湿护肤套装水乳精华液面霜</p>
+                        <p class="goods-price"><span>¥</span>299.00</p>
+                        <p class="goods-sales">已售 3.5万+</p>
+                    </div>
+                </div>
+
+                <!-- Goods Item 4 -->
+                <div class="goods-item">
+                    <div class="goods-img">
+                        <!-- SVG Product 4 -->
+                        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="220" height="220" fill="#F5FFFA"/>
+                            <rect x="50" y="40" width="120" height="140" rx="5" fill="#228B22"/>
+                            <text x="110" y="110" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14">运动鞋</text>
+                            <rect x="70" y="150" width="80" height="30" rx="15" fill="#32CD32"/>
+                            <text x="110" y="165" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="12">透气舒适</text>
+                        </svg>
+                    </div>
+                    <div class="goods-info">
+                        <p class="goods-title">【品牌直销】透气网面跑步鞋男款轻便减震运动鞋</p>
+                        <p class="goods-price"><span>¥</span>189.00</p>
+                        <p class="goods-sales">已售 8000+</p>
+                    </div>
+                </div>
+
+                <!-- Goods Item 5 -->
+                <div class="goods-item">
+                    <div class="goods-img">
+                        <!-- SVG Product 5 -->
+                        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="220" height="220" fill="#FFF8DC"/>
+                            <rect x="45" y="50" width="130" height="120" rx="10" fill="#DAA520"/>
+                            <text x="110" y="110" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14">休闲零食</text>
+                            <circle cx="110" cy="140" r="20" fill="#FFD700"/>
+                            <text x="110" y="145" dominant-baseline="middle" text-anchor="middle" fill="#DAA520" font-size="12">大礼包</text>
+                        </svg>
+                    </div>
+                    <div class="goods-info">
+                        <p class="goods-title">【网红零食】休闲零食大礼包组合装送女友礼物</p>
+                        <p class="goods-price"><span>¥</span>59.90</p>
+                        <p class="goods-sales">已售 10万+</p>
+                    </div>
+                </div>
+
+                <!-- Goods Item 6 -->
+                <div class="goods-item">
+                    <div class="goods-img">
+                        <!-- SVG Product 6 -->
+                        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="220" height="220" fill="#F0F0F0"/>
+                            <rect x="55" y="40" width="110" height="140" rx="5" fill="#696969"/>
+                            <text x="110" y="110" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14">蓝牙耳机</text>
+                            <circle cx="110" cy="150" r="15" fill="#A9A9A9"/>
+                        </svg>
+                    </div>
+                    <div class="goods-info">
+                        <p class="goods-title">【降噪神器】真无线蓝牙耳机入耳式超长续航</p>
+                        <p class="goods-price"><span>¥</span>159.00</p>
+                        <p class="goods-sales">已售 2.3万+</p>
+                    </div>
+                </div>
+
+                <!-- Goods Item 7 -->
+                <div class="goods-item">
+                    <div class="goods-img">
+                        <!-- SVG Product 7 -->
+                        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="220" height="220" fill="#E6E6FA"/>
+                            <rect x="50" y="60" width="120" height="100" rx="20" fill="#9370DB"/>
+                            <text x="110" y="110" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14">连衣裙</text>
+                            <rect x="80" y="130" width="60" height="25" rx="12" fill="#8A2BE2"/>
+                            <text x="110" y="142" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="12">夏季新款</text>
+                        </svg>
+                    </div>
+                    <div class="goods-info">
+                        <p class="goods-title">【法式优雅】碎花连衣裙女夏2024新款显瘦气质</p>
+                        <p class="goods-price"><span>¥</span>239.00</p>
+                        <p class="goods-sales">已售 1.8万+</p>
+                    </div>
+                </div>
+
+                <!-- Goods Item 8 -->
+                <div class="goods-item">
+                    <div class="goods-img">
+                        <!-- SVG Product 8 -->
+                        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="220" height="220" fill="#FFF0F0"/>
+                            <rect x="60" y="50" width="100" height="120" rx="10" fill="#DC143C"/>
+                            <text x="110" y="110" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14">口红</text>
+                            <rect x="80" y="140" width="40" height="40" rx="20" fill="#8B0000"/>
+                        </svg>
+                    </div>
+                    <div class="goods-info">
+                        <p class="goods-title">【大牌平替】丝绒哑光口红持久保湿不易脱色</p>
+                        <p class="goods-price"><span>¥</span>39.90</p>
+                        <p class="goods-sales">已售 5.6万+</p>
+                    </div>
+                </div>
+
+                <!-- Goods Item 9 -->
+                <div class="goods-item">
+                    <div class="goods-img">
+                        <!-- SVG Product 9 -->
+                        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="220" height="220" fill="#F0FFF0"/>
+                            <rect x="50" y="50" width="120" height="120" rx="60" fill="#32CD32"/>
+                            <text x="110" y="110" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="14">四件套</text>
+                            <text x="110" y="130" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="12">纯棉亲肤</text>
+                        </svg>
+                    </div>
+                    <div class="goods-info">
+                        <p class="goods-title">【全棉时代】纯棉四件套床上用品被套床单套件</p>
+                        <p class="goods-price"><span>¥</span>299.00</p>
+                        <p class="goods-sales">已售 9000+</p>
+                    </div>
+                </div>
+
+                <!-- Goods Item 10 -->
+                <div class="goods-item">
+                    <div class="goods-img">
+                        <!-- SVG Product 10 -->
+                        <svg viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="220" height="220" fill="#FFFACD"/>
+                            <rect x="55" y="45" width="110" height="130" rx="5" fill="#FFD700"/>
+                            <text x="110" y="110" dominant-baseline="middle" text-anchor="middle" fill="#8B6914" font-size="14">黄金饰品</text>
+                            <circle cx="110" cy="150" r="25" fill="#FFA500"/>
+                            <text x="110" y="155" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="10">999</text>
+                        </svg>
+                    </div>
+                    <div class="goods-info">
+                        <p class="goods-title">【足金999】黄金项链女款吊坠锁骨链生日礼物</p>
+                        <p class="goods-price"><span>¥</span>1299.00</p>
+                        <p class="goods-sales">已售 3000+</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-inner">
+            <div class="footer-links">
+                <a href="#">关于淘宝</a>
+                <a href="#">合作伙伴</a>
+                <a href="#">营销中心</a>
+                <a href="#">廉正举报</a>
+                <a href="#">联系客服</a>
+                <a href="#">开放平台</a>
+                <a href="#">诚征英才</a>
+                <a href="#">联系我们</a>
+                <a href="#">网站地图</a>
+                <a href="#">隐私权政策</a>
+                <a href="#">法律声明</a>
+                <a href="#">知识产权</a>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2003-2024 Taobao.com 版权所有</p>
+                <p>增值电信业务经营许可证：浙B2-20080224</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

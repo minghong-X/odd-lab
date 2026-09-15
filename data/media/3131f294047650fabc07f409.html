@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淘宝网 - 淘！我喜欢</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .top-bar {
+            background: #f5f5f5;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 8px 0;
+            font-size: 12px;
+        }
+
+        .top-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-bar-left, .top-bar-right {
+            display: flex;
+            gap: 15px;
+        }
+
+        .top-bar a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .top-bar a:hover {
+            color: #f40;
+        }
+
+        .promo-banner {
+            background: linear-gradient(90deg, #ff6a00, #ff9500);
+            padding: 12px 0;
+            text-align: center;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .promo-banner span {
+            margin: 0 20px;
+        }
+
+        .header {
+            background: white;
+            padding: 20px 0;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .logo {
+            font-size: 48px;
+            color: #f40;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .search-box {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .search-input-wrapper {
+            display: flex;
+            border: 2px solid #f40;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .search-btn {
+            background: #f40;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-tags {
+            margin-top: 8px;
+            font-size: 12px;
+            color: #999;
+        }
+
+        .search-tags a {
+            color: #999;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+
+        .search-tags a:hover {
+            color: #f40;
+        }
+
+        .nav-bar {
+            background: white;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 30px;
+            padding: 12px 0;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .nav-item:hover {
+            color: #f40;
+        }
+
+        .nav-icon {
+            width: 16px;
+            height: 16px;
+            background: #f40;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 20px auto;
+            display: grid;
+            grid-template-columns: 200px 1fr 280px;
+            gap: 20px;
+        }
+
+        .category-menu {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .category-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #f40;
+        }
+
+        .category-list {
+            list-style: none;
+        }
+
+        .category-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .category-item:hover {
+            color: #f40;
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+        }
+
+        .center-content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .banner-section {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .banner-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .banner-image.apple {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .banner-text {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .quick-entry {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .entry-item {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .entry-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .entry-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .entry-title {
+            font-size: 14px;
+            color: #333;
+        }
+
+        .entry-price {
+            font-size: 12px;
+            color: #f40;
+            margin-top: 5px;
+        }
+
+        .right-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .user-card {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+        }
+
+        .user-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .login-btn {
+            background: #f40;
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .service-list {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .service-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+        }
+
+        .service-item:last-child {
+            border-bottom: none;
+        }
+
+        .service-icon {
+            width: 24px;
+            height: 24px;
+            background: #f40;
+            border-radius: 4px;
+        }
+
+        .products-section {
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .section-tabs {
+            display: flex;
+            gap: 20px;
+        }
+
+        .tab-item {
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+
+        .tab-item.active {
+            background: #f40;
+            color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 48px;
+        }
+
+        .product-info {
+            padding: 12px;
+        }
+
+        .product-title {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.4;
+            height: 40px;
+            overflow: hidden;
+        }
+
+        .product-price {
+            color: #f40;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .product-price::before {
+            content: '¥';
+            font-size: 12px;
+        }
+
+        .product-sales {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+
+        .footer {
+            background: white;
+            padding: 40px 0;
+            margin-top: 40px;
+            border-top: 1px solid #e5e5e5;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            color: #999;
+            font-size: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #f40;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-left">
+                <a href="#">中国大陆</a>
+                <a href="#">亲，请登录</a>
+                <a href="#">免费注册</a>
+                <a href="#">网页无障碍</a>
+                <a href="#">切换企业版</a>
+            </div>
+            <div class="top-bar-right">
+                <a href="#">已买到的宝贝</a>
+                <a href="#">我的淘宝</a>
+                <a href="#">购物车</a>
+                <a href="#">收藏夹</a>
+                <a href="#">免费开店</a>
+                <a href="#">千牛卖家中心</a>
+                <a href="#">帮助中心</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="promo-banner">
+        <span>采购节</span>
+        <span>企业秋季生产</span>
+        <span>拿样1元起</span>
+        <span style="background: white; color: #f40; padding: 4px 12px; border-radius: 12px; font-size: 14px;">立即前往</span>
+    </div>
+
+    <div class="header">
+        <div class="header-content">
+            <a href="#" class="logo">淘宝</a>
+            <div class="search-box">
+                <div class="search-input-wrapper">
+                    <input type="text" class="search-input" placeholder="iPhone 18 pro开售 摸鱼星期一">
+                    <button class="search-btn">搜索</button>
+                </div>
+                <div class="search-tags">
+                    <a href="#">iPhone 18 pro开售</a>
+                    <a href="#">摸鱼星期一</a>
+                    <a href="#">中动玩具</a>
+                    <a href="#">崭新之日手办</a>
+                    <a href="#">手办</a>
+                    <a href="#">中动玩具手办</a>
+                    <a href="#">中动崭新之日</a>
+                    <a href="#">中动玩具</a>
+                    <a href="#">崭新之日手办</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-bar">
+        <div class="nav-content">
+            <a href="#" class="nav-item">
+                <span class="nav-icon"></span>
+                天猫
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon"></span>
+                淘宝直播
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon"></span>
+                阿里企业购
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon"></span>
+                司法拍卖
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon"></span>
+                天猫超市
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon"></span>
+                国家补贴
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon"></span>
+                领券中心
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon"></span>
+                超级立减
+            </a>
+            <a href="#" class="nav-item">
+                <span class="nav-icon"></span>
+                全部频道
+            </a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="category-menu">
+            <div class="category-title">超级立减 / 抢省钱补贴</div>
+            <ul class="category-list">
+                <li class="category-item">电脑 / 配件 / 办公 / 文具</li>
+                <li class="category-item">工业品 / 商业 / 农业 / 定制</li>
+                <li class="category-item">家电 / 手机 / 通信 / 数码</li>
+                <li class="category-item">家具 / 家装 / 家居 / 厨具</li>
+                <li class="category-item">女装 / 男装 / 内衣 / 配饰</li>
+                <li class="category-item">女鞋 / 男鞋 / 运动 / 户外</li>
+                <li class="category-item">汽车 / 珠宝 / 文玩 / 箱包</li>
+                <li class="category-item">食品 / 鲜花 / 酒水 / 健康</li>
+                <li class="category-item">母婴 / 童装 / 玩具 / 宠物</li>
+            </ul>
+        </div>
+
+        <div class="center-content">
+            <div class="banner-section">
+                <div class="banner-item">
+                    <div class="banner-image">
+                        <svg width="200" height="150" viewBox="0 0 200 150">
+                            <rect width="200" height="150" fill="url(#grad1)"/>
+                            <defs>
+                                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <text x="100" y="75" font-size="20" fill="white" text-anchor="middle">Apple新品来了</text>
+                            <text x="100" y="100" font-size="14" fill="white" text-anchor="middle">立享24期免息</text>
+                        </svg>
+                    </div>
+                    <div class="banner-text">天猫超级新品</div>
+                </div>
+                <div class="banner-item">
+                    <div class="banner-image apple">
+                        <svg width="200" height="150" viewBox="0 0 200 150">
+                            <rect width="200" height="150" fill="url(#grad2)"/>
+                            <defs>
+                                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <text x="100" y="75" font-size="20" fill="white" text-anchor="middle">百亿补贴</text>
+                            <text x="100" y="100" font-size="14" fill="white" text-anchor="middle">买贵必赔</text>
+                        </svg>
+                    </div>
+                    <div class="banner-text">新人专享</div>
+                </div>
+            </div>
+
+            <div class="quick-entry">
+                <div class="entry-item">
+                    <div class="entry-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40">
+                            <circle cx="20" cy="20" r="18" fill="white" opacity="0.3"/>
+                            <text x="20" y="25" font-size="16" fill="white" text-anchor="middle">券</text>
+                        </svg>
+                    </div>
+                    <div class="entry-title">领券中心</div>
+                    <div class="entry-price">¥10800</div>
+                </div>
+                <div class="entry-item">
+                    <div class="entry-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40">
+                            <circle cx="20" cy="20" r="18" fill="white" opacity="0.3"/>
+                            <text x="20" y="25" font-size="16" fill="white" text-anchor="middle">播</text>
+                        </svg>
+                    </div>
+                    <div class="entry-title">淘宝直播</div>
+                    <div class="entry-price">¥6380</div>
+                </div>
+                <div class="entry-item">
+                    <div class="entry-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40">
+                            <circle cx="20" cy="20" r="18" fill="white" opacity="0.3"/>
+                            <text x="20" y="25" font-size="16" fill="white" text-anchor="middle">补</text>
+                        </svg>
+                    </div>
+                    <div class="entry-title">国家补贴</div>
+                    <div class="entry-price">¥21800</div>
+                </div>
+                <div class="entry-item">
+                    <div class="entry-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40">
+                            <circle cx="20" cy="20" r="18" fill="white" opacity="0.3"/>
+                            <text x="20" y="25" font-size="16" fill="white" text-anchor="middle">秒</text>
+                        </svg>
+                    </div>
+                    <div class="entry-title">淘宝秒杀</div>
+                    <div class="entry-price">¥6999</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-sidebar">
+            <div class="user-card">
+                <div class="user-avatar">
+                    <svg width="60" height="60" viewBox="0 0 60 60">
+                        <circle cx="30" cy="30" r="28" fill="white" opacity="0.3"/>
+                        <text x="30" y="38" font-size="24" fill="white" text-anchor="middle">👤</text>
+                    </svg>
+                </div>
+                <div class="user-name">晚上好</div>
+                <div style="font-size: 12px; color: #999; margin-bottom: 15px;">登录淘宝后更多精彩</div>
+                <button class="login-btn">立即登录</button>
+            </div>
+
+            <div class="service-list">
+                <div class="service-item">
+                    <div class="service-icon"></div>
+                    <span>已买到</span>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"></div>
+                    <span>收藏夹</span>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"></div>
+                    <span>买过的店</span>
+                </div>
+                <div class="service-item">
+                    <div class="service-icon"></div>
+                    <span>足迹</span>
+                </div>
+            </div>
+
+            <div class="user-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <div style="font-size: 14px; margin-bottom: 10px;">淘金币购物抵钱用</div>
+                <div style="font-size: 12px; opacity: 0.9;">100金币抵1元</div>
+                <button style="background: white; color: #f40; border: none; padding: 8px 20px; border-radius: 15px; cursor: pointer; margin-top: 10px; font-size: 12px;">立即领取</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="products-section">
+        <div class="section-header">
+            <div class="section-title">猜你喜欢</div>
+            <div class="section-tabs">
+                <div class="tab-item active">综合</div>
+                <div class="tab-item">销量</div>
+                <div class="tab-item">信用</div>
+                <div class="tab-item">价格</div>
+            </div>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <svg width="100%" height="100%" viewBox="0 0 200 200">
+                        <rect width="200" height="200" fill="url(#prod1)"/>
+                        <defs>
+                            <linearGradient id="prod1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="100" y="100" font-size="48" fill="white" text-anchor="middle">盐</text>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">盐当家加碘精制盐350克小样食盐炒菜调味细盐健康袋装炒菜调味料</div>
+                    <div class="product-price">3.02</div>
+                    <div class="product-sales">10万+人付款</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <svg width="100%" height="100%" viewBox="0 0 200 200">
+                        <rect width="200" height="200" fill="url(#prod2)"/>
+                        <defs>
+                            <linearGradient id="prod2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="100" y="100" font-size="48" fill="white" text-anchor="middle">币</text>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">天猫 60抖币充值秒到300钻石douyin斗抖币充值ios抖音币1000抖充币抖音</div>
+                    <div class="product-price">6.5</div>
+                    <div class="product-sales">5万+人付款</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <svg width="100%" height="100%" viewBox="0 0 200 200">
+                        <rect width="200" height="200" fill="url(#prod3)"/>
+                        <defs>
+                            <linearGradient id="prod3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#43e97b;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="100" y="100" font-size="48" fill="white" text-anchor="middle">挂</text>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">天猫 【预售】明日方舟×Persona 3 Reload-串串挂件-绒城理</div>
+                    <div class="product-price">38</div>
+                    <div class="product-sales">2万+人付款</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <svg width="100%" height="100%" viewBox="0 0 200 200">
+                        <rect width="200" height="200" fill="url(#prod4)"/>
+                        <defs>
+                            <linearGradient id="prod4" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#fa709a;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#fee140;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="100" y="100" font-size="48" fill="white" text-anchor="middle">液</text>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">【全国包邮】衣物消毒除菌液洗衣服洗衣机专用杀菌液内衣内裤</div>
+                    <div class="product-price">20.9</div>
+                    <div class="product-sales">8万+人付款</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <svg width="100%" height="100%" viewBox="0 0 200 200">
+                        <rect width="200" height="200" fill="url(#prod5)"/>
+                        <defs>
+                            <linearGradient id="prod5" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#a8edea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#fed6e3;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="100" y="100" font-size="48" fill="white" text-anchor="middle">纸</text>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">原生木浆抽纸家用饭店办公宿舍面巾擦手纸擦拭优惠餐巾纸面巾纸</div>
+                    <div class="product-price">3.02</div>
+                    <div class="product-sales">15万+人付款</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <svg width="100%" height="100%" viewBox="0 0 200 200">
+                        <rect width="200" height="200" fill="url(#prod6)"/>
+                        <defs>
+                            <linearGradient id="prod6" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#d299c2;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#fef9d7;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="100" y="100" font-size="48" fill="white" text-anchor="middle">圈</text>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">简约发圈橡皮筋女高弹力耐用扎头发不伤发百搭头饰</div>
+                    <div class="product-price">5</div>
+                    <div class="product-sales">20万+人付款</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <svg width="100%" height="100%" viewBox="0 0 200 200">
+                        <rect width="200" height="200" fill="url(#prod7)"/>
+                        <defs>
+                            <linearGradient id="prod7" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="100" y="100" font-size="48" fill="white" text-anchor="middle">卡</text>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">OFFGAMERS GIFT CARD 30 CNY 全球游戏平台数字产品充值</div>
+                    <div class="product-price">30</div>
+                    <div class="product-sales">3万+人付款</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <svg width="100%" height="100%" viewBox="0 0 200 200">
+                        <rect width="200" height="200" fill="url(#prod8)"/>
+                        <defs>
+                            <linearGradient id="prod8" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="100" y="100" font-size="48" fill="white" text-anchor="middle">书</text>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">2026版 四年级阅读画报 同步教材 实景图解 全科融合 素养提升</div>
+                    <div class="product-price">29.9</div>
+                    <div class="product-sales">6万+人付款</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <svg width="100%" height="100%" viewBox="0 0 200 200">
+                        <rect width="200" height="200" fill="url(#prod9)"/>
+                        <defs>
+                            <linearGradient id="prod9" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="100" y="100" font-size="48" fill="white" text-anchor="middle">柔</text>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">洁柔 3层100抽 大规格：180mm×195mm 香柔抽纸 强韧吸水</div>
+                    <div class="product-price">19.9</div>
+                    <div class="product-sales">12万+人付款</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <svg width="100%" height="100%" viewBox="0 0 200 200">
+                        <rect width="200" height="200" fill="url(#prod10)"/>
+                        <defs>
+                            <linearGradient id="prod10" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#43e97b;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="100" y="100" font-size="48" fill="white" text-anchor="middle">洗</text>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">食品用洗洁精 草莓去油洗洁精 清新祛味 无磷配方 易漂无残留</div>
+                    <div class="product-price">15.8</div>
+                    <div class="product-sales">9万+人付款</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <svg width="100%" height="100%" viewBox="0 0 200 200">
+                        <rect width="200" height="200" fill="url(#prod11)"/>
+                        <defs>
+                            <linearGradient id="prod11" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#fa709a;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#fee140;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="100" y="100" font-size="48" fill="white" text-anchor="middle">300</text>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">收藏领券再减 DOU音币 300 亏本跑量大促销 24小时自动充值 请填写正确抖音号</div>
+                    <div class="product-price">30</div>
+                    <div class="product-sales">25万+人付款</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <svg width="100%" height="100%" viewBox="0 0 200 200">
+                        <rect width="200" height="200" fill="url(#prod12)"/>
+                        <defs>
+                            <linearGradient id="prod12" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#a8edea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#fed6e3;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <text x="100" y="100" font-size="48" fill="white" text-anchor="middle">SVIP</text>
+                    </svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">剪映SVIP 月卡 24小时自动发货 充值自己号 直充·秒到账 SVIP会员</div>
+                    <div class="product-price">12</div>
+                    <div class="product-sales">18万+人付款</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">关于淘宝</a>
+                <a href="#">合作伙伴</a>
+                <a href="#">营销中心</a>
+                <a href="#">廉正举报</a>
+                <a href="#">联系客服</a>
+                <a href="#">开放平台</a>
+                <a href="#">诚征英才</a>
+                <a href="#">联系我们</a>
+                <a href="#">网站地图</a>
+                <a href="#">隐私权政策</a>
+                <a href="#">法律声明</a>
+                <a href="#">知识产权</a>
+            </div>
+            <div>© 2003-2024 Taobao.com 版权所有</div>
+        </div>
+    </div>
+</body>
+</html>

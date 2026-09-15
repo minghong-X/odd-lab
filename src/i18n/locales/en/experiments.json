@@ -24,10 +24,10 @@
   "crocodileTag": "SVG illustration",
   "crocodileCriteria": "Compare the character, mechanical structure, and composition.",
   "crocodileNote": "Explore the original animated model submissions below. The original characters on the homepage are story illustrations and do not enter the rankings.",
-  "starshipTitle": "Inside a starship engine",
-  "starshipKicker": "Take curiosity apart",
-  "starshipSubtitle": "Take curiosity apart. Then ignite imagination.",
-  "starshipTag": "Technical illustration",
-  "starshipCriteria": "Compare diagram composition, label readability, and visual expression—not engineering accuracy.",
-  "starshipNote": "Model submissions are coming soon. The homepage cutaway is an original artistic illustration, not an engineering drawing."
+  "taobaoTitle": "Recreate the Taobao homepage (PC)",
+  "taobaoKicker": "One homepage. Many interpretations.",
+  "taobaoSubtitle": "The same Taobao desktop homepage, recreated by different models.",
+  "taobaoTag": "Web recreation",
+  "taobaoCriteria": "Compare layout, colors, typography, product cards, and interaction details against the same reference.",
+  "taobaoNote": "Generated from the same reference page to compare frontend recreation skills. Experiment demos only."
 }
