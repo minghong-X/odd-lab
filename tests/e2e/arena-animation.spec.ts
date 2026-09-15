@@ -34,6 +34,46 @@ async function changedPixels(first: Buffer, second: Buffer) {
   return changed;
 }
 
+test("leaderboard thumbnails and enlarged artwork preserve SVG animation", async ({
+  page,
+  request,
+}) => {
+  await page.goto("/leaderboard/pelican");
+  // Exercise both SVG animation mechanisms through the real public catalog.
+  for (const model of ["qwen3.8-max", "gpt-5.6-sol"]) {
+    const preview = page.locator(".rank-preview").filter({
+      has: page.getByRole("img", { name: model, exact: true }),
+    });
+    const thumbnail = preview.locator("img");
+    await expect(thumbnail).toBeVisible();
+    const src = await thumbnail.getAttribute("src");
+    const response = await request.get(src!);
+    expect(response.headers()["content-type"]).toContain("image/svg+xml");
+    await expect
+      .poll(() =>
+        thumbnail.evaluate(
+          (img: HTMLImageElement) => img.complete && img.naturalWidth > 0,
+        ),
+      )
+      .toBe(true);
+    const before = await thumbnail.screenshot();
+    await page.waitForTimeout(370);
+    expect(
+      await changedPixels(before, await thumbnail.screenshot()),
+    ).toBeGreaterThan(100);
+
+    await preview.click();
+    const enlarged = page.locator("dialog img");
+    await expect(enlarged).toBeVisible();
+    const zoomBefore = await enlarged.screenshot();
+    await page.waitForTimeout(370);
+    expect(
+      await changedPixels(zoomBefore, await enlarged.screenshot()),
+    ).toBeGreaterThan(100);
+    await page.locator("dialog .dialog-close").click();
+  }
+});
+
 test("Arena preserves original SMIL and CSS animation, also when enlarged", async ({
   page,
 }) => {

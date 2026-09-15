@@ -117,7 +117,7 @@ export function Leaderboard({ slug }: { slug: string }) {
                         <ArtworkPreview
                           src={
                             entry.mediaUrl ||
-                            appPath(`/api/media?id=${entry.id}`)
+                            appPath(`/api/media?id=${entry.id}&motion=1`)
                           }
                           mediaType={entry.mediaType}
                           label={entry.title}
