@@ -1,0 +1,139 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+  <style>
+    .stroke { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+    .wheel { stroke: #333; stroke-width: 6; fill: white; }
+    .frame { stroke: #E74C3C; stroke-width: 8; }
+    .body { fill: white; stroke: #333; stroke-width: 4; }
+    .pouch { fill: #F1C40F; stroke: #333; stroke-width: 4; }
+    .leg { stroke: #333; stroke-width: 5; }
+    
+    /* Animation definitions */
+    @keyframes spin { 
+      from { transform: rotate(0deg); } 
+      to { transform: rotate(360deg); } 
+    }
+    @keyframes move-legs { 
+      0% { transform: rotate(0deg); } 
+      50% { transform: rotate(-30deg); } 
+      100% { transform: rotate(0deg); } 
+    }
+    @keyframes move-legs-rev { 
+      0% { transform: rotate(0deg); } 
+      50% { transform: rotate(30deg); } 
+      100% { transform: rotate(0deg); } 
+    }
+    @keyframes bob { 
+      0% { transform: translateY(0); } 
+      50% { transform: translateY(4px); } 
+      100% { transform: translateY(0); } 
+    }
+    @keyframes background-move {
+      from { transform: translateX(0); }
+      to { transform: translateX(-200px); }
+    }
+
+    .tire-spin { animation: spin 0.8s linear infinite; transform-origin: center; }
+    .pedal-spin { animation: spin 0.8s linear infinite; transform-origin: 380px 350px; }
+    .thigh-l { animation: move-legs 0.8s ease-in-out infinite; transform-origin: 350px 250px; }
+    .thigh-r { animation: move-legs-rev 0.8s ease-in-out infinite; transform-origin: 350px 250px; }
+    .shin-l { animation: move-legs-rev 0.8s ease-in-out infinite; transform-origin: 370px 330px; } 
+    .shin-r { animation: move-legs 0.8s ease-in-out infinite; transform-origin: 390px 330px; }
+    .pelican-group { animation: bob 0.8s ease-in-out infinite; }
+    .scenery { animation: background-move 1.5s linear infinite; }
+  </style>
+
+  <!-- Background & Sky -->
+  <rect width="800" height="600" fill="#87CEEB" />
+  
+  <!-- Moving Scenery (Clouds) -->
+  <g class="scenery">
+    <circle cx="100" cy="100" r="30" fill="white" opacity="0.8" />
+    <circle cx="140" cy="100" r="40" fill="white" opacity="0.8" />
+    <circle cx="300" cy="150" r="25" fill="white" opacity="0.8" />
+    <circle cx="340" cy="150" r="35" fill="white" opacity="0.8" />
+    <circle cx="500" cy="80" r="30" fill="white" opacity="0.8" />
+    <circle cx="540" cy="80" r="40" fill="white" opacity="0.8" />
+    <!-- Duplicates for seamless loop -->
+    <circle cx="300" cy="100" r="30" fill="white" opacity="0.8" />
+    <circle cx="340" cy="100" r="40" fill="white" opacity="0.8" />
+    <circle cx="500" cy="150" r="25" fill="white" opacity="0.8" />
+    <circle cx="540" cy="150" r="35" fill="white" opacity="0.8" />
+  </g>
+
+  <!-- Ground -->
+  <rect x="0" y="400" width="800" height="200" fill="#27AE60" />
+  <rect x="0" y="400" width="800" height="10" fill="#2ECC71" />
+
+  <!-- Bike Group -->
+  <g transform="translate(0, 0)">
+    
+    <!-- Wheels -->
+    <g class="tire-spin" style="transform-origin: 250px 400px;">
+      <circle cx="250" cy="400" r="70" class="wheel" />
+      <!-- Spokes -->
+      <line x1="250" y1="330" x2="250" y2="470" stroke="#AAA" stroke-width="2" />
+      <line x1="180" y1="400" x2="320" y2="400" stroke="#AAA" stroke-width="2" />
+    </g>
+    <g class="tire-spin" style="transform-origin: 550px 400px;">
+      <circle cx="550" cy="400" r="70" class="wheel" />
+      <!-- Spokes -->
+      <line x1="550" y1="330" x2="550" y2="470" stroke="#AAA" stroke-width="2" />
+      <line x1="480" y1="400" x2="620" y2="400" stroke="#AAA" stroke-width="2" />
+    </g>
+
+    <!-- Bike Frame -->
+    <path d="M250,400 L400,400 L320,280 Z" class="stroke frame" />
+    <path d="M400,400 L550,400 L450,280 Z" class="stroke frame" />
+    <path d="M320,280 L450,280 L550,400" class="stroke frame" />
+    <!-- Handlebars -->
+    <path d="M450,280 L500,220 L560,220" class="stroke" stroke="#333" stroke-width="8" />
+    <!-- Seat -->
+    <path d="M320,280 L300,280" stroke="#333" stroke-width="12" stroke-linecap="round" />
+
+    <!-- Pedal Mechanism -->
+    <circle cx="380" cy="350" r="15" fill="#333" />
+    <g class="pedal-spin">
+      <line x1="380" y1="350" x2="380" y2="400" stroke="#333" stroke-width="5" />
+      <line x1="380" y1="350" x2="380" y2="300" stroke="#333" stroke-width="5" />
+    </g>
+  </g>
+
+  <!-- Pelican Group (Rider) -->
+  <g class="pelican-group">
+    <!-- Body -->
+    <ellipse cx="360" cy="220" rx="80" ry="50" class="body" />
+    
+    <!-- Neck -->
+    <path d="M420,210 Q460,160 500,180" stroke="#333" stroke-width="4" fill="none" />
+    
+    <!-- Head -->
+    <circle cx="510" cy="180" r="30" class="body" />
+    
+    <!-- Beak -->
+    <path d="M530,180 L620,185 L530,200 Z" fill="#E67E22" stroke="#333" stroke-width="3" />
+    <!-- Pouch -->
+    <path d="M535,190 Q580,230 530,195 Z" class="pouch" />
+    
+    <!-- Eye -->
+    <circle cx="520" cy="170" r="5" fill="#333" />
+    
+    <!-- Wing -->
+    <path d="M340,200 Q300,180 320,240 Q350,260 370,220 Z" fill="#ECF0F1" stroke="#333" stroke-width="3" />
+    
+    <!-- Legs Animation -->
+    <!-- Right Leg (Back) -->
+    <g class="thigh-r">
+      <path d="M350,250 L370,330" class="stroke leg" />
+      <g class="shin-r">
+        <path d="M370,330 L380,350" class="stroke leg" />
+      </g>
+    </g>
+    <!-- Left Leg (Front) -->
+    <g class="thigh-l">
+      <path d="M350,250 L350,320" class="stroke leg" />
+      <g class="shin-l">
+        <path d="M350,320 L380,350" class="stroke leg" />
+      </g>
+    </g>
+  </g>
+</svg>

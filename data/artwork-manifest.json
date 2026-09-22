@@ -238,6 +238,34 @@
     "sha256": "d48da0aba2a4f78da0da77b3c380e407312888d11bc5c8b6cd3d81a8028ec75f"
   },
   {
+    "experimentKey": "pelican",
+    "modelName": "mimo-v2.5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.5-pelican-bicycle-03.svg",
+    "mediaType": "svg",
+    "sha256": "78dd1013e67831a020e8a42cd48591d4bfa19c5b505e93898dcaa0ab6f770ba2"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "mimo-v2.5-pro",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.5-pro-pelican-bicycle-02.svg",
+    "mediaType": "svg",
+    "sha256": "853339f4b69e3f5cdbd7bc2e17a8ee023097f984a87bb42313e66678630bcf4a"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "mimo-v2.6-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.6-flash-pelican-bicycle-03.svg",
+    "mediaType": "svg",
+    "sha256": "8f822304053396a075236a350c8821cb4445e93c7a577ad1c873be9d4c01f434"
+  },
+  {
+    "experimentKey": "pelican",
+    "modelName": "mimo-v2.6-pro",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.6-pro-pelican-bicycle-04.svg",
+    "mediaType": "svg",
+    "sha256": "79aeceb2b24f67b988b938212495f4ab9c65e7944606ddd11425ca4c081dcb90"
+  },
+  {
     "experimentKey": "crocodile",
     "modelName": "deepseek-v4.1-flash",
     "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/deepseek-v4.1-flash-crocodile-motorcycle.svg",

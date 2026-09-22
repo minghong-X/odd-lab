@@ -442,6 +442,58 @@
     "tokenUsage": null
   },
   {
+    "id": "4503f4a8a154601acb163cb2",
+    "model": "mimo-v2.5",
+    "title": "mimo-v2.5",
+    "experiment": "pelican",
+    "file": "78dd1013e67831a020e8a42c.webp",
+    "mediaType": "svg",
+    "animatedFile": "78dd1013e67831a020e8a42c.svg",
+    "width": 667,
+    "height": 500,
+    "generationTimeMs": null,
+    "tokenUsage": null
+  },
+  {
+    "id": "617a1068f1f0f1a7015754ea",
+    "model": "mimo-v2.5-pro",
+    "title": "mimo-v2.5-pro",
+    "experiment": "pelican",
+    "file": "853339f4b69e3f5cdbd7bc2e.webp",
+    "mediaType": "svg",
+    "animatedFile": "853339f4b69e3f5cdbd7bc2e.svg",
+    "width": 1333,
+    "height": 833,
+    "generationTimeMs": null,
+    "tokenUsage": null
+  },
+  {
+    "id": "f09901ab8e9f08d2e601ebc2",
+    "model": "mimo-v2.6-flash",
+    "title": "mimo-v2.6-flash",
+    "experiment": "pelican",
+    "file": "8f822304053396a075236a35.webp",
+    "mediaType": "svg",
+    "animatedFile": "8f822304053396a075236a35.svg",
+    "width": 1333,
+    "height": 1000,
+    "generationTimeMs": null,
+    "tokenUsage": null
+  },
+  {
+    "id": "8705a9e92b81d2327e1a540b",
+    "model": "mimo-v2.6-pro",
+    "title": "mimo-v2.6-pro",
+    "experiment": "pelican",
+    "file": "79aeceb2b24f67b988b93821.webp",
+    "mediaType": "svg",
+    "animatedFile": "79aeceb2b24f67b988b93821.svg",
+    "width": 1333,
+    "height": 1000,
+    "generationTimeMs": null,
+    "tokenUsage": null
+  },
+  {
     "id": "10f0be0d6f7498764d736379",
     "model": "deepseek-v4.1-flash",
     "title": "deepseek-v4.1-flash",
