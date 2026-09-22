@@ -9,12 +9,14 @@ export type MediaSource = { id: string; src: string; mediaType: MediaType };
 /** HTML scripts execute only inside an opaque-origin sandbox. */
 export function ArtworkMedia({
   src,
+  reducedMotionSrc,
   mediaType = "image",
   alt,
   interactive = false,
   onError,
 }: {
   src: string;
+  reducedMotionSrc?: string;
   mediaType?: MediaType;
   alt: string;
   interactive?: boolean;
@@ -156,5 +158,16 @@ export function ArtworkMedia({
         onError={onError}
       />
     );
-  return <img src={src} alt={alt} loading="lazy" onError={onError} />;
+  const image = <img src={src} alt={alt} loading="lazy" onError={onError} />;
+  return reducedMotionSrc ? (
+    <picture>
+      <source
+        media="(prefers-reduced-motion: reduce)"
+        srcSet={reducedMotionSrc}
+      />
+      {image}
+    </picture>
+  ) : (
+    image
+  );
 }

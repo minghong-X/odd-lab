@@ -7,11 +7,13 @@ import { ArtworkMedia, type MediaType } from "./artwork-media";
 
 export function ArtworkPreview({
   src,
+  reducedMotionSrc,
   label,
   mediaType = "image",
   className = "artwork-preview",
 }: {
   src: string;
+  reducedMotionSrc?: string;
   label: string;
   mediaType?: MediaType;
   className?: string;
@@ -36,7 +38,12 @@ export function ArtworkPreview({
         aria-label={t("experiments.enlargeModel", { model: label })}
         onClick={() => setOpen(true)}
       >
-        <ArtworkMedia src={src} mediaType={mediaType} alt={label} />
+        <ArtworkMedia
+          src={src}
+          reducedMotionSrc={reducedMotionSrc}
+          mediaType={mediaType}
+          alt={label}
+        />
       </button>
       {open &&
         createPortal(
@@ -58,6 +65,7 @@ export function ArtworkPreview({
             </button>
             <ArtworkMedia
               src={src}
+              reducedMotionSrc={reducedMotionSrc}
               mediaType={mediaType}
               alt={label}
               interactive

@@ -4,7 +4,6 @@ import { appPath } from "@/lib/paths";
 import { notFound } from "next/navigation";
 import { getServerArtifacts } from "@/lib/server-artifacts";
 import { localizeExperiment, getExperiment } from "@/lib/catalog";
-import { ArtworkMedia } from "@/components/artwork-media";
 import { ArtworkPreview } from "@/components/artwork-preview";
 import { TaobaoArt } from "@/components/taobao-art";
 import { Pelican, Crocodile } from "@/components/art";
@@ -68,54 +67,14 @@ export default async function ExperimentPage({
           <div className="art-gallery">
             {list.map((a) => (
               <article key={a.id}>
-                {a.mediaType === "html" && a.mediaUrl ? (
-                  <ArtworkPreview
-                    src={a.mediaUrl}
-                    label={a.title}
-                    mediaType="html"
-                  />
-                ) : (
-                  <a
-                    href={
-                      a.mediaUrl || appPath(`/api/media?id=${a.id}&motion=1`)
-                    }
-                    target="_blank"
-                    rel="noreferrer"
-                    aria-label={t("experiments.enlargeModel", {
-                      model: a.title,
-                    })}
-                  >
-                    {a.mediaUrl ? (
-                      <ArtworkMedia
-                        src={a.mediaUrl}
-                        mediaType={a.mediaType}
-                        alt={a.title}
-                      />
-                    ) : (
-                      <picture>
-                        <source
-                          media="(prefers-reduced-motion: reduce)"
-                          srcSet={
-                            a.mediaUrl || appPath(`/api/media?id=${a.id}`)
-                          }
-                        />
-                        <img
-                          src={
-                            a.mediaUrl ||
-                            appPath(`/api/media?id=${a.id}&motion=1`)
-                          }
-                          alt={t("experiments.artAlt", {
-                            model: a.title,
-                            experiment: experiment.title,
-                          })}
-                          width={a.width}
-                          height={a.height}
-                          loading="lazy"
-                        />
-                      </picture>
-                    )}
-                  </a>
-                )}
+                <ArtworkPreview
+                  src={a.mediaUrl || appPath(`/api/media?id=${a.id}&motion=1`)}
+                  reducedMotionSrc={
+                    a.mediaUrl ? undefined : appPath(`/api/media?id=${a.id}`)
+                  }
+                  label={a.title}
+                  mediaType={a.mediaType}
+                />
                 <div>
                   <h3>{a.title}</h3>
                   <span>
