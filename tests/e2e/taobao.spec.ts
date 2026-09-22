@@ -44,5 +44,7 @@ test("all Taobao documents are served as HTML and render in blind Arena and zoom
   await page.getByRole("button", { name: "Left is better" }).click();
   await expect(page.getByText("Mystery model", { exact: true })).toHaveCount(0);
   await page.goto("/leaderboard/taobao");
-  await expect(page.locator("tbody tr")).toHaveCount(24);
+  await expect(page.locator("tbody tr")).toHaveCount(
+    catalog.filter((item) => item.experiment === "taobao").length,
+  );
 });

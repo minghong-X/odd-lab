@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import catalog from "../../data/catalog.json" with { type: "json" };
 test("language persists across reloads and translates all page families", async ({
   page,
 }, info) => {
@@ -43,7 +44,9 @@ test("language persists across reloads and translates all page families", async 
     ).toBe(true);
   }
   await page.goto("/leaderboard/pelican");
-  await expect(page.locator("tbody tr")).toHaveCount(33);
+  await expect(page.locator("tbody tr")).toHaveCount(
+    catalog.filter((item) => item.experiment === "pelican").length,
+  );
   await page.screenshot({
     path: `test-results/rank-en-${info.project.name}.png`,
     fullPage: true,

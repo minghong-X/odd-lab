@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>淘宝网 - 淘！我喜欢</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        a {
+            text-decoration: none;
+            color: #333;
+        }
+        a:hover {
+            color: #ff5000;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header */
+        .header-top {
+            background-color: #f5f5f5;
+            height: 35px;
+            font-size: 12px;
+            line-height: 35px;
+            color: #666;
+        }
+        .container {
+            width: 1190px;
+            margin: 0 auto;
+        }
+        .header-top .left-float {
+            float: left;
+        }
+        .header-top .right-float {
+            float: right;
+        }
+        .header-top .left-float a, .header-top .right-float a {
+            margin: 0 8px;
+            color: #666;
+        }
+        .header-top .left-float a:first-child {
+            margin-left: 0;
+        }
+        .header-top .right-float a:hover {
+            color: #ff5000;
+        }
+
+        .header-banner {
+            background: linear-gradient(135deg, #e54c1c, #f28500);
+            height: 150px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .banner-content {
+            color: white;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        .banner-title {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .banner-btn {
+            background: white;
+            color: #e54c1c;
+            padding: 8px 24px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        /* Decorative elements for banner */
+        .banner-decor {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .decor-1 { width: 200px; height: 200px; top: -50px; left: -50px; }
+        .decor-2 { width: 300px; height: 300px; bottom: -100px; right: -100px; }
+
+        /* Search Area */
+        .search-section {
+            background-color: #ffffff;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            border-bottom: 2px solid #ff5000;
+        }
+        .logo {
+            width: 200px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .logo-text {
+            font-size: 36px;
+            font-weight: 900;
+            color: #ff5000;
+            font-family: "Arial Black", sans-serif;
+        }
+        .logo-sub {
+            font-size: 12px;
+            color: #999;
+        }
+        .search-box {
+            flex: 1;
+            margin-left: 20px;
+        }
+        .search-input-wrap {
+            display: flex;
+            width: 580px;
+            border: 2px solid #ff5000;
+            height: 40px;
+        }
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 0 10px;
+            font-size: 14px;
+        }
+        .search-btn {
+            width: 80px;
+            background: #ff5000;
+            color: white;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .hot-words {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
+        }
+        .hot-words span {
+            margin-right: 10px;
+            color: #ff5000;
+            cursor: pointer;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            height: 40px;
+            border-bottom: 1px solid #eee;
+            background: white;
+        }
+        .nav-bar ul {
+            display: flex;
+            height: 100%;
+        }
+        .nav-bar li {
+            padding: 0 15px;
+            line-height: 40px;
+            font-size: 14px;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+        .nav-bar li:hover {
+            color: #ff5000;
+        }
+        .nav-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 4px;
+            display: inline-block;
+            border-radius: 2px;
+        }
+        .icon-red { background-color: #ff5000; }
+        .icon-blue { background-color: #007bff; }
+        .icon-green { background-color: #28a745; }
+        .icon-orange { background-color: #ffc107; }
+
+        /* Main Layout */
+        .main-wrapper {
+            display: flex;
+            margin-top: 10px;
+            gap: 10px;
+        }
+
+        /* Left Sidebar */
+        .left-sidebar {
+            width: 210px;
+            background: white;
+            height: 500px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .sidebar-header {
+            background-color: #ff5000;
+            color: white;
+            padding: 10px 15px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .sidebar-list {
+            padding: 10px 0;
+        }
+        .sidebar-item {
+            padding: 8px 15px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        .sidebar-item:hover {
+            background-color: #fff0eb;
+            color: #ff5000;
+        }
+        .sidebar-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            display: inline-block;
+            font-size: 12px;
+            line-height: 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Center Content */
+        .center-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        /* Top Carousel / Promo Area */
+        .promo-row {
+            display: flex;
+            height: 280px;
+            gap: 10px;
+        }
+        .main-carousel {
+            flex: 2;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .promo-img {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #fdf0f0, #fcf4ef);
+            display: flex;
+            padding: 20px;
+        }
+        .promo-text {
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .promo-text h2 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .promo-text p {
+            color: #666;
+            font-size: 14px;
+        }
+        .promo-graphic {
+            width: 60%;
+            background: #ffebee;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .phone-svg {
+            width: 150px;
+            height: 250px;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.2));
+        }
+
+        .side-promo {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .promo-box {
+            flex: 1;
+            background: white;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .box-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+        .box-title span {
+            font-size: 10px;
+            color: #ff5000;
+            border: 1px solid #ff5000;
+            padding: 1px 4px;
+            border-radius: 2px;
+            margin-left: 5px;
+        }
+        .sub-promos {
+            display: flex;
+            gap: 10px;
+            height: 60%;
+        }
+        .sub-card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background: #fafafa;
+            border-radius: 4px;
+            padding: 5px;
+            cursor: pointer;
+            position: relative;
+        }
+        .sub-card-img {
+            width: 80%;
+            height: 60%;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            color: white;
+            font-weight: bold;
+        }
+        .sub-card-price {
+            font-size: 14px;
+            font-weight: bold;
+            color: #ff5000;
+        }
+        .price-tag {
+            background: #ff5000;
+            color: white;
+            padding: 2px 4px;
+            font-size: 12px;
+            border-radius: 2px;
+        }
+
+        /* Bottom Product Grid (Guess you like) */
+        .recommend-section {
+            margin-top: 10px;
+        }
+        .section-header {
+            height: 40px;
+            background: white;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            border-left: 4px solid #ff5000;
+        }
+        .section-header h3 {
+            font-size: 16px;
+            margin-right: 20px;
+        }
+        .section-header ul {
+            display: flex;
+        }
+        .section-header li {
+            font-size: 14px;
+            margin-right: 15px;
+            color: #666;
+            cursor: pointer;
+        }
+        .section-header li.active {
+            color: #ff5000;
+            font-weight: bold;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            padding-top: 10px;
+        }
+        .product-card {
+            background: white;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .product-card:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        .product-img-wrap {
+            width: 100%;
+            height: 200px;
+            background: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .product-tag {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: #ff5000;
+            color: white;
+            font-size: 12px;
+            padding: 2px 5px;
+        }
+        .product-title {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.4;
+            height: 40px;
+            overflow: hidden;
+            margin: 10px 0;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .product-price {
+            font-size: 18px;
+            color: #ff5000;
+            font-weight: bold;
+        }
+        .product-price span {
+            font-size: 12px;
+        }
+
+        /* Right Sidebar (User Info) */
+        .right-sidebar {
+            width: 260px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .user-card {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            margin: 0 auto 10px;
+            border: 2px solid #ff5000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .user-card p {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        .login-btn {
+            width: 100%;
+            background: #ff5000;
+            color: white;
+            border: none;
+            height: 40px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .user-links {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+            border-top: 1px solid #f5f5f5;
+            padding-top: 15px;
+        }
+        .user-links a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            color: #666;
+        }
+        .user-links a:hover {
+            color: #ff5000;
+        }
+        .link-icon {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .coin-card {
+            background: white;
+            padding: 20px;
+        }
+        .coin-card h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .coin-info {
+            display: flex;
+            align-items: center;
+            background: #fff9f6;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ffe6d9;
+        }
+        .coin-icon {
+            width: 40px;
+            height: 40px;
+            background: #ff5000;
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        .coin-text {
+            font-size: 12px;
+            color: #666;
+        }
+        .coin-text strong {
+            display: block;
+            font-size: 14px;
+            color: #333;
+            margin-top: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Header Bar -->
+    <div class="header-top">
+        <div class="container">
+            <div class="left-float">
+                <a href="#">中国大陆</a>
+                <a href="#">亲，请登录</a>
+                <a href="#" style="color: #ff5000;">免费注册</a>
+                <a href="#">网页无障碍</a>
+            </div>
+            <div class="right-float">
+                <a href="#">我的淘宝</a>
+                <a href="#">购物车</a>
+                <a href="#">收藏夹</a>
+                <a href="#">免费开店</a>
+                <a href="#">千牛卖家中心</a>
+                <a href="#">帮助中心</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Banner Area -->
+    <div class="header-banner">
+        <div class="banner-decor decor-1"></div>
+        <div class="banner-decor decor-2"></div>
+        <div class="banner-content">
+            <div class="banner-title">采购节 企业秋季生产 拿样1元起</div>
+            <div class="banner-btn">立即前往</div>
+        </div>
+    </div>
+
+    <!-- Search Bar Area -->
+    <div class="search-section">
+        <div class="container" style="display: flex; align-items: center;">
+            <div class="logo">
+                <div class="logo-text">淘宝</div>
+                <div class="logo-sub">Taobao.com</div>
+            </div>
+            <div class="search-box">
+                <div class="search-input-wrap">
+                    <input type="text" class="search-input" value="iPhone 15">
+                    <button class="search-btn">搜索</button>
+                </div>
+                <div class="hot-words">
+                    <span>换一双</span>
+                    <span style="color:#333;">iPhone 18 pro开售</span>
+                    <span style="color:#333;">中动玩具</span>
+                </div>
+            </div>
+            <div style="width: 150px; text-align: center; font-size: 12px; color: #666;">
+                天天领元宝换红包<br>
+                <a href="#" style="color: #ff5000;">开启淘江湖></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="nav-bar">
+        <div class="container">
+            <ul>
+                <li><span class="nav-icon icon-red"></span> 天猫</li>
+                <li><span class="nav-icon icon-red"></span> 淘宝直播</li>
+                <li><span class="nav-icon icon-blue"></span> 阿里企业购</li>
+                <li><span class="nav-icon icon-blue"></span> 司法拍卖</li>
+                <li><span class="nav-icon icon-green"></span> 天猫超市</li>
+                <li><span class="nav-icon icon-green"></span> 国家补贴</li>
+                <li><span class="nav-icon icon-red"></span> 领券中心</li>
+                <li><span class="nav-icon icon-red"></span> 超级立减</li>
+                <li><span class="nav-icon icon-orange"></span> 全部频道</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <div class="container main-wrapper">
+        <!-- Left Sidebar -->
+        <div class="left-sidebar">
+            <div class="sidebar-header">超级立减 / 抢省钱补贴</div>
+            <div class="sidebar-list">
+                <div class="sidebar-item"><span class="sidebar-icon">💻</span> 电脑 / 配件 / 办公 / 文具</div>
+                <div class="sidebar-item"><span class="sidebar-icon">🏭</span> 工业品 / 商业 / 农业 / 定制</div>
+                <div class="sidebar-item"><span class="sidebar-icon">📱</span> 家电 / 手机 / 通信 / 数码</div>
+                <div class="sidebar-item"><span class="sidebar-icon">🛋️</span> 家具 / 家装 / 家居 / 厨具</div>
+                <div class="sidebar-item"><span class="sidebar-icon">👗</span> 女装 / 男装 / 内衣 / 配饰</div>
+                <div class="sidebar-item"><span class="sidebar-icon">👟</span> 女鞋 / 男鞋 / 运动 / 户外</div>
+                <div class="sidebar-item"><span class="sidebar-icon">🚗</span> 汽车 / 珠宝 / 文玩 / 箱包</div>
+                <div class="sidebar-item"><span class="sidebar-icon">🍞</span> 食品 / 鲜花 / 酒水 / 健康</div>
+                <div class="sidebar-item"><span class="sidebar-icon">🧸</span> 母婴 / 童装 / 玩具 / 宠物</div>
+            </div>
+        </div>
+
+        <!-- Center Content -->
+        <div class="center-content">
+            <!-- Top Promo Row -->
+            <div class="promo-row">
+                <!-- Main Carousel -->
+                <div class="main-carousel">
+                    <div class="promo-img">
+                        <div class="promo-text">
+                            <h2>Apple新品来了</h2>
+                            <p>立享24期免息</p>
+                        </div>
+                        <div class="promo-graphic">
+                            <!-- SVG Phone -->
+                            <svg class="phone-svg" viewBox="0 0 100 180" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="5" y="5" width="90" height="170" rx="15" fill="#333" />
+                                <rect x="8" y="8" width="84" height="164" rx="12" fill="#fff" />
+                                <circle cx="50" cy="20" r="4" fill="#e0e0e0" />
+                                <rect x="25" y="145" width="50" height="4" rx="2" fill="#ccc" />
+                                <rect x="20" y="35" width="60" height="90" fill="#ff4d4d" />
+                                <rect x="30" y="45" width="15" height="15" fill="#fff" fill-opacity="0.8" />
+                                <rect x="50" y="45" width="15" height="15" fill="#fff" fill-opacity="0.8" />
+                                <rect x="30" y="65" width="15" height="15" fill="#fff" fill-opacity="0.8" />
+                                <rect x="50" y="65" width="15" height="15" fill="#fff" fill-opacity="0.8" />
+                                <rect x="35" y="90" width="30" height="20" rx="5" fill="#fff" fill-opacity="0.8" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Side Promos -->
+                <div class="side-promo">
+                    <div class="promo-box">
+                        <div class="box-title">百亿补贴 · 买贵必赔 <span>官方</span></div>
+                        <div class="sub-promos">
+                            <div class="sub-card">
+                                <div class="sub-card-img" style="background: #eee;">家电1</div>
+                                <div class="sub-card-price">¥14999</div>
+                            </div>
+                            <div class="sub-card">
+                                <div class="sub-card-img" style="background: #f0f0f0;">家电2</div>
+                                <div class="sub-card-price">¥6299</div>
+                            </div>
+                            <div class="sub-card">
+                                <div class="sub-card-img" style="background: #e5e5e5;">家电3</div>
+                                <div class="sub-card-price">¥4999</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="promo-box">
+                        <div class="box-title">领券中心 <span>新</span></div>
+                        <div class="sub-promos">
+                            <div class="sub-card">
+                                <div class="sub-card-img" style="background: #ffe6e6;">美妆1</div>
+                                <div class="sub-card-price">¥10800</div>
+                            </div>
+                            <div class="sub-card">
+                                <div class="sub-card-img" style="background: #e6f3ff;">美妆2</div>
+                                <div class="sub-card-price">¥6380</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Sidebar Mini Info -->
+                <div class="right-sidebar">
+                    <div class="user-card">
+                        <div class="avatar">
+                            <svg width="30" height="30" viewBox="0 0 24 24" fill="#ff5000"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                        </div>
+                        <p>晚上好</p>
+                        <button class="login-btn">立即登录</button>
+                        <div class="user-links">
+                            <a href="#"><div class="link-icon">🛒</div>已买到</a>
+                            <a href="#"><div class="link-icon">⭐</div>收藏夹</a>
+                            <a href="#"><div class="link-icon">🏪</div>逛过的店</a>
+                            <a href="#"><div class="link-icon">👣</div>足迹</a>
+                        </div>
+                    </div>
+                    <div class="coin-card">
+                        <h3>淘金币购物抵钱用</h3>
+                        <div class="coin-info">
+                            <div class="coin-icon">金币</div>
+                            <div class="coin-text">
+                                100金币抵1元
+                                <strong>立即领取</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Product Grid -->
+            <div class="recommend-section">
+                <div class="section-header">
+                    <h3>猜你喜欢</h3>
+                    <ul>
+                        <li class="active">运动户外</li>
+                        <li>潮电数码</li>
+                        <li>服饰时尚</li>
+                        <li>家装建材</li>
+                        <li>办公文具</li>
+                        <li>健康保健</li>
+                    </ul>
+                </div>
+                <div class="product-grid">
+                    <!-- Product 1 -->
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <div class="product-tag">天猫</div>
+                            <svg width="100" height="120" viewBox="0 0 100 120">
+                                <rect x="20" y="30" width="60" height="80" fill="#3f51b5" rx="2" />
+                                <rect x="25" y="35" width="50" height="20" fill="#fff" />
+                                <text x="50" y="50" font-size="10" fill="#333" text-anchor="middle">盐当家</text>
+                                <rect x="30" y="80" width="40" height="10" fill="#ffeb3b" />
+                                <text x="50" y="88" font-size="8" fill="#333" text-anchor="middle">加碘食用盐</text>
+                            </svg>
+                        </div>
+                        <div class="product-title">盐当家加碘精制盐350克小样食盐炒菜调味细盐健康袋装炒菜调味料</div>
+                        <div class="product-price">¥3.02</div>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <svg width="100" height="120" viewBox="0 0 100 120">
+                                <rect width="100" height="120" fill="#e91e63" />
+                                <text x="50" y="40" font-size="20" fill="#fff" text-anchor="middle" font-weight="bold">Dou音币</text>
+                                <text x="50" y="80" font-size="30" fill="#ffeb3b" text-anchor="middle" font-weight="bold">60</text>
+                            </svg>
+                        </div>
+                        <div class="product-title">天路 60抖币充值秒到300钻石douyin抖币充值ios抖音币1000抖充值抖音</div>
+                        <div class="product-price">¥6.5</div>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <svg width="100" height="120" viewBox="0 0 100 120">
+                                <rect width="100" height="120" fill="#00bcd4" />
+                                <circle cx="50" cy="60" r="30" fill="#fff" />
+                                <circle cx="50" cy="60" r="25" fill="#009688" />
+                                <text x="50" y="65" font-size="12" fill="#fff" text-anchor="middle">Persona</text>
+                            </svg>
+                        </div>
+                        <div class="product-title">【预售】明日方舟× Persona 3 Reload-串串挂件-结城理</div>
+                        <div class="product-price">¥38</div>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <svg width="100" height="120" viewBox="0 0 100 120">
+                                <rect width="100" height="120" fill="#8bc34a" />
+                                <rect x="30" y="20" width="40" height="80" rx="10" fill="#fff" />
+                                <circle cx="50" cy="40" r="15" fill="#cddc39" />
+                                <text x="50" y="45" font-size="8" fill="#333" text-anchor="middle">48H</text>
+                            </svg>
+                        </div>
+                        <div class="product-title">【全国包邮】衣物消毒除菌液洗衣液洗衣机专用杀菌液内衣内裤</div>
+                        <div class="product-price">¥20.9</div>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <svg width="100" height="120" viewBox="0 0 100 120">
+                                <rect width="100" height="120" fill="#f5f5f5" />
+                                <rect x="25" y="30" width="50" height="70" fill="#fff" stroke="#eee" stroke-width="1" />
+                                <path d="M25 50 L75 50" stroke="#ddd" stroke-width="1" />
+                                <path d="M25 70 L75 70" stroke="#ddd" stroke-width="1" />
+                                <text x="50" y="85" font-size="10" fill="#666" text-anchor="middle">原生木浆</text>
+                            </svg>
+                        </div>
+                        <div class="product-title">原生木浆抽纸家用饭店办公宿舍面巾纸擦拭优惠餐巾纸面巾纸</div>
+                        <div class="product-price">¥3.02</div>
+                    </div>
+
+                    <!-- Product 6 -->
+                    <div class="product-card">
+                        <div class="product-img-wrap">
+                            <svg width="100" height="120" viewBox="0 0 100 120">
+                                <rect width="100" height="120" fill="#dcedc8" />
+                                <circle cx="30" cy="60" r="15" fill="#fff" />
+                                <circle cx="70" cy="60" r="15" fill="#fff" />
+                                <path d="M15 60 L85 60" stroke="#4caf50" stroke-width="5" stroke-linecap="round" />
+                                <text x="50" y="100" font-size="10" fill="#333" text-anchor="middle">狂甩不掉</text>
+                            </svg>
+                        </div>
+                        <div class="product-title">简约发圈橡皮筋女高弹力耐用扎头发不伤发百搭头饰</div>
+                        <div class="product-price">¥5</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import catalog from "../../data/catalog.json" with { type: "json" };
 test.beforeEach(async ({ context }) => {
   await context.addCookies([
     { name: "odd-lab-lang", value: "zh", url: "http://127.0.0.1:3101" },
@@ -57,7 +58,9 @@ test("anyone can load, enlarge, vote and see revealed models and a ranking", asy
   await expect(page.getByText("本次已投 1 票")).toBeVisible();
   await expect(page.getByText("神秘模型")).toHaveCount(0);
   await page.getByRole("link", { name: "看看排行榜" }).click();
-  await expect(page.locator("tbody tr")).toHaveCount(33);
+  await expect(page.locator("tbody tr")).toHaveCount(
+    catalog.filter((item) => item.experiment === "pelican").length,
+  );
   await expect(page.getByRole("columnheader", { name: "Elo" })).toHaveCount(0);
 });
 test("reduced motion and the Taobao experiment remain usable", async ({
@@ -70,7 +73,9 @@ test("reduced motion and the Taobao experiment remain usable", async ({
     "settled",
   );
   await page.goto("/experiments/taobao");
-  await expect(page.locator(".art-gallery article")).toHaveCount(24);
+  await expect(page.locator(".art-gallery article")).toHaveCount(
+    catalog.filter((item) => item.experiment === "taobao").length,
+  );
   await expect(page.getByText("模型作品准备中", { exact: true })).toHaveCount(
     0,
   );

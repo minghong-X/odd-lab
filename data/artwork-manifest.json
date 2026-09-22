@@ -231,6 +231,13 @@
     "sha256": "9473723f293d231b1de08169a94ef864412deec660e25ecf6c7e6049a3bf7e35"
   },
   {
+    "experimentKey": "pelican",
+    "modelName": "grok-4.7",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/grok-4.7-pelican-bicycle-01.default-high.svg",
+    "mediaType": "svg",
+    "sha256": "d48da0aba2a4f78da0da77b3c380e407312888d11bc5c8b6cd3d81a8028ec75f"
+  },
+  {
     "experimentKey": "crocodile",
     "modelName": "deepseek-v4.1-flash",
     "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/deepseek-v4.1-flash-crocodile-motorcycle.svg",
@@ -579,5 +586,40 @@
     "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/gpt-6-astra-taobao.html",
     "mediaType": "html",
     "sha256": "127cb11ea25a5455f447dda73e9a76062dda4041ad641da45cda25766b7c4bb8"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "claude-opus-5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/modelrouter-claude-opus-5-taobao.html",
+    "mediaType": "html",
+    "sha256": "99b99188014517e3568341f7e6735e048c852e9bec781f6eed5e47ce4b44f609"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "mimo-v2.5",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.5-taobao-with-reference-04.html",
+    "mediaType": "html",
+    "sha256": "1d174033a717457864dc5bd9a36725b819e7e35802b2cd751a0d769169472ef1"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "mimo-v2.6-flash",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.6-flash-taobao-with-reference-04.html",
+    "mediaType": "html",
+    "sha256": "d2abf85783515f61cd3134486e0e550817d8f3c6f24920d39aa37de389b885ad"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "mimo-v2.6-pro",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.6-pro-taobao-with-reference-03.html",
+    "mediaType": "html",
+    "sha256": "ab57ac089886757a1cef0a9b9b5b19df735a2bf89b490055c64ada14c61b1b49"
+  },
+  {
+    "experimentKey": "taobao",
+    "modelName": "grok-4.7",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/grok-4.7-taobao-with-reference-03.html",
+    "mediaType": "html",
+    "sha256": "00b4427eb32c130bf7f9c87e69c4f6ed15369f58f950c2b9414fe7c7e439623c"
   }
 ]

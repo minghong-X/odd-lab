@@ -1,0 +1,2 @@
+# Imported model output must remain byte-for-byte identical to its source.
+data/media/*.html -whitespace
