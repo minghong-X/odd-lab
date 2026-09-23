@@ -242,28 +242,28 @@
     "modelName": "mimo-v2.5",
     "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.5-pelican-bicycle-03.svg",
     "mediaType": "svg",
-    "sha256": "78dd1013e67831a020e8a42cd48591d4bfa19c5b505e93898dcaa0ab6f770ba2"
+    "sha256": "46d063d1efbcc9a4060dd2c4895ccea9960efc53a1d87edd3973c20cb596bf10"
   },
   {
     "experimentKey": "pelican",
     "modelName": "mimo-v2.5-pro",
-    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.5-pro-pelican-bicycle-02.svg",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.5-pro-pelican-bicycle-01.svg",
     "mediaType": "svg",
-    "sha256": "853339f4b69e3f5cdbd7bc2e17a8ee023097f984a87bb42313e66678630bcf4a"
+    "sha256": "c63e23aa048776597e95bf1c963dc1324d1e60297396d5f5ae641da689df857c"
   },
   {
     "experimentKey": "pelican",
     "modelName": "mimo-v2.6-flash",
     "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.6-flash-pelican-bicycle-03.svg",
     "mediaType": "svg",
-    "sha256": "8f822304053396a075236a350c8821cb4445e93c7a577ad1c873be9d4c01f434"
+    "sha256": "de0fe523086de20de3ffec94cae8a2044bea3b1cd314ab377e8f527b4d0a03fe"
   },
   {
     "experimentKey": "pelican",
     "modelName": "mimo-v2.6-pro",
-    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.6-pro-pelican-bicycle-04.svg",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.6-pro-pelican-bicycle-03.svg",
     "mediaType": "svg",
-    "sha256": "79aeceb2b24f67b988b938212495f4ab9c65e7944606ddd11425ca4c081dcb90"
+    "sha256": "3d1a68dd71b3412ba57e737102fbc4b6f24d4de557ad4b75c7812870fb78610a"
   },
   {
     "experimentKey": "crocodile",
@@ -625,29 +625,29 @@
   {
     "experimentKey": "taobao",
     "modelName": "mimo-v2.5",
-    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.5-taobao-with-reference-04.html",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.5-taobao-with-reference-03.html",
     "mediaType": "html",
-    "sha256": "1d174033a717457864dc5bd9a36725b819e7e35802b2cd751a0d769169472ef1"
+    "sha256": "ad583fa0d0375a6d72ecb714abc02a1f75f1f1b9f89fe817e6c47e6271011afb"
   },
   {
     "experimentKey": "taobao",
     "modelName": "mimo-v2.6-flash",
-    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.6-flash-taobao-with-reference-04.html",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.6-flash-taobao-with-reference-02.html",
     "mediaType": "html",
-    "sha256": "d2abf85783515f61cd3134486e0e550817d8f3c6f24920d39aa37de389b885ad"
+    "sha256": "a5d51576cc31f886f7670e7916d3aa51b41f9c9edc4ef5fc9566e1a38b6b8e10"
   },
   {
     "experimentKey": "taobao",
     "modelName": "mimo-v2.6-pro",
-    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.6-pro-taobao-with-reference-03.html",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/mimo-v2.6-pro-taobao-with-reference-04.html",
     "mediaType": "html",
-    "sha256": "ab57ac089886757a1cef0a9b9b5b19df735a2bf89b490055c64ada14c61b1b49"
+    "sha256": "e2ca3c8c6c4af8241b7518699ed3575ecad7857b04c2628a9332d76b7cd4348b"
   },
   {
     "experimentKey": "taobao",
     "modelName": "grok-4.7",
-    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/grok-4.7-taobao-with-reference-03.html",
+    "url": "https://xrayandroid.oss-cn-beijing.aliyuncs.com/grok-4.7-taobao-with-reference-01.html",
     "mediaType": "html",
-    "sha256": "00b4427eb32c130bf7f9c87e69c4f6ed15369f58f950c2b9414fe7c7e439623c"
+    "sha256": "dc90423b7bb6a660cdea8551805da33d01d66c6b9f745ff06f37509dd1340e73"
   }
 ]

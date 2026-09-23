@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+<defs>
+<linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3D7EAA"/><stop offset="100%" stop-color="#87CEEB"/></linearGradient>
+<radialGradient id="bd" cx="50%" cy="35%"><stop offset="0%" stop-color="#fff"/><stop offset="100%" stop-color="#E8E8E0"/></radialGradient>
+</defs>
+<rect width="800" height="500" fill="url(#sky)"/>
+<circle cx="690" cy="72" r="42" fill="#FFF9C4"/><circle cx="690" cy="72" r="32" fill="#FFD54F"/>
+<g opacity=".85">
+<g><ellipse cx="100" cy="75" rx="50" ry="20" fill="#fff"/><ellipse cx="135" cy="68" rx="35" ry="16" fill="#fff"/><ellipse cx="70" cy="72" rx="30" ry="14" fill="#fff"/><animateTransform attributeName="transform" type="translate" values="0,0;800,0" dur="28s" repeatCount="indefinite"/></g>
+<g><ellipse cx="430" cy="105" rx="55" ry="22" fill="#fff"/><ellipse cx="470" cy="96" rx="38" ry="17" fill="#fff"/><animateTransform attributeName="transform" type="translate" values="0,0;800,0" dur="36s" repeatCount="indefinite"/></g>
+<g><ellipse cx="660" cy="50" rx="42" ry="18" fill="#fff"/><ellipse cx="690" cy="44" rx="30" ry="14" fill="#fff"/><animateTransform attributeName="transform" type="translate" values="0,0;800,0" dur="32s" repeatCount="indefinite"/></g>
+</g>
+<ellipse cx="200" cy="435" rx="180" ry="30" fill="#8BC34A" opacity=".4"/><ellipse cx="600" cy="440" rx="200" ry="25" fill="#7CB342" opacity=".3"/>
+<rect x="0" y="430" width="800" height="70" fill="#689F38"/><rect x="0" y="430" width="800" height="70" fill="#7CB342" opacity=".6"/>
+<rect x="0" y="400" width="800" height="52" rx="2" fill="#616161"/><rect x="0" y="400" width="800" height="2" fill="#757575"/>
+<line x1="-80" y1="424" x2="880" y2="424" stroke="#FFD54F" stroke-width="3" stroke-dasharray="35,40" stroke-linecap="round" opacity=".8"><animateTransform attributeName="transform" type="translate" values="0,0;-75,0" dur=".2s" repeatCount="indefinite"/></line>
+<g opacity=".3"><rect x="90" y="370" width="10" height="60" fill="#5D4037" rx="2"/><circle cx="95" cy="360" r="28" fill="#2E7D32"/></g>
+<g opacity=".25"><rect x="620" y="375" width="9" height="55" fill="#5D4037" rx="2"/><circle cx="625" cy="367" r="24" fill="#388E3C"/></g>
+<g opacity=".2"><rect x="240" y="380" width="7" height="50" fill="#5D4037" rx="2"/><circle cx="244" cy="374" r="20" fill="#388E3C"/></g>
+<g opacity=".3"><path d="M50,150 Q57,143 64,150" fill="none" stroke="#333" stroke-width="1.5" stroke-linecap="round"/><path d="M75,142 Q82,135 89,142" fill="none" stroke="#333" stroke-width="1.5" stroke-linecap="round"/><animateTransform attributeName="transform" type="translate" values="0,0;500,-30" dur="20s" repeatCount="indefinite"/></g>
+
+<!-- Rear wheel -->
+<circle cx="310" cy="405" r="48" fill="none" stroke="#424242" stroke-width="5"/>
+<g stroke="#BDBDBD" stroke-width="1.2"><line x1="310" y1="360" x2="310" y2="450"/><line x1="265" y1="405" x2="355" y2="405"/><line x1="279" y1="374" x2="341" y2="436"/><line x1="279" y1="436" x2="341" y2="374"/><animateTransform attributeName="transform" type="rotate" from="0 310 405" to="360 310 405" dur=".8s" repeatCount="indefinite"/></g>
+<circle cx="310" cy="405" r="5" fill="#616161"/>
+
+<!-- Front wheel -->
+<circle cx="470" cy="405" r="48" fill="none" stroke="#424242" stroke-width="5"/>
+<g stroke="#BDBDBD" stroke-width="1.2"><line x1="470" y1="360" x2="470" y2="450"/><line x1="425" y1="405" x2="515" y2="405"/><line x1="439" y1="374" x2="501" y2="436"/><line x1="439" y1="436" x2="501" y2="374"/><animateTransform attributeName="transform" type="rotate" from="0 470 405" to="360 470 405" dur=".8s" repeatCount="indefinite"/></g>
+<circle cx="470" cy="405" r="5" fill="#616161"/>
+
+<!-- Frame -->
+<g stroke="#E53935" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none">
+<line x1="360" y1="405" x2="340" y2="308"/><line x1="340" y1="308" x2="448" y2="310"/><line x1="448" y1="324" x2="360" y2="405"/><line x1="448" y1="310" x2="448" y2="324"/><line x1="360" y1="405" x2="310" y2="405"/><line x1="340" y1="308" x2="310" y2="405"/><line x1="448" y1="324" x2="470" y2="405"/></g>
+
+<!-- Seat -->
+<line x1="340" y1="308" x2="338" y2="288" stroke="#757575" stroke-width="3.5" stroke-linecap="round"/><ellipse cx="338" cy="285" rx="18" ry="5.5" fill="#424242"/>
+
+<!-- Handlebars -->
+<line x1="448" y1="310" x2="448" y2="280" stroke="#757575" stroke-width="3.5" stroke-linecap="round"/><path d="M430,282 Q448,272 466,278" fill="none" stroke="#424242" stroke-width="4.5" stroke-linecap="round"/><circle cx="430" cy="282" r="3" fill="#333"/><circle cx="466" cy="278" r="3" fill="#333"/>
+
+<!-- Chain ring -->
+<circle cx="360" cy="405" r="15" fill="none" stroke="#757575" stroke-width="2.5"/><circle cx="310" cy="405" r="7" fill="none" stroke="#757575" stroke-width="1.5"/>
+
+<!-- Pedals -->
+<g><g><line x1="360" y1="405" x2="360" y2="380" stroke="#757575" stroke-width="3" stroke-linecap="round"/><rect x="352" y="376" width="16" height="5" rx="2.5" fill="#9E9E9E"/><animateTransform attributeName="transform" type="rotate" from="0 360 405" to="360 360 405" dur=".8s" repeatCount="indefinite"/></g>
+<g><line x1="360" y1="405" x2="360" y2="430" stroke="#757575" stroke-width="3" stroke-linecap="round"/><rect x="352" y="427" width="16" height="5" rx="2.5" fill="#9E9E9E"/><animateTransform attributeName="transform" type="rotate" from="180 360 405" to="540 360 405" dur=".8s" repeatCount="indefinite"/></g></g>
+
+<!-- Flag -->
+<g><line x1="310" y1="405" x2="310" y2="348" stroke="#9E9E9E" stroke-width="1.5"/><path fill="#E53935"><animate attributeName="d" dur=".6s" repeatCount="indefinite" values="M310,348 L330,353 L310,360;M310,348 L328,355 L310,360;M310,348 L330,353 L310,360"/></path></g>
+
+<!-- Pelican left leg -->
+<path fill="none" stroke="#E8A020" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><animate attributeName="d" dur=".8s" repeatCount="indefinite" values="M345,285 L355,330 L360,378;M345,285 L368,335 L378,387;M345,285 L378,345 L385,405;M345,285 L372,358 L378,423;M345,285 L360,368 L360,430;M345,285 L350,358 L342,423;M345,285 L338,345 L335,405;M345,285 L345,335 L342,387;M345,285 L355,330 L360,378"/></path>
+<circle r="6" fill="#E8A020" stroke="#C68A15" stroke-width="1"><animate attributeName="cx" dur=".8s" repeatCount="indefinite" values="360;378;385;378;360;342;335;342;360"/><animate attributeName="cy" dur=".8s" repeatCount="indefinite" values="378;387;405;423;430;423;405;387;378"/></circle>
+
+<!-- Pelican right leg -->
+<path fill="none" stroke="#E8A020" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><animate attributeName="d" dur=".8s" repeatCount="indefinite" values="M345,285 L360,368 L360,430;M345,285 L350,358 L342,423;M345,285 L338,345 L335,405;M345,285 L345,335 L342,387;M345,285 L355,330 L360,378;M345,285 L368,335 L378,387;M345,285 L378,345 L385,405;M345,285 L372,358 L378,423;M345,285 L360,368 L360,430"/></path>
+<circle r="6" fill="#E8A020" stroke="#C68A15" stroke-width="1"><animate attributeName="cx" dur=".8s" repeatCount="indefinite" values="360;342;335;342;360;378;385;378;360"/><animate attributeName="cy" dur=".8s" repeatCount="indefinite" values="430;423;405;387;378;387;405;423;430"/></circle>
+
+<!-- Pelican body -->
+<g><animateTransform attributeName="transform" type="translate" values="0,0;0,-2;0,0;0,-2;0,0;0,-2;0,0;0,-2;0,0" dur=".8s" repeatCount="indefinite"/>
+
+<path d="M312,258 Q295,250 280,260 Q293,268 312,265 Z" fill="#D5D5D0"/><path d="M312,262 Q292,255 276,266 Q292,273 312,268 Z" fill="#C8C8C0"/><path d="M315,255 Q298,246 284,255 Q296,262 315,262 Z" fill="#E0E0D8"/>
+
+<ellipse cx="350" cy="260" rx="40" ry="28" fill="url(#bd)" stroke="#D0D0C8" stroke-width="1"/><ellipse cx="348" cy="266" rx="25" ry="16" fill="#fff" opacity=".3"/>
+
+<path fill="#DDD8D0" stroke="#C8C0B8" stroke-width=".8"><animate attributeName="d" dur=".5s" repeatCount="indefinite" values="M338,252 Q370,242 392,256 Q378,276 346,270 Z;M338,252 Q370,246 392,259 Q378,276 346,270 Z;M338,252 Q370,242 392,256 Q378,276 346,270 Z"/></path>
+
+<path d="M375,250 Q384,228 382,208" fill="none" stroke="#F0F0E8" stroke-width="17" stroke-linecap="round"/>
+
+<ellipse cx="382" cy="200" rx="17" ry="15" fill="#F5F5F0"/>
+
+<path d="M370,190 Q366,176 372,174" fill="none" stroke="#E0E0D8" stroke-width="2.5" stroke-linecap="round"/><path d="M375,188 Q373,174 379,172" fill="none" stroke="#D5D5D0" stroke-width="2" stroke-linecap="round"/><path d="M365,192 Q360,180 367,178" fill="none" stroke="#DADAD0" stroke-width="2" stroke-linecap="round"/>
+
+<ellipse cx="390" cy="196" rx="5" ry="4.5" fill="white" stroke="#aaa" stroke-width=".5"/><circle cx="391" cy="196" r="2.8" fill="#1a1a1a"/><circle cx="392" cy="195" r=".9" fill="white"/>
+
+<path d="M397,200 L438,207 L397,214 Z" fill="#F9A825" stroke="#E65100" stroke-width=".8"/><line x1="397" y1="207" x2="438" y2="207" stroke="#E89A10" stroke-width=".5"/><path d="M438,207 L442,210 L438,213" fill="none" stroke="#E65100" stroke-width="1.5" stroke-linecap="round"/>
+
+<path fill="#FFB74D" stroke="#E65100" stroke-width=".8" opacity=".9"><animate attributeName="d" dur=".4s" repeatCount="indefinite" values="M397,214 Q412,242 396,245 Q387,238 390,214 Z;M397,214 Q414,244 398,247 Q389,240 390,214 Z;M397,214 Q412,242 396,245 Q387,238 390,214 Z"/></path>
+
+<line x1="410" y1="204" x2="420" y2="205.5" stroke="#E89A10" stroke-width=".8" stroke-linecap="round"/>
+</g>
+</svg>

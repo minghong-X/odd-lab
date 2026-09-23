@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>淘宝网 - 淘！我喜欢</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;background:#fff;color:#333;font-size:12px}
+a{text-decoration:none;color:#333}
+a:hover{color:#f50}
+.wrap{width:1520px;margin:0 auto}
+/* ---------- top bar ---------- */
+.topbar{background:#f5f5f5;border-bottom:1px solid #eee;height:30px;line-height:30px;font-size:12px;color:#666}
+.topbar .wrap{display:flex;justify-content:space-between}
+.topbar .l span,.topbar .r span{margin-right:14px}
+.topbar a{color:#666}
+.topbar .hui{color:#f50;font-weight:bold}
+/* ---------- orange banner ---------- */
+.promo{height:104px;background:linear-gradient(90deg,#8b4c10,#b06d1c 45%,#96560f);position:relative;overflow:hidden}
+.promo .inner{width:1520px;margin:0 auto;height:104px;display:flex;align-items:center;justify-content:center;position:relative}
+.promo .ptext{font-size:24px;color:#ffe2b6;font-weight:bold;letter-spacing:1px}
+.promo .pbtn{margin-left:24px;background:#ffe8c8;color:#8b4c10;border-radius:16px;padding:8px 20px;font-size:14px;font-weight:bold}
+.promo .close{position:absolute;right:14px;top:44px;color:#fff;opacity:.8;font-size:16px}
+.promo .deco{position:absolute;left:calc(50% - 320px);top:8px}
+/* ---------- header ---------- */
+.header{background:#fff;padding:16px 0 8px}
+.header .wrap{display:flex;align-items:flex-start}
+.logo{width:270px}
+.logo svg{display:block}
+.searcharea{flex:1;padding-top:4px}
+.searchbar{display:flex;align-items:center;border:2px solid #ff5000;border-radius:22px;height:44px;overflow:hidden;background:#fff}
+.searchbar .stype{width:78px;text-align:center;font-size:14px;color:#333;position:relative}
+.searchbar .stype:after{content:"";position:absolute;right:0;top:12px;height:20px;width:1px;background:#eee}
+.searchbar input{flex:1;border:0;outline:none;font-size:14px;color:#333;height:40px}
+.searchbar input::placeholder{color:#bbb}
+.sbtn{width:96px;height:40px;background:linear-gradient(90deg,#ff9000,#ff5000);color:#fff;font-size:16px;display:flex;align-items:center;justify-content:center;border-radius:0 18px 18px 0}
+.qbtn{width:110px;height:44px;margin-left:10px;background:linear-gradient(90deg,#ff9000,#ff5000);border-radius:22px;color:#fff;font-size:14px;display:flex;align-items:center;justify-content:center;gap:5px}
+.hotwords{margin-top:8px;color:#666;font-size:12px}
+.hotwords a{margin-right:14px;color:#666}
+.hotwords a:first-child{color:#f50}
+.headright{width:300px;padding-left:24px;padding-top:2px}
+.headright .hr-top{display:flex;align-items:center;gap:10px}
+.headright .t1{font-size:15px;font-weight:bold}
+.headright .t2{color:#f50;font-size:13px;margin-top:4px}
+/* ---------- channels ---------- */
+.channels{display:flex;gap:34px;padding:6px 0 14px 300px}
+.channels .ch{display:flex;align-items:center;gap:6px;font-size:14px;color:#333}
+.dot{width:18px;height:18px;border-radius:5px;display:inline-block}
+/* ---------- main ---------- */
+.main{display:flex;gap:16px;align-items:stretch}
+.side{width:252px;background:#fff;border:1px solid #f0f0f0;border-radius:12px;padding:12px 14px}
+.side .sh{color:#ff5000;font-weight:bold;font-size:13px;display:flex;align-items:center;gap:6px;margin-bottom:10px}
+.side ul{list-style:none}
+.side li{display:flex;align-items:center;gap:8px;font-size:13px;padding:6px 0;color:#444}
+.side li b{font-weight:normal}
+.side li i{color:#bbb;font-style:normal}
+.center{flex:1;display:flex;flex-direction:column;gap:14px}
+.carou{height:196px;border-radius:12px;background:#f4f6f8;position:relative;overflow:hidden;display:flex}
+.carou .txt{width:46%;padding:22px 20px}
+.carou .tag{display:inline-block;background:#f50;color:#fff;font-size:11px;padding:2px 8px;border-radius:3px}
+.carou .h1{font-size:22px;font-weight:bold;margin-top:10px;line-height:1.5}
+.carou .sub{margin-top:14px;color:#999}
+.cards{display:flex;gap:14px}
+.card{flex:1;background:#fafafa;border-radius:12px;padding:10px;height:176px;position:relative}
+.card .ct{font-size:13px;font-weight:bold;display:flex;align-items:center;gap:5px}
+.card .imgs{display:flex;gap:8px;margin-top:12px}
+.card .imgs div{flex:1;height:104px;background:#fff;border-radius:8px;position:relative;overflow:hidden}
+.price{position:absolute;left:4px;bottom:4px;background:#ff5000;color:#fff;border-radius:10px;padding:1px 7px;font-size:11px}
+.user{width:300px;background:#fafafa;border:1px solid #f0f0f0;border-radius:12px;padding:16px;height:388px}
+.user .uh{display:flex;align-items:center;gap:12px}
+.user .ava{width:52px;height:52px;border-radius:50%;background:#ffe1b6;overflow:hidden}
+.user .hi{font-size:17px;font-weight:bold}
+.user .ops{color:#666;margin-top:4px}
+.user .tip{margin-top:14px;text-align:center;color:#888;line-height:1.8}
+.login{margin-top:10px;height:44px;background:#ff5000;color:#fff;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:16px;font-weight:bold}
+.uicons{display:flex;justify-content:space-between;margin-top:18px}
+.uicons div{text-align:center;color:#666;font-size:11px}
+.uicons .ic{width:24px;height:24px;margin:0 auto 4px}
+.tbcoin{margin-top:14px;border-top:1px solid #eee;padding-top:12px;display:flex;align-items:center;gap:10px}
+.tbcoin .bt{font-size:13px;font-weight:bold}
+.tbcoin .bb{color:#ff5000;font-size:11px;background:#fff2e8;border:1px solid #ffd9b8;border-radius:4px;padding:2px 8px;display:inline-block;margin-top:6px}
+/* ---------- guess tabs ---------- */
+.gtabs{display:flex;align-items:center;gap:26px;margin:18px 0 12px}
+.gtabs .gt{font-size:15px;color:#555;display:flex;align-items:center;gap:5px;padding-bottom:4px}
+.gtabs .gt.on{color:#ff5000;font-weight:bold}
+/* ---------- product grid ---------- */
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px 16px;padding-bottom:60px}
+.prod .pimg{width:100%;height:338px;border-radius:10px;overflow:hidden;background:#f6f6f6}
+.prod .pimg svg{display:block;width:100%;height:100%}
+.prod .pt{margin-top:8px;line-height:1.55;color:#333;height:38px;overflow:hidden}
+.prod .pp{margin-top:8px;color:#ff5000;font-size:18px;font-weight:bold}
+.prod .pp span{font-size:12px}
+/* ---------- float right ---------- */
+.floatr{position:fixed;right:0;top:40%;width:66px;background:#fff;border:1px solid #eee;border-radius:8px 0 0 8px;padding:8px 0;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.floatr div{padding:7px 0;color:#666;font-size:11px}
+.floatr .fi{width:22px;height:22px;margin:0 auto 3px}
+</style>
+</head>
+<body>
+
+<!-- ===== top bar ===== -->
+<div class="topbar">
+  <div class="wrap">
+    <div class="l">
+      <span>中国大陆 <svg width="8" height="6" style="vertical-align:middle"><path d="M0 0 L8 0 L4 6Z" fill="#999"/></svg></span>
+      <span><b class="hui">亲，请登录</b> <a href="#">免费注册</a></span>
+      <span><a href="#">网页无障碍</a></span>
+      <span><a href="#">切换企业版</a></span>
+    </div>
+    <div class="r">
+      <span><a href="#">已买到的宝贝</a></span>
+      <span><a href="#">我的淘宝</a> <svg width="8" height="6" style="vertical-align:middle"><path d="M0 0 L8 0 L4 6Z" fill="#999"/></svg></span>
+      <span>
+        <svg width="14" height="14" style="vertical-align:-2px"><path d="M1 2h2l2 8h7l2-6H5" fill="none" stroke="#999" stroke-width="1.3"/><circle cx="7" cy="12.5" r="1.2" fill="#999"/><circle cx="12" cy="12.5" r="1.2" fill="#999"/></svg>
+        <a href="#">购物车</a>
+      </span>
+      <span>
+        <svg width="13" height="13" style="vertical-align:-2px"><path d="M6.5 0.5 L8.2 4.3 L12.3 4.7 L9.2 7.4 L10.1 11.5 L6.5 9.3 L2.9 11.5 L3.8 7.4 L0.7 4.7 L4.8 4.3Z" fill="none" stroke="#999"/></svg>
+        <a href="#">收藏夹</a> <svg width="8" height="6" style="vertical-align:middle"><path d="M0 0 L8 0 L4 6Z" fill="#999"/></svg>
+      </span>
+      <span><a href="#">免费开店</a> <svg width="8" height="6" style="vertical-align:middle"><path d="M0 0 L8 0 L4 6Z" fill="#999"/></svg></span>
+      <span><a href="#">千牛卖家中心</a> <svg width="8" height="6" style="vertical-align:middle"><path d="M0 0 L8 0 L4 6Z" fill="#999"/></svg></span>
+      <span><a href="#">帮助中心</a> <svg width="8" height="6" style="vertical-align:middle"><path d="M0 0 L8 0 L4 6Z" fill="#999"/></svg></span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== orange promo ===== -->
+<div class="promo">
+  <div class="inner">
+    <svg class="deco" width="230" height="90" viewBox="0 0 230 90">
+      <rect x="20" y="30" width="80" height="46" rx="4" fill="#f0d7a8" stroke="#c9a35f"/>
+      <path d="M20 30 L60 8 L100 30" fill="none" stroke="#c9a35f" stroke-width="3"/>
+      <rect x="60" y="42" width="26" height="22" fill="#c9a35f"/>
+      <path d="M115 76 L155 20" stroke="#ffdca8" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="113" cy="78" r="9" fill="#fff"/>
+      <rect x="150" y="8" width="52" height="34" rx="4" fill="#7fd4f5" transform="rotate(-8 176 25)"/>
+      <path d="M168 8 q10 -14 24 -6" stroke="#ffdca8" stroke-width="3" fill="none"/>
+      <circle cx="196" cy="56" r="14" fill="#e8683f"/>
+      <path d="M186 56 h20 M196 46 v20" stroke="#fff" stroke-width="2"/>
+    </svg>
+    <div class="ptext">采购节&nbsp;&nbsp;企业秋季生产&nbsp;拿样1元起</div>
+    <div class="pbtn">立即前往</div>
+    <div class="close">✕</div>
+  </div>
+</div>
+
+<!-- ===== header ===== -->
+<div class="header">
+  <div class="wrap">
+    <div class="logo">
+      <svg width="230" height="86" viewBox="0 0 230 86">
+        <text x="4" y="48" font-family="Microsoft YaHei" font-size="46" font-weight="bold" fill="#ff5000">淘宝</text>
+        <text x="2" y="74" font-family="Arial" font-size="24" font-weight="bold" fill="#ff5000">Taobao.com</text>
+        <circle cx="196" cy="24" r="15" fill="none" stroke="#ff5000" stroke-width="3"/>
+        <path d="M196 14 v20 M186 24 h20" stroke="#ff5000" stroke-width="3"/>
+      </svg>
+    </div>
+
+    <div class="searcharea">
+      <div class="searchbar">
+        <div class="stype">宝贝 <svg width="8" height="6" style="vertical-align:middle"><path d="M0 0 L8 0 L4 6Z" fill="#999"/></svg></div>
+        <input type="text" placeholder="基围虾捞">
+        <a class="sbtn" href="#">搜索</a>
+      </div>
+      <div class="hotwords">
+        <a href="#">iPhone 18 pro开售</a>
+        <a href="#">摸鱼星期一</a>
+        <a href="#">中动玩具</a>
+        <a href="#">崭新之日手办</a>
+        <a href="#">手办</a>
+        <a href="#">中动玩具手办</a>
+        <a href="#">中动崭新之日手办</a>
+        <a href="#">中动崭新之日</a>
+        <a href="#">中动玩具</a>
+        <a href="#">崭新之日手办</a>
+      </div>
+    </div>
+
+    <div class="qbtn">
+      <svg width="16" height="16"><circle cx="7" cy="7" r="5.5" fill="none" stroke="#fff" stroke-width="1.6"/><path d="M11 11 L16 16" stroke="#fff" stroke-width="1.6"/><path d="M4 7 h6 M7 4 v6" stroke="#fff" stroke-width="1.2"/></svg>
+      搜同款
+    </div>
+
+    <div class="headright">
+      <div class="hr-top">
+        <div style="flex:1">
+          <div class="t1">天天领元宝换红包</div>
+          <div class="t2">开启淘江湖 ›</div>
+        </div>
+        <svg width="72" height="62" viewBox="0 0 72 62">
+          <rect x="14" y="26" width="44" height="24" rx="8" fill="#ffd85c"/>
+          <rect x="4" y="30" width="20" height="8" rx="4" fill="#ffb300"/>
+          <rect x="48" y="30" width="20" height="8" rx="4" fill="#ffb300"/>
+          <circle cx="30" cy="22" r="10" fill="#ffd85c"/>
+          <circle cx="27" cy="20" r="1.8" fill="#333"/>
+          <circle cx="34" cy="20" r="1.8" fill="#333"/>
+          <rect x="52" y="6" width="16" height="16" rx="3" fill="#ff3b30"/>
+          <text x="60" y="18" font-family="Arial" font-size="10" fill="#fff" text-anchor="middle">1</text>
+          <circle cx="60" cy="20" r="5" fill="#ff3b30"/>
+          <text x="60" y="23" font-family="Arial" font-size="7" fill="#fff" text-anchor="middle">6</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== channels ===== -->
+<div class="channels wrap" style="padding-left:270px">
+  <div class="ch"><svg class="dot" viewBox="0 0 18 18"><rect width="18" height="18" rx="5" fill="#ff2b2b"/><path d="M4 12 L9 5 L14 12Z" fill="#fff"/></svg>天猫</div>
+  <div class="ch"><svg class="dot" viewBox="0 0 18 18"><rect width="18" height="18" rx="5" fill="#ff5a1f"/><path d="M5 5 v8 M5 5 l8 4 -8 4" fill="none" stroke="#fff" stroke-width="1.6"/></svg>淘宝直播</div>
+  <div class="ch"><svg class="dot" viewBox="0 0 18 18"><rect width="18" height="18" rx="5" fill="#ff8a00"/><path d="M3 9 h12 M6 5 h8 M8 13 h6" stroke="#fff" stroke-width="1.6"/></svg>阿里企业购</div>
+  <div class="ch"><svg class="dot" viewBox="0 0 18 18"><rect width="18" height="18" rx="5" fill="#e52c5c"/><path d="M4 6 h10 M6 6 v7 M12 6 v7 M4 13 h10" stroke="#fff" stroke-width="1.5"/></svg>司法拍卖</div>
+  <div class="ch"><svg class="dot" viewBox="0 0 18 18"><rect width="18" height="18" rx="5" fill="#00c853"/><path d="M4 7 h10 l-1 7 H5Z" fill="#fff"/><path d="M6 7 a3 3 0 0 1 6 0" fill="none" stroke="#fff" stroke-width="1.3"/></svg>天猫超市</div>
+  <div class="ch"><svg class="dot" viewBox="0 0 18 18"><rect width="18" height="18" rx="5" fill="#12b76a"/><path d="M9 4 L14 6 v4 c0 3 -3 4 -5 5 c-2 -1 -5 -2 -5 -5 V6Z" fill="#fff"/></svg>国家补贴</div>
+  <div class="ch"><svg class="dot" viewBox="0 0 18 18"><rect width="18" height="18" rx="5" fill="#ff2b2b"/><path d="M5 4 v10 l2 -2 2 2 2 -2 2 2 V4Z" fill="#fff"/></svg>领券中心</div>
+  <div class="ch"><svg class="dot" viewBox="0 0 18 18"><rect width="18" height="18" rx="5" fill="#ff2b2b"/><path d="M10 3 L5 10 h4 l-2 5 6 -8 h-4Z" fill="#fff"/></svg>超级立减</div>
+  <div class="ch"><svg class="dot" viewBox="0 0 18 18"><rect width="18" height="18" rx="5" fill="#ff8a00"/><circle cx="6" cy="6" r="2.2" fill="#fff"/><circle cx="12" cy="6" r="2.2" fill="#fff"/><circle cx="6" cy="12" r="2.2" fill="#fff"/><circle cx="12" cy="12" r="2.2" fill="#fff"/></svg>全部频道</div>
+</div>
+
+<!-- ===== main ===== -->
+<div class="wrap main">
+
+  <!-- left categories -->
+  <div class="side">
+    <div class="sh">
+      <svg width="16" height="16"><path d="M8 0 L10 5 L16 5 L11 8.5 L13 15 L8 11 L3 15 L5 8.5 L0 5 L6 5Z" fill="#ff5000"/></svg>
+      超级立减 <span style="color:#bbb">/</span> <span style="color:#ff8a00">抢省钱补贴</span>
+    </div>
+    <ul>
+      <li><svg class="dot" viewBox="0 0 18 18"><rect x="1" y="3" width="16" height="10" rx="1.5" fill="none" stroke="#888" stroke-width="1.3"/><path d="M6 16 h6" stroke="#888" stroke-width="1.3"/></svg><b>电脑</b><i>/</i><b>配件</b><i>/</i><b>办公</b><i>/</i><b>文具</b></li>
+      <li><svg class="dot" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7" fill="none" stroke="#888" stroke-width="1.3"/><circle cx="9" cy="9" r="2.5" fill="#888"/></svg><b>工业品</b><i>/</i><b>商业</b><i>/</i><b>农业</b><i>/</i><b>定制</b></li>
+      <li><svg class="dot" viewBox="0 0 18 18"><rect x="5" y="2" width="8" height="14" rx="1.5" fill="none" stroke="#888" stroke-width="1.3"/><path d="M8 14 h2" stroke="#888"/></svg><b>家电</b><i>/</i><b>手机</b><i>/</i><b>通信</b><i>/</i><b>数码</b></li>
+      <li><svg class="dot" viewBox="0 0 18 18"><path d="M2 8 a5 5 0 0 1 14 0 v6 H2Z" fill="none" stroke="#888" stroke-width="1.3"/></svg><b>家具</b><i>/</i><b>家装</b><i>/</i><b>家居</b><i>/</i><b>厨具</b></li>
+      <li><svg class="dot" viewBox="0 0 18 18"><path d="M5 3 h8 l3 4 -3 2 v6 H5 v-6 L2 7Z" fill="none" stroke="#888" stroke-width="1.3"/></svg><b>女装</b><i>/</i><b>男装</b><i>/</i><b>内衣</b><i>/</i><b>配饰</b></li>
+      <li><svg class="dot" viewBox="0 0 18 18"><path d="M3 12 c2 -6 5 -8 8 -8 c2 3 4 5 4 8 H3Z" fill="none" stroke="#888" stroke-width="1.3"/></svg><b>女鞋</b><i>/</i><b>男鞋</b><i>/</i><b>运动</b><i>/</i><b>户外</b></li>
+      <li><svg class="dot" viewBox="0 0 18 18"><path d="M2 12 l2 -5 h10 l2 5 v2 H2Z" fill="none" stroke="#888" stroke-width="1.3"/><circle cx="5" cy="14" r="1.3" fill="#888"/><circle cx="13" cy="14" r="1.3" fill="#888"/></svg><b>汽车</b><i>/</i><b>珠宝</b><i>/</i><b>文玩</b><i>/</i><b>箱包</b></li>
+      <li><svg class="dot" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7" fill="none" stroke="#888" stroke-width="1.3"/><path d="M5 7 h8 M6 11 h6" stroke="#888" stroke-width="1.2"/></svg><b>食品</b><i>/</i><b>鲜花</b><i>/</i><b>酒水</b><i>/</i><b>健康</b></li>
+      <li><svg class="dot" viewBox="0 0 18 18"><path d="M4 10 a5 5 0 0 1 10 0 v4 H4Z" fill="none" stroke="#888" stroke-width="1.3"/><circle cx="9" cy="5" r="2" fill="none" stroke="#888" stroke-width="1.2"/></svg><b>母婴</b><i>/</i><b>童装</b><i>/</i><b>玩具</b><i>/</i><b>宠物</b></li>
+    </ul>
+  </div>
+
+  <!-- center -->
+  <div class="center">
+    <!-- carousel -->
+    <div class="carou">
+      <div class="txt">
+        <span class="tag">天猫超级新品</span>
+        <div class="h1">Apple新品来了<br>立享24期免息</div>
+        <div class="sub">iPhone · iPad · AirPods · Watch</div>
+      </div>
+      <svg viewBox="0 0 620 196" preserveAspectRatio="xMidYMid meet" style="width:54%;height:196px">
+        <rect width="620" height="196" fill="#f4f6f8"/>
+        <!-- laptop -->
+        <g transform="translate(30,20) rotate(-6)">
+          <rect x="0" y="0" width="150" height="95" rx="6" fill="#d8d3cd"/>
+          <rect x="8" y="8" width="134" height="79" rx="3" fill="#8f8a86"/>
+          <path d="M-10 95 h170 l10 14 H-20Z" fill="#c9c3bd"/>
+        </g>
+        <!-- ipad -->
+        <g transform="translate(215,6) rotate(4)">
+          <rect x="0" y="0" width="82" height="112" rx="8" fill="#e6e2de"/>
+          <rect x="6" y="6" width="70" height="100" rx="4" fill="#4b4a52"/>
+          <rect x="14" y="18" width="54" height="34" rx="3" fill="#7f8fb0"/>
+          <rect x="14" y="58" width="54" height="8" rx="2" fill="#6b6a75"/>
+          <rect x="14" y="72" width="38" height="8" rx="2" fill="#6b6a75"/>
+        </g>
+        <!-- iphone -->
+        <g transform="translate(320,22) rotate(14)">
+          <rect x="0" y="0" width="72" height="146" rx="12" fill="#5d2233"/>
+          <rect x="4" y="4" width="64" height="138" rx="9" fill="#7a2f45"/>
+          <rect x="12" y="6" width="34" height="34" rx="9" fill="#5d2233"/>
+          <circle cx="22" cy="16" r="5" fill="#2c1119"/><circle cx="36" cy="16" r="5" fill="#2c1119"/>
+          <circle cx="22" cy="30" r="5" fill="#2c1119"/><circle cx="36" cy="30" r="5" fill="#2c1119"/>
+        </g>
+        <!-- airpods -->
+        <g transform="translate(140,110) rotate(-4)">
+          <rect x="0" y="0" width="52" height="42" rx="12" fill="#fff" stroke="#ddd"/>
+          <ellipse cx="16" cy="24" rx="9" ry="13" fill="#fff" stroke="#ccc"/>
+          <ellipse cx="36" cy="24" rx="9" ry="13" fill="#fff" stroke="#ccc"/>
+          <rect x="14" y="34" width="4" height="14" rx="2" fill="#fff" stroke="#ccc"/>
+          <rect x="34" y="34" width="4" height="14" rx="2" fill="#fff" stroke="#ccc"/>
+        </g>
+        <!-- watch -->
+        <g transform="translate(205,132) rotate(-12)">
+          <rect x="4" y="-14" width="26" height="24" rx="5" fill="#3a3a3a"/>
+          <rect x="4" y="34" width="26" height="22" rx="5" fill="#3a3a3a"/>
+          <rect x="0" y="6" width="34" height="34" rx="10" fill="#c0392b"/>
+          <rect x="4" y="10" width="26" height="26" rx="7" fill="#e74c3c"/>
+          <circle cx="17" cy="23" r="8" fill="#fff" opacity=".25"/>
+        </g>
+      </svg>
+      <div style="position:absolute;left:46%;bottom:8px;display:flex;gap:5px">
+        <span style="width:14px;height:3px;background:#ff5000;border-radius:2px"></span>
+        <span style="width:8px;height:3px;background:#ccc;border-radius:2px"></span>
+        <span style="width:8px;height:3px;background:#ccc;border-radius:2px"></span>
+        <span style="width:8px;height:3px;background:#ccc;border-radius:2px"></span>
+      </div>
+    </div>
+
+    <!-- four cards -->
+    <div class="cards">
+      <div class="card">
+        <div class="ct">领券中心 <span style="background:#ff2b2b;color:#fff;border-radius:3px;padding:0 4px;font-size:10px">券</span></div>
+        <div class="imgs">
+          <div>
+            <svg viewBox="0 0 120 104"><rect width="120" height="104" fill="#fff"/>
+              <rect x="16" y="34" width="88" height="46" rx="5" fill="#5a5f66"/>
+              <rect x="24" y="42" width="34" height="14" rx="2" fill="#9ad0e8"/>
+              <circle cx="84" cy="52" r="9" fill="#2f3338"/>
+              <rect x="24" y="66" width="10" height="6" rx="1" fill="#8b9096"/>
+              <rect x="38" y="66" width="10" height="6" rx="1" fill="#8b9096"/>
+              <rect x="20" y="22" width="80" height="12" rx="3" fill="#e9ebee"/>
+            </svg>
+            <span class="price">¥10800</span>
+          </div>
+          <div>
+            <svg viewBox="0 0 120 104"><rect width="120" height="104" fill="#fff"/>
+              <rect x="22" y="24" width="34" height="58" rx="4" fill="#2b2b2e"/>
+              <rect x="62" y="24" width="34" height="58" rx="4" fill="#efe6dc"/>
+              <text x="39" y="58" font-family="Arial" font-size="12" fill="#fff" text-anchor="middle">IR</text>
+              <text x="79" y="58" font-family="Arial" font-size="12" fill="#7a6a58" text-anchor="middle">IR</text>
+            </svg>
+            <span class="price">¥6380</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ct">淘宝直播 <span style="background:#ff2b2b;color:#fff;border-radius:3px;padding:0 4px;font-size:10px">红包雨</span></div>
+        <div class="imgs">
+          <div>
+            <svg viewBox="0 0 120 104"><rect width="120" height="104" fill="#ffd9e2"/>
+              <rect x="0" y="52" width="120" height="52" fill="#f3c8d3"/>
+              <path d="M34 46 a26 30 0 0 1 52 0 v58 H34Z" fill="#f6a9bd"/>
+              <circle cx="60" cy="30" r="15" fill="#f7d5c2"/>
+              <path d="M45 26 a15 15 0 0 1 30 0 l4 -14 H41Z" fill="#f3f3f3"/>
+              <circle cx="55" cy="31" r="1.6" fill="#333"/><circle cx="65" cy="31" r="1.6" fill="#333"/>
+              <path d="M56 37 q4 3 8 0" stroke="#c0392b" stroke-width="1.4" fill="none"/>
+            </svg>
+          </div>
+          <div>
+            <svg viewBox="0 0 120 104"><rect width="120" height="104" fill="#cfe7f5"/>
+              <rect x="0" y="56" width="120" height="48" fill="#b3d8ee"/>
+              <path d="M36 48 a24 30 0 0 1 48 0 v56 H36Z" fill="#3a6ea5"/>
+              <circle cx="60" cy="30" r="15" fill="#f7d5c2"/>
+              <path d="M46 22 q14 -14 28 0 l3 -8 H43Z" fill="#2b2b2b"/>
+              <circle cx="55" cy="31" r="1.6" fill="#333"/><circle cx="65" cy="31" r="1.6" fill="#333"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ct" style="color:#12b76a">🛡 国家补贴</div>
+        <div class="imgs">
+          <div>
+            <svg viewBox="0 0 120 104"><rect width="120" height="104" fill="#fff"/>
+              <rect x="18" y="34" width="84" height="48" rx="6" fill="#e9edf1"/>
+              <rect x="28" y="44" width="40" height="16" rx="3" fill="#8fd3e8"/>
+              <rect x="28" y="66" width="52" height="6" rx="3" fill="#c6ced6"/>
+              <rect x="86" y="44" width="10" height="16" rx="3" fill="#c6ced6"/>
+              <rect x="14" y="78" width="92" height="12" rx="4" fill="#d8dee5"/>
+            </svg>
+            <span class="price">¥21800</span>
+          </div>
+          <div>
+            <svg viewBox="0 0 120 104"><rect width="120" height="104" fill="#fff"/>
+              <rect x="30" y="24" width="60" height="64" rx="6" fill="#3c4046"/>
+              <rect x="38" y="34" width="44" height="30" rx="4" fill="#1d2024"/>
+              <text x="60" y="54" font-family="Arial" font-size="11" fill="#8fd3e8" text-anchor="middle">92°</text>
+              <rect x="38" y="72" width="20" height="8" rx="2" fill="#5b6068"/>
+              <rect x="62" y="72" width="20" height="8" rx="2" fill="#5b6068"/>
+            </svg>
+            <span class="price">¥20411</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="ct">淘宝秒杀 <span style="background:#ff8a00;color:#fff;border-radius:3px;padding:0 4px;font-size:10px">超低价</span></div>
+        <div class="imgs">
+          <div>
+            <svg viewBox="0 0 120 104"><rect width="120" height="104" fill="#fff"/>
+              <ellipse cx="60" cy="66" rx="44" ry="12" fill="#f2f4f6"/>
+              <path d="M28 60 q32 -22 64 0" fill="none" stroke="#dfe4e8" stroke-width="6"/>
+              <rect x="52" y="34" width="16" height="10" rx="3" fill="#c8ced4"/>
+              <ellipse cx="60" cy="30" rx="26" ry="8" fill="#eef1f4"/>
+            </svg>
+            <span class="price">¥6999</span>
+          </div>
+          <div>
+            <svg viewBox="0 0 120 104"><rect width="120" height="104" fill="#fff"/>
+              <rect x="12" y="30" width="96" height="46" rx="8" fill="#f4f6f8" stroke="#e2e6ea"/>
+              <rect x="12" y="46" width="96" height="3" fill="#e2e6ea"/>
+              <rect x="52" y="72" width="16" height="10" fill="#d5dae0"/>
+            </svg>
+            <span class="price">¥652</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- right user -->
+  <div class="user">
+    <div class="uh">
+      <div class="ava">
+        <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="26" fill="#ffcf8a"/>
+          <circle cx="26" cy="22" r="12" fill="#fff2df"/>
+          <circle cx="21" cy="21" r="2" fill="#5a3a1a"/><circle cx="31" cy="21" r="2" fill="#5a3a1a"/>
+          <path d="M21 27 q5 5 10 0" stroke="#c47a3a" stroke-width="2" fill="none"/>
+          <path d="M10 52 a16 14 0 0 1 32 0Z" fill="#ff8a3c"/>
+        </svg>
+      </div>
+      <div>
+        <div class="hi">晚上好</div>
+        <div class="ops"><a href="#">注册</a>　<a href="#">开店</a></div>
+      </div>
+    </div>
+    <div class="tip">登录淘宝后更多精彩<br>嘘！更懂你的推荐，更便捷的搜索</div>
+    <div class="login">立即登录</div>
+    <div class="uicons">
+      <div><svg class="ic" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="#888" stroke-width="1.5"/><path d="M7 12 l3.5 3.5 L17 8" fill="none" stroke="#888" stroke-width="1.6"/></svg>已买到</div>
+      <div><svg class="ic" viewBox="0 0 24 24"><path d="M12 2 L15 9 L22 9.6 L16.6 14.4 L18.4 22 L12 17.8 L5.6 22 L7.4 14.4 L2 9.6 L9 9Z" fill="none" stroke="#888" stroke-width="1.5"/></svg>收藏夹</div>
+      <div><svg class="ic" viewBox="0 0 24 24"><path d="M3 7 a3 3 0 0 1 18 0 v3 H3Z" fill="none" stroke="#888" stroke-width="1.5"/><rect x="4" y="10" width="16" height="11" rx="2" fill="none" stroke="#888" stroke-width="1.5"/></svg>买过的店</div>
+      <div><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#888" stroke-width="1.5"/><path d="M12 6 v6 l4 3" fill="none" stroke="#888" stroke-width="1.5"/></svg>足迹</div>
+    </div>
+    <div class="tbcoin">
+      <div style="flex:1">
+        <div class="bt">淘金币购物抵钱用</div>
+        <div style="color:#999;margin-top:4px">100金币抵1元</div>
+        <div class="bb">立即领取</div>
+      </div>
+      <svg width="62" height="62" viewBox="0 0 62 62">
+        <circle cx="31" cy="31" r="27" fill="#ffc93c"/>
+        <circle cx="31" cy="31" r="21" fill="#ffd75e"/>
+        <text x="31" y="41" font-family="Microsoft YaHei" font-size="24" font-weight="bold" fill="#e08a00" text-anchor="middle">币</text>
+      </svg>
+    </div>
+  </div>
+</div>
+
+<!-- ===== guess you like ===== -->
+<div class="wrap">
+  <div class="gtabs">
+    <div class="gt on">
+      <svg width="16" height="16"><path d="M8 15 C1 10 1 5 4.5 3.5 C6.5 2.5 8 4 8 4 C8 4 9.5 2.5 11.5 3.5 C15 5 15 10 8 15Z" fill="#ff5000"/></svg>
+      猜你喜欢
+    </div>
+    <div class="gt">
+      <svg width="18" height="14"><path d="M1 8 h6 l4 -5 h6 l-1 5 h4 l-2 4 H2Z" fill="none" stroke="#888" stroke-width="1.2"/></svg>运动户外
+    </div>
+    <div class="gt">
+      <svg width="18" height="14"><rect x="2" y="3" width="13" height="9" rx="1.5" fill="none" stroke="#888" stroke-width="1.2"/><circle cx="8.5" cy="7.5" r="2.4" fill="none" stroke="#888"/></svg>潮电数码
+    </div>
+    <div class="gt">
+      <svg width="18" height="14"><path d="M5 2 h8 l3 4 -2 2 v6 H4 V8 L2 6Z" fill="none" stroke="#888" stroke-width="1.2"/></svg>服饰时尚
+    </div>
+    <div class="gt">
+      <svg width="18" height="14"><rect x="2" y="3" width="14" height="10" rx="1.5" fill="none" stroke="#888" stroke-width="1.2"/><path d="M2 8 h14" stroke="#888"/></svg>家装建材
+    </div>
+    <div class="gt">
+      <svg width="18" height="14"><rect x="3" y="2" width="12" height="11" rx="1.5" fill="none" stroke="#888" stroke-width="1.2"/><path d="M6 5 h6 M6 8 h6" stroke="#888"/></svg>办公文具
+    </div>
+    <div class="gt">
+      <svg width="18" height="14"><path d="M9 13 C3 9 3 4 6 3 C8 2.5 9 4 9 4 C9 4 10 2.5 12 3 C15 4 15 9 9 13Z" fill="none" stroke="#888" stroke-width="1.2"/></svg>健康保健
+    </div>
+    <div style="margin-left:auto">
+      <svg width="20" height="20"><path d="M17 8 A7 7 0 1 0 18 12" fill="none" stroke="#bbb" stroke-width="1.6"/><path d="M13 5 l5 3 -5 3Z" fill="#bbb"/></svg>
+    </div>
+  </div>
+
+  <!-- ===== product grid ===== -->
+  <div class="grid">
+
+    <!-- 1 salt -->
+    <div class="prod">
+      <div class="pimg">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice">
+          <defs><linearGradient id="g-salt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a9dcf2"/><stop offset="1" stop-color="#e6f6fd"/></linearGradient></defs>
+          <rect width="300" height="300" fill="url(#g-salt)"/>
+          <path d="M0 190 q30 -14 60 0 t60 0 t60 0 t60 0 t60 0 V300 H0Z" fill="#cfeefb"/>
+          <path d="M0 225 q30 -14 60 0 t60 0 t60 0 t60 0 t60 0 V300 H0Z" fill="#e7f8fe"/>
+          <ellipse cx="150" cy="262" rx="120" ry="18" fill="#fff" opacity=".6"/>
+          <g transform="translate(40,70)">
+            <path d="M0 26 L14 8 H110 L124 26 V180 q0 12 -14 12 H14 q-14 0 -14 -12Z" fill="#fdfdfd" stroke="#d3dbe4"/>
+            <rect x="0" y="26" width="124" height="40" fill="#4a6cb5"/>
+            <rect x="0" y="120" width="124" height="26" fill="#4a6cb5" opacity=".15"/>
+            <text x="62" y="54" font-family="Microsoft YaHei" font-size="20" font-weight="bold" fill="#fff" text-anchor="middle">盐当家</text>
+            <text x="62" y="86" font-family="Microsoft YaHei" font-size="13" fill="#333" text-anchor="middle">加碘精制盐</text>
+            <path d="M20 100 q20 -14 42 0 q20 12 42 0" stroke="#4a6cb5" stroke-width="3" fill="none" opacity=".6"/>
+            <text x="62" y="152" font-family="Microsoft YaHei" font-size="11" fill="#7d8ca5" text-anchor="middle">颗粒细腻 · 精选原料</text>
+          </g>
+          <g transform="translate(150,52) scale(.8)">
+            <path d="M0 26 L14 8 H110 L124 26 V180 q0 12 -14 12 H14 q-14 0 -14 -12Z" fill="#f4f8fd" stroke="#d3dbe4"/>
+            <rect x="0" y="26" width="124" height="38" fill="#6d8fd0"/>
+            <text x="62" y="53" font-family="Microsoft YaHei" font-size="19" font-weight="bold" fill="#fff" text-anchor="middle">盐当家</text>
+            <text x="62" y="84" font-family="Microsoft YaHei" font-size="12" fill="#333" text-anchor="middle">精选原料</text>
+          </g>
+          <g transform="translate(6,196)">
+            <rect x="0" y="0" width="104" height="42" rx="8" fill="#ff2b2b"/>
+            <text x="52" y="28" font-family="Microsoft YaHei" font-size="18" font-weight="bold" fill="#ffe08a" text-anchor="middle">官方正品</text>
+          </g>
+          <text x="300" y="256" font-family="Microsoft YaHei" font-size="22" font-weight="bold" fill="#ff2b2b" text-anchor="end">加碘食用盐</text>
+          <rect x="152" y="222" width="142" height="18" fill="#fff" opacity=".85"/>
+          <text x="300" y="236" font-family="Microsoft YaHei" font-size="12" fill="#3a6fb5" text-anchor="end">颗粒细腻 精选原料</text>
+        </svg>
+      </div>
+      <div class="pt">盐当家加碘精制盐350克小样食盐炒菜调味细盐健康袋装炒菜调味料</div>
+      <div class="pp"><span>¥</span>3.02</div>
+    </div>
+
+    <!-- 2 douyin coin 60 -->
+    <div class="prod">
+      <div class="pimg">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice">
+          <defs><linearGradient id="g-dy60" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b1a6b"/><stop offset=".5" stop-color="#7b2fb0"/><stop offset="1" stop-color="#2a0f52"/></linearGradient></defs>
+          <rect width="300" height="300" fill="url(#g-dy60)"/>
+          <circle cx="250" cy="60" r="70" fill="#ff3ea5" opacity=".25"/>
+          <circle cx="40" cy="250" r="80" fill="#36d6ff" opacity=".2"/>
+          <rect x="16" y="14" width="150" height="30" rx="6" fill="#2b1158" stroke="#ff4fa3" stroke-width="1.5"/>
+          <text x="91" y="34" font-family="Microsoft YaHei" font-size="15" fill="#fff" text-anchor="middle">24小时自动充值</text>
+          <g transform="rotate(-38 255 40)"><rect x="206" y="24" width="94" height="28" rx="14" fill="#ff2b6b"/><text x="253" y="43" font-family="Microsoft YaHei" font-size="13" fill="#fff" text-anchor="middle">秒到账</text></g>
+          <text x="150" y="126" font-family="Arial Black, Microsoft YaHei" font-size="42" font-weight="bold" fill="#fff" text-anchor="middle">Dou音币</text>
+          <text x="150" y="212" font-family="Arial Black" font-size="80" font-weight="bold" fill="#ff4fa3" text-anchor="middle">60</text>
+          <text x="150" y="212" font-family="Arial Black" font-size="80" font-weight="bold" fill="#fff" text-anchor="middle" opacity=".35">60</text>
+          <g transform="translate(6,246)">
+            <rect x="0" y="0" width="126" height="34" rx="17" fill="#ff2b6b"/>
+            <text x="63" y="23" font-family="Microsoft YaHei" font-size="15" fill="#fff" text-anchor="middle">务必填写正确抖音号</text>
+          </g>
+          <path d="M20 236 l10 -18 M36 232 l6 -20 M270 220 l-8 -18" stroke="#ffe08a" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="272" cy="262" r="8" fill="#ffe08a" opacity=".8"/>
+        </svg>
+      </div>
+      <div class="pt">天猫 60抖币充值秒到300钻石douyin抖币充值ios抖音币1000抖币抖音</div>
+      <div class="pp"><span>¥</span>6.5</div>
+    </div>
+
+    <!-- 3 keychains -->
+    <div class="prod">
+      <div class="pimg">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice">
+          <defs><linearGradient id="g-key" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dff0fb"/><stop offset="1" stop-color="#f7fbfe"/></linearGradient></defs>
+          <rect width="300" height="300" fill="url(#g-key)"/>
+          <g stroke="#c8c8c8" stroke-width="1.5" fill="none">
+            <path d="M55 18 v22 M105 14 v26 M155 18 v22 M205 14 v26 M255 18 v22"/>
+          </g>
+          <g fill="none" stroke="#9aa4ad" stroke-width="2">
+            <circle cx="55" cy="22" r="6"/><circle cx="105" cy="18" r="6"/><circle cx="155" cy="22" r="6"/><circle cx="205" cy="18" r="6"/><circle cx="255" cy="22" r="6"/>
+          </g>
+          <!-- charms -->
+          <g transform="translate(55,42)">
+            <rect x="-22" y="0" width="44" height="52" rx="8" fill="#7fd4f5"/>
+            <circle cx="0" cy="18" r="13" fill="#bfeaff"/>
+            <circle cx="-5" cy="16" r="2" fill="#2b4a63"/><circle cx="5" cy="16" r="2" fill="#2b4a63"/>
+            <rect x="-14" y="34" width="28" height="12" rx="4" fill="#4fb3dd"/>
+          </g>
+          <g transform="translate(105,38)">
+            <path d="M0 0 a24 24 0 1 1 0 48 a24 24 0 1 1 0 -48" fill="#f7c8dc"/>
+            <circle cx="-7" cy="20" r="2.4" fill="#5a3040"/><circle cx="7" cy="20" r="2.4" fill="#5a3040"/>
+            <path d="M-6 30 q6 6 12 0" stroke="#c4527a" stroke-width="2" fill="none"/>
+          </g>
+          <g transform="translate(155,42)">
+            <rect x="-24" y="0" width="48" height="54" rx="10" fill="#fff2b8"/>
+            <circle cx="0" cy="22" r="15" fill="#ffd75e"/>
+            <circle cx="-5" cy="20" r="2.2" fill="#7a5a12"/><circle cx="5" cy="20" r="2.2" fill="#7a5a12"/>
+            <rect x="-16" y="40" width="32" height="10" rx="4" fill="#f0c14b"/>
+          </g>
+          <g transform="translate(205,38)">
+            <rect x="-22" y="0" width="44" height="52" rx="8" fill="#c9f2cf"/>
+            <path d="M-12 18 q12 -14 24 0" fill="#fff"/>
+            <circle cx="-6" cy="26" r="2.2" fill="#2f5c3a"/><circle cx="6" cy="26" r="2.2" fill="#2f5c3a"/>
+          </g>
+          <g transform="translate(255,42)">
+            <rect x="-22" y="0" width="44" height="52" rx="8" fill="#dcd6f7"/>
+            <circle cx="0" cy="20" r="13" fill="#efeaff"/>
+            <circle cx="-5" cy="18" r="2.2" fill="#4a3a7a"/><circle cx="5" cy="18" r="2.2" fill="#4a3a7a"/>
+            <rect x="-14" y="36" width="28" height="10" rx="4" fill="#b3a7e8"/>
+          </g>
+          <g stroke="#9aa4ad" stroke-width="1.2" fill="none" opacity=".7">
+            <path d="M55 94 v20 M105 90 v24 M155 96 v18 M205 90 v24 M255 94 v20"/>
+            <circle cx="55" cy="118" r="5"/><circle cx="105" cy="118" r="5"/><circle cx="155" cy="118" r="5"/><circle cx="205" cy="118" r="5"/><circle cx="255" cy="118" r="5"/>
+          </g>
+          <g transform="translate(55,150) scale(.8)">
+            <rect x="-22" y="0" width="44" height="52" rx="8" fill="#ffc3a8"/>
+            <circle cx="0" cy="22" r="13" fill="#ffe0d0"/>
+            <circle cx="-5" cy="20" r="2.2" fill="#6a3a26"/><circle cx="5" cy="20" r="2.2" fill="#6a3a26"/>
+          </g>
+          <g transform="translate(105,150) scale(.8)">
+            <rect x="-22" y="0" width="44" height="52" rx="8" fill="#a8e8ff"/>
+            <circle cx="0" cy="22" r="13" fill="#d9f5ff"/>
+            <circle cx="-5" cy="20" r="2.2" fill="#254a5c"/><circle cx="5" cy="20" r="2.2" fill="#254a5c"/>
+          </g>
+          <g transform="translate(155,150) scale(.8)">
+            <rect x="-22" y="0" width="44" height="52" rx="8" fill="#ffd0ec"/>
+            <circle cx="0" cy="22" r="13" fill="#ffe9f6"/>
+            <circle cx="-5" cy="20" r="2.2" fill="#6a2a4c"/><circle cx="5" cy="20" r="2.2" fill="#6a2a4c"/>
+          </g>
+          <g transform="translate(205,150) scale(.8)">
+            <rect x="-22" y="0" width="44" height="52" rx="8" fill="#c8f0c8"/>
+            <circle cx="0" cy="22" r="13" fill="#e5fae5"/>
+            <circle cx="-5" cy="20" r="2.2" fill="#2a5a2a"/><circle cx="5" cy="20" r="2.2" fill="#2a5a2a"/>
+          </g>
+          <g transform="translate(255,150) scale(.8)">
+            <rect x="-22" y="0" width="44" height="52" rx="8" fill="#fff0b8"/>
+            <circle cx="0" cy="22" r="13" fill="#fff9e0"/>
+            <circle cx="-5" cy="20" r="2.2" fill="#6a5a1a"/><circle cx="5" cy="20" r="2.2" fill="#6a5a1a"/>
+          </g>
+          <rect x="0" y="252" width="300" height="48" fill="#ffffff" opacity=".9"/>
+          <g transform="translate(10,264)">
+            <rect x="0" y="0" width="26" height="26" rx="5" fill="#ff2b2b"/>
+            <text x="13" y="18" font-family="Microsoft YaHei" font-size="14" fill="#fff" text-anchor="middle">预</text>
+          </g>
+          <text x="44" y="282" font-family="Microsoft YaHei" font-size="14" font-weight="bold" fill="#333">明日方舟 x Persona 3 串串挂件</text>
+        </svg>
+      </div>
+      <div class="pt">天猫【预售】明日方舟x Persona 3 Reload-串串挂件-结城理</div>
+      <div class="pp"><span>¥</span>38</div>
+    </div>
+
+    <!-- 4 disinfectant -->
+    <div class="prod">
+      <div class="pimg">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice">
+          <defs><linearGradient id="g-dis" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe3ee"/><stop offset="1" stop-color="#fff6fa"/></linearGradient></defs>
+          <rect width="300" height="300" fill="url(#g-dis)"/>
+          <text x="14" y="42" font-family="Microsoft YaHei" font-size="26" font-weight="bold" fill="#e0245e">48H长效杀菌</text>
+          <text x="14" y="68" font-family="Microsoft YaHei" font-size="14" fill="#8a5a6a">远离交叉感染</text>
+          <g font-family="Microsoft YaHei" font-size="11" fill="#c0392b">
+            <g transform="translate(14,84)"><rect width="12" height="12" rx="2" fill="#e0245e"/><path d="M3 6 l2 2 4 -4" stroke="#fff" stroke-width="1.4" fill="none"/><text x="18" y="10">7天长效杀菌</text></g>
+            <g transform="translate(14,104)"><rect width="12" height="12" rx="2" fill="#e0245e"/><path d="M3 6 l2 2 4 -4" stroke="#fff" stroke-width="1.4" fill="none"/><text x="18" y="10">48小时留香</text></g>
+            <g transform="translate(14,124)"><rect width="12" height="12" rx="2" fill="#e0245e"/><path d="M3 6 l2 2 4 -4" stroke="#fff" stroke-width="1.4" fill="none"/><text x="18" y="10">去味干异味</text></g>
+          </g>
+          <g transform="translate(150,58)">
+            <rect x="6" y="0" width="26" height="20" rx="4" fill="#8ad6a8"/>
+            <path d="M0 24 q20 -6 40 0 v128 q0 14 -14 14 H14 q-14 0 -14 -14Z" fill="#ffd3e3" stroke="#f0aac6"/>
+            <rect x="0" y="56" width="40" height="52" rx="6" fill="#fff"/>
+            <text x="20" y="76" font-family="Microsoft YaHei" font-size="11" fill="#2f8f5a" text-anchor="middle">消毒</text>
+            <text x="20" y="94" font-family="Microsoft YaHei" font-size="9" fill="#c0392b" text-anchor="middle">自然消毒液</text>
+          </g>
+          <g transform="translate(212,42)">
+            <rect x="10" y="0" width="30" height="22" rx="4" fill="#8ad6a8"/>
+            <path d="M0 26 q25 -8 50 0 v150 q0 16 -16 16 H16 q-16 0 -16 -16Z" fill="#ffc3da" stroke="#f09dc0"/>
+            <rect x="0" y="62" width="50" height="62" rx="7" fill="#fff"/>
+            <circle cx="25" cy="84" r="12" fill="#eafaf0"/>
+            <path d="M25 76 q6 4 6 10 q-6 6 -12 0 q0 -6 6 -10Z" fill="#5cc98a"/>
+            <text x="25" y="112" font-family="Microsoft YaHei" font-size="10" fill="#c0392b" text-anchor="middle">天然消毒液</text>
+          </g>
+          <ellipse cx="150" cy="256" rx="120" ry="16" fill="#fff" opacity=".8"/>
+          <g transform="translate(8,228)">
+            <rect x="0" y="0" width="66" height="60" rx="10" fill="#fff" stroke="#f2c3d3"/>
+            <text x="33" y="26" font-family="Microsoft YaHei" font-size="14" fill="#2f8f5a" text-anchor="middle">植萃</text>
+            <text x="33" y="46" font-family="Microsoft YaHei" font-size="14" fill="#2f8f5a" text-anchor="middle">配方</text>
+          </g>
+          <g transform="translate(84,232)">
+            <rect x="0" y="0" width="54" height="34" rx="8" fill="#e0245e"/>
+            <text x="27" y="23" font-family="Microsoft YaHei" font-size="15" fill="#fff" text-anchor="middle">安全</text>
+          </g>
+          <g transform="translate(84,270)">
+            <text x="0" y="18" font-family="Microsoft YaHei" font-size="18" font-weight="bold" fill="#2f8f5a">0刺激</text>
+          </g>
+          <rect x="146" y="258" width="150" height="30" rx="6" fill="#fff2f6" opacity=".95"/>
+          <text x="221" y="279" font-family="Microsoft YaHei" font-size="15" font-weight="bold" fill="#c0392b" text-anchor="middle">全家衣物放心混洗</text>
+        </svg>
+      </div>
+      <div class="pt">【全国包邮】衣物消毒除菌液洗衣服洗衣机专用杀菌液内衣内裤</div>
+      <div class="pp"><span>¥</span>20.9</div>
+    </div>
+
+    <!-- 5 tissue -->
+    <div class="prod">
+      <div class="pimg">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice">
+          <defs><linearGradient id="g-tis" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7d7c8"/><stop offset="1" stop-color="#fbeee6"/></linearGradient></defs>
+          <rect width="300" height="300" fill="url(#g-tis)"/>
+          <g stroke="#e9bda8" stroke-width="2">
+            <path d="M20 0 v300 M50 0 v300 M80 0 v300 M110 0 v300 M140 0 v300 M170 0 v300 M200 0 v300 M230 0 v300 M260 0 v300 M290 0 v300"/>
+          </g>
+          <rect x="0" y="0" width="300" height="72" fill="#fff" opacity=".55"/>
+          <text x="150" y="42" font-family="Microsoft YaHei" font-size="34" font-weight="bold" fill="#c2643c" text-anchor="middle">原生木浆</text>
+          <rect x="60" y="52" width="180" height="22" rx="11" fill="#e08c56"/>
+          <text x="150" y="68" font-family="Microsoft YaHei" font-size="12" fill="#fff" text-anchor="middle">柔韧面巾纸 云柔触感</text>
+          <g transform="translate(38,110)">
+            <rect x="0" y="30" width="224" height="120" rx="10" fill="#f3f7fb" stroke="#d9e3ee"/>
+            <path d="M0 30 q40 -34 112 -34 q72 0 112 34Z" fill="#fbfdff" stroke="#d9e3ee"/>
+            <g fill="none" stroke="#9dbcd8" stroke-width="2">
+              <path d="M30 70 q10 -14 22 0 q12 14 22 0"/>
+              <path d="M120 66 q10 -14 22 0 q12 14 22 0"/>
+              <path d="M50 110 q10 -14 22 0 q12 14 22 0"/>
+              <path d="M150 108 q10 -14 22 0 q12 14 22 0"/>
+            </g>
+            <g fill="#c7dcf0">
+              <circle cx="34" cy="130" r="5"/><circle cx="102" cy="86" r="5"/><circle cx="182" cy="80" r="5"/><circle cx="200" cy="128" r="5"/>
+            </g>
+            <rect x="66" y="82" width="92" height="34" rx="6" fill="#fff" opacity=".92" stroke="#cfdde9"/>
+            <text x="112" y="98" font-family="Microsoft YaHei" font-size="11" fill="#5a7fa6" text-anchor="middle">原生木浆</text>
+            <text x="112" y="112" font-family="Arial" font-size="8" fill="#8aa5bf" text-anchor="middle">SOFT TISSUE</text>
+            <path d="M22 18 q14 -12 30 -2" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round"/>
+          </g>
+          <rect x="0" y="270" width="300" height="30" fill="#fff" opacity=".8"/>
+          <text x="150" y="290" font-family="Microsoft YaHei" font-size="13" fill="#c2643c" text-anchor="middle">家用饭店办公宿舍面巾纸擦拭餐巾纸</text>
+        </svg>
+      </div>
+      <div class="pt">原生木浆抽纸家用饭店办公宿舍面巾纸擦拭优惠餐巾纸面巾纸</div>
+      <div class="pp"><span>¥</span>3.02</div>
+    </div>
+
+    <!-- 6 hair rings -->
+    <div class="prod">
+      <div class="pimg">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice">
+          <defs><linearGradient id="g-hair" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f5e6d8"/><stop offset="1" stop-color="#efe0d2"/></linearGradient></defs>
+          <rect width="300" height="300" fill="url(#g-hair)"/>
+          <!-- stylised person -->
+          <g transform="translate(30,40)">
+            <path d="M10 30 q10 -34 50 -34 q42 0 46 34 q4 34 -8 60 H18 Q4 62 10 30Z" fill="#6b4a34"/>
+            <circle cx="58" cy="52" r="34" fill="#f3d3bd"/>
+            <path d="M24 40 q22 -24 60 -8 q10 6 6 20 q-8 -18 -34 -18 q-24 0 -32 6Z" fill="#5c3d2a"/>
+            <path d="M20 90 q38 -14 76 0 l14 100 H6Z" fill="#2c3e56"/>
+            <path d="M20 12 q38 -12 74 2" stroke="#3a2618" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <circle cx="46" cy="54" r="3" fill="#3a2618"/><circle cx="72" cy="54" r="3" fill="#3a2618"/>
+            <path d="M52 68 q6 6 14 0" stroke="#c0392b" stroke-width="2" fill="none"/>
+          </g>
+          <!-- hair rings -->
+          <g transform="translate(150,40)">
+            <g fill="none" stroke-width="16" stroke-linecap="round">
+              <ellipse cx="60" cy="30" rx="42" ry="24" stroke="#4a3222"/>
+              <ellipse cx="70" cy="96" rx="42" ry="24" stroke="#6b4a34"/>
+              <ellipse cx="52" cy="162" rx="42" ry="24" stroke="#8c6444"/>
+              <ellipse cx="72" cy="222" rx="42" ry="24" stroke="#2b2b2b"/>
+            </g>
+            <g fill="none" stroke-width="16" stroke-linecap="round" opacity=".5">
+              <ellipse cx="52" cy="30" rx="34" ry="18" stroke="#3a2618"/>
+            </g>
+          </g>
+          <rect x="0" y="0" width="300" height="42" fill="#fff" opacity=".65"/>
+          <text x="300" y="32" font-family="Microsoft YaHei" font-size="28" font-weight="bold" fill="#2b2b2b" text-anchor="end">狂甩不掉</text>
+          <rect x="188" y="46" width="112" height="20" rx="10" fill="#fff" opacity=".85"/>
+          <text x="244" y="60" font-family="Microsoft YaHei" font-size="11" fill="#c0392b" text-anchor="middle">不伤发\不勒发</text>
+          <rect x="0" y="256" width="300" height="44" fill="#2b2b2b" opacity=".85"/>
+          <g transform="translate(12,264)">
+            <path d="M12 0 h20 v10 a10 10 0 0 1 -20 0Z" fill="#ffd75e"/>
+            <rect x="18" y="20" width="8" height="6" fill="#ffd75e"/>
+            <rect x="10" y="26" width="24" height="5" rx="2" fill="#ffd75e"/>
+          </g>
+          <text x="56" y="284" font-family="Microsoft YaHei" font-size="16" font-weight="bold" fill="#ffd75e">升级加粗款 高弹力耐用</text>
+          <rect x="232" y="266" width="60" height="22" rx="4" fill="#ff2b2b"/>
+          <text x="262" y="282" font-family="Microsoft YaHei" font-size="13" fill="#fff" text-anchor="middle">断包赔</text>
+        </svg>
+      </div>
+      <div class="pt">简约发圈橡皮筋女高弹力耐用扎头发不伤发百搭头饰</div>
+      <div class="pp"><span>¥</span>5</div>
+    </div>
+
+    <!-- 7 gift card -->
+    <div class="prod">
+      <div class="pimg">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice">
+          <defs><linearGradient id="g-gc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2f80ed"/><stop offset="1" stop-color="#1b3f8f"/></linearGradient></defs>
+          <rect width="300" height="300" fill="#f2f5f9"/>
+          <rect x="0" y="0" width="300" height="34" fill="#2f80ed"/>
+          <text x="14" y="23" font-family="Arial" font-size="15" font-weight="bold" fill="#fff">OFFGAMERS</text>
+          <rect x="216" y="6" width="76" height="22" rx="3" fill="#fff" opacity=".25"/>
+          <text x="254" y="21" font-family="Microsoft YaHei" font-size="11" fill="#fff" text-anchor="middle">中国区专用</text>
+          <text x="14" y="60" font-family="Arial" font-size="17" font-weight="bold" fill="#2f80ed">OFFGAMERS GIFT CARD</text>
+          <text x="14" y="78" font-family="Microsoft YaHei" font-size="10" fill="#8894a8">全球游戏平台与数字产品商城</text>
+          <g transform="translate(26,96)">
+            <rect x="0" y="0" width="248" height="120" rx="10" fill="#fff" stroke="#dbe3ee"/>
+            <rect x="0" y="0" width="248" height="34" fill="#f7f9fc"/>
+            <path d="M18 22 q14 -12 28 0 q14 10 28 0" stroke="#2f80ed" stroke-width="3" fill="none"/>
+            <text x="20" y="62" font-family="Arial" font-size="13" fill="#1b3f8f">OFFGAMERS</text>
+            <text x="20" y="80" font-family="Arial" font-size="8" fill="#8894a8">YOUR GAMING ALLIANCE</text>
+            <text x="20" y="108" font-family="Arial" font-size="22" font-weight="bold" fill="#2f80ed">GIFT CARD</text>
+            <rect x="186" y="46" width="52" height="46" rx="6" fill="#2f80ed"/>
+            <text x="212" y="72" font-family="Arial" font-size="24" font-weight="bold" fill="#fff" text-anchor="middle">30</text>
+            <text x="212" y="88" font-family="Arial" font-size="11" fill="#cfe0ff" text-anchor="middle">CNY</text>
+          </g>
+          <rect x="26" y="228" width="248" height="52" rx="8" fill="#1b3f8f"/>
+          <g font-family="Microsoft YaHei" font-size="10" fill="#cfe0ff">
+            <text x="52" y="252">官方正版</text><text x="118" y="252">即时到账</text><text x="184" y="252">多国通用</text><text x="244" y="252">优惠服务</text>
+            <text x="52" y="270" fill="#7ea4e8">安全保障</text><text x="118" y="270" fill="#7ea4e8">全球游戏</text><text x="184" y="270" fill="#7ea4e8">数字产品</text><text x="244" y="270" fill="#7ea4e8">自动发货</text>
+          </g>
+          <g fill="#7ea4e8" opacity=".8">
+            <circle cx="36" cy="246" r="7"/><circle cx="102" cy="246" r="7"/><circle cx="168" cy="246" r="7"/><circle cx="228" cy="246" r="7"/>
+          </g>
+        </svg>
+      </div>
+      <div class="pt">OFFGAMERS 礼品卡 30元 全球游戏平台数字产品商城充值卡</div>
+      <div class="pp"><span>¥</span>30</div>
+    </div>
+
+    <!-- 8 book -->
+    <div class="prod">
+      <div class="pimg">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="300" height="300" fill="#f0f3f7"/>
+          <rect x="24" y="16" width="252" height="268" rx="6" fill="#d94a34"/>
+          <rect x="34" y="26" width="232" height="248" rx="4" fill="#fff"/>
+          <rect x="34" y="26" width="232" height="34" fill="#d94a34"/>
+          <text x="46" y="49" font-family="Microsoft YaHei" font-size="16" font-weight="bold" fill="#fff">4年级</text>
+          <rect x="150" y="30" width="88" height="26" rx="13" fill="#fff"/>
+          <text x="194" y="48" font-family="Microsoft YaHei" font-size="13" fill="#d94a34" text-anchor="middle">斗半匠</text>
+          <text x="150" y="112" font-family="Microsoft YaHei" font-size="30" font-weight="bold" fill="#d94a34" text-anchor="middle">阅读大画报</text>
+          <text x="52" y="98" font-family="Microsoft YaHei" font-size="12" fill="#333">阅读与鉴赏</text>
+          <text x="52" y="118" font-family="Microsoft YaHei" font-size="11" fill="#888">小学拓展阅读</text>
+          <!-- landscape -->
+          <rect x="52" y="132" width="150" height="88" rx="4" fill="#dcecf5"/>
+          <path d="M52 200 q38 -30 74 -8 q34 18 76 -6 v34 H52Z" fill="#8fbf7a"/>
+          <rect x="86" y="152" width="14" height="46" fill="#6b4a34"/>
+          <path d="M70 158 q22 -32 46 -4 q-22 12 -46 4Z" fill="#4f9e5f"/>
+          <path d="M60 220 q30 -6 60 0" stroke="#7fb3d5" stroke-width="4" fill="none"/>
+          <g font-family="Microsoft YaHei" font-size="10" fill="#c0392b">
+            <g transform="translate(212,132)"><rect width="44" height="18" rx="4" fill="#fde7e2"/><text x="22" y="13" text-anchor="middle">同步教材</text></g>
+            <g transform="translate(212,156)"><rect width="44" height="18" rx="4" fill="#fde7e2"/><text x="22" y="13" text-anchor="middle">实景图解</text></g>
+            <g transform="translate(212,180)"><rect width="44" height="18" rx="4" fill="#fde7e2"/><text x="22" y="13" text-anchor="middle">全科融合</text></g>
+            <g transform="translate(212,204)"><rect width="44" height="18" rx="4" fill="#fde7e2"/><text x="22" y="13" text-anchor="middle">素养提升</text></g>
+          </g>
+          <rect x="52" y="232" width="90" height="18" rx="4" fill="#ffd15c"/>
+          <text x="97" y="246" font-family="Microsoft YaHei" font-size="11" fill="#8a4a00" text-anchor="middle">动画视频</text>
+          <text x="34" y="284" font-family="Microsoft YaHei" font-size="18" font-weight="bold" fill="#d94a34">2026秋 大语文阅读知识点汇总</text>
+        </svg>
+      </div>
+      <div class="pt">2026秋大语文阅读大画报四年级同步教材知识点汇总教辅书</div>
+      <div class="pp"><span>¥</span>19.9</div>
+    </div>
+
+    <!-- 9 tissue pack 洁柔 -->
+    <div class="prod">
+      <div class="pimg">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="300" height="300" fill="#fdf8ef"/>
+          <text x="18" y="46" font-family="Microsoft YaHei" font-size="34" font-weight="bold" fill="#2b2b2b">洁柔</text>
+          <path d="M84 22 q10 -14 22 -2 q-8 14 -22 2Z" fill="#f0a500"/>
+          <circle cx="94" cy="44" r="5" fill="#f0a500"/>
+          <g transform="translate(28,86)">
+            <rect x="0" y="46" width="120" height="112" rx="8" fill="#fff" stroke="#e2ded6"/>
+            <rect x="0" y="46" width="120" height="34" fill="#f5e9d2"/>
+            <text x="60" y="70" font-family="Microsoft YaHei" font-size="16" fill="#c89a3c" text-anchor="middle">洁柔</text>
+            <path d="M22 110 q14 -18 30 0 q14 16 30 0 q12 -14 24 -2" stroke="#d9c79a" stroke-width="2.5" fill="none"/>
+            <path d="M22 46 q16 -30 38 -30 q22 0 38 30Z" fill="#fff" stroke="#e2ded6"/>
+            <path d="M34 32 q24 -22 50 -2" stroke="#efe9dd" stroke-width="3" fill="none"/>
+          </g>
+          <g transform="translate(158,110)">
+            <rect x="0" y="30" width="120" height="100" rx="8" fill="#fffaf0" stroke="#e2ded6"/>
+            <rect x="0" y="30" width="120" height="28" fill="#e8f0f7"/>
+            <g fill="#bcd6ea"><circle cx="22" cy="82" r="6"/><circle cx="60" cy="98" r="6"/><circle cx="98" cy="80" r="6"/></g>
+            <path d="M12 30 q22 -28 48 -28 q26 0 48 28Z" fill="#fff" stroke="#e2ded6"/>
+          </g>
+          <rect x="0" y="252" width="300" height="48" fill="#fff" opacity=".92"/>
+          <rect x="18" y="262" width="96" height="28" rx="4" fill="#2b2b2b"/>
+          <text x="66" y="281" font-family="Microsoft YaHei" font-size="13" fill="#fff" text-anchor="middle">3层100抽</text>
+          <text x="130" y="281" font-family="Microsoft YaHei" font-size="14" font-weight="bold" fill="#c0392b">大规格 180</text>
+          <rect x="222" y="258" width="72" height="34" rx="5" fill="#ff5000"/>
+          <text x="258" y="280" font-family="Microsoft YaHei" font-size="13" fill="#fff" text-anchor="middle">更多低价</text>
+        </svg>
+      </div>
+      <div class="pt">洁柔抽纸3层100抽大规格家用实惠装面巾纸卫生纸整箱</div>
+      <div class="pp"><span>¥</span>32.9</div>
+    </div>
+
+    <!-- 10 detergent -->
+    <div class="prod">
+      <div class="pimg">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice">
+          <rect width="300" height="300" fill="#fff5f5"/>
+          <g transform="translate(6,14)">
+            <circle cx="44" cy="44" r="42" fill="#fff" stroke="#1f9d55" stroke-width="3"/>
+            <text x="44" y="38" font-family="Microsoft YaHei" font-size="17" font-weight="bold" fill="#1f9d55" text-anchor="middle">食品用</text>
+            <text x="44" y="60" font-family="Microsoft YaHei" font-size="15" fill="#1f9d55" text-anchor="middle">洗洁精</text>
+          </g>
+          <g transform="translate(96,20)">
+            <path d="M0 24 q22 -10 44 0 v130 q0 12 -12 12 H12 q-12 0 -12 -12Z" fill="#ffd7e2" stroke="#f5b0c4"/>
+            <rect x="8" y="0" width="28" height="18" rx="4" fill="#7fc8a0"/>
+            <rect x="0" y="52" width="44" height="46" rx="6" fill="#fff"/>
+            <text x="22" y="72" font-family="Microsoft YaHei" font-size="11" fill="#1f9d55" text-anchor="middle">果蔬</text>
+            <text x="22" y="88" font-family="Microsoft YaHei" font-size="10" fill="#c0392b" text-anchor="middle">去油</text>
+          </g>
+          <g transform="translate(166,6)">
+            <path d="M0 28 q28 -12 56 0 v160 q0 14 -14 14 H14 q-14 0 -14 -14Z" fill="#ffc9d8" stroke="#f0a2ba"/>
+            <rect x="12" y="0" width="32" height="22" rx="5" fill="#7fc8a0"/>
+            <rect x="0" y="62" width="56" height="58" rx="8" fill="#fff"/>
+            <text x="28" y="86" font-family="Microsoft YaHei" font-size="13" font-weight="bold" fill="#e0245e" text-anchor="middle">草莓去油</text>
+            <text x="28" y="104" font-family="Microsoft YaHei" font-size="11" fill="#1f9d55" text-anchor="middle">食品级</text>
+            <g transform="translate(28,146)">
+              <circle cx="0" cy="0" r="16" fill="#e0245e"/>
+              <path d="M-8 -8 q8 -6 16 0" stroke="#7fc86a" stroke-width="3" fill="none"/>
+              <g fill="#ffd75e"><circle cx="-6" cy="-2" r="1"/><circle cx="0" cy="4" r="1"/><circle cx="6" cy="-2" r="1"/></g>
+            </g>
+          </g>
+          <g font-family="Microsoft YaHei" font-size="13" fill="#1f9d55">
+            <g transform="translate(6,112)"><rect width="18" height="18" rx="3" fill="#1f9d55"/><path d="M4 9 l3 3 6 -6" stroke="#fff" stroke-width="2" fill="none"/><text x="24" y="14">清新祛味</text></g>
+            <g transform="translate(6,140)"><rect width="18" height="18" rx="3" fill="#1f9d55"/><path d="M4 9 l3 3 6 -6" stroke="#fff" stroke-width="2" fill="none"/><text x="24" y="14">无磷配方</text></g>
+            <g transform="translate(6,168)"><rect width="18" height="18" rx="3" fill="#1f9d55"/><path d="M4 9 l3 3 6 -6" stroke="#fff" stroke-width="2" fill="none"/><text x="24" y="14">易漂无残留</text></g>
+          </g>
+          <rect x="0" y="248" width="300" height="52" fill="#fff" opacity=".92"/>
+          <text x="10" y="270" font-family="Microsoft YaHei" font-size="15" font-weight="bold" fill="#e0245e">去油洗洁精 无磷洁净</text>
+          <text x="10" y="294" font-family="Microsoft YaHei" font-size="22" font-weight="bold" fill="#ff2b2b">¥4.50</text>
+          <rect x="180" y="258" width="112" height="30" rx="5" fill="#fff0f0" stroke="#ffbfc0"/>
+          <text x="236" y="278" font-family="Microsoft YaHei" font-size="13" fill="#c0392b" text-anchor="middle">清新祛味 有效防油</text>
+        </svg>
+      </div>
+      <div class="pt">食品级去油洗洁精果蔬餐具清洗剂无磷配方大瓶装家用</div>
+      <div class="pp"><span>¥</span>4.5</div>
+    </div>
+
+    <!-- 11 douyin 300 -->
+    <div class="prod">
+      <div class="pimg">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice">
+          <defs><radialGradient id="g-dy300" cx=".5" cy=".45" r=".7"><stop offset="0" stop-color="#3a1a6e"/><stop offset="1" stop-color="#0d0620"/></radialGradient></defs>
+          <rect width="300" height="300" fill="#22e0ff"/>
+          <rect x="8" y="8" width="284" height="284" rx="10" fill="url(#g-dy300)"/>
+          <g opacity=".8">
+            <circle cx="34" cy="46" r="6" fill="#ff2b6b"/><circle cx="266" cy="60" r="8" fill="#ffe08a"/>
+            <circle cx="52" cy="238" r="7" fill="#22e0ff"/><circle cx="248" cy="240" r="6" fill="#ff2b6b"/>
+            <rect x="20" y="120" width="14" height="14" fill="#ff6bb3" transform="rotate(25 27 127)"/>
+            <rect x="266" y="150" width="14" height="14" fill="#ffe08a" transform="rotate(-20 273 157)"/>
+          </g>
+          <rect x="52" y="30" width="196" height="26" rx="13" fill="#ff2b6b"/>
+          <text x="150" y="48" font-family="Microsoft YaHei" font-size="14" fill="#fff" text-anchor="middle">收藏领券再减</text>
+          <text x="150" y="94" font-family="Arial Black, Microsoft YaHei" font-size="34" font-weight="bold" fill="#fff" text-anchor="middle">DOU音币</text>
+          <text x="150" y="196" font-family="Arial Black" font-size="96" font-weight="bold" fill="#22e0ff" text-anchor="middle">300</text>
+          <text x="150" y="192" font-family="Arial Black" font-size="96" font-weight="bold" fill="#ff2b6b" text-anchor="middle" opacity=".8">300</text>
+          <text x="150" y="232" font-family="Microsoft YaHei" font-size="24" font-weight="bold" fill="#fff" text-anchor="middle">亏本跑量大促销</text>
+          <text x="150" y="256" font-family="Microsoft YaHei" font-size="13" fill="#ff8ab5" text-anchor="middle">24小时自动充值</text>
+          <rect x="42" y="264" width="216" height="28" rx="14" fill="#ff2b6b"/>
+          <text x="150" y="284" font-family="Microsoft YaHei" font-size="15" fill="#fff" text-anchor="middle">请填写正确抖音号</text>
+        </svg>
+      </div>
+      <div class="pt">抖音币充值300抖币24小时自动发货秒到账douyin官方</div>
+      <div class="pp"><span>¥</span>15</div>
+    </div>
+
+    <!-- 12 svip -->
+    <div class="prod">
+      <div class="pimg">
+        <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid slice">
+          <defs><linearGradient id="g-svip" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0d8ff"/><stop offset="1" stop-color="#d7c3ff"/></linearGradient></defs>
+          <rect width="300" height="300" fill="url(#g-svip)"/>
+          <rect x="0" y="0" width="300" height="44" fill="#7a3ff2"/>
+          <text x="14" y="30" font-family="Microsoft YaHei" font-size="22" font-weight="bold" fill="#fff">剪映 SVIP</text>
+          <rect x="176" y="10" width="112" height="24" rx="12" fill="#fff" opacity=".22"/>
+          <text x="232" y="27" font-family="Microsoft YaHei" font-size="12" fill="#fff" text-anchor="middle">直充到账</text>
+          <rect x="16" y="60" width="126" height="120" rx="10" fill="#fff2c2"/>
+          <rect x="28" y="74" width="102" height="24" rx="12" fill="#ffd15c"/>
+          <text x="79" y="91" font-family="Microsoft YaHei" font-size="13" fill="#8a4a00" text-anchor="middle">极速到账</text>
+          <text x="79" y="142" font-family="Microsoft YaHei" font-size="38" font-weight="bold" fill="#e0245e" text-anchor="middle">月卡</text>
+          <text x="79" y="168" font-family="Microsoft YaHei" font-size="12" fill="#8a6a2a" text-anchor="middle">充值自己号</text>
+          <rect x="158" y="60" width="126" height="120" rx="10" fill="#1c1c22"/>
+          <rect x="170" y="74" width="102" height="24" rx="12" fill="#ff2b6b"/>
+          <text x="221" y="91" font-family="Microsoft YaHei" font-size="12" fill="#fff" text-anchor="middle">24小时 自动发货</text>
+          <text x="221" y="142" font-family="Arial Black" font-size="34" font-weight="bold" fill="#fff" text-anchor="middle">SVIP</text>
+          <rect x="176" y="152" width="44" height="20" rx="4" fill="#fff"/>
+          <path d="M184 156 l12 12 M196 156 l-12 12" stroke="#1c1c22" stroke-width="2.5"/>
+          <text x="252" y="168" font-family="Microsoft YaHei" font-size="15" fill="#ffd75e" text-anchor="middle">会员</text>
+          <rect x="16" y="196" width="126" height="42" rx="8" fill="#7a3ff2"/>
+          <text x="79" y="223" font-family="Microsoft YaHei" font-size="15" fill="#fff" text-anchor="middle">直充·秒到账</text>
+          <rect x="158" y="196" width="126" height="42" rx="8" fill="#fff"/>
+          <text x="221" y="223" font-family="Microsoft YaHei" font-size="15" fill="#7a3ff2" text-anchor="middle">剪映会员</text>
+          <rect x="0" y="252" width="300" height="48" fill="#fff" opacity=".9"/>
+          <rect x="14" y="262" width="132" height="28" rx="6" fill="#fff" stroke="#c7b0ff"/>
+          <text x="80" y="281" font-family="Microsoft YaHei" font-size="12" fill="#7a3ff2" text-anchor="middle">专属特权 解锁模板 AI</text>
+          <rect x="156" y="262" width="132" height="28" rx="6" fill="#fff" stroke="#c7b0ff"/>
+          <text x="222" y="281" font-family="Microsoft YaHei" font-size="12" fill="#7a3ff2" text-anchor="middle">多端通用 手机平板</text>
+        </svg>
+      </div>
+      <div class="pt">剪映SVIP会员月卡充值自己号极速到账多端通用剪辑特权</div>
+      <div class="pp"><span>¥</span>12</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== float right ===== -->
+<div class="floatr">
+  <div><svg class="fi" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" fill="none" stroke="#888" stroke-width="1.5"/><path d="M8 21 h8" stroke="#888" stroke-width="1.5"/></svg>桌面版</div>
+  <div><svg class="fi" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#888" stroke-width="1.5"/><circle cx="8.5" cy="11" r="1.2" fill="#888"/><circle cx="15.5" cy="11" r="1.2" fill="#888"/><path d="M8.5 15 q3.5 3 7 0" stroke="#888" stroke-width="1.4" fill="none"/></svg>消息</div>
+  <div><svg class="fi" viewBox="0 0 24 24"><path d="M3 5h3l2.5 10H18l2.5-8H7" fill="none" stroke="#888" stroke-width="1.5"/><circle cx="10" cy="19" r="1.4" fill="#888"/><circle cx="17" cy="19" r="1.4" fill="#888"/></svg>购物车</div>
+  <div><svg class="fi" viewBox="0 0 24 24"><path d="M3 5h18v11H8l-5 4z" fill="none" stroke="#888" stroke-width="1.5"/></svg>规则众议</div>
+  <div><svg class="fi" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#888" stroke-width="1.5"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.2 2.4c-.6.2-.7.6-.7 1.1v.5" fill="none" stroke="#888" stroke-width="1.4"/><circle cx="12" cy="16.5" r="1" fill="#888"/></svg>官方客服</div>
+  <div><svg class="fi" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2" fill="none" stroke="#888" stroke-width="1.5"/><path d="M7 9h10M7 13h7" stroke="#888" stroke-width="1.4"/></svg>反馈</div>
+</div>
+
+</body>
+</html>
